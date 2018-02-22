@@ -4308,7 +4308,7 @@ scripts.extend([
       (try_end),
       (call_script, "script_redraw_castle_banners", redraw_castle_banners, ":castle_no"),
       (str_store_faction_name, s1, ":faction_id"),
-      (call_script, "script_str_store_castle_name", s1, ":castle_no"),
+      (call_script, "script_str_store_castle_name", s2, ":castle_no"),
       (server_add_message_to_log, "str_s1_captured_s2"),
     (try_end),
     ]),
