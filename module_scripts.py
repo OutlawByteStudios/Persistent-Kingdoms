@@ -8890,6 +8890,17 @@ scripts.extend([
     (try_end),
     ]),
 
+  ("agent_mount",
+   # run when user dismounts from horse. used to log.
+   [(store_script_param, ":agent_id", 1),  # must be valid
+    (store_script_param, ":horse_agent_id", 2),  # must be valid
+
+    (str_store_string, s0, ":agent_id"),
+    (agent_get_item_id, s1, ":horse_agent_id"),
+    (server_add_message_to_log, "str_s0_has_mounted_a_s1"),
+
+    ]),
+
   ("agent_dismount",
    # run when user dismounts from horse. used to log.
    [(store_script_param, ":agent_id", 1), # must be valid
