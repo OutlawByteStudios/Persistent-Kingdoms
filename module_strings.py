@@ -632,6 +632,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("s0_joined_the_s1", "{s0} joined the {s1}."),
   ("must_leave_s1_first", "You must leave the {s1} first."),
   ("not_a_member_of_s1", "You are not a member of the {s1}."),
+  ("s0_has_dismounted_a_s1", "{s0} has dismounted a {s1}."),
   ("s1_captured_s2", "The {s1} have captured {s2}!"),
   ("your_faction_not_hostile_to_s1", "Your faction is not hostile to the {s1}."),
   ("your_faction_not_captured_required_points", "Your faction has not captured the required secondary points."),

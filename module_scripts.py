@@ -8890,6 +8890,17 @@ scripts.extend([
     (try_end),
     ]),
 
+  ("agent_dismount",
+   # run when user dismounts from horse. used to log.
+   [(store_script_param, ":agent_id", 1), # must be valid
+    (store_script_param, ":horse_agent_id", 2), # must be valid
+
+    (str_store_string, s0, ":agent_id"),
+    (agent_get_item_id, s1, ":horse_agent_id"),
+    (server_add_message_to_log, "s0_has_dismounted_a_s1"),
+
+    ]),
+
   ("cart_choose_action", # get the relative position of the agent to the cart to decide the action; returns reg0 as 0 = out of range, -1 = attach, 1 = access
    [(store_script_param, ":agent_id", 1), # must be valid
     (store_script_param, ":instance_id", 2), # must be valid
