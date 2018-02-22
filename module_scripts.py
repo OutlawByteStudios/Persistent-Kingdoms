@@ -8897,7 +8897,7 @@ scripts.extend([
 
     (str_store_string, s0, ":agent_id"),
     (agent_get_item_id, s1, ":horse_agent_id"),
-    (server_add_message_to_log, "s0_has_dismounted_a_s1"),
+    (server_add_message_to_log, "str_s0_has_dismounted_a_s1"),
 
     ]),
 
