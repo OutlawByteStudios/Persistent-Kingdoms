@@ -1,0 +1,3 @@
+partytemplatesfile version 1
+1
+pt_none none 0 0 0 7 -1 -1 -1 -1 -1 -1 

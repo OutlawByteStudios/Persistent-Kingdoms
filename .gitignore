@@ -1,0 +1,4 @@
+*.pyc
+/ID_*.py
+/crafting_recipes*
+/admin_item_ids.txt

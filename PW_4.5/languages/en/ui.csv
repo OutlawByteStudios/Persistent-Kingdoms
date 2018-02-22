@@ -1,0 +1,106 @@
+ui_multiplayer|Play
+ui_host_game|Edit a Scene
+ui_map_name|Scene
+ui_downloading_map|Downloading scene (%d KB)
+ui_duel|Duel
+ui_riding_skill_not_adequate_to_mount|Not rideable
+ui_destructible_target|Destructible
+ui_value_killed_teammate|%s has killed a teammate!
+ui_watching_value|Spectating %s
+ui_character_window|Action Menu
+ui_inventory_window|Faction Chat
+ui_party_window|Money Bag
+ui_quests_window|Local Chat
+ui_game_log_window|Chat Log
+ui_leave_location_retreat|Player Stats
+ui_zoom|Zoom View
+ui_crouch|Crouch
+ui_view_outfit|View Outfit/Look Around
+ui_view_orders|Admin Chat
+ui_quick_save|Select Target
+ui_multiplayer_message_all|Global Chat
+ui_multiplayer_message_team|Unused
+ui_command_line|Unused
+ui_send_message_all|Send message to everyone:
+ui_send_message_team|Not used in this mod
+ui_game_log|Chat Log
+ui_everyone_around_control|Animation Menu
+ui_order_button_hold_this_position|
+ui_order_button_follow_me|
+ui_order_button_charge|
+ui_order_button_stand_ground|
+ui_order_button_retreat|
+ui_order_button_advance|
+ui_order_button_fall_back|
+ui_order_button_spread_out|
+ui_order_button_stand_closer|
+ui_order_button_mount_horses|
+ui_order_button_dismount|
+ui_order_button_hold_fire|
+ui_order_button_fire_at_will|
+ui_order_button_use_blunt_weapons|
+ui_order_button_use_any_weapon|
+ui_order_button_movement_orders|
+ui_order_button_formation_orders|
+ui_order_button_fire_orders|
+ui_use_melee_weapons_e_|
+ui_use_ranged_weapons_e_|
+ui_order_button_use_melee_weapons|
+ui_order_button_use_ranged_weapons|
+ui_order_button_weapon_usage_orders|
+ui_fire_at_my_command_e_|
+ui_fire_now_e_|
+ui_order_button_fire_at_my_command|
+ui_order_button_fire_now|
+ui_order_form_1_row|
+ui_order_form_2_row|
+ui_order_form_3_row|
+ui_order_form_4_row|
+ui_order_form_5_row|
+ui_form_1_row_e_|
+ui_form_2_row_e_|
+ui_form_3_row_e_|
+ui_form_4_row_e_|
+ui_form_5_row_e_|
+ui_all_fire_now_e_|
+ui_left_fire_now_e_|
+ui_middle_fire_now_e_|
+ui_right_fire_now_e_|
+ui_order_button_all_fire_now|
+ui_order_button_left_fire_now|
+ui_order_button_middle_fire_now|
+ui_order_button_right_fire_now|
+ui_order_7|Select Order 7
+ui_order_8|Select Order 8
+ui_follow_me_e_|
+ui_charge_e_|
+ui_stand_ground_e_|
+ui_retreat_e_|
+ui_mount_horses_e_|
+ui_dismount_e_|
+ui_advance_e_|
+ui_fall_back_e_|
+ui_stand_closer_e_|
+ui_spread_out_e_|
+ui_use_blunt_weapons_e_|
+ui_use_any_weapon_e_|
+ui_hold_fire_e_|
+ui_fire_at_will_e_|
+ui_hold_this_position_e_|
+ui_infantry|
+ui_archers|
+ui_cavalry|
+ui_companions|
+ui_everyone_hear_me|
+ui_everyone|
+ui_everyone_around_me|
+ui_str_hear_me|
+ui_str_and_str|
+ui_str_comma_str|
+ui_particle_systems|High Detail Particle Systems
+ui_cut|Cutting
+ui_pierce|Piercing
+ui_blunt|Blunt
+ui_autoexpore|Use High-contrast Tonemap
+ui_crouch|Crouch
+ui_change_accessories|Extra
