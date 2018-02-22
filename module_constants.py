@@ -585,6 +585,7 @@ playable_troops_end = "trp_playable_troops_end"
 
 factions_begin = "fac_commoners"
 castle_factions_begin = "fac_1"
+chat_factions_begin = "fac_outlaws"
 factions_end = "fac_factions_end"
 
 castle_names_begin = "str_castle_name_0"
