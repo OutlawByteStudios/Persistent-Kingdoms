@@ -272,7 +272,7 @@ agent_mount = (ti_on_agent_mount, 0, 0, [], # server: check speed factor and att
     (try_begin),
       (call_script, "script_cf_attach_cart", ":agent_id", -1, ":agent_id"),
     (try_end),
-    (call_script, "agent_mount", ":agent_id", ":horse_agent_id")
+    (call_script, "script_agent_mount", ":agent_id", ":horse_agent_id")
     ])
 
 agent_dismount = (ti_on_agent_dismount, 0, 0, [], # server: make horses stand still after being dismounted from
@@ -283,7 +283,7 @@ agent_dismount = (ti_on_agent_dismount, 0, 0, [], # server: make horses stand st
     (multiplayer_is_server),
     (agent_get_position, pos1, ":horse_agent_id"),
     (agent_set_scripted_destination, ":horse_agent_id", pos1, 0),
-    (call_script, "agent_dismount", ":agent_id", ":horse_agent_id")
+    (call_script, "script_agent_dismount", ":agent_id", ":horse_agent_id")
     ])
 
 player_check_loop = (0, 0, 0.5, # server: check all players to see if any need agents spawned, also periodically lowering outlaw ratings
