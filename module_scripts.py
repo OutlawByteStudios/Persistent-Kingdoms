@@ -8895,8 +8895,9 @@ scripts.extend([
    [(store_script_param, ":agent_id", 1),  # must be valid
     (store_script_param, ":horse_agent_id", 2),  # must be valid
 
-    (str_store_string, s0, ":agent_id"),
-    (agent_get_item_id, s1, ":horse_agent_id"),
+    (str_store_player_username, s0, ":agent_id"),
+    (agent_get_item_id, ":horse_item_id", ":horse_agent_id"),
+    (str_store_string, s0, ":horse_item_id"),
     (server_add_message_to_log, "str_s0_has_mounted_a_s1"),
 
     ]),
@@ -8906,8 +8907,9 @@ scripts.extend([
    [(store_script_param, ":agent_id", 1), # must be valid
     (store_script_param, ":horse_agent_id", 2), # must be valid
 
-    (str_store_string, s0, ":agent_id"),
-    (agent_get_item_id, s1, ":horse_agent_id"),
+    (str_store_player_username, s0, ":agent_id"),
+    (agent_get_item_id, ":horse_item_id", ":horse_agent_id"),
+    (str_store_string, s0, ":horse_item_id"),
     (server_add_message_to_log, "str_s0_has_dismounted_a_s1"),
 
     ]),
