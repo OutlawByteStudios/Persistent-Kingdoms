@@ -8897,7 +8897,7 @@ scripts.extend([
     (agent_get_player_id, ":player_id", ":agent_id"),
     (str_store_player_username, s0, ":player_id"),
     (agent_get_item_id, ":horse_item_id", ":horse_agent_id"),
-    (str_store_string, s1, ":horse_item_id"),
+    (str_store_item_name, s1, ":horse_item_id"),
     (server_add_message_to_log, "str_s0_has_mounted_a_s1"),
 
     ]),
@@ -8909,7 +8909,7 @@ scripts.extend([
     (agent_get_player_id, ":player_id", ":agent_id"),
     (str_store_player_username, s0, ":player_id"),
     (agent_get_item_id, ":horse_item_id", ":horse_agent_id"),
-    (str_store_string, s1, ":horse_item_id"),
+    (str_store_item_name, s1, ":horse_item_id"),
     (server_add_message_to_log, "str_s0_has_dismounted_a_s1"),
 
     ]),
