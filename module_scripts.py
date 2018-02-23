@@ -8890,26 +8890,26 @@ scripts.extend([
     (try_end),
     ]),
 
-  ("agent_mount",
-   # run when user dismounts from horse. used to log.
+  ("agent_mount", # run when user mounts a horse. used to log.
    [(store_script_param, ":agent_id", 1),  # must be valid
     (store_script_param, ":horse_agent_id", 2),  # must be valid
 
-    (str_store_player_username, s0, ":agent_id"),
+    (agent_get_player_id, ":player_id", ":agent_id"),
+    (str_store_player_username, s0, ":player_id"),
     (agent_get_item_id, ":horse_item_id", ":horse_agent_id"),
-    (str_store_string, s0, ":horse_item_id"),
+    (str_store_string, s1, ":horse_item_id"),
     (server_add_message_to_log, "str_s0_has_mounted_a_s1"),
 
     ]),
 
-  ("agent_dismount",
-   # run when user dismounts from horse. used to log.
+  ("agent_dismount", # run when user dismounts from a horse. used to log.
    [(store_script_param, ":agent_id", 1), # must be valid
     (store_script_param, ":horse_agent_id", 2), # must be valid
 
-    (str_store_player_username, s0, ":agent_id"),
+    (agent_get_player_id, ":player_id", ":agent_id"),
+    (str_store_player_username, s0, ":player_id"),
     (agent_get_item_id, ":horse_item_id", ":horse_agent_id"),
-    (str_store_string, s0, ":horse_item_id"),
+    (str_store_string, s1, ":horse_item_id"),
     (server_add_message_to_log, "str_s0_has_dismounted_a_s1"),
 
     ]),
