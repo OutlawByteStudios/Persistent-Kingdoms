@@ -1462,6 +1462,14 @@ presentations.extend([
       (try_begin),
         (eq, "$g_list_players_event", client_event_request_poll),
         (eq, "$g_list_players_event_value", poll_type_faction_lord),
+        (try_begin),
+          (call_script, "script_cf_other_players_in_faction", ":my_player_id"),
+          (assign, ":my_player_id", 0),  # only add the requesting player to a lord poll list if they are alone in faction
+        (else_try),
+          (player_is_admin, ":my_player_id"),
+          (player_slot_eq, ":my_player_id", slot_player_admin_no_factions, 0),
+          (assign, ":my_player_id", 0),  # only add the requesting player to a lord poll list if an admin with permission
+        (try_end),
         (assign, ":my_player_id", 0), # only add the requesting player to a lord poll list if an admin with permission
       (else_try),
         (eq, "$g_list_players_event", client_event_faction_admin_action),

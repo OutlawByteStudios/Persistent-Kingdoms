@@ -11811,6 +11811,20 @@ scripts.extend([
     (call_script, "script_preset_message", "str_pw_welcome", preset_message_read_object, "str_join_game", 0),
     ]),
 
+  ("cf_other_players_in_faction",
+   [(store_script_param, ":my_player_id", 1),
+    (assign, ":other_players", 0),
+    (get_max_players, ":max_players"),
+    (try_for_range, ":player_id", 1, ":max_players"),
+      (player_is_active, ":player_id"),
+      (player_get_slot, ":poll_faction_id", ":my_player_id", slot_player_faction_id),
+      (player_slot_eq, ":player_id", slot_player_faction_id, ":poll_faction_id"),
+      (neq, ":player_id", ":my_player_id"),
+      (assign, ":other_players", 1),
+    (try_end),
+    (eq, ":other_players", 0),
+  ]),
+
   ("request_poll", # server: handle requests for polls from players
    [(store_script_param, ":poll_type", 1), # constants starting with poll_type_
     (store_script_param, ":requester_player_id", 2),
@@ -11866,7 +11880,8 @@ scripts.extend([
         (eq, ":poll_type", poll_type_faction_lord),
         (player_is_active, ":value_1"),
         (player_get_slot, ":poll_faction_id", ":requester_player_id", slot_player_faction_id),
-        (try_begin), # ensure that the faction is not locked
+        (try_begin), # ensure that the faction is not locked or does not contain other player (self-poll)
+          (call_script, "script_cf_other_players_in_faction", ":requester_player_id"),
           (faction_slot_eq, ":poll_faction_id", slot_faction_is_locked, 0),
         (else_try), # but allow admins to override the last conditions
           (player_is_admin, ":requester_player_id"),
