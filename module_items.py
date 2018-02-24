@@ -777,7 +777,7 @@ items = [
 ["bolts", "Bolts", [("bolt",0),("flying_missile",ixmesh_flying_ammo),("bolt_bag_b", ixmesh_carry)], itp_type_bolts|itp_default_ammo|itp_can_penetrate_shield, itcf_carry_quiver_right_vertical,
  95, weight(2.25)|weapon_length(63)|thrust_damage(1,pierce)|max_ammo(29), imodbits_missile],
 ["steel_bolts", "Steel Bolts", [("bolt",0),("flying_missile",ixmesh_flying_ammo),("bolt_bag_c", ixmesh_carry)], itp_type_bolts|itp_can_penetrate_shield, itcf_carry_quiver_right_vertical,
- 190, weight(2.5)|weapon_length(63)|thrust_damage(2,pierce)|max_ammo(29), imodbits_missile],
+ 190, weight(2.5)|weapon_length(63)|thrust_damage(2,pierce)|max_ammo(26), imodbits_missile],
 
 ["old_shield", "Old Shield", [("shield_heater_c",0)], itp_type_shield|itp_wooden_parry, itcf_carry_kite_shield,
  157, weight(3.5)|hit_points(210)|body_armor(2)|spd_rtng(70)|shield_width(50), imodbits_shield],
