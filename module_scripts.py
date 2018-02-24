@@ -11866,8 +11866,7 @@ scripts.extend([
         (eq, ":poll_type", poll_type_faction_lord),
         (player_is_active, ":value_1"),
         (player_get_slot, ":poll_faction_id", ":requester_player_id", slot_player_faction_id),
-        (try_begin), # ensure that the player is not voting for themself and the faction is not locked
-          (neq, ":value_1", ":requester_player_id"),
+        (try_begin), # ensure that the faction is not locked
           (faction_slot_eq, ":poll_faction_id", slot_faction_is_locked, 0),
         (else_try), # but allow admins to override the last conditions
           (player_is_admin, ":requester_player_id"),
@@ -11881,7 +11880,12 @@ scripts.extend([
         (assign, ":poll_error", 0),
         (is_between, ":poll_faction_id", castle_factions_begin, factions_end),
         (player_slot_eq, ":value_1", slot_player_faction_id, ":poll_faction_id"),
-        (assign, ":gold_cost", poll_cost_faction_lord),
+        (try_begin),
+          (neq, ":value_1", ":requester_player_id"),
+          (assign, ":gold_cost", poll_cost_faction_lord),
+        (else_try),
+          (assign, ":gold_cost", poll_cost_self_faction_lord),
+        (try_end),
         (str_store_player_username, s1, ":value_1"),
         (str_store_faction_name, s2, ":poll_faction_id"),
         (str_store_string, s0, "str_poll_faction_lord"),

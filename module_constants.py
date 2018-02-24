@@ -324,6 +324,7 @@ poll_cost_change_scene                = 1000
 poll_cost_kick_player                 = 500
 poll_cost_ban_player                  = 700
 poll_cost_faction_lord                = 1000
+poll_cost_self_faction_lord           = 5000
 
 poll_vote_no                          = 0
 poll_vote_yes                         = 1
