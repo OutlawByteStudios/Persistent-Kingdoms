@@ -11883,6 +11883,8 @@ scripts.extend([
         (try_begin), # ensure that the faction is not locked or does not contain other player (self-poll)
           (call_script, "script_cf_other_players_in_faction", ":requester_player_id"),
           (faction_slot_eq, ":poll_faction_id", slot_faction_is_locked, 0),
+        (else_try), # ensure that the player is not voting for themself if others are in faction.
+          (neq, ":value_1", ":requester_player_id"),
         (else_try), # but allow admins to override the last conditions
           (player_is_admin, ":requester_player_id"),
           (player_slot_eq, ":requester_player_id", slot_player_admin_no_factions, 0),

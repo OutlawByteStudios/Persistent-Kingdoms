@@ -1470,7 +1470,6 @@ presentations.extend([
           (player_slot_eq, ":my_player_id", slot_player_admin_no_factions, 0),
           (assign, ":my_player_id", 0),  # only add the requesting player to a lord poll list if an admin with permission
         (try_end),
-        (assign, ":my_player_id", 0), # only add the requesting player to a lord poll list if an admin with permission
       (else_try),
         (eq, "$g_list_players_event", client_event_faction_admin_action),
       (else_try),
