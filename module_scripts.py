@@ -4717,6 +4717,25 @@ scripts.extend([
     (neg|faction_slot_ge, ":faction_2_id", ":faction_1_slot", 1),
     ]),
 
+  ("cf_faction_change_relation",
+   [(store_script_param, ":faction_id", 1),
+    (store_script_param, ":value_1", 2),
+    (store_script_param, ":new_relation", 3),
+
+    (faction_slot_eq, ":value_1", slot_faction_is_active, 1),
+    (store_add, ":relation_slot", slot_faction_relations_begin, ":value_1"),
+    (faction_get_slot, ":previous_relation", ":faction_id", ":relation_slot"),
+    (faction_set_slot, ":faction_id", ":relation_slot", ":new_relation"),
+    (call_script, "script_display_faction_relation_change", ":faction_id", ":value_1", ":previous_relation",":new_relation"),
+    (get_max_players, ":max_players"),
+    (try_for_range, ":player_id", 1, ":max_players"),
+      (player_is_active, ":player_id"),
+      (multiplayer_send_3_int_to_player, ":player_id", server_event_faction_set_slot, ":faction_id", ":relation_slot",":new_relation"),
+    (try_end),
+
+
+   ]),
+
   ("display_faction_relation_change", # server and clients: calculate and display changed faction relations
    [(store_script_param, ":faction_id", 1),
     (store_script_param, ":other_faction_id", 2),
@@ -12731,21 +12750,14 @@ scripts.extend([
       (try_end),
       (gt, ":new_relation", -1),
       (is_between, ":value_1", castle_factions_begin, factions_end),
-      (faction_slot_eq, ":value_1", slot_faction_is_active, 1),
-      (store_add, ":relation_slot", slot_faction_relations_begin, ":value_1"),
-      (faction_get_slot, ":previous_relation", ":faction_id", ":relation_slot"),
-      (faction_set_slot, ":faction_id", ":relation_slot", ":new_relation"),
-      (call_script, "script_display_faction_relation_change", ":faction_id", ":value_1", ":previous_relation", ":new_relation"),
-      (get_max_players, ":max_players"),
-      (try_for_range, ":player_id", 1, ":max_players"),
-        (player_is_active, ":player_id"),
-        (multiplayer_send_3_int_to_player, ":player_id", server_event_faction_set_slot, ":faction_id", ":relation_slot", ":new_relation"),
-      (try_end),
+      (call_script, "script_cf_faction_change_relation", ":faction_id", ":value_1", ":new_relation"),
     (else_try),
       (assign, ":fail", 1),
     (try_end),
     (eq, ":fail", 0),
     ]),
+
+
 
   ("initialize_animation_menu_strings", # set up the starting and ending string ids for the animation menu
    [
