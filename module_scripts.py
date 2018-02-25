@@ -11825,6 +11825,7 @@ scripts.extend([
     (eq, ":other_players", 0),
   ]),
 
+
   ("request_poll", # server: handle requests for polls from players
    [(store_script_param, ":poll_type", 1), # constants starting with poll_type_
     (store_script_param, ":requester_player_id", 2),
@@ -11882,6 +11883,7 @@ scripts.extend([
         (player_get_slot, ":poll_faction_id", ":requester_player_id", slot_player_faction_id),
         (try_begin), # ensure that the faction is not locked or does not contain other player (self-poll)
           (call_script, "script_cf_other_players_in_faction", ":requester_player_id"),
+          (player_slot_eq, ":requester_player_id", slot_player_is_lord, 0),
           (faction_slot_eq, ":poll_faction_id", slot_faction_is_locked, 0),
         (else_try), # ensure that the player is not voting for themself if others are in faction.
           (neq, ":value_1", ":requester_player_id"),

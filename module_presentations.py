@@ -1469,6 +1469,7 @@ presentations.extend([
         (eq, "$g_list_players_event_value", poll_type_faction_lord),
         (try_begin),
           (call_script, "script_cf_other_players_in_faction", ":my_player_id"),
+          (player_slot_eq, ":my_player_id", slot_player_is_lord, 0),
           (assign, ":my_player_id", 0),  # only add the requesting player to a lord poll list if they are alone in faction
         (else_try),
           (player_is_admin, ":my_player_id"),
