@@ -179,15 +179,11 @@ after_mission_start_setup = (ti_after_mission_start, 0, 0, [], # spawn and move 
     (try_end),
     (assign, "$g_spawned_bot_count", 0),
     (call_script, "script_check_name_server"),
-
-    (try_for_range, ":faction_id", castle_factions_begin, factions_end), # loop not working.
+    (try_for_range, ":faction_id", castle_factions_begin, factions_end),
        (try_for_range, ":target_faction_id", castle_factions_begin, factions_end),
            (call_script, "script_cf_faction_change_relation", ":faction_id", ":target_faction_id", 1),
        (try_end),
     (try_end),
-
-    #(call_script, "script_cf_faction_change_relation", "fac_1", "fac_2", 1),
-    #(call_script, "script_cf_faction_change_relation", "fac_2", "fac_1", 1),
     ])
 
 player_joined = (ti_server_player_joined, 0, 0, [], # server: handle connecting players
