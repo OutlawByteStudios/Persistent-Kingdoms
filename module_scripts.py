@@ -7701,7 +7701,7 @@ scripts.extend([
       (player_slot_eq, ":player_id", slot_player_admin_no_all_items, 0),
       (val_add, ":stock_count", admin_restock_amount),
       (str_store_item_name, s4, ":item_id"),
-      (str_store_string, s3, "str_log_admin_cheat_item"),
+      (str_store_string, s3, "str_log_admin_restocked_s4"),
       (str_store_player_username, s0, ":player_id"),
       (player_get_unique_id, reg0, ":player_id"),
       (server_add_message_to_log, "str_log_admin_target_self"),
