@@ -1318,7 +1318,12 @@ presentations.extend([
         (faction_slot_eq, ":faction_id", slot_faction_is_locked, 0),
         (try_begin),
           (neq, "$g_game_type", "mt_no_money"),
-          (assign, reg0, poll_cost_faction_lord),
+          (try_begin),
+            (call_script, "script_cf_other_players_in_faction", ":my_player_id"),
+            (assign, reg0, poll_cost_self_faction_lord),
+          (else_try),
+            (assign, reg0, poll_cost_faction_lord),
+          (try_end),
         (try_end),
         (str_store_string, s0, "str_choose_poll_faction_lord"),
         (create_button_overlay, "$g_presentation_obj_poll_menu_faction_lord", "str_s0__reg0_", tf_center_justify),
@@ -1463,9 +1468,13 @@ presentations.extend([
         (eq, "$g_list_players_event", client_event_request_poll),
         (eq, "$g_list_players_event_value", poll_type_faction_lord),
         (try_begin),
+          (call_script, "script_cf_other_players_in_faction", ":my_player_id"),
+          (player_slot_eq, ":my_player_id", slot_player_is_lord, 0),
+          (assign, ":my_player_id", 0),  # only add the requesting player to a lord poll list if they are alone in faction
+        (else_try),
           (player_is_admin, ":my_player_id"),
           (player_slot_eq, ":my_player_id", slot_player_admin_no_factions, 0),
-          (assign, ":my_player_id", 0), # only add the requesting player to a lord poll list if an admin with permission
+          (assign, ":my_player_id", 0),  # only add the requesting player to a lord poll list if an admin with permission
         (try_end),
       (else_try),
         (eq, "$g_list_players_event", client_event_faction_admin_action),
