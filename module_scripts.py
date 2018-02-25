@@ -997,6 +997,7 @@ scripts.extend([
               (faction_slot_eq, ":faction_id", slot_faction_lord_player_uid, ":unique_id"),
               (call_script, "script_cf_check_enough_gold", ":sender_player_id", faction_cost_change_name),
               (call_script, "script_player_adjust_gold", ":sender_player_id", faction_cost_change_name, -1),
+              (str_store_faction_name, s10, ":faction_id"),
               (faction_set_name, ":faction_id", s0),
               (faction_set_slot, ":faction_id", slot_faction_name_is_custom, 1),
               (get_max_players, ":max_players"),
@@ -1005,6 +1006,8 @@ scripts.extend([
                 (multiplayer_send_3_int_to_player, ":player_id", server_event_troop_set_slot, "trp_mission_data", slot_mission_data_faction_to_change_name_of, ":faction_id"),
                 (multiplayer_send_string_to_player, ":player_id", server_event_faction_set_name, s0),
               (try_end),
+              (str_store_string, s1, s0),
+              (server_add_message_to_log, "str_s10_now_known_as_s1"),
             (try_end),
           (else_try),
             (is_between, ":chat_event_type", chat_event_type_faction, chat_event_type_faction_announce + 1),
@@ -4304,6 +4307,9 @@ scripts.extend([
         (multiplayer_send_3_int_to_player, ":player_id", server_event_troop_set_slot, "trp_mission_data", ":castle_no", ":faction_id"),
       (try_end),
       (call_script, "script_redraw_castle_banners", redraw_castle_banners, ":castle_no"),
+      (str_store_faction_name, s1, ":faction_id"),
+      (call_script, "script_str_store_castle_name", s2, ":castle_no"),
+      (server_add_message_to_log, "str_s1_captured_s2"),
     (try_end),
     ]),
 
@@ -8901,6 +8907,30 @@ scripts.extend([
     (else_try),
       (player_set_slot, ":player_id", slot_player_accessing_instance_id, 0),
     (try_end),
+    ]),
+
+  ("agent_mount", # run when user mounts a horse. used to log.
+   [(store_script_param, ":agent_id", 1),  # must be valid
+    (store_script_param, ":horse_agent_id", 2),  # must be valid
+
+    (agent_get_player_id, ":player_id", ":agent_id"),
+    (str_store_player_username, s0, ":player_id"),
+    (agent_get_item_id, ":horse_item_id", ":horse_agent_id"),
+    (str_store_item_name, s1, ":horse_item_id"),
+    (server_add_message_to_log, "str_s0_has_mounted_a_s1"),
+
+    ]),
+
+  ("agent_dismount", # run when user dismounts from a horse. used to log.
+   [(store_script_param, ":agent_id", 1), # must be valid
+    (store_script_param, ":horse_agent_id", 2), # must be valid
+
+    (agent_get_player_id, ":player_id", ":agent_id"),
+    (str_store_player_username, s0, ":player_id"),
+    (agent_get_item_id, ":horse_item_id", ":horse_agent_id"),
+    (str_store_item_name, s1, ":horse_item_id"),
+    (server_add_message_to_log, "str_s0_has_dismounted_a_s1"),
+
     ]),
 
   ("cart_choose_action", # get the relative position of the agent to the cart to decide the action; returns reg0 as 0 = out of range, -1 = attach, 1 = access
