@@ -44,6 +44,7 @@ scenes = [
   ("scene_17",sf_generate,"none","none",(0,0),(300,300),-100,"0x000000033000124c000acab40000280700000c9f00000ab5",[],[],"outer_terrain_pw_1"),
   ("scene_18",sf_generate,"none","none",(0,0),(300,300),-100,"0x000000033000124c000acab40000280700000c9f00000ab5",[],[],"outer_terrain_pw_1"),
   ("scene_19",sf_generate,"none","none",(0,0),(300,300),-100,"0x000000033000124c000acab40000280700000c9f00000ab5",[],[],"outer_terrain_pw_1"),
+  ("scene_20",sf_generate,"none","none",(0,0),(300,300),-100,"0x000000033000124c000acab40000280700000c9f00000ab5",[],[],"outer_terrain_pw_1"),
   ("scene_21",sf_generate,"none","none",(0,0),(300,300),-100,"0x000000033000124c000acab40000280700000c9f00000ab5",[],[],"outer_terrain_pw_1"),
   ("scene_22",sf_generate,"none","none",(0,0),(300,300),-100,"0x000000033000124c000acab40000280700000c9f00000ab5",[],[],"outer_terrain_pw_1"),
   ("scene_23",sf_generate,"none","none",(0,0),(300,300),-100,"0x000000033000124c000acab40000280700000c9f00000ab5",[],[],"outer_terrain_pw_1"),
