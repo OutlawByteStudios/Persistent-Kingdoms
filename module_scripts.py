@@ -7695,7 +7695,17 @@ scripts.extend([
     (agent_get_wielded_item, ":shield_item_id", ":agent_id", 1),
     (item_get_type, ":item_type", ":item_id"),
     (assign, ":fail", 0),
-    (try_begin), # if the item is wielded or worn, try selling it
+    (try_begin), # if the item is an admin scalpol
+      (eq, ":weapon_item_id", "itm_admin_scalpel"),
+      (player_is_admin, ":player_id"),
+      (player_slot_eq, ":player_id", slot_player_admin_no_all_items, 0),
+      (val_add, ":stock_count", admin_restock_amount),
+      (str_store_item_name, s4, ":item_id"),
+      (str_store_string, s3, "str_log_admin_restocked_s4"),
+      (str_store_player_username, s0, ":player_id"),
+      (player_get_unique_id, reg0, ":player_id"),
+      (server_add_message_to_log, "str_log_admin_target_self"),
+    (else_try), # if the item is wielded or worn, try selling it
       (this_or_next|eq, ":weapon_item_id", ":item_id"),
       (this_or_next|eq, ":shield_item_id", ":item_id"),
       (is_between, ":item_type", itp_type_head_armor, itp_type_hand_armor + 1),

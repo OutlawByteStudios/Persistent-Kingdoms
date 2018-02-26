@@ -344,6 +344,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("log_admin_lock_faction", "{s4}locked faction {s5}"),
   ("log_admin_cheat_money", "took {reg0} gold"),
   ("log_admin_cheat_item", "took item '{s4}'"),
+  ("log_admin_restocked_s4", "restocked a stockpile of '{s4}'s"),
 
   ("poll_change_scene", "Change scene to {s1}"),
   ("poll_kick_player", "Kick player {s1}"),
