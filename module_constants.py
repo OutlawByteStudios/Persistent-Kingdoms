@@ -568,7 +568,7 @@ max_scene_prop_instance_id            = 10000 # when trying to loop over all pro
 max_food_amount                       = 100
 max_hit_points_percent                = 200
 
-admin_restock_amount                  = 10 # amount admin restocks pile by for each use
+admin_restock_amount                  = 5 # amount admin restocks pile by for each use
 
 all_items_begin = "itm_tattered_headcloth"
 all_items_end = "itm_all_items_end"
