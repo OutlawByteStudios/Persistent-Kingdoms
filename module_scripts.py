@@ -1153,6 +1153,8 @@ scripts.extend([
               (player_set_slot, ":sender_player_id", slot_player_spawn_state, player_spawn_state_dead),
             (try_end),
           (else_try),
+            (this_or_next|eq, spectator_is_enabled, 1),
+            (player_is_admin, ":sender_player_id"),
             (player_set_team_no, ":sender_player_id", team_spectators),
           (try_end),
         (try_end),
@@ -3436,7 +3438,15 @@ scripts.extend([
    [(store_script_param, ":player_id", 1), # must be valid
 
     (player_set_team_no, ":player_id", team_default),
-    (player_set_slot, ":player_id", slot_player_requested_spawn_point, -1), # setting the initial team to spectator seems to occasionally stop that client loading properly, this is a work around
+
+    (try_begin),
+      (this_or_next|eq, spectator_is_enabled, 1),
+      (player_is_admin, ":player_id"),
+      (player_set_slot, ":player_id", slot_player_requested_spawn_point, -1), # setting the initial team to spectator seems to occasionally stop that client loading properly, this is a work around
+    (else_try),
+      (player_set_slot, ":player_id", slot_player_requested_spawn_point, 0),
+    (try_end),
+
     (player_set_slot, ":player_id", slot_player_next_chat_event_type, client_event_chat_message_begin),
     (try_for_range, ":castle_owner_slot", slot_mission_data_castle_owner_faction_begin, slot_mission_data_castle_owner_faction_end),
       (troop_get_slot, ":castle_owner", "trp_mission_data", ":castle_owner_slot"),
