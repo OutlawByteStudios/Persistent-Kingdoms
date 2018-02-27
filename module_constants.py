@@ -571,8 +571,6 @@ max_hit_points_percent                = 200
 
 admin_restock_amount                  = 5 # amount admin restocks pile by for each use
 
-spectator_is_enabled                  = 0 # spectator 0=off 1=on
-
 all_items_begin = "itm_tattered_headcloth"
 all_items_end = "itm_all_items_end"
 

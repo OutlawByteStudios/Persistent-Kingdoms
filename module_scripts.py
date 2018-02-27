@@ -1153,7 +1153,8 @@ scripts.extend([
               (player_set_slot, ":sender_player_id", slot_player_spawn_state, player_spawn_state_dead),
             (try_end),
           (else_try),
-            (this_or_next|eq, spectator_is_enabled, 1),
+            (server_get_ghost_mode, ":spectator_is_enabled"),
+            (this_or_next | le, ":spectator_is_enabled", 1),
             (player_is_admin, ":sender_player_id"),
             (player_set_team_no, ":sender_player_id", team_spectators),
           (try_end),
@@ -1964,7 +1965,7 @@ scripts.extend([
       (server_get_ghost_mode, ":value"),
     (else_try),
       (eq, ":command", command_set_ghost_mode),
-      (val_clamp, ":value", 0, 2),
+      (val_clamp, ":value", 0, 3),
       (server_set_ghost_mode, ":value"),
     (else_try),
       (eq, ":command", command_get_control_block_direction),
@@ -2064,6 +2065,18 @@ scripts.extend([
     (eq, ":command", command_set_disallow_ranged_weapons),
     ]),
 
+  ("update_ghost_mode_rule",
+   [(store_script_param, ":player_id", 1),
+      (server_get_ghost_mode, ":spectator_is_enabled"),
+      (try_begin),
+        (this_or_next | le, ":spectator_is_enabled", 1),
+        (player_is_admin, ":player_id"),
+        (multiplayer_send_2_int_to_player, ":player_id", server_event_return_game_rules, command_set_ghost_mode, 0),
+      (else_try),
+        (multiplayer_send_2_int_to_player, ":player_id", server_event_return_game_rules, command_set_ghost_mode, ":spectator_is_enabled"),
+      (try_end),
+   ]),
+
   ("player_return_game_rules", # return server settings to a player when requested
    [(store_script_param, ":player_id", 1),
     (store_script_param, ":admin_request", 2), # if 1, also return settings private to admins
@@ -2077,8 +2090,9 @@ scripts.extend([
       (multiplayer_send_2_int_to_player, ":player_id", server_event_return_game_rules, command_set_max_players, ":max_num_players"),
       (server_get_anti_cheat, ":anti_cheat"),
       (multiplayer_send_2_int_to_player, ":player_id", server_event_return_game_rules, command_set_anti_cheat, ":anti_cheat"),
-      (server_get_ghost_mode, ":ghost_mode"),
-      (multiplayer_send_2_int_to_player, ":player_id", server_event_return_game_rules, command_set_ghost_mode, ":ghost_mode"),
+
+      (call_script, "script_update_ghost_mode_rule", ":player_id"),
+
       (server_get_control_block_dir, ":control_block_dir"),
       (multiplayer_send_2_int_to_player, ":player_id", server_event_return_game_rules, command_set_control_block_direction, ":control_block_dir"),
       (server_get_combat_speed, ":combat_speed"),
@@ -2109,7 +2123,7 @@ scripts.extend([
         (multiplayer_send_int_to_player, ":player_id", server_event_return_game_rules, command_open_admin_panel),
       (try_end),
     (try_end),
-    ]),
+  ]),
 
   ("initialize_game_rules", # set module default settings before loading the server configuration
    [
@@ -3440,7 +3454,8 @@ scripts.extend([
     (player_set_team_no, ":player_id", team_default),
 
     (try_begin),
-      (this_or_next|eq, spectator_is_enabled, 1),
+      (server_get_ghost_mode, ":spectator_is_enabled"),
+      (this_or_next | le, ":spectator_is_enabled", 1),
       (player_is_admin, ":player_id"),
       (player_set_slot, ":player_id", slot_player_requested_spawn_point, -1), # setting the initial team to spectator seems to occasionally stop that client loading properly, this is a work around
     (else_try),

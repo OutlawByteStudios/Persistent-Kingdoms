@@ -1067,8 +1067,9 @@ presentations.extend([
       (multiplayer_get_my_player, ":my_player_id"),
       (player_get_team_no, ":my_team", ":my_player_id"),
 
+      (server_get_ghost_mode, ":spectator_is_enabled"),
       (try_begin),
-          (this_or_next | eq, spectator_is_enabled, 1),
+          (this_or_next | le, ":spectator_is_enabled", 1),
           (player_is_admin, ":my_player_id"),
           (try_begin),
               (this_or_next | eq, "$g_player_has_spawned_after_connecting", 0),
@@ -1170,9 +1171,10 @@ presentations.extend([
       (overlay_set_size, reg0, pos2),
 
       (position_set_x, pos1, 130),
-      
+
+      (server_get_ghost_mode, ":spectator_is_enabled"),
       (try_begin),
-          (this_or_next | eq, spectator_is_enabled, 1),
+          (this_or_next | le, ":spectator_is_enabled", 1),
           (player_is_admin, ":my_player_id"),
           (val_sub, ":cur_y", escape_menu_item_height),
           (position_set_y, pos1, ":cur_y"),
