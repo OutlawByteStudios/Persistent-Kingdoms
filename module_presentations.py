@@ -1067,8 +1067,8 @@ presentations.extend([
       (multiplayer_get_my_player, ":my_player_id"),
       (player_get_team_no, ":my_team", ":my_player_id"),
 
-      (server_get_ghost_mode, ":spectator_is_enabled"),
       (try_begin),
+          (server_get_ghost_mode, ":spectator_is_enabled"),
           (this_or_next | le, ":spectator_is_enabled", 1),
           (player_is_admin, ":my_player_id"),
           (try_begin),
@@ -1172,8 +1172,8 @@ presentations.extend([
 
       (position_set_x, pos1, 130),
 
-      (server_get_ghost_mode, ":spectator_is_enabled"),
       (try_begin),
+          (server_get_ghost_mode, ":spectator_is_enabled"),
           (this_or_next | le, ":spectator_is_enabled", 1),
           (player_is_admin, ":my_player_id"),
           (val_sub, ":cur_y", escape_menu_item_height),
