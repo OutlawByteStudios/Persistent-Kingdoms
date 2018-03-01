@@ -209,10 +209,9 @@ agent_killed = (ti_on_agent_killed_or_wounded, 0, 0, [], # server and clients: h
 
     (agent_get_player_id, ":player_id", ":dead_agent_id"),
 
+    (server_get_ghost_mode, ":spectator_is_enabled"),
     (try_begin),
-        (server_get_ghost_mode, ":spectator_is_enabled"),
-        (this_or_next | neg | le, ":spectator_is_enabled", 1),
-        (player_is_active, ":player_id"),
+        (neg | le, ":spectator_is_enabled", 1),
         (neg | player_is_admin, ":player_id"),
         (player_set_team_no, ":player_id", 3),
     (try_end),
