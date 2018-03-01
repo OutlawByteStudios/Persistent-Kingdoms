@@ -1155,6 +1155,7 @@ scripts.extend([
           (else_try),
             (server_get_ghost_mode, ":spectator_is_enabled"),
             (this_or_next | le, ":spectator_is_enabled", 1),
+            (player_is_active, ":sender_player_id"),
             (player_is_admin, ":sender_player_id"),
             (player_set_team_no, ":sender_player_id", team_spectators),
           (try_end),
@@ -2070,6 +2071,7 @@ scripts.extend([
       (server_get_ghost_mode, ":spectator_is_enabled"),
       (try_begin),
         (this_or_next | le, ":spectator_is_enabled", 1),
+        (player_is_active, ":player_id"),
         (player_is_admin, ":player_id"),
         (multiplayer_send_2_int_to_player, ":player_id", server_event_return_game_rules, command_set_ghost_mode, 0),
       (else_try),
@@ -3244,6 +3246,9 @@ scripts.extend([
       (try_end),
       (try_begin),
         (eq, ":spawn", 1),
+
+        (player_set_team_no, ":player_id", team_default),
+
         (player_get_troop_id, ":troop_id", ":player_id"),
         (is_between, ":troop_id", playable_troops_begin, playable_troops_end),
         (try_begin),
@@ -3456,6 +3461,7 @@ scripts.extend([
     (try_begin),
       (server_get_ghost_mode, ":spectator_is_enabled"),
       (this_or_next | le, ":spectator_is_enabled", 1),
+      (player_is_active, ":player_id"),
       (player_is_admin, ":player_id"),
       (player_set_slot, ":player_id", slot_player_requested_spawn_point, -1), # setting the initial team to spectator seems to occasionally stop that client loading properly, this is a work around
     (else_try),

@@ -201,9 +201,6 @@ player_exit = (ti_on_player_exit, 0, 0, [], # server: save player values on exit
 agent_spawn = (ti_on_agent_spawn, 0, 0, [], # server and clients: set up new agents after they spawn
    [(store_trigger_param_1, ":agent_id"),
     (call_script, "script_on_agent_spawned", ":agent_id"),
-
-    (agent_get_player_id, ":player_id", ":agent_id"),
-    (player_set_team_no, ":player_id", team_default),
     ])
 
 agent_killed = (ti_on_agent_killed_or_wounded, 0, 0, [], # server and clients: handle messages, score, loot, and more after agents die
@@ -215,8 +212,9 @@ agent_killed = (ti_on_agent_killed_or_wounded, 0, 0, [], # server and clients: h
     (try_begin),
         (server_get_ghost_mode, ":spectator_is_enabled"),
         (this_or_next | neg | le, ":spectator_is_enabled", 1),
+        (player_is_active, ":player_id"),
         (neg | player_is_admin, ":player_id"),
-        (player_set_team_no, ":player_id", 1),
+        (player_set_team_no, ":player_id", 3),
     (try_end),
 
     (call_script, "script_client_check_show_respawn_time_counter", ":dead_agent_id"),
