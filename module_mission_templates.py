@@ -190,6 +190,7 @@ player_joined = (ti_server_player_joined, 0, 0, [], # server: handle connecting 
    [(store_trigger_param_1, ":player_id"),
     (call_script, "script_setup_player_joined", ":player_id"),
     (call_script, "script_player_check_name", ":player_id"),
+    (call_script, "script_update_ghost_mode_rule", ":player_id"),
     ])
 
 player_exit = (ti_on_player_exit, 0, 0, [], # server: save player values on exit
@@ -205,6 +206,16 @@ agent_spawn = (ti_on_agent_spawn, 0, 0, [], # server and clients: set up new age
 agent_killed = (ti_on_agent_killed_or_wounded, 0, 0, [], # server and clients: handle messages, score, loot, and more after agents die
    [(store_trigger_param_1, ":dead_agent_id"),
     (store_trigger_param_2, ":killer_agent_id"),
+
+    (agent_get_player_id, ":player_id", ":dead_agent_id"),
+
+    (try_begin),
+        (server_get_ghost_mode, ":spectator_is_enabled"),
+        (ge, ":spectator_is_enabled", 2),
+        (neg | player_is_admin, ":player_id"),
+        (player_set_team_no, ":player_id", 3),
+    (try_end),
+
     (call_script, "script_client_check_show_respawn_time_counter", ":dead_agent_id"),
     (call_script, "script_apply_consequences_for_agent_death", ":dead_agent_id", ":killer_agent_id"),
     (multiplayer_is_server),
