@@ -26,7 +26,7 @@ scripts.extend([
 
   #saptor
   #TODO: log when someone hits someone else's shield
-  ("shield_hit", [
+  ("cf_shield_hit", [
     (multiplayer_is_server),
     (store_script_param_1, ":defender_agent_id"),
     (store_script_param_2, ":attacker_agent_id"),
