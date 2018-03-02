@@ -24,6 +24,25 @@ import math
 scripts = []
 scripts.extend([
 
+  #saptor
+  #TODO: log when someone hits someone else's shield
+  ("shield_hit", [
+    (multiplayer_is_server),
+    (store_script_param_1, ":defender_agent_id"),
+    (store_script_param_2, ":attacker_agent_id"),
+    (store_script_param, ":damage", 3),
+	
+    (agent_get_player_id, ":defender_player_id", ":defender_agent_id"),
+    (agent_get_player_id, ":attacker_player_id", ":attacker_agent_id"),
+	
+    (str_store_player_username, s11, ":defender_player_id"),
+    (str_store_player_username, s12, ":attacker_player_id"),
+    (assign, reg31, ":damage"),
+	
+    (server_add_message_to_log, "@{s12} hit {s11}'s shield by {reg31} damage"),
+  ]),
+  #saptor end  
+
   ("game_start", []), # single player only, not used
 
   ("game_get_use_string", # clients: called by the game when the local player is aiming at a usable scene prop
