@@ -24,7 +24,7 @@ import math
 scripts = []
 scripts.extend([
 
-  #saptor
+  #Shield Log Script
   #TODO: log when someone hits someone else's shield
   ("cf_shield_hit", [
     (multiplayer_is_server),
@@ -41,7 +41,7 @@ scripts.extend([
 	
     (server_add_message_to_log, "@{s12} hit {s11}'s shield by {reg31} damage"),
   ]),
-  #saptor end  
+  #End  
 
   ("game_start", []), # single player only, not used
 

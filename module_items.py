@@ -1397,8 +1397,8 @@ itm_wall_banner("fac_8", "b"),
 ["agent_corpse", "agent_corpse", [("pw_blood_b",imodbit_plain),("pw_blood_c",imodbit_cracked),("pw_dropped_armor",imodbit_rusty)], itp_no_pick_up_from_ground, 0, 0, 0, 0],
 ]
 
-#saptor
-#TODO: add the trigger defined below to all shield type items and make it call "script_cf_shield_hit"
+#Shield Log Triggers
+#TODO: Add the trigger defined below to all shield type items and make it call "script_cf_shield_hit"
 shield_trigger = (ti_on_shield_hit, [
     (store_trigger_param_1, ":defender_agent_id"),
 	(store_trigger_param_2, ":attacker_agent_id"),
@@ -1416,7 +1416,7 @@ def add_shield_triggers(items, shield_trigger):
 				item[8].append(shield_trigger)
 
 add_shield_triggers(items, shield_trigger)
-#saptor end
+#End
 
 item_lengths_list = []
 item_difficulties_list = []
