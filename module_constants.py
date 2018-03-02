@@ -634,6 +634,7 @@ from header_common import *
 profile_options = [ # global flag variables for options stored in a player profile
   "$g_display_agent_labels",
   "$g_hide_faction_in_name_labels",
+  "$g_basic_name_labels",
   "$g_display_chat_overlay",
   "$g_chat_overlay_type_selected",
   "$g_disable_automatic_shadow_recalculation",
