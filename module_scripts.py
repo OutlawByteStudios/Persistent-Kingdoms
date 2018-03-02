@@ -39,7 +39,7 @@ scripts.extend([
     (str_store_player_username, s12, ":attacker_player_id"),
     (assign, reg31, ":damage"),
 	
-    (server_add_message_to_log, "@{s12} hit {s11}'s shield by {reg31} damage"),
+    (server_add_message_to_log, "str_shield_hit_log"),
   ]),
   #End  
 
