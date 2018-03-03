@@ -1147,7 +1147,8 @@ presentations.extend([
       (try_end),
 
       (try_begin),
-        (player_slot_eq, ":my_player_id", slot_player_is_lord, 1),
+        (this_or_next|player_slot_eq, ":my_player_id", slot_player_is_lord, 1),
+        (player_slot_eq, ":my_player_id", slot_player_is_marshall, 1),
         (create_button_overlay, reg0, "str_faction_admin", 0),
         (assign, "$g_presentation_obj_escape_menu_faction_admin", reg0),
         (overlay_set_color, reg0, 0xFFFFFF),
@@ -1477,6 +1478,9 @@ presentations.extend([
 
       (multiplayer_get_my_player, ":my_player_id"),
       (player_get_slot, "$g_list_players_faction_id", ":my_player_id", slot_player_faction_id),
+
+      (assign, ":not_display_if_lord_or_marshall", 0),
+
       (try_begin),
         (eq, "$g_list_players_event", client_event_request_poll),
         (eq, "$g_list_players_event_value", poll_type_faction_lord),
@@ -1491,6 +1495,14 @@ presentations.extend([
         (try_end),
       (else_try),
         (eq, "$g_list_players_event", client_event_faction_admin_action),
+        (try_begin),
+          (this_or_next | player_slot_eq, ":my_player_id", slot_player_is_lord, 0),
+          (this_or_next | eq, "$g_list_players_event_value", faction_admin_action_toggle_player_door_key),
+          (this_or_next | eq, "$g_list_players_event_value", faction_admin_action_toggle_player_money_key),
+          (this_or_next | eq, "$g_list_players_event_value", faction_admin_action_toggle_player_item_key),
+          (eq, "$g_list_players_event_value", faction_admin_action_toggle_player_announce),
+          (assign, ":not_display_if_lord_or_marshall", 1),
+        (try_end),
       (else_try),
         (assign, "$g_list_players_faction_id", -1), # show players from all factions for admin tools / other polls
         (this_or_next|eq, "$g_list_players_event_value", admin_action_fade_player_out),
@@ -1525,14 +1537,19 @@ presentations.extend([
           (player_slot_eq, ":player_id", slot_player_faction_id, ":current_faction_id"),
           (try_begin),
             (neq, ":player_id", ":my_player_id"),
+
+            (assign, ":display", 1),
+            (try_begin),
+              (eq, ":not_display_if_lord_or_marshall", 1),
+              (this_or_next|player_slot_eq, ":player_id", slot_player_is_lord, 1),
+              (player_slot_eq, ":player_id", slot_player_is_marshall, 1),
+              (assign, ":display", 0),
+            (try_end),
+
+            (eq, ":display", 1),
+
             (this_or_next|eq, "$g_list_players_faction_id", -1),
             (player_slot_eq, ":player_id", slot_player_faction_id, "$g_list_players_faction_id"),
-
-
-            (this_or_next|neq, "$g_list_players_event", client_event_faction_admin_action),
-            (neg|this_or_next|player_slot_eq, ":player_id", slot_player_is_marshall, 1),
-            (player_slot_eq, ":player_id", slot_player_is_lord, 1),
-
             (str_store_player_username, s0, ":player_id"),
             (create_button_overlay, ":overlay_id", s0, 0),
             (overlay_set_size, ":overlay_id", pos2),
