@@ -1492,7 +1492,7 @@ presentations.extend([
       (else_try),
         (eq, "$g_list_players_event", client_event_faction_admin_action),
       (else_try),
-        (assign, "$g_list_players_faction_id", -1), # show players from all factions for admin tools
+        (assign, "$g_list_players_faction_id", -1), # show players from all factions for admin tools / other polls
         (this_or_next|eq, "$g_list_players_event_value", admin_action_fade_player_out),
         (eq, "$g_list_players_event_value", admin_action_freeze_player),
         (assign, ":my_player_id", 0), # only add the requesting player to the list for fade out and freeze tools
@@ -1527,6 +1527,12 @@ presentations.extend([
             (neq, ":player_id", ":my_player_id"),
             (this_or_next|eq, "$g_list_players_faction_id", -1),
             (player_slot_eq, ":player_id", slot_player_faction_id, "$g_list_players_faction_id"),
+
+
+            (this_or_next|neq, "$g_list_players_event", client_event_faction_admin_action),
+            (neg|this_or_next|player_slot_eq, ":player_id", slot_player_is_marshall, 1),
+            (player_slot_eq, ":player_id", slot_player_is_lord, 1),
+
             (str_store_player_username, s0, ":player_id"),
             (create_button_overlay, ":overlay_id", s0, 0),
             (overlay_set_size, ":overlay_id", pos2),
