@@ -694,6 +694,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("admin_announcement_format", "*ANNOUNCEMENT* [{s1}] {s0}"),
   ("local_chat_log_format", "*LOCAL* {s0}"),
   ("faction_chat_log_format", "*FACTION* {s2} {s0}"),
+  ("s1_has_left_the_game_with_id_reg0", "{s1} has left the game with ID: {reg0}"),
 
   ("error_unable_to_find_link_scene_prop", "Unable to find link for scene prop - instance: {reg10} kind: {reg11} link kind: {reg12} link id: {reg13}"),
   ("error_unlinked_scene_prop", "Unlinked scene prop instance: {reg10} kind: {reg11} link id: {reg12} - only valid if this prop has not been added since loading the scene."),
