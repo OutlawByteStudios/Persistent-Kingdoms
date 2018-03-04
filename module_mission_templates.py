@@ -335,6 +335,23 @@ player_check_loop = (0, 0, 0.5, # server: check all players to see if any need a
             (multiplayer_send_3_int_to_player, ":player_id", server_event_player_set_slot, ":player_id", slot_player_outlaw_rating, ":outlaw_rating"),
           (try_end),
         (try_end),
+        (try_begin),
+            (player_slot_eq, ":player_id", slot_player_commit_suicide, 1),
+            (player_get_slot, ":suicide_time", ":player_id", slot_player_commit_suicide_time),
+            (store_mission_timer_a, ":current_time"),
+            (val_sub, ":current_time", ":suicide_time"),
+            (try_begin),
+                (ge, ":current_time", suicide_delay),
+
+                (player_get_agent_id, ":agent_id", ":player_id"),
+                (agent_deliver_damage_to_agent, ":agent_id", ":agent_id", 500),
+
+                (str_store_player_username, s1, ":player_id"),
+                (server_add_message_to_log, "str_log_s1_committed_suicide"),
+
+                (player_set_slot, ":player_id", slot_player_commit_suicide_time, 0),
+            (try_end),
+        (try_end),
       (try_end),
     (try_end),
     (eq, ":loop_end", ":max_players"), # if all players were checked, the trigger will succeed and wait the rearm interval before checking again

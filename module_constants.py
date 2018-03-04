@@ -78,6 +78,10 @@ slot_player_admin_no_animals          = 56
 slot_player_admin_no_factions         = 57
 slot_player_admin_end                 = 58
 
+slot_player_commit_suicide            = 59
+slot_player_commit_suicide_time       = 60
+suicide_delay                         = 10 # suicide delay time
+
 ########################################################
 ##  AGENT SLOTS            #############################
 ########################################################
