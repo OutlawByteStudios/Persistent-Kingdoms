@@ -504,11 +504,15 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("discard_foot", "Discard foot armor"),
   ("toggle_hand", "Toggle hand armor"),
   ("reveal_money_pouch_to_target", "Reveal money pouch to target"),
+  ("commit_suicide", "Commit Suicide"),
   ("toggle_clickable_animation_menu", "Toggle clickable animation menu"),
   ("toggle_muting_global_chat", "Toggle muting global chat"),
   ("action_menu_end", "action_menu_end"),
   ("s0_are_you_sure", "{s0} - are you sure?"),
   ("confirmation", "confirmation"),
+
+  ("suicide_in_reg1", "You will commit suicide in {reg1} seconds!"),
+  ("log_s1_committed_suicide", "{s1} committed suicide."),
 
   ("display_name_labels", "Display name labels"),
   ("hide_faction_in_name_labels", "Hide faction in name labels"),

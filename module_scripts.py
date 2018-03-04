@@ -1397,6 +1397,11 @@ scripts.extend([
         (try_begin),
           (call_script, "script_cf_try_execute_animation", ":sender_player_id", ":string_id", 0),
         (try_end),
+      (else_try),
+        (eq, ":event_type", client_event_commit_suicide),
+        (store_mission_timer_a, ":time"),
+        (val_add, ":time", suicide_delay),
+        (player_set_slot, ":sender_player_id", slot_player_commit_suicide_time, ":time"),
       (try_end),
     (try_end),
     ]),
@@ -3282,6 +3287,9 @@ scripts.extend([
         (call_script, "script_player_add_default_troop_items", ":player_id", ":troop_id"),
         (call_script, "script_player_add_default_troop_armor", ":player_id", ":troop_id"),
         (call_script, "script_player_add_spawn_items", ":player_id", 0),
+
+        (player_set_slot, ":player_id", slot_player_commit_suicide_time, 0),
+
         (call_script, "script_player_get_spawn_point", ":player_id"),
         (player_set_slot, ":player_id", slot_player_spawn_entry_point, reg0),
         (player_spawn_new_agent, ":player_id", reg0),
