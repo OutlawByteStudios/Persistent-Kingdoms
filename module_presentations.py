@@ -2328,7 +2328,7 @@ presentations.extend([
       (else_try),
         (eq, ":object", "$g_presentation_obj_admin_menu_teleport_player"),
         (assign, ":action", admin_action_teleport_player),
-        (assign, "$g_list_players_action_string_id", "str_teleport_to_you"),
+        (assign, "$g_list_players_action_string_id", "str_teleport"),
       (else_try),
         (assign, ":action", -1),
         (eq, ":object", "$g_presentation_obj_admin_menu_teleport_forwards"),
