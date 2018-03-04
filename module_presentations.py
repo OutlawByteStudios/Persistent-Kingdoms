@@ -1640,7 +1640,7 @@ presentations.extend([
               (player_slot_eq, ":player_id", slot_player_can_faction_announce, 1),
             (else_try),
               (eq, "$g_list_players_event_value", faction_admin_action_toggle_player_marshall),
-              (player_slot_eq, ":player_id", faction_admin_action_toggle_player_marshall, 1),
+              (player_slot_eq, ":player_id", slot_player_is_marshall, 1),
             (else_try),
               (eq, "$g_list_players_event_value", faction_admin_action_mute_player),
               (player_slot_eq, ":player_id", slot_player_faction_chat_muted, 0),
