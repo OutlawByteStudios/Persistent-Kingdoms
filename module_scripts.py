@@ -12858,6 +12858,7 @@ scripts.extend([
       (try_end),
       (player_set_slot, ":value_1", ":key_slot", ":has_key"),
 
+      (get_max_players, ":max_players"),
       (try_for_range, ":player_id", 1, ":max_players"),
         (player_is_active, ":player_id"),
         (player_slot_eq, ":player_id", slot_player_faction_id, ":faction_id"),
@@ -12881,6 +12882,7 @@ scripts.extend([
       (try_end),
       (player_set_slot, ":value_1", slot_player_is_marshall, ":has_key"),
 
+      (get_max_players, ":max_players"),
       (try_for_range, ":player_id", 1, ":max_players"),
         (player_is_active, ":player_id"),
         (player_slot_eq, ":player_id", slot_player_faction_id, ":faction_id"),
