@@ -508,6 +508,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("s0_are_you_sure", "{s0} - are you sure?"),
   ("confirmation", "confirmation"),
 
+  ("suicide_in_reg1", "You will commit suicide in {reg1} seconds!"),
   ("log_s1_committed_suicide", "{s1} committed suicide."),
 
   ("display_name_labels", "Display name labels"),

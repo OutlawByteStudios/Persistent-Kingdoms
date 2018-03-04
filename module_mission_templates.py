@@ -336,21 +336,21 @@ player_check_loop = (0, 0, 0.5, # server: check all players to see if any need a
           (try_end),
         (try_end),
         (try_begin),
-            (player_slot_eq, ":player_id", slot_player_commit_suicide, 1),
-            (player_get_slot, ":suicide_time", ":player_id", slot_player_commit_suicide_time),
-            (store_mission_timer_a, ":current_time"),
-            (val_sub, ":current_time", ":suicide_time"),
+          (player_is_active, ":player_id"),
+          (player_get_slot, ":suicide_at_time", ":player_id", slot_player_commit_suicide_time),
+          (try_begin),
+            (gt, ":suicide_at_time", 0),
             (try_begin),
-                (ge, ":current_time", suicide_delay),
+              (ge, ":time", ":suicide_at_time"),
+              (player_get_agent_id, ":agent_id", ":player_id"),
+              (agent_deliver_damage_to_agent, ":agent_id", ":agent_id", 500),
 
-                (player_get_agent_id, ":agent_id", ":player_id"),
-                (agent_deliver_damage_to_agent, ":agent_id", ":agent_id", 500),
+              (str_store_player_username, s1, ":player_id"),
+              (server_add_message_to_log, "str_log_s1_committed_suicide"),
 
-                (str_store_player_username, s1, ":player_id"),
-                (server_add_message_to_log, "str_log_s1_committed_suicide"),
-
-                (player_set_slot, ":player_id", slot_player_commit_suicide_time, 0),
+              (player_set_slot, ":player_id", slot_player_commit_suicide_time, 0),
             (try_end),
+          (try_end),
         (try_end),
       (try_end),
     (try_end),
@@ -870,6 +870,23 @@ animation_menu_pressed = (0, 0.05, 0, [(game_key_clicked, gk_animation_menu),(ca
     (try_end),
     ])
 
+commit_suicide_loop = (0, 0, 0.5, # client: suicide countdown
+   [(neg|multiplayer_is_server),
+    (multiplayer_get_my_player, ":my_player_id"),
+    (player_is_active, ":my_player_id"),
+    (player_get_slot, ":suicide_at_time", ":my_player_id", slot_player_commit_suicide_time),
+    (gt, ":suicide_at_time", 0),
+
+    (store_mission_timer_a, ":time"),
+    (val_sub, ":suicide_at_time", ":time"),
+    (try_begin),
+        (ge, ":suicide_at_time", 1),
+        (call_script, "script_preset_message", "str_suicide_in_reg1", preset_message_small|preset_message_red, ":suicide_at_time", 0),
+    (else_try),
+        (player_set_slot, ":my_player_id", slot_player_commit_suicide_time, 0),
+    (try_end),
+    ], [])
+
 welcome_message = (0, 0, ti_once, [], # clients: show a welcome message when connecting to a server
    [(neg|multiplayer_is_server),
     (call_script, "script_show_welcome_message"),
@@ -966,6 +983,8 @@ def common_triggers(self):
     admin_chat_pressed,
     ship_control_pressed,
     animation_menu_pressed,
+
+    commit_suicide_loop,
 
     welcome_message,
     turn_windmill_fans,
