@@ -8968,30 +8968,6 @@ scripts.extend([
     (try_end),
     ]),
 
-  ("agent_mount", # run when user mounts a horse. used to log.
-   [(store_script_param, ":agent_id", 1),  # must be valid
-    (store_script_param, ":horse_agent_id", 2),  # must be valid
-
-    (agent_get_player_id, ":player_id", ":agent_id"),
-    (str_store_player_username, s0, ":player_id"),
-    (agent_get_item_id, ":horse_item_id", ":horse_agent_id"),
-    (str_store_item_name, s1, ":horse_item_id"),
-    (server_add_message_to_log, "str_s0_has_mounted_a_s1"),
-
-    ]),
-
-  ("agent_dismount", # run when user dismounts from a horse. used to log.
-   [(store_script_param, ":agent_id", 1), # must be valid
-    (store_script_param, ":horse_agent_id", 2), # must be valid
-
-    (agent_get_player_id, ":player_id", ":agent_id"),
-    (str_store_player_username, s0, ":player_id"),
-    (agent_get_item_id, ":horse_item_id", ":horse_agent_id"),
-    (str_store_item_name, s1, ":horse_item_id"),
-    (server_add_message_to_log, "str_s0_has_dismounted_a_s1"),
-
-    ]),
-
   ("cart_choose_action", # get the relative position of the agent to the cart to decide the action; returns reg0 as 0 = out of range, -1 = attach, 1 = access
    [(store_script_param, ":agent_id", 1), # must be valid
     (store_script_param, ":instance_id", 2), # must be valid
