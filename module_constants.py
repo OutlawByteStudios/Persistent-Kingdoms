@@ -196,6 +196,8 @@ slot_scene_prop_no_move_physics       = 26 # whether to disable physics when mov
 slot_scene_prop_capture_faction_id    = 27 # faction that has captured this prop individually, rather than the castle it belongs to
 slot_scene_prop_capture_time          = 28 # time banner began to be captured
 
+capture_point_use_time                = 20 # time it takes to capture a castle
+
 slot_scene_prop_next_resource_hp      = 30 # hit points when the next resource item should be produced
 slot_scene_prop_state                 = 31 # constants below starting with scene_prop_state_
 slot_scene_prop_state_time            = 32 # mission time involved with changing state, if appropriate
