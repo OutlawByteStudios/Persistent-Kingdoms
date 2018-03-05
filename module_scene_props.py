@@ -710,12 +710,12 @@ def spr_construction_box_triggers(resource_class=item_class_wood):
 
 # Point to capture castles using a faction banner.
 def spr_capture_castle_triggers():
-  return [spr_call_script_start_use_trigger("script_cf_use_capture_point", 0),
+  return [spr_call_script_start_use_trigger("script_cf_use_capture_point", 0), # start banner going down animation
     (ti_on_scene_prop_cancel_use,
      [(store_trigger_param_2, ":instance_id"),
-      (scene_prop_set_slot, ":instance_id", slot_scene_prop_disabled, 0),
+      (scene_prop_set_slot, ":instance_id", slot_scene_prop_disabled, 0), # reset banner location
       ]),
-    spr_call_script_use_trigger("script_cf_use_capture_point", 1)]
+    spr_call_script_use_trigger("script_cf_use_capture_point", 1)] # show new banner
 
 def spr_chest_flags(use_time=1):
   return sokf_destructible|spr_use_time(max(use_time, 1))

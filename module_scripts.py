@@ -4368,6 +4368,7 @@ scripts.extend([
     (try_end),
     ]),
 
+  # need to add function to start animation in here somewhere.
   ("cf_use_capture_point", # server: after an agent uses a capture point scene prop, capture the castle if checks succeed
    [(store_script_param, ":agent_id", 1), # must be valid
     (store_script_param, ":instance_id", 2), # must be valid
@@ -4610,7 +4611,7 @@ scripts.extend([
       (eq, ":pole_scene_prop_id", "spr_pw_castle_capture_point"),
       (prop_instance_get_scale, pos3, ":pole_instance_id"),
       (position_get_scale_z, ":banner_height", pos3),
-      (val_mul, ":banner_height", 10),
+      (val_mul, ":banner_height", 10), #4 is bottom, 10 is top.
       (position_move_z, pos2, ":banner_height"),
       (position_move_y, pos2, 11),
     (try_end),
