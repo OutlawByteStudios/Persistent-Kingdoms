@@ -4414,6 +4414,7 @@ scripts.extend([
       (try_begin),
         (eq, ":completed", 0),
         (store_mission_timer_a, ":time"),
+        (val_add, ":time", capture_point_use_time),
         (scene_prop_set_slot, ":instance_id", slot_scene_prop_capture_time, ":time"),
       (else_try),
         (scene_prop_set_slot, ":instance_id", slot_scene_prop_capture_time, 0),
