@@ -4410,6 +4410,16 @@ scripts.extend([
       (agent_get_troop_id, ":troop_id", ":agent_id"),
       (store_attribute_level, ":strength", ":troop_id", ca_strength),
       (ge, ":strength", ":difficulty"),
+
+      (try_begin),
+        (eq, ":completed", 0),
+        (store_mission_timer_a, ":time"),
+        (scene_prop_set_slot, ":instance_id", slot_scene_prop_capture_time, ":time"),
+      (else_try),
+        (scene_prop_set_slot, ":instance_id", slot_scene_prop_capture_time, 0),
+      (try_end),
+
+
       (try_begin), # when capturing a primary point, check whether the required secondary points have been captured
         (eq, ":capture_type", capture_point_type_primary),
         (assign, ":type_secondary_all_check_result", -1),
