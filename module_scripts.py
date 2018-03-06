@@ -4413,11 +4413,18 @@ scripts.extend([
 
       (try_begin),
         (eq, ":completed", 0),
-        (store_mission_timer_a, ":time"),
-        (val_add, ":time", capture_point_use_time),
-        (scene_prop_set_slot, ":instance_id", slot_scene_prop_capture_time, ":time"),
+        (prop_instance_get_position, pos2, ":instance_id"),
+        (prop_instance_get_scale, pos3, ":instance_id"),
+        (position_get_scale_z, ":banner_height", pos3),
+        (val_mul, ":banner_height", 2),
+        (position_move_z, pos2, ":banner_height"),
+        (position_move_y, pos2, 11),
+        (scene_prop_get_slot, ":banner_instance_id", ":instance_id", slot_scene_prop_linked_scene_prop),
+        (assign, ":capture_time", capture_point_use_time),
+        (val_mul, ":capture_time", 100),
+        (prop_instance_animate_to_position, ":banner_instance_id", pos2, ":capture_time"),
       (else_try),
-        (scene_prop_set_slot, ":instance_id", slot_scene_prop_capture_time, 0),
+        (prop_instance_stop_animating, ":instance_id"),
       (try_end),
 
 
@@ -4622,7 +4629,7 @@ scripts.extend([
       (eq, ":pole_scene_prop_id", "spr_pw_castle_capture_point"),
       (prop_instance_get_scale, pos3, ":pole_instance_id"),
       (position_get_scale_z, ":banner_height", pos3),
-      (val_mul, ":banner_height", 10), #4 is bottom, 10 is top.
+      (val_mul, ":banner_height", 10),
       (position_move_z, pos2, ":banner_height"),
       (position_move_y, pos2, 11),
     (try_end),

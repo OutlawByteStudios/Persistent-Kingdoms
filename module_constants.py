@@ -194,7 +194,6 @@ slot_scene_prop_collision_kind        = 24 # collision testing scene prop kind f
 slot_scene_prop_speed_limit           = 25 # used for ships
 slot_scene_prop_no_move_physics       = 26 # whether to disable physics when moving, so agents can't ride on the prop
 slot_scene_prop_capture_faction_id    = 27 # faction that has captured this prop individually, rather than the castle it belongs to
-slot_scene_prop_capture_time          = 28 # time banner began to be captured
 
 capture_point_use_time                = 20 # time it takes to capture a castle
 
