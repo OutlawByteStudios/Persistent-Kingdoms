@@ -714,7 +714,15 @@ def spr_capture_castle_triggers():
     (ti_on_scene_prop_cancel_use,
      [(store_trigger_param_2, ":instance_id"),
       (scene_prop_set_slot, ":instance_id", slot_scene_prop_disabled, 0),
-      (call_script, "script_redraw_castle_banners", redraw_single_capture_point_banner, ":instance_id"),
+
+      (prop_instance_get_position, pos2, ":instance_id"),
+      (prop_instance_get_scale, pos3, ":instance_id"),
+      (position_get_scale_z, ":banner_height", pos3),
+      (val_mul, ":banner_height", 10),
+      (position_move_z, pos2, ":banner_height"),
+      (position_move_y, pos2, 11),
+      (scene_prop_get_slot, ":banner_instance_id", ":instance_id", slot_scene_prop_linked_scene_prop),
+      (prop_instance_set_position, ":banner_instance_id", pos2),
       ]),
     spr_call_script_use_trigger("script_cf_use_capture_point", 1)] # show new banner
 
