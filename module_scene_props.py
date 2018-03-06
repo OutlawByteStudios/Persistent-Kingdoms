@@ -714,7 +714,8 @@ def spr_capture_castle_triggers():
     (ti_on_scene_prop_cancel_use,
      [(store_trigger_param_2, ":instance_id"),
       (scene_prop_set_slot, ":instance_id", slot_scene_prop_disabled, 0),
-      (prop_instance_stop_animating, ":instance_id"), # cancel animation
+      (scene_prop_get_slot, ":banner_instance_id", ":instance_id", slot_scene_prop_linked_scene_prop),
+      (prop_instance_stop_animating, ":banner_instance_id"), # cancel animation
       (call_script, "script_redraw_castle_banners", redraw_single_capture_point_banner, ":instance_id"),
       ]),
     spr_call_script_use_trigger("script_cf_use_capture_point", 1)] # show new banner
