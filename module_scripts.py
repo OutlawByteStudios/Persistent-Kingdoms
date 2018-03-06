@@ -4424,6 +4424,7 @@ scripts.extend([
         (val_mul, ":capture_time", 100),
         (prop_instance_animate_to_position, ":banner_instance_id", pos2, ":capture_time"),
       (else_try),
+        (scene_prop_get_slot, ":banner_instance_id", ":instance_id", slot_scene_prop_linked_scene_prop),
         (prop_instance_stop_animating, ":banner_instance_id"),
       (try_end),
 
