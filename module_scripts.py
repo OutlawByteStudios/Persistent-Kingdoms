@@ -538,6 +538,7 @@ scripts.extend([
           (try_begin), # if the player's faction is changed, reset other related slots
             (eq, ":slot_no", slot_player_faction_id),
             (player_set_slot, ":player_id", slot_player_is_lord, 0),
+            (player_set_slot, ":player_id", slot_player_is_marshal, 0),
             (player_set_slot, ":player_id", slot_player_has_faction_door_key, 0),
             (player_set_slot, ":player_id", slot_player_has_faction_money_key, 0),
             (player_set_slot, ":player_id", slot_player_has_faction_item_key, 0),
@@ -5024,6 +5025,7 @@ scripts.extend([
         (faction_slot_eq, ":faction_id", slot_faction_lord_player_uid, ":unique_id"),
         (faction_set_slot, ":faction_id", slot_faction_lord_player_uid, 0),
       (try_end),
+      (player_set_slot, ":player_id", slot_player_is_marshal, 0),
       (player_set_slot, ":player_id", slot_player_has_faction_door_key, 0),
       (player_set_slot, ":player_id", slot_player_has_faction_money_key, 0),
       (player_set_slot, ":player_id", slot_player_has_faction_item_key, 0),
