@@ -710,12 +710,21 @@ def spr_construction_box_triggers(resource_class=item_class_wood):
 
 # Point to capture castles using a faction banner.
 def spr_capture_castle_triggers():
-  return [spr_call_script_start_use_trigger("script_cf_use_capture_point", 0),
+  return [spr_call_script_start_use_trigger("script_cf_use_capture_point", 0), # start banner going down animation
     (ti_on_scene_prop_cancel_use,
      [(store_trigger_param_2, ":instance_id"),
       (scene_prop_set_slot, ":instance_id", slot_scene_prop_disabled, 0),
+      (prop_instance_get_position, pos2, ":instance_id"),
+      (prop_instance_get_scale, pos3, ":instance_id"),
+      (position_get_scale_z, ":banner_height", pos3),
+      (val_mul, ":banner_height", 10),
+      (position_move_z, pos2, ":banner_height"),
+      (position_move_y, pos2, 11),
+      (scene_prop_get_slot, ":banner_instance_id", ":instance_id", slot_scene_prop_linked_scene_prop),
+      (prop_instance_stop_animating, ":banner_instance_id"),
+      (prop_instance_set_position, ":banner_instance_id", pos2),
       ]),
-    spr_call_script_use_trigger("script_cf_use_capture_point", 1)]
+    spr_call_script_use_trigger("script_cf_use_capture_point", 1)] # show new banner
 
 def spr_chest_flags(use_time=1):
   return sokf_destructible|spr_use_time(max(use_time, 1))
@@ -3033,7 +3042,7 @@ scene_props = [
   ("pw_ferry_chain_30m",0,"pw_ferry_chain_30m","0", []),
 
   ("pw_castle_sign",0,"tree_house_guard_a","bo_tree_house_guard_a", [(ti_on_scene_prop_use, [])]),
-  ("pw_castle_capture_point",spr_use_time(20),"pw_castle_flag_post","bo_pw_castle_flag_post", spr_capture_castle_triggers()),
+  ("pw_castle_capture_point",spr_use_time(capture_point_use_time),"pw_castle_flag_post","bo_pw_castle_flag_post", spr_capture_castle_triggers()),
   ("pw_castle_wall_banner",0,"pw_banner_wall_rail","bo_pw_banner_wall_rail", []),
   ("pw_castle_money_chest",spr_chest_flags(2),"pw_chest_b","bo_pw_chest_b", spr_castle_money_chest_triggers(hit_points=6000)),
   ("pw_item_chest_a",spr_chest_flags(1),"pw_chest_c","bo_pw_chest_c", spr_item_chest_triggers(hit_points=7000, inventory_count=48, max_item_length=180)),

@@ -4409,6 +4409,25 @@ scripts.extend([
       (agent_get_troop_id, ":troop_id", ":agent_id"),
       (store_attribute_level, ":strength", ":troop_id", ca_strength),
       (ge, ":strength", ":difficulty"),
+
+      (try_begin),
+        (eq, ":completed", 0),
+        (prop_instance_get_position, pos2, ":instance_id"),
+        (prop_instance_get_scale, pos3, ":instance_id"),
+        (position_get_scale_z, ":banner_height", pos3),
+        (val_mul, ":banner_height", 5),
+        (position_move_z, pos2, ":banner_height"),
+        (position_move_y, pos2, 11),
+        (scene_prop_get_slot, ":banner_instance_id", ":instance_id", slot_scene_prop_linked_scene_prop),
+        (assign, ":capture_time", capture_point_use_time),
+        (val_mul, ":capture_time", 100),
+        (prop_instance_animate_to_position, ":banner_instance_id", pos2, ":capture_time"),
+      (else_try),
+        (scene_prop_get_slot, ":banner_instance_id", ":instance_id", slot_scene_prop_linked_scene_prop),
+        (prop_instance_stop_animating, ":banner_instance_id"),
+      (try_end),
+
+
       (try_begin), # when capturing a primary point, check whether the required secondary points have been captured
         (eq, ":capture_type", capture_point_type_primary),
         (assign, ":type_secondary_all_check_result", -1),
