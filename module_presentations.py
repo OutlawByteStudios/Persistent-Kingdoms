@@ -1148,7 +1148,7 @@ presentations.extend([
 
       (try_begin),
         (this_or_next|player_slot_eq, ":my_player_id", slot_player_is_lord, 1),
-        (player_slot_eq, ":my_player_id", slot_player_is_marshall, 1),
+        (player_slot_eq, ":my_player_id", slot_player_is_marshal, 1),
         (create_button_overlay, reg0, "str_faction_admin", 0),
         (assign, "$g_presentation_obj_escape_menu_faction_admin", reg0),
         (overlay_set_color, reg0, 0xFFFFFF),
@@ -1479,7 +1479,7 @@ presentations.extend([
       (multiplayer_get_my_player, ":my_player_id"),
       (player_get_slot, "$g_list_players_faction_id", ":my_player_id", slot_player_faction_id),
 
-      (assign, ":not_display_if_lord_or_marshall", 0),
+      (assign, ":not_display_if_lord_or_marshal", 0),
 
       (try_begin),
         (eq, "$g_list_players_event", client_event_request_poll),
@@ -1503,7 +1503,7 @@ presentations.extend([
           (this_or_next | eq, "$g_list_players_event_value", faction_admin_action_toggle_player_door_key),
           (this_or_next | eq, "$g_list_players_event_value", faction_admin_action_toggle_player_item_key),
           (eq, "$g_list_players_event_value", faction_admin_action_toggle_player_announce),
-          (assign, ":not_display_if_lord_or_marshall", 1),
+          (assign, ":not_display_if_lord_or_marshal", 1),
         (try_end),
       (else_try),
         (assign, "$g_list_players_faction_id", -1), # show players from all factions for admin tools / other polls
@@ -1542,9 +1542,9 @@ presentations.extend([
 
             (assign, ":display", 1),
             (try_begin),
-              (eq, ":not_display_if_lord_or_marshall", 1),
+              (eq, ":not_display_if_lord_or_marshal", 1),
               (this_or_next|player_slot_eq, ":player_id", slot_player_is_lord, 1),
-              (player_slot_eq, ":player_id", slot_player_is_marshall, 1),
+              (player_slot_eq, ":player_id", slot_player_is_marshal, 1),
               (assign, ":display", 0),
             (try_end),
 
@@ -1639,8 +1639,8 @@ presentations.extend([
               (eq, "$g_list_players_event_value", faction_admin_action_toggle_player_announce),
               (player_slot_eq, ":player_id", slot_player_can_faction_announce, 1),
             (else_try),
-              (eq, "$g_list_players_event_value", faction_admin_action_toggle_player_marshall),
-              (player_slot_eq, ":player_id", slot_player_is_marshall, 1),
+              (eq, "$g_list_players_event_value", faction_admin_action_toggle_player_marshal),
+              (player_slot_eq, ":player_id", slot_player_is_marshal, 1),
             (else_try),
               (eq, "$g_list_players_event_value", faction_admin_action_mute_player),
               (player_slot_eq, ":player_id", slot_player_faction_chat_muted, 0),
@@ -2434,11 +2434,11 @@ presentations.extend([
         (overlay_set_position, "$g_presentation_obj_faction_admin_relation_hostile", pos1),
         (val_add, ":cur_y", escape_menu_item_height),
 
-        (create_button_overlay, "$g_presentation_obj_faction_admin_manage_marshalls", "str_manage_marshalls",tf_center_justify),
-        (overlay_set_color, "$g_presentation_obj_faction_admin_manage_marshalls", 0xFFFFFF),
-        (overlay_set_size, "$g_presentation_obj_faction_admin_manage_marshalls", pos2),
+        (create_button_overlay, "$g_presentation_obj_faction_admin_manage_marshals", "str_manage_marshals",tf_center_justify),
+        (overlay_set_color, "$g_presentation_obj_faction_admin_manage_marshals", 0xFFFFFF),
+        (overlay_set_size, "$g_presentation_obj_faction_admin_manage_marshals", pos2),
         (position_set_y, pos1, ":cur_y"),
-        (overlay_set_position, "$g_presentation_obj_faction_admin_manage_marshalls", pos1),
+        (overlay_set_position, "$g_presentation_obj_faction_admin_manage_marshals", pos1),
         (val_add, ":cur_y", escape_menu_item_height),
       (try_end),
 
@@ -2585,9 +2585,9 @@ presentations.extend([
           (assign, "$g_list_players_event_value", faction_admin_action_toggle_player_announce),
           (assign, "$g_list_players_action_string_id", "str_allow_disallow_announcing"),
         (else_try),
-          (eq, ":object", "$g_presentation_obj_faction_admin_manage_marshalls"),
-          (assign, "$g_list_players_event_value", faction_admin_action_toggle_player_marshall),
-          (assign, "$g_list_players_action_string_id", "str_give_take_marshall"),
+          (eq, ":object", "$g_presentation_obj_faction_admin_manage_marshals"),
+          (assign, "$g_list_players_event_value", faction_admin_action_toggle_player_marshal),
+          (assign, "$g_list_players_action_string_id", "str_give_take_marshal"),
         (else_try),
           (assign, ":found", 0),
         (try_end),

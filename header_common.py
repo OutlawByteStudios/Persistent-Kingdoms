@@ -268,7 +268,7 @@ faction_admin_action_set_relation_peaceful      = 6
 faction_admin_action_outlaw_player              = 7
 faction_admin_action_mute_player                = 8
 faction_admin_action_toggle_player_announce     = 9
-faction_admin_action_toggle_player_marshall     = 10
+faction_admin_action_toggle_player_marshal     = 10
 
 max_possible_gold                               = 1000000000
 max_correctly_displayed_gold                    = 131071 # player gold over this value will not be updated correctly by the game engine
