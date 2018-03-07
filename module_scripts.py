@@ -2423,13 +2423,13 @@ scripts.extend([
    [
     (troop_set_slot, "trp_banner_background_color_array", 0, 0xFFAAAA99), # plain white for scene props and item icons
     (troop_set_slot, "trp_banner_background_color_array", 1, 0xFF554433), # brown for commoners and outlaws
-    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_a01", 0xFF8f4531),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_a01", 0xFF232323),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_a02", 0xFFd9d7d1),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_a03", 0xFF373736),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_a04", 0xFFa48b28),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_a05", 0xFF497735),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_a06", 0xFF82362d),
-    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_a07", 0xFF793329),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_a07", 0xFF8f4531),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_a08", 0xFF262521),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_a09", 0xFFd9dad1),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_a10", 0xFF524563),
