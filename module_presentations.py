@@ -1479,14 +1479,15 @@ presentations.extend([
       (multiplayer_get_my_player, ":my_player_id"),
       (player_get_slot, "$g_list_players_faction_id", ":my_player_id", slot_player_faction_id),
 
-      (assign, ":not_display_if_lord_or_marshal", 0),
+      (assign, ":not_display_if_lord", 0),
+      (assign, ":not_display_if_marshal", 0),
 
       (try_begin),
         (eq, "$g_list_players_event", client_event_request_poll),
         (eq, "$g_list_players_event_value", poll_type_faction_lord),
+        (assign, ":not_display_if_lord", 1),
         (try_begin),
           (call_script, "script_cf_other_players_in_faction", ":my_player_id"),
-          (player_slot_eq, ":my_player_id", slot_player_is_lord, 0),
           (assign, ":my_player_id", 0),  # only add the requesting player to a lord poll list if they are alone in faction
         (else_try),
           (player_is_admin, ":my_player_id"),
@@ -1503,7 +1504,8 @@ presentations.extend([
           (this_or_next | eq, "$g_list_players_event_value", faction_admin_action_toggle_player_door_key),
           (this_or_next | eq, "$g_list_players_event_value", faction_admin_action_toggle_player_item_key),
           (eq, "$g_list_players_event_value", faction_admin_action_toggle_player_announce),
-          (assign, ":not_display_if_lord_or_marshal", 1),
+          (assign, ":not_display_if_lord", 1),
+          (assign, ":not_display_if_marshal", 1),
         (try_end),
       (else_try),
         (assign, "$g_list_players_faction_id", -1), # show players from all factions for admin tools / other polls
@@ -1542,8 +1544,12 @@ presentations.extend([
 
             (assign, ":display", 1),
             (try_begin),
-              (eq, ":not_display_if_lord_or_marshal", 1),
-              (this_or_next|player_slot_eq, ":player_id", slot_player_is_lord, 1),
+              (eq, ":not_display_if_lord", 1),
+              (player_slot_eq, ":player_id", slot_player_is_lord, 1),
+              (assign, ":display", 0),
+            (try_end),
+            (try_begin),
+              (eq, ":not_display_if_marshal", 1),
               (player_slot_eq, ":player_id", slot_player_is_marshal, 1),
               (assign, ":display", 0),
             (try_end),
