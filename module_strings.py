@@ -946,8 +946,11 @@ Poisonous herbs can also sometimes be found, which are then applied to the blade
   ("castle_names_end", "Invalid Castle Name"),
   #Shield Log
   ("shield_hit_log", "{s12} hit {s11}'s shield by {reg31} damage."),
-  ("attach_to_himself_log", "{s11} attached a cart to himself (instance id: {reg31})"),
-  ("attach_to_horse_log", "{s11} attached a cart to his horse (instance id: {reg31})"),
-  ("detach_from_himself_log", "{s11} detached a cart from himself (instance id: {reg31})"),
-  ("detach_from_horse_log", "{s11} detached a cart from his horse (instance id: {reg31})"),
+  ("attach_to_himself_log", "{s11} attached a cart to himself (instance id: {reg31})."),
+  ("attach_to_horse_log", "{s11} attached a cart to his horse (instance id: {reg31})."),
+  ("detach_from_himself_log", "{s11} detached a cart from himself (instance id: {reg31})."),
+  ("detach_from_horse_log", "{s11} detached a cart from his horse (instance id: {reg31})."),
+  ("log_use_money_bag", "{s11} used pouch containing {reg31} gold."),
+  ("log_spawn_money_bag", "{s11} spawned pouch containing {reg31} gold (instance id: {reg0})."),
+  ("log_pick_money_bag", "{s11} picked up Money Bag containing {reg31} gold from the ground (instance id: {reg32})."),
 ]
