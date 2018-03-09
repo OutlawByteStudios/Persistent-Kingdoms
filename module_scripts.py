@@ -41,7 +41,45 @@ scripts.extend([
 	
     (server_add_message_to_log, "str_shield_hit_log"),
   ]),
-  #End  
+  #End
+  
+  #Cart Attach Log
+  ("cf_log_attach_cart", [
+    (multiplayer_is_server),
+	(store_script_param_1, ":attach_agent_id"),
+	(store_script_param_2, ":instance_id"),
+	(store_script_param, ":player_agent_id", 3),
+	
+	(agent_get_player_id, ":player_id", ":player_agent_id"),
+	(str_store_player_username, s11, ":player_id"),
+	(assign, reg31, ":instance_id"),
+	
+    (try_begin),
+      (eq, ":attach_agent_id", ":player_agent_id"),
+	  (server_add_message_to_log, "@{s11} attached a cart to himself (instance_id: {reg31})"),
+    (else_try),
+      (server_add_message_to_log, "@{s11} attached a cart to his horse (instance_id: {reg31})"),
+    (try_end),
+  ]),
+  
+  #Cart Dettach Log
+  ("cf_log_detach_cart", [
+    (multiplayer_is_server),
+	(store_script_param_1, ":attach_agent_id"),
+	(store_script_param_2, ":instance_id"),
+	(store_script_param, ":player_agent_id", 3),
+	
+	(agent_get_player_id, ":player_id", ":player_agent_id"),
+	(str_store_player_username, s11, ":player_id"),
+	(assign, reg31, ":instance_id"),
+	
+    (try_begin),
+      (eq, ":attach_agent_id", ":player_agent_id"),
+	  (server_add_message_to_log, "@{s11} detached a cart from himself (instance_id: {reg31})"),
+    (else_try),
+      (server_add_message_to_log, "@{s11} detached a cart from his horse (instance_id: {reg31})"),
+    (try_end),
+  ]),
 
   ("game_start", []), # single player only, not used
 
@@ -9105,6 +9143,9 @@ scripts.extend([
         (scene_prop_set_slot, ":instance_id", slot_scene_prop_attached_to_agent, ":attach_agent_id"),
         (assign, ":new_attached_scene_prop", ":instance_id"),
         (agent_set_attached_scene_prop, ":attach_agent_id", ":new_attached_scene_prop"),
+        #Phoenix
+        (call_script, "script_cf_log_attach_cart", ":attach_agent_id", ":instance_id", ":agent_id"),
+        #End
       (try_end),
     (else_try),
       (gt, ":attached_scene_prop", -1),
@@ -9117,6 +9158,9 @@ scripts.extend([
       (assign, ":new_attached_scene_prop", -1),
       (agent_set_attached_scene_prop, ":attach_agent_id", ":new_attached_scene_prop"),
       (call_script, "script_cart_set_detached_position", ":instance_id"),
+      #Phoenix
+      (call_script, "script_cf_log_detach_cart", ":attach_agent_id", ":instance_id", ":agent_id"),
+      #End
     (else_try),
       (assign, ":fail", 1),
     (try_end),
