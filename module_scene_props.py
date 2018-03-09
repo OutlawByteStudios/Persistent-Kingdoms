@@ -122,7 +122,7 @@ def spr_apply_pos_offset(trigger_block, pos_offset, rotate):
 # Buying, selling, and crafting stockpile for 'item_id': if the 'resources' list is blank, the item will only be buyable.
 # 'pos_offset' and 'rotate' are to adjust the position and rotation of the spawned item.
 # 'resources' is a list of the items needed for crafting - only the first 4 will be used (total agent equip slots); multiple of the same item can in a tuple with the count second: ("itm_example", 2).
-def spr_buy_item_triggers(item_id, pos_offset=(10,0,4), rotate=(0,0,0), use_string=None, tableau=None, resources=[], engineer=0, herding=0, tailoring=0, price_multiplier=None):
+def spr_buy_item_triggers(item_id, pos_offset=(8,0,8), rotate=(0,0,0), use_string=None, tableau=None, resources=[], engineer=0, herding=0, tailoring=0, price_multiplier=None):
   buy_trigger = (ti_on_scene_prop_cancel_use,
      [(store_trigger_param_1, ":agent_id"),
       (store_trigger_param_2, ":instance_id"),
