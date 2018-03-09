@@ -322,6 +322,12 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("declare_faction_hostile", "Declare a faction hostile"),
   ("offer_faction_peace", "Offer a faction peace"),
 
+  ("you_have_door_keys", "You have been given door keys!"),
+  ("you_have_money_keys", "You have been given money chest keys!"),
+  ("you_have_item_keys", "You have been given item chest keys!"),
+  ("you_have_announcers", "You have been given announcers!"),
+  ("you_are_a_marshal", "You are now a Marshal!"),
+
   ("log_admin_target_player", "Admin {s0} ({reg0}) {s3} player {s1} ({reg1})."),
   ("log_admin_target_self", "Admin {s0} ({reg0}) {s3}."),
   ("log_admin_kick", "kicked"),
