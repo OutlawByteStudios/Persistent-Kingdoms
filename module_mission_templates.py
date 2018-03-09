@@ -197,6 +197,10 @@ player_joined = (ti_server_player_joined, 0, 0, [], # server: handle connecting 
 player_exit = (ti_on_player_exit, 0, 0, [], # server: save player values on exit
    [(store_trigger_param_1, ":player_id"),
     (call_script, "script_cf_save_player_exit", ":player_id"),
+
+    (str_store_player_username, s1, ":player_id"),
+    (player_get_unique_id, reg0, ":player_id"),
+    (server_add_message_to_log, "str_s1_has_left_the_game_with_id_reg0"),
     ])
 
 agent_spawn = (ti_on_agent_spawn, 0, 0, [], # server and clients: set up new agents after they spawn
