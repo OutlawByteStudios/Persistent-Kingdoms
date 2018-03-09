@@ -56,9 +56,9 @@ scripts.extend([
 	
     (try_begin),
       (eq, ":attach_agent_id", ":player_agent_id"),
-	  (server_add_message_to_log, "@{s11} attached a cart to himself (instance_id: {reg31})"),
+	  (server_add_message_to_log, "str_attach_to_himself_log"),
     (else_try),
-      (server_add_message_to_log, "@{s11} attached a cart to his horse (instance_id: {reg31})"),
+      (server_add_message_to_log, "str_attach_to_horse_log"),
     (try_end),
   ]),
   
@@ -75,9 +75,9 @@ scripts.extend([
 	
     (try_begin),
       (eq, ":attach_agent_id", ":player_agent_id"),
-	  (server_add_message_to_log, "@{s11} detached a cart from himself (instance_id: {reg31})"),
+	  (server_add_message_to_log, "str_detach_from_himself_log"),
     (else_try),
-      (server_add_message_to_log, "@{s11} detached a cart from his horse (instance_id: {reg31})"),
+      (server_add_message_to_log, "str_detach_from_horse_log"),
     (try_end),
   ]),
 

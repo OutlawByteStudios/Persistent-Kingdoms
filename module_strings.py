@@ -946,4 +946,8 @@ Poisonous herbs can also sometimes be found, which are then applied to the blade
   ("castle_names_end", "Invalid Castle Name"),
   #Shield Log
   ("shield_hit_log", "{s12} hit {s11}'s shield by {reg31} damage."),
+  ("attach_to_himself_log", "{s11} attached a cart to himself (instance id: {reg31})"),
+  ("attach_to_horse_log", "{s11} attached a cart to his horse (instance id: {reg31})"),
+  ("detach_from_himself_log", "{s11} detached a cart from himself (instance id: {reg31})"),
+  ("detach_from_horse_log", "{s11} detached a cart from his horse (instance id: {reg31})"),
 ]
