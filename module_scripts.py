@@ -2274,6 +2274,7 @@ scripts.extend([
       (faction_set_slot, ":faction_id", slot_faction_lord_player_uid, 0),
       (faction_set_slot, ":faction_id", slot_faction_lord_last_seen_time, 0),
       (faction_set_slot, ":faction_id", slot_faction_poll_end_time, 0),
+      (faction_set_slot, ":faction_id", slot_faction_poll_last_time, 0),
       (try_for_range, ":relations_slot", slot_faction_relations_begin, ":slot_relations_end"),
         (faction_set_slot, ":faction_id", ":relations_slot", 0),
       (try_end),
@@ -3503,7 +3504,7 @@ scripts.extend([
       (faction_slot_eq, ":faction_id", slot_faction_is_active, 1),
       (ge, ":faction_id", castle_factions_begin),
       (faction_get_slot, ":banner_mesh", ":faction_id", slot_faction_banner_mesh),
-      (multiplayer_send_3_int_to_player, ":player_id", server_event_faction_set_slot, ":faction_id", slot_faction_banner_mesh, ":banner_mesh"),
+      (multiplayer_send_3_int_to_player, ":player_id", server_event_faction_set_slot, ":faction_id",slot_faction_banner_mesh, ":banner_mesh"),
       (try_begin),
         (faction_slot_eq, ":faction_id", slot_faction_name_is_custom, 1),
         (multiplayer_send_3_int_to_player, ":player_id", server_event_troop_set_slot, "trp_mission_data", slot_mission_data_faction_to_change_name_of, ":faction_id"),
@@ -3521,6 +3522,8 @@ scripts.extend([
         (faction_slot_eq, ":faction_id", slot_faction_is_locked, 1),
         (multiplayer_send_3_int_to_player, ":player_id", server_event_faction_set_slot, ":faction_id", slot_faction_is_locked, 1),
       (try_end),
+      (faction_get_slot, ":poll_last_time", ":faction_id", slot_faction_poll_last_time),
+      (multiplayer_send_3_int_to_player, ":player_id", server_event_faction_set_slot, ":faction_id", slot_faction_poll_last_time, ":poll_last_time"),
     (try_end),
     (scene_prop_get_num_instances, ":pole_num", "spr_pw_castle_capture_point"),
     (try_for_range, ":pole_no", 0, ":pole_num"), # so secondary capture point banner item ids match up for the client side repositioning script, after joining
@@ -12008,6 +12011,10 @@ scripts.extend([
         (else_try), # ensure that the player is not voting for themself if others are in faction.
           (neq, ":value_1", ":requester_player_id"),
           (player_slot_eq, ":value_1", slot_player_is_lord, 0),
+
+          (store_mission_timer_a, ":time"),
+          (faction_get_slot, ":last_time", ":poll_faction_id", slot_faction_poll_last_time),
+          (ge, ":time", ":last_time"),
         (else_try), # but allow admins to override the last conditions
           (player_is_admin, ":requester_player_id"),
           (player_slot_eq, ":requester_player_id", slot_player_admin_no_factions, 0),
@@ -12251,6 +12258,17 @@ scripts.extend([
       (eq, ":poll_type", poll_type_faction_lord),
       (this_or_next|neg|player_is_active, ":value_1"),
       (eq, ":check_unique_id", ":target_unique_id"),
+
+      (store_mission_timer_a, ":time"),
+      (val_add, ":time", poll_cooldown_time),
+      (faction_set_slot, ":poll_faction_id", slot_faction_poll_last_time, ":time"),
+
+      (get_max_players, ":max_players"),
+      (try_for_range, ":player_id", 1, ":max_players"),
+        (player_is_active, ":player_id"),
+        (multiplayer_send_3_int_to_player, ":player_id", server_event_faction_set_slot, ":poll_faction_id", slot_faction_poll_last_time, ":time"),
+      (try_end),
+
       (call_script, "script_cf_faction_set_lord", ":value_1", ":target_unique_id", ":poll_faction_id"),
     (try_end),
     ]),

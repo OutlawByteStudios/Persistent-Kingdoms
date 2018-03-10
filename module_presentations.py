@@ -1330,7 +1330,15 @@ presentations.extend([
         (player_get_slot, ":faction_id", ":my_player_id"),
         (is_between, ":faction_id", castle_factions_begin, factions_end),
         (faction_slot_eq, ":faction_id", slot_faction_is_locked, 0),
-        (try_begin),
+
+        (store_mission_timer_a, ":time"),
+        (val_add, ":time", "$g_server_mission_timer_when_player_joined"),
+        (faction_get_slot, ":last_time", ":faction_id", slot_faction_poll_last_time),
+
+        (this_or_next|ge, ":time", ":last_time"),
+        (player_is_admin, ":my_player_id"),
+
+      (try_begin),
           (neq, "$g_game_type", "mt_no_money"),
           (try_begin),
             (call_script, "script_cf_other_players_in_faction", ":my_player_id"),

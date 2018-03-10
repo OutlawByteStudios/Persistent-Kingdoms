@@ -312,14 +312,17 @@ slot_faction_castle_banner_variant    = 5 # work around an unwanted engine optim
 slot_faction_list_button_id           = 6 # overlay id in the faction list presentation
 slot_faction_is_locked                = 7 # 1 if an adminstrator locked the faction to prevent lord polls
 
-slot_faction_poll_end_time            = 20
-slot_faction_poll_voter_count         = 21
-slot_faction_poll_yes_votes           = 22
-slot_faction_poll_no_votes            = 23
-slot_faction_poll_type                = 24 # listed below, starting with poll_type_
-slot_faction_poll_value_1             = 25
-slot_faction_poll_value_2             = 26
-slot_faction_poll_target_unique_id    = 27 # when targeting a player, store their unique id to prevent accidentally harming another player reusing their id after they quit
+slot_faction_poll_last_time           = 20
+poll_cooldown_time                    = 20
+
+slot_faction_poll_end_time            = 21
+slot_faction_poll_voter_count         = 22
+slot_faction_poll_yes_votes           = 23
+slot_faction_poll_no_votes            = 24
+slot_faction_poll_type                = 25 # listed below, starting with poll_type_
+slot_faction_poll_value_1             = 26
+slot_faction_poll_value_2             = 27
+slot_faction_poll_target_unique_id    = 28 # when targeting a player, store their unique id to prevent accidentally harming another player reusing their id after they quit
 
 poll_type_change_scene                = 0
 poll_type_kick_player                 = 1
