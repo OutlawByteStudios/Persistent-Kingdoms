@@ -1332,12 +1332,8 @@ presentations.extend([
         (faction_slot_eq, ":faction_id", slot_faction_is_locked, 0),
 
         (store_mission_timer_a, ":time"),
+        (val_add, ":time", "$g_server_mission_timer_when_player_joined"),
         (faction_get_slot, ":last_time", ":faction_id", slot_faction_poll_last_time),
-
-          (assign, reg0, ":time"),
-          (display_message, "str_stock_count_reg0"),
-          (assign, reg0, ":last_time"),
-          (display_message, "str_stock_count_reg0"),
 
         (this_or_next|ge, ":time", ":last_time"),
         (player_is_admin, ":my_player_id"),

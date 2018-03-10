@@ -12005,8 +12005,8 @@ scripts.extend([
           (neq, ":value_1", ":requester_player_id"),
           (player_slot_eq, ":value_1", slot_player_is_lord, 0),
 
-          (faction_get_slot, ":last_time", ":poll_faction_id", slot_faction_poll_last_time),
           (store_mission_timer_a, ":time"),
+          (faction_get_slot, ":last_time", ":poll_faction_id", slot_faction_poll_last_time),
           (ge, ":time", ":last_time"),
         (else_try), # but allow admins to override the last conditions
           (player_is_admin, ":requester_player_id"),
