@@ -492,8 +492,8 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("un", "un"),
 
   ("toggle_name_labels", "Toggle name labels"),
-  ("toggle_faction_in_name_labels", "Toggle faction in name labels"),
   ("toggle_basic_name_labels", "Toggle basic name labels"),
+  ("toggle_faction_in_name_labels", "Toggle faction in name labels"),
   ("toggle_chat_overlay", "Toggle chat overlay"),
   ("toggle_local_faction_chat", "Toggle local or faction chat"),
   ("attach_cart_pack", "Attach nearby cart / pack"),

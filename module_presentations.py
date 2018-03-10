@@ -3351,7 +3351,12 @@ presentations.extend([
           (get_sq_distance_between_positions, ":sq_distance", pos1, pos2),
           (le, ":sq_distance", sq(max_distance_to_see_labels)),
           (copy_position, pos3, pos2),
-          (position_move_z, pos3, 50),
+          (try_begin),
+            (eq, "$g_basic_name_labels", 1),
+            (position_move_z, pos3, 30),
+          (else_try),
+            (position_move_z, pos3, 50),
+          (try_end),
           (position_get_screen_projection, pos4, pos3), # get the 2D position on screen 50 above the 3D position of the agent
           (position_get_x, ":x_pos", pos4),
           (position_get_y, ":y_pos", pos4),
