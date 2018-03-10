@@ -5915,7 +5915,6 @@ scripts.extend([
     (store_script_param, ":instance_id", 3), # must be the item instance's id
     #Log item pick ups
 	(try_begin),
-	  (neq, ":agent_died", 1),
 	  (agent_get_player_id, ":player_id", ":agent_id"),
 	  (str_store_player_username, s11, ":player_id"),
 	  (str_store_item_name, s12, ":item_id"),
@@ -9071,6 +9070,12 @@ scripts.extend([
           (store_add, ":from_equip_slot", ":from_slot", ek_item_0 - slot_scene_prop_inventory_item_0),
           (agent_get_item_slot, ":equip_item_id", ":agent_id", ":from_equip_slot"),
           (eq, ":equip_item_id", ":item_id"),
+		  #Log putting items in a container
+          (str_store_player_username, s11, ":player_id"),
+          (str_store_item_name, s12, ":item_id"),
+          (assign, reg31, ":instance_id"),
+          (server_add_message_to_log, "str_log_put_item_in_inventory"),
+          #End
           (try_begin),
             (is_between, ":item_type", itp_type_head_armor, itp_type_hand_armor + 1),
             (store_sub, ":no_item_id", ":item_type", itp_type_head_armor),
@@ -9088,6 +9093,12 @@ scripts.extend([
           (try_end),
         (else_try), # removing items from the scene prop
           (lt, ":from_slot", slot_scene_prop_inventory_item_0),
+          #Log putting items in a container
+          (str_store_player_username, s11, ":player_id"),
+          (str_store_item_name, s12, ":item_id"),
+          (assign, reg31, ":instance_id"),
+          (server_add_message_to_log, "str_log_take_item_from_inventory"),
+          #End
           (scene_prop_slot_eq, ":instance_id", ":from_slot", ":item_id"),
           (scene_prop_set_slot, ":instance_id", ":from_slot", 0),
           (store_add, ":neg_from_mod_slot", ":from_slot", slot_scene_prop_inventory_mod_begin - slot_scene_prop_inventory_begin),
