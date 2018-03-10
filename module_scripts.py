@@ -12167,11 +12167,6 @@ scripts.extend([
         (player_is_admin, ":player_id"),
         (player_slot_eq, ":player_id", slot_player_admin_no_override_poll, 0),
         (faction_set_slot, ":poll_faction_id", slot_faction_poll_end_time, 0),
-
-        (store_mission_timer_a, ":time"),
-        (val_add, ":time", poll_cooldown_time),
-        (faction_set_slot, ":poll_faction_id", slot_faction_poll_last_time, ":time"),
-
         (call_script, "script_apply_poll_consequences", ":poll_faction_id", ":poll_result"),
       (try_end),
     (try_end),
@@ -12191,11 +12186,6 @@ scripts.extend([
       (this_or_next|ge, ":received_votes", ":voter_count"),
       (ge, ":current_time", ":end_time"),
       (faction_set_slot, ":poll_faction_id", slot_faction_poll_end_time, 0),
-
-     (store_mission_timer_a, ":time"),
-     (val_add, ":time", poll_cooldown_time),
-     (faction_set_slot, ":poll_faction_id", slot_faction_poll_last_time, ":time"),
-
       (store_sub, ":abstain_votes", ":voter_count", ":received_votes"),
       (val_mul, ":abstain_votes", 3),
       (val_div, ":abstain_votes", 10),
@@ -12262,7 +12252,10 @@ scripts.extend([
       (this_or_next|neg|player_is_active, ":value_1"),
       (eq, ":check_unique_id", ":target_unique_id"),
 
-      (faction_get_slot, ":time", ":poll_faction_id", slot_faction_poll_last_time),
+      (store_mission_timer_a, ":time"),
+      (val_add, ":time", poll_cooldown_time),
+      (faction_set_slot, ":poll_faction_id", slot_faction_poll_last_time, ":time"),
+
       (get_max_players, ":max_players"),
       (try_for_range, ":player_id", 1, ":max_players"),
         (player_is_active, ":player_id"),
