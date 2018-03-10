@@ -80,7 +80,39 @@ scripts.extend([
       (server_add_message_to_log, "str_detach_from_horse_log"),
     (try_end),
   ]),
-
+  #Log withdrawals from money chests
+  ("cf_log_money_chest_withdraw", [
+    (multiplayer_is_server),
+    (store_script_param_1, ":player_id"),
+    (store_script_param_2, ":instance_id"),
+    (store_script_param, ":gold_value", 3),
+	
+	(str_store_player_username, s11, ":player_id"),
+    (call_script, "script_scene_prop_get_owning_faction", ":instance_id"),
+    (str_store_faction_name, s12, reg0),
+	(assign, reg31, ":gold_value"),
+	(val_abs, reg31),
+	
+	(server_add_message_to_log, "str_log_money_chest_withdraw"),
+  ]),
+  
+  #Log deposits to money chests
+  ("cf_log_money_chest_deposit", [
+    (multiplayer_is_server),
+    (store_script_param_1, ":player_id"),
+    (store_script_param_2, ":instance_id"),
+    (store_script_param, ":gold_value", 3),
+	
+	(str_store_player_username, s11, ":player_id"),
+    (call_script, "script_scene_prop_get_owning_faction", ":instance_id"),
+    (str_store_faction_name, s12, reg0),
+	(assign, reg31, ":gold_value"),
+	
+	(server_add_message_to_log, "str_log_money_chest_deposit"),
+  ]),
+  
+  
+  
   ("game_start", []), # single player only, not used
 
   ("game_get_use_string", # clients: called by the game when the local player is aiming at a usable scene prop
@@ -5704,6 +5736,9 @@ scripts.extend([
           (multiplayer_is_server),
           (val_sub, ":chest_gold", ":gold_requested"),
           (call_script, "script_player_adjust_gold", ":player_id", ":gold_requested", 1),
+		  #Log with from money chest
+		  (call_script, "script_cf_log_money_chest_withdraw", ":player_id", ":instance_id", ":gold_value"),
+		  #End
         (try_end),
         (assign, ":fail_message", 0),
       (else_try),
@@ -5713,6 +5748,10 @@ scripts.extend([
         (try_begin),
           (multiplayer_is_server),
           (call_script, "script_player_adjust_gold", ":player_id", ":gold_value", -1),
+          #Log with from money chest
+          #DISABLED
+          #(call_script, "script_cf_log_money_chest_deposit", ":player_id", ":instance_id", ":gold_value"),
+          #End
           (val_add, ":chest_gold", ":gold_value"),
           (val_clamp, ":chest_gold", 0, max_possible_gold),
         (try_end),

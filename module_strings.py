@@ -953,4 +953,6 @@ Poisonous herbs can also sometimes be found, which are then applied to the blade
   ("log_use_money_bag", "{s11} used pouch containing {reg31} gold."),
   ("log_spawn_money_bag", "{s11} spawned pouch containing {reg31} gold (instance id: {reg0})."),
   ("log_pick_money_bag", "{s11} picked up Money Bag containing {reg31} gold from the ground (instance id: {reg32})."),
+  ("log_money_chest_withdraw", "{s11} withdrew {reg31} money from chest belonging to {s12}"),
+  ("log_money_chest_deposit", "{s11} put {reg31} money into chest belonging to {s12}"),
 ]
