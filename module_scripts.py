@@ -28,8 +28,8 @@ scripts.extend([
   #TODO: log when someone hits someone else's shield
   ("cf_shield_hit", [
     (multiplayer_is_server),
-    (store_script_param_1, ":defender_agent_id"),
-    (store_script_param_2, ":attacker_agent_id"),
+    (store_script_param, ":defender_agent_id", 1),
+    (store_script_param, ":attacker_agent_id", 2),
     (store_script_param, ":damage", 3),
 	
     (agent_get_player_id, ":defender_player_id", ":defender_agent_id"),
@@ -46,8 +46,8 @@ scripts.extend([
   #Cart Attach Log
   ("cf_log_attach_cart", [
     (multiplayer_is_server),
-	(store_script_param_1, ":attach_agent_id"),
-	(store_script_param_2, ":instance_id"),
+	(store_script_param, ":attach_agent_id", 1),
+	(store_script_param, ":instance_id", 2),
 	(store_script_param, ":player_agent_id", 3),
 	
 	(agent_get_player_id, ":player_id", ":player_agent_id"),
@@ -65,8 +65,8 @@ scripts.extend([
   #Cart Dettach Log
   ("cf_log_detach_cart", [
     (multiplayer_is_server),
-	(store_script_param_1, ":attach_agent_id"),
-	(store_script_param_2, ":instance_id"),
+	(store_script_param, ":attach_agent_id", 1),
+	(store_script_param, ":instance_id", 2),
 	(store_script_param, ":player_agent_id", 3),
 	
 	(agent_get_player_id, ":player_id", ":player_agent_id"),
@@ -83,8 +83,8 @@ scripts.extend([
   #Log withdrawals from money chests
   ("cf_log_money_chest_withdraw", [
     (multiplayer_is_server),
-    (store_script_param_1, ":player_id"),
-    (store_script_param_2, ":instance_id"),
+    (store_script_param, ":player_id", 1),
+    (store_script_param, ":instance_id", 2),
     (store_script_param, ":gold_value", 3),
 	
 	(str_store_player_username, s11, ":player_id"),
@@ -99,8 +99,8 @@ scripts.extend([
   #Log deposits to money chests
   ("cf_log_money_chest_deposit", [
     (multiplayer_is_server),
-    (store_script_param_1, ":player_id"),
-    (store_script_param_2, ":instance_id"),
+    (store_script_param, ":player_id", 1),
+    (store_script_param, ":instance_id", 2),
     (store_script_param, ":gold_value", 3),
 	
 	(str_store_player_username, s11, ":player_id"),
@@ -111,7 +111,81 @@ scripts.extend([
 	(server_add_message_to_log, "str_log_money_chest_deposit"),
   ]),
   
+  #Log door hits
+  ("cf_log_hit_door", [
+    (multiplayer_is_server),
+    (store_script_param, ":instance_id", 1),
+    (store_script_param, ":agent_id", 2),
+    (store_script_param, ":hit_damage", 3),
+    (store_script_param, ":hit_type", 4),
+	
+    #reg0's value should be saved because the function to which this function will return uses it
+    (assign, ":reg0_value", reg0),
+    
+    (agent_get_player_id, ":player_id", ":agent_id"),
+    (str_store_player_username, s11, ":player_id"),
+    (call_script, "script_scene_prop_get_owning_faction", ":instance_id"),
+    (str_store_faction_name, s12, reg0),
+	(assign, reg31, ":hit_damage"),
+	(assign, reg32, ":instance_id"),
+	
+    (try_begin),
+      (eq, ":hit_type", repairable_hit),
+      (server_add_message_to_log, "str_log_hit_door"),
+    (else_try),
+      (eq, ":hit_type", repairable_destroyed),
+      (server_add_message_to_log, "str_log_hit_door"),
+    (else_try),
+      (eq, ":hit_type", repairable_hit_destroyed),
+      (server_add_message_to_log, "str_log_hit_door"),
+    (else_try),
+      (eq, ":hit_type", repairable_repaired),
+      (server_add_message_to_log, "str_log_repair_door"),
+    (else_try),
+      (eq, ":hit_type", repairable_repairing),
+      (server_add_message_to_log, "str_log_repair_door"),
+    (try_end),
+	
+    (assign, reg0, ":reg0_value"),
+  ]),
   
+  #Log door hits
+  ("cf_log_hit_chest", [
+    (multiplayer_is_server),
+    (store_script_param, ":instance_id", 1),
+    (store_script_param, ":agent_id", 2),
+    (store_script_param, ":hit_damage", 3),
+    (store_script_param, ":hit_type", 4),
+	
+    #reg0's value should be saved because the function to which this function will return uses it
+    (assign, ":reg0_value", reg0),
+    
+    (agent_get_player_id, ":player_id", ":agent_id"),
+    (str_store_player_username, s11, ":player_id"),
+    (call_script, "script_scene_prop_get_owning_faction", ":instance_id"),
+    (str_store_faction_name, s12, reg0),
+	(assign, reg31, ":hit_damage"),
+	(assign, reg32, ":instance_id"),
+	
+    (try_begin),
+      (eq, ":hit_type", repairable_hit),
+      (server_add_message_to_log, "str_log_hit_chest"),
+    (else_try),
+      (eq, ":hit_type", repairable_destroyed),
+      (server_add_message_to_log, "str_log_hit_chest"),
+    (else_try),
+      (eq, ":hit_type", repairable_hit_destroyed),
+      (server_add_message_to_log, "str_log_hit_chest"),
+    (else_try),
+      (eq, ":hit_type", repairable_repaired),
+      (server_add_message_to_log, "str_log_repair_chest"),
+    (else_try),
+      (eq, ":hit_type", repairable_repairing),
+      (server_add_message_to_log, "str_log_repair_chest"),
+    (try_end),
+	
+    (assign, reg0, ":reg0_value"),
+  ]),
   
   ("game_start", []), # single player only, not used
 
@@ -5839,7 +5913,16 @@ scripts.extend([
    [(store_script_param, ":agent_id", 1), # must be valid
     (store_script_param, ":item_id", 2),
     (store_script_param, ":instance_id", 3), # must be the item instance's id
-
+    #Log item pick ups
+	(try_begin),
+	  (neq, ":agent_died", 1),
+	  (agent_get_player_id, ":player_id", ":agent_id"),
+	  (str_store_player_username, s11, ":player_id"),
+	  (str_store_item_name, s12, ":item_id"),
+	  (assign, reg31, ":instance_id"),
+	  (server_add_message_to_log, "str_log_pick_up_item"),
+	(try_end),
+	#End
     (try_begin),
       (eq, ":item_id", "itm_money_bag"), # since the item instance will be removed immediately aftewards, transfer the contents to an agent slot
       (neq, "$g_game_type", "mt_no_money"),
@@ -5872,7 +5955,16 @@ scripts.extend([
     (store_script_param, ":item_id", 2),
     (store_script_param, ":instance_id", 3), # must be the dropped item instance's id
     (store_script_param, ":agent_died", 4), # set to 1 for dropping when the agent dies
-
+    #Log item drops
+	(try_begin),
+	  (neq, ":agent_died", 1),
+	  (agent_get_player_id, ":player_id", ":agent_id"),
+	  (str_store_player_username, s11, ":player_id"),
+	  (str_store_item_name, s12, ":item_id"),
+	  (assign, reg31, ":instance_id"),
+	  (server_add_message_to_log, "str_log_drop_item"),
+	(try_end),
+	#End
     (set_fixed_point_multiplier, 100),
     (try_begin), # only check for items over a certain id, near the end of the list
       (le, ":item_id", "itm_lock_pick"),
@@ -8150,6 +8242,9 @@ scripts.extend([
       (prop_instance_animate_to_position, ":instance_id", pos2, 400),
       (agent_play_sound, ":agent_id", "snd_man_grunt"),
     (try_end),
+    #Log door hits
+    (call_script, "script_cf_log_hit_door", ":instance_id", ":agent_id", ":hit_damage", ":result"), 
+    #End
     ]),
 
   ("destroy_door", # server: rotate destructible doors flat on the ground after destroyed
@@ -8321,6 +8416,9 @@ scripts.extend([
       (scene_prop_set_slot, ":instance_id", slot_scene_prop_unlocked, 0),
       (agent_play_sound, ":agent_id", "snd_repair_wood"),
     (try_end),
+    #Log door hits
+    (call_script, "script_cf_log_hit_chest", ":instance_id", ":agent_id", ":hit_damage", ":result"), 
+    #End
     ]),
 
   ("cf_pick_chest_lock", # server: handle players trying to pick the lock of a storage chest
@@ -11282,6 +11380,15 @@ scripts.extend([
         (particle_system_burst, "psys_dummy_straw", pos1, 10),
         (call_script, "script_hit_scene_prop_play_sound", ":agent_id", ":instance_id", "snd_cut_wood"),
       (try_end),
+      #Log ship hits
+      (try_begin),
+        (gt, ":agent_id", -1),
+        (agent_get_player_id, ":player_id", ":agent_id"),
+        (str_store_player_username, s11, ":player_id"),
+        (assign, reg31, ":instance_id"),
+        (server_add_message_to_log, "str_log_hit_ship"),
+      (try_end),
+      #End
     (else_try),
       (eq, ":result", repairable_destroyed),
       (prop_instance_get_position, pos20, ":instance_id"),
