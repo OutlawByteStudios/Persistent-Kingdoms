@@ -12918,6 +12918,22 @@ scripts.extend([
         (this_or_next | player_slot_eq, ":player_id", slot_player_is_marshal, 1),
         (eq, ":player_id", ":value_1"),
         (multiplayer_send_3_int_to_player, ":player_id", server_event_player_set_slot, ":value_1", ":key_slot", ":has_key"),
+
+        (eq, ":player_id", ":value_1"),
+        (eq, ":has_key", 1),
+        (try_begin),
+          (eq, ":key_slot", slot_player_has_faction_door_key),
+          (multiplayer_send_3_int_to_player, ":player_id", server_event_preset_message, "str_you_have_door_keys", preset_message_faction|preset_message_log|preset_message_small, ":faction_id", 0),
+        (else_try),
+          (eq, ":key_slot", slot_player_has_faction_money_key),
+          (multiplayer_send_3_int_to_player, ":player_id", server_event_preset_message, "str_you_have_money_keys",preset_message_faction|preset_message_log|preset_message_small, ":faction_id", 0),
+        (else_try),
+          (eq, ":key_slot", slot_player_has_faction_item_key),
+          (multiplayer_send_3_int_to_player, ":player_id", server_event_preset_message, "str_you_have_item_keys",preset_message_faction|preset_message_log|preset_message_small, ":faction_id", 0),
+        (else_try),
+          (eq, ":key_slot", slot_player_can_faction_announce),
+          (multiplayer_send_3_int_to_player, ":player_id", server_event_preset_message, "str_you_have_announcers",preset_message_faction|preset_message_log|preset_message_small, ":faction_id", 0),
+        (try_end),
       (try_end),
 
     (else_try),
@@ -12962,6 +12978,10 @@ scripts.extend([
             (multiplayer_send_3_int_to_player, ":player_id", server_event_player_set_slot, ":value_1", slot_player_can_faction_announce, 1),
             (multiplayer_send_3_int_to_player, ":player_id", server_event_player_set_slot, ":value_1",slot_player_faction_chat_muted, 0),
           (try_end),
+
+          (eq, ":player_id", ":value_1"),
+          (eq, ":has_key", 1),
+          (multiplayer_send_3_int_to_player, ":player_id", server_event_preset_message,  "str_you_are_a_marshal",preset_message_faction|preset_message_log|preset_message_small, ":faction_id", 0),
         (try_end),
 
         (neq, ":player_id", ":value_1"),
