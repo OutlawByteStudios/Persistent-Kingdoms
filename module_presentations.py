@@ -1333,10 +1333,16 @@ presentations.extend([
 
         (store_mission_timer_a, ":time"),
         (faction_get_slot, ":last_time", ":faction_id", slot_faction_poll_last_time),
+
+          (assign, reg0, ":time"),
+          (display_message, "str_stock_count_reg0"),
+          (assign, reg0, ":last_time"),
+          (display_message, "str_stock_count_reg0"),
+
         (this_or_next|ge, ":time", ":last_time"),
         (player_is_admin, ":my_player_id"),
 
-        (try_begin),
+      (try_begin),
           (neq, "$g_game_type", "mt_no_money"),
           (try_begin),
             (call_script, "script_cf_other_players_in_faction", ":my_player_id"),
