@@ -7037,6 +7037,11 @@ scripts.extend([
     (position_move_x, pos1, ":x_offset"),
     (position_move_y, pos1, ":y_offset"),
     (position_move_z, pos1, ":z_offset"),
+    (try_begin),
+      (agent_get_horse, ":horse_agent_id", ":agent_id"),
+      (gt, ":horse_agent_id", -1),
+      (assign, ":agent_id", ":horse_agent_id"),
+    (try_end),
     (agent_set_position, ":agent_id", pos1),
     ]),
 
