@@ -12006,7 +12006,6 @@ scripts.extend([
           (player_slot_eq, ":value_1", slot_player_is_lord, 0),
 
           (faction_get_slot, ":last_time", ":poll_faction_id", slot_faction_poll_last_time),
-          (val_add, ":last_time", poll_cooldown_time),
           (store_mission_timer_a, ":time"),
           (ge, ":time", ":last_time"),
         (else_try), # but allow admins to override the last conditions
@@ -12170,6 +12169,7 @@ scripts.extend([
         (faction_set_slot, ":poll_faction_id", slot_faction_poll_end_time, 0),
 
         (store_mission_timer_a, ":time"),
+        (val_add, ":time", poll_cooldown_time),
         (faction_set_slot, ":poll_faction_id", slot_faction_poll_last_time, ":time"),
 
         (call_script, "script_apply_poll_consequences", ":poll_faction_id", ":poll_result"),
@@ -12193,6 +12193,7 @@ scripts.extend([
       (faction_set_slot, ":poll_faction_id", slot_faction_poll_end_time, 0),
 
      (store_mission_timer_a, ":time"),
+     (val_add, ":time", poll_cooldown_time),
      (faction_set_slot, ":poll_faction_id", slot_faction_poll_last_time, ":time"),
 
       (store_sub, ":abstain_votes", ":voter_count", ":received_votes"),
