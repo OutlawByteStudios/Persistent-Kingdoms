@@ -12920,11 +12920,12 @@ scripts.extend([
         (multiplayer_send_3_int_to_player, ":player_id", server_event_player_set_slot, ":value_1", ":key_slot", ":has_key"),
 
         (eq, ":player_id", ":value_1"),
+        (eq, ":has_key", 1),
         (try_begin),
           (eq, ":key_slot", slot_player_has_faction_door_key),
           (multiplayer_send_3_int_to_player, ":player_id", server_event_preset_message, "str_you_have_door_keys", preset_message_faction|preset_message_log|preset_message_small, ":faction_id", 0),
         (else_try),
-          (eq, ":key_slot", faction_admin_action_toggle_player_money_key),
+          (eq, ":key_slot", slot_player_has_faction_money_key),
           (multiplayer_send_3_int_to_player, ":player_id", server_event_preset_message, "str_you_have_money_keys",preset_message_faction|preset_message_log|preset_message_small, ":faction_id", 0),
         (else_try),
           (eq, ":key_slot", slot_player_has_faction_item_key),
@@ -12979,6 +12980,7 @@ scripts.extend([
           (try_end),
 
           (eq, ":player_id", ":value_1"),
+          (eq, ":has_key", 1),
           (multiplayer_send_3_int_to_player, ":player_id", server_event_preset_message,  "str_you_are_a_marshal",preset_message_faction|preset_message_log|preset_message_small, ":faction_id", 0),
         (try_end),
 
