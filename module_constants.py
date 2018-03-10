@@ -313,7 +313,7 @@ slot_faction_list_button_id           = 6 # overlay id in the faction list prese
 slot_faction_is_locked                = 7 # 1 if an adminstrator locked the faction to prevent lord polls
 
 slot_faction_poll_last_time           = 20
-poll_cooldown_time                    = 150
+poll_cooldown_time                    = 20
 
 slot_faction_poll_end_time            = 21
 slot_faction_poll_voter_count         = 22
