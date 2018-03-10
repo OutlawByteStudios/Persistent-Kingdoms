@@ -6998,6 +6998,7 @@ scripts.extend([
     (store_script_param, ":y_offset", 4), # position offset relative to the linked door that the agent is moved to
     (store_script_param, ":z_offset", 5),
     (store_script_param, ":is_pickable", 6),
+    (store_script_param, ":horse_can_tp", 7),
 
     (scene_prop_get_slot, ":linked_door_instance_id", ":instance_id", slot_scene_prop_linked_scene_prop),
     (gt, ":linked_door_instance_id", 0),
@@ -7038,6 +7039,7 @@ scripts.extend([
     (position_move_y, pos1, ":y_offset"),
     (position_move_z, pos1, ":z_offset"),
     (try_begin),
+      (eq, ":horse_can_tp", 1),
       (agent_get_horse, ":horse_agent_id", ":agent_id"),
       (gt, ":horse_agent_id", -1),
       (assign, ":agent_id", ":horse_agent_id"),
