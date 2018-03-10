@@ -258,8 +258,8 @@ def spr_buy_banner_triggers(banner_item_begin, mercenary=False, use_string="str_
   return [init_trigger, spr_call_script_use_trigger("script_cf_buy_banner")]
 
 # Teleport to a linked door of the same scene prop type. 'pos_offset' specifies the relative position from each door that the character will be moved to.
-def spr_teleport_door_triggers(pos_offset=(0,0,0), pickable=1):
-  triggers = [spr_call_script_use_trigger("script_cf_use_teleport_door", pos_offset[0], pos_offset[1], pos_offset[2], pickable),
+def spr_teleport_door_triggers(pos_offset=(0,0,0), pickable=1, horse_can_tp=0):
+  triggers = [spr_call_script_use_trigger("script_cf_use_teleport_door", pos_offset[0], pos_offset[1], pos_offset[2], pickable, horse_can_tp),
     [link_scene_prop, link_scene_prop_self]]
   if pickable == 1:
     triggers.append(spr_call_script_cancel_use_trigger("script_cf_lock_teleport_door"))
@@ -2935,6 +2935,17 @@ scene_props = [
   ("pw_door_teleport_inset_c",spr_use_time(1),"pw_teleport_door_c","bo_pw_teleport_door_a", spr_teleport_door_triggers(pos_offset=(0,50,0))),
   ("pw_door_teleport_invisible",sokf_invisible|spr_use_time(1),"pw_invisible_door","bo_pw_invisible_door", spr_teleport_door_triggers(pos_offset=(0,50,0))),
   ("pw_door_teleport_invisible_not_pickable",sokf_invisible|spr_use_time(1),"pw_invisible_door","bo_pw_invisible_door", spr_teleport_door_triggers(pos_offset=(0,50,0), pickable=0)),
+
+  ("pw_door_teleport_small_arch_a_horse",spr_use_time(1),"tutorial_door_a","bo_tutorial_door_a", spr_teleport_door_triggers(pos_offset=(-55,50,-98), horse_can_tp=1)),
+  ("pw_door_teleport_square_a_horse",spr_use_time(1),"tutorial_door_b","bo_tutorial_door_b", spr_teleport_door_triggers(pos_offset=(70,50,0), horse_can_tp=1)),
+  ("pw_door_teleport_arch_a_horse",spr_use_time(1),"dungeon_door_direction_a","bo_dungeon_door_direction_a", spr_teleport_door_triggers(pos_offset=(100,0,-230), horse_can_tp=1)),
+  ("pw_door_teleport_roof_horse",spr_use_time(1),"house_roof_door","bo_house_roof_door", spr_teleport_door_triggers(pos_offset=(0,0,100), horse_can_tp=1)),
+  ("pw_door_teleport_inset_a_horse",spr_use_time(1),"pw_teleport_door_a","bo_pw_teleport_door_a", spr_teleport_door_triggers(pos_offset=(0,50,0), horse_can_tp=1)),
+  ("pw_door_teleport_inset_b_horse",spr_use_time(1),"pw_teleport_door_b","bo_pw_teleport_door_a", spr_teleport_door_triggers(pos_offset=(0,50,0), horse_can_tp=1)),
+  ("pw_door_teleport_inset_c_horse",spr_use_time(1),"pw_teleport_door_c","bo_pw_teleport_door_a", spr_teleport_door_triggers(pos_offset=(0,50,0), horse_can_tp=1)),
+  ("pw_door_teleport_invisible_horse",sokf_invisible|spr_use_time(1),"pw_invisible_door","bo_pw_invisible_door", spr_teleport_door_triggers(pos_offset=(0,50,0), horse_can_tp=1)),
+  ("pw_door_teleport_invisible_not_pickable_horse",sokf_invisible|spr_use_time(1),"pw_invisible_door","bo_pw_invisible_door", spr_teleport_door_triggers(pos_offset=(0,50,0), pickable=0, horse_can_tp=1)),
+
   ("pw_door_rotate_a",spr_rotate_door_flags(1),"castle_f_sally_door_a","bo_castle_f_sally_door_a", spr_rotate_door_triggers(hit_points=5000)),
   ("pw_door_rotate_b",spr_rotate_door_flags(1),"castle_e_sally_door_a","bo_castle_e_sally_door_a_fixed", spr_rotate_door_triggers(hit_points=5000)),
   ("pw_door_rotate_c",spr_rotate_door_flags(1),"castle_f_door_a","bo_castle_f_door_a_fixed", spr_rotate_door_triggers(hit_points=5000)),
