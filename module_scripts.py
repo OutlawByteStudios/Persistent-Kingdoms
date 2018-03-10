@@ -3523,7 +3523,7 @@ scripts.extend([
         (multiplayer_send_3_int_to_player, ":player_id", server_event_faction_set_slot, ":faction_id", slot_faction_is_locked, 1),
       (try_end),
       (faction_get_slot, ":poll_last_time", ":faction_id", slot_faction_poll_last_time),
-      (multiplayer_send_3_int_to_player, ":player_id", server_event_faction_set_slot, ":faction_id",slot_faction_poll_last_time, ":poll_last_time"),
+      (multiplayer_send_3_int_to_player, ":player_id", server_event_faction_set_slot, ":faction_id", slot_faction_poll_last_time, ":poll_last_time"),
     (try_end),
     (scene_prop_get_num_instances, ":pole_num", "spr_pw_castle_capture_point"),
     (try_for_range, ":pole_no", 0, ":pole_num"), # so secondary capture point banner item ids match up for the client side repositioning script, after joining
