@@ -1426,6 +1426,8 @@ scripts.extend([
           (set_fixed_point_multiplier, 100),
           (agent_get_position, pos1, ":agent_id"),
           (position_move_z, pos1, 160),
+
+          (str_store_string, s0, "str_s0"),
           (try_for_agents, ":other_agent_id"), # send the pouch message to other players whoose agents are close enough
             (agent_is_alive, ":other_agent_id"),
             (neg|agent_is_non_player, ":other_agent_id"),
@@ -1438,14 +1440,17 @@ scripts.extend([
             (le, ":sq_distance", ":max_sq_distance"),
             (this_or_next|le, ":sq_distance", ":ambient_sq_distance"),
             (position_has_line_of_sight_to_position, pos1, pos2),
+
             (multiplayer_send_4_int_to_player, ":other_player_id", server_event_preset_message, "str_s1_reveals_money_pouch_containing_about_reg1", preset_message_player|preset_message_chat_log|preset_message_yellow, ":sender_player_id", ":approximate_gold"),
+
+            (str_store_player_username, s1, ":other_player_id"),
+            (str_store_string, s0, "str_s0__s1"),
           (try_end),
 
           (multiplayer_send_2_int_to_player, ":sender_player_id", server_event_preset_message, "str_you_reveal_money_pouch_to_near_by_players", preset_message_player|preset_message_chat_log|preset_message_yellow),
           (str_store_player_username, s1, ":sender_player_id"),
-          (str_store_player_username, s2, ":target_player_id"),
           (assign, reg1, ":approximate_gold"),
-          (server_add_message_to_log, "str_s1_revealed_money_pouch_containing_reg1_to_near_by_players"),
+          (server_add_message_to_log, "str_s1_revealed_money_pouch_containing_reg1_to_near_by_players_s0"),
         (try_end),
       (else_try), # handle animation requests
         (eq, ":event_type", client_event_request_animation),

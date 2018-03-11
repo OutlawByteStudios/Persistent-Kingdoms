@@ -694,10 +694,10 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("too_far_away_loot", "Too far away to loot."),
   ("herd_animal_limit_reached", "Herd animal limit reached."),
   ("s1_reveals_money_pouch_containing_about_reg1", "{s1} reveals a money pouch containing about {reg1} coins."),
-  ("you_reveal_money_pouch_to_s1", "You reveal your money pouch to {s1}."),
-  ("you_reveal_money_pouch_to_near_by_players", "You reveal your money pouch to near by players."),
+  ("you_reveal_money_pouch_to_s1", "You revealed your money pouch to {s1}."),
+  ("you_reveal_money_pouch_to_near_by_players", "You revealed your money pouch to near by players."),
   ("s1_revealed_money_pouch_containing_reg1_to_s2", "{s1} revealed a money pouch containing about {reg1} coins to {s2}."),
-  ("s1_revealed_money_pouch_containing_reg1_to_near_by_players","{s1} revealed a money pouch containing about {reg1} coins to near by players."),
+  ("s1_revealed_money_pouch_containing_reg1_to_near_by_players_s0","{s1} revealed a money pouch containing about {reg1} coins to near by players ({s0})."),
   ("your_target_too_far_away", "Your target is too far away."),
   ("no_target_selected", "No target selected."),
 
