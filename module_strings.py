@@ -963,6 +963,8 @@ Poisonous herbs can also sometimes be found, which are then applied to the blade
   ("log_drop_item", "{s11} dropped {s12}(IID: {reg31}) on the ground."),
   ("log_pick_up_item", "{s11} picked up {s12}(IID: {reg31}) from the ground."),
   ("log_put_item_in_inventory", "{s11} put {s12} into an inventory (IID: {reg31})."),
+  ("log_put_item_in_finventory", "{s11} put {s12} into an inventory of {s10} (IID: {reg31})."),
   ("log_take_item_from_inventory", "{s11} took {s12} from an inventory (IID: {reg31})."),
+  ("log_take_item_from_finventory", "{s11} took {s12} from an inventory of {s10} (IID: {reg31})."),
   #End
 ]

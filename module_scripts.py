@@ -9074,7 +9074,14 @@ scripts.extend([
           (str_store_player_username, s11, ":player_id"),
           (str_store_item_name, s12, ":item_id"),
           (assign, reg31, ":instance_id"),
-          (server_add_message_to_log, "str_log_put_item_in_inventory"),
+		  (try_begin),
+            (call_script, "script_scene_prop_get_owning_faction", ":instance_id"),
+			(ge, reg1, 0),
+            (str_store_faction_name, s10, reg0),
+            (server_add_message_to_log, "str_log_put_item_in_finventory"),
+          (else_try),
+            (server_add_message_to_log, "str_log_put_item_in_inventory"),
+		  (try_end),
           #End
           (try_begin),
             (is_between, ":item_type", itp_type_head_armor, itp_type_hand_armor + 1),
@@ -9093,11 +9100,18 @@ scripts.extend([
           (try_end),
         (else_try), # removing items from the scene prop
           (lt, ":from_slot", slot_scene_prop_inventory_item_0),
-          #Log putting items in a container
+		  #Log taking items from a container
           (str_store_player_username, s11, ":player_id"),
           (str_store_item_name, s12, ":item_id"),
           (assign, reg31, ":instance_id"),
-          (server_add_message_to_log, "str_log_take_item_from_inventory"),
+		  (try_begin),
+            (call_script, "script_scene_prop_get_owning_faction", ":instance_id"),
+			(ge, reg1, 0),
+            (str_store_faction_name, s10, reg0),
+            (server_add_message_to_log, "str_log_take_item_from_finventory"),
+          (else_try),
+            (server_add_message_to_log, "str_log_take_item_from_inventory"),
+		  (try_end),
           #End
           (scene_prop_slot_eq, ":instance_id", ":from_slot", ":item_id"),
           (scene_prop_set_slot, ":instance_id", ":from_slot", 0),
