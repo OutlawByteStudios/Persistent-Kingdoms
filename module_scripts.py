@@ -1431,6 +1431,7 @@ scripts.extend([
             (neg|agent_is_non_player, ":other_agent_id"),
             (agent_get_player_id, ":other_player_id", ":other_agent_id"),
             (player_is_active, ":other_player_id"),
+            (neq, ":other_player_id", ":sender_player_id"),
             (agent_get_position, pos2, ":other_agent_id"),
             (position_move_z, pos2, 160),
             (get_sq_distance_between_positions, ":sq_distance", pos1, pos2),
