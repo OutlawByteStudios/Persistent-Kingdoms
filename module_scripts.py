@@ -43,6 +43,136 @@ scripts.extend([
   ]),
   #End
   
+  #Log looting corpse
+  ("cf_log_loot_corpse", [
+    (multiplayer_is_server),
+    (store_script_param_1, ":corpse_instance_id"),
+    (store_script_param_2, ":looter_agent_id"),
+    (assign, reg31, ":corpse_instance_id"),
+	
+    (scene_prop_get_slot, ":owner_agent_id", ":corpse_instance_id", slot_scene_prop_corpse_owner),
+	
+    (agent_get_player_id, ":looter_player_id", ":looter_agent_id"),
+    (str_store_player_username, s11, ":looter_player_id"),
+	
+    (try_begin),
+      (gt, ":owner_agent_id", 0),
+      (neg|agent_is_non_player, ":owner_agent_id"),
+      (agent_get_player_id, ":owner_player_id", ":owner_agent_id"),
+      (str_store_player_username, s12, ":owner_player_id"),
+      (server_add_message_to_log, "str_log_loot_pcorpse"),
+    (else_try),
+      (server_add_message_to_log, "str_log_loot_corpse"),
+    (try_end),
+  ]),
+  
+  #Log hits by/to animals or players
+  ("cf_log_hit", [
+    (multiplayer_is_server),
+    (store_script_param, ":attacked_agent_id", 1),
+    (store_script_param, ":attacker_agent_id", 2),
+    (store_script_param, reg31, 3), #damage
+    (store_script_param, ":item_id", 4),
+    (store_script_param, ":log_nevertheless", 5),
+	
+    (try_begin),
+      (gt, ":item_id", -1),
+      (str_store_item_name, s10, ":item_id"),
+    (else_try),
+      (str_store_string, s10, "@fist"),
+    (try_end),
+	
+    (assign, ":log", 0),
+    (try_begin),
+      (eq, ":log_nevertheless", 1),
+      (assign, ":log", 1),
+    (else_try),
+      (neq, ":item_id", "itm_surgeon_scalpel"),
+      (neq, ":item_id", "itm_healing_herb"),
+      (assign, ":log", 1),
+    (try_end),
+	
+    (try_begin), #If it wasn't a heal or usage of healing herb
+      (eq, ":log", 1),
+	  
+      (try_begin), #If the attacker is a player
+        (neg|agent_is_non_player, ":attacker_agent_id"),
+        (agent_get_player_id, ":attacker_player_id", ":attacker_agent_id"),
+        (str_store_player_username, s11, ":attacker_player_id"),
+        (try_begin),#If the defender is a player
+          (neg|agent_is_non_player, ":attacked_agent_id"),
+          (agent_get_player_id, ":attacked_player_id", ":attacked_agent_id"),
+          (str_store_player_username, s12, ":attacked_player_id"),
+          (server_add_message_to_log, "str_log_hit_player"),
+        (else_try),#Else, the defender is either horse or animal
+          (agent_get_rider, ":rider_id", ":attacked_agent_id"),
+          (try_begin),#The horse is mounted by a player
+            (gt, ":rider_id", 0),
+        	(agent_get_player_id, ":rider_player_id", ":rider_id"),
+            (str_store_player_username, s12, ":rider_player_id"),
+        	(server_add_message_to_log, "str_log_hit_phorse"),
+          (else_try),#Else, the horse or animal is Rogue (a weeabo)
+            (agent_get_item_id, ":animal_item_id", ":attacked_agent_id"),
+        	(str_store_item_name, s12, ":animal_item_id"),
+        	(server_add_message_to_log, "str_log_hit_animal"),
+          (try_end),
+        (try_end),
+      (else_try),#Else, the attacker is either horse or animal
+        (agent_get_player_id, ":attacked_player_id", ":attacked_agent_id"),
+        (str_store_player_username, s12, ":attacked_player_id"), 
+        (agent_get_rider, ":rider_id", ":attacker_agent_id"),
+        (try_begin),
+          (gt, ":rider_id", 0),#If a player rides the horse
+          (agent_get_player_id, ":attacker_player_id", ":attacker_agent_id"),
+          (str_store_player_username, s11, ":attacker_player_id"), 
+        (else_try),#Else, the horse or animal is Rogue (a weeabo)
+          (agent_get_item_id, ":animal_item_id", ":attacker_agent_id"),
+          (str_store_item_name, s11, ":animal_item_id"),
+        (try_end),
+        (server_add_message_to_log, "str_log_bump"),
+      (try_end),
+    (try_end),
+  ]),
+  
+  #Log healing
+  ("cf_log_heal", [
+    (multiplayer_is_server),
+    (store_script_param, ":healed_agent_id", 1),
+	(store_script_param, ":healer_agent_id", 2),
+	(store_script_param, ":healing", 3),
+	(store_script_param, ":health_percent", 4),
+	(store_script_param, ":healing_limit", 5),
+	
+	(try_begin),
+	  (store_add, ":total_health", ":healing", ":health_percent"),
+	  (gt, ":total_health", ":health_percent"),
+	  (store_sub, ":healing", ":healing_limit", ":health_percent"),
+	(try_end),
+	
+	(agent_get_player_id, ":healer_player_id", ":healer_agent_id"),
+    (str_store_player_username, s11, ":healer_player_id"),
+	(assign, reg31, ":healing"),
+	
+	(try_begin),#If the healed is a player
+	  (neg|agent_is_non_player, ":healed_agent_id"),
+	  (agent_get_player_id, ":healed_player_id", ":healed_agent_id"),
+	  (str_store_player_username, s12, ":healed_player_id"),
+	  (server_add_message_to_log, "str_log_heal_player"),
+	(else_try),#Else, the healed is either horse or animal
+	  (agent_get_rider, ":rider_id", ":healed_agent_id"),
+	  (try_begin),#The horse is mounted by a player
+	    (gt, ":rider_id", 0),
+		(agent_get_player_id, ":rider_player_id", ":rider_id"),
+	    (str_store_player_username, s12, ":rider_player_id"),
+		(server_add_message_to_log, "str_log_heal_phorse"),
+	  (else_try),#Else, the horse or animal is Rogue (a weeabo)
+	    (agent_get_item_id, ":animal_item_id", ":healed_agent_id"),
+		(str_store_item_name, s12, ":animal_item_id"),
+		(server_add_message_to_log, "str_log_heal_animal"),
+	  (try_end),
+	(try_end),
+  ]),
+  
   #Cart Attach Log
   ("cf_log_attach_cart", [
     (multiplayer_is_server),
@@ -1462,6 +1592,10 @@ scripts.extend([
               (set_spawn_position, pos1),
               (spawn_item, "itm_agent_corpse", imod_rusty, "$g_spawn_item_prune_time"),
               (assign, ":corpse_instance_id", reg0),
+			  #Phoenix, to understand, check the spawning of corpses when people die lol
+              (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_corpse_owner, ":agent_id"),
+              (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_is_mercenary, 1),
+			  #End
               (agent_set_slot, ":agent_id", slot_agent_storage_corpse_instance_id, ":corpse_instance_id"),
               (prop_instance_set_position, ":corpse_instance_id", pos1),
               (store_mission_timer_a, ":prune_time"),
@@ -1496,6 +1630,9 @@ scripts.extend([
           (get_sq_distance_between_positions, ":sq_distance", pos1, pos2),
           (le, ":sq_distance", sq(max_distance_to_loot)),
           (call_script, "script_cf_use_inventory", ":agent_id", ":corpse_instance_id", 0),
+          #Log looting corpses
+          (call_script, "script_cf_log_loot_corpse", ":corpse_instance_id", ":agent_id"),
+          #End
         (try_end),
       (else_try), # handle player requests to reveal their money pouch to another player
         (eq, ":event_type", client_event_reveal_money_pouch),
@@ -3553,6 +3690,10 @@ scripts.extend([
       (store_random_in_range, ":imod", imod_plain, imod_cracked + 1),
       (spawn_item, "itm_agent_corpse", ":imod", "$g_spawn_item_prune_time"),
       (assign, ":corpse_instance_id", reg0),
+      #Set the according slot to keep the record of the corpse's owner's agent id
+      (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_corpse_owner, ":agent_id"),
+      (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_is_mercenary, 1),#To perevent faction names appearing in logs in inventory transfers
+      #End
       (prop_instance_set_position, ":corpse_instance_id", pos1),
       (store_mission_timer_a, ":prune_time"),
       (val_add, ":prune_time", "$g_spawn_item_prune_time"),
@@ -9493,11 +9634,18 @@ scripts.extend([
           (lt, ":health_percent", ":healing_limit"),
           (store_mul, ":healing", ":skill_level", 2),
           (val_add, ":healing", 2),
+          #Log healing
+          (call_script, "script_cf_log_heal", ":attacked_agent_id", ":attacker_agent_id", ":healing", ":health_percent", ":healing_limit"),
+          #End
           (val_add, ":health_percent", ":healing"),
           (val_min, ":health_percent", ":healing_limit"),
           (agent_set_hit_points, ":attacked_agent_id", ":health_percent", 0),
         (try_end),
         (assign, ":damage_result", 0),
+	  (else_try),
+        #Log it as a normal hit because attacker's class can't heal
+        (call_script, "script_cf_log_hit", ":attacked_agent_id", ":attacker_agent_id", ":damage_dealt", reg0, 1),
+        #End
       (try_end),
     (else_try),
       (eq, ":weapon_item_id", "itm_admin_scalpel"),

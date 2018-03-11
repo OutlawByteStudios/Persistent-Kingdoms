@@ -966,5 +966,14 @@ Poisonous herbs can also sometimes be found, which are then applied to the blade
   ("log_put_item_in_finventory", "{s11} put {s12} into an inventory of {s10} (IID: {reg31})."),
   ("log_take_item_from_inventory", "{s11} took {s12} from an inventory (IID: {reg31})."),
   ("log_take_item_from_finventory", "{s11} took {s12} from an inventory of {s10} (IID: {reg31})."),
+  ("log_hit_player", "{s11} attacked {s12} with {s10} dealing {reg31} damage."),
+  ("log_hit_phorse", "{s11} attacked Horse ({s12}) dealing {reg31} damage."),
+  ("log_hit_animal", "{s11} attacked Horse ({s12}) dealing {reg31} damage."),
+  ("log_bump", "Horse ({s11}) attacked {s12} dealing {reg31} damage."),
+  ("log_heal_player", "{s11} healed {s12} by {reg31} HP."),
+  ("log_heal_phorse", "{s11} healed Horse ({s12}) by {reg31} HP."),
+  ("log_heal_animal", "{s11} healed Horse ({s12}) by {reg31} HP."),
+  ("log_loot_pcorpse", "{s11} looted a corpse ({s12}, IID: {reg31})."),
+  ("log_loot_corpse", "{s11} looted a corpse (IID: {reg31})."),
   #End
 ]
