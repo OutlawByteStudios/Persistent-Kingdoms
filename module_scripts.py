@@ -1437,7 +1437,7 @@ scripts.extend([
             (le, ":sq_distance", ":max_sq_distance"),
             (this_or_next|le, ":sq_distance", ":ambient_sq_distance"),
             (position_has_line_of_sight_to_position, pos1, pos2),
-            (multiplayer_send_4_int_to_player, ":target_player_id", server_event_preset_message, "str_s1_reveals_money_pouch_containing_about_reg1", preset_message_player|preset_message_chat_log|preset_message_yellow, ":sender_player_id", ":approximate_gold"),
+            (multiplayer_send_4_int_to_player, ":other_player_id", server_event_preset_message, "str_s1_reveals_money_pouch_containing_about_reg1", preset_message_player|preset_message_chat_log|preset_message_yellow, ":sender_player_id", ":approximate_gold"),
           (try_end),
 
           (multiplayer_send_2_int_to_player, ":sender_player_id", server_event_preset_message, "str_you_reveal_money_pouch_to_near_by_players", preset_message_player|preset_message_chat_log|preset_message_yellow),
