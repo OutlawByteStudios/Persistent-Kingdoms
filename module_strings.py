@@ -698,6 +698,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("you_reveal_money_pouch_to_near_by_players", "You revealed your money pouch to near by players."),
   ("s1_revealed_money_pouch_containing_reg1_to_s2", "{s1} revealed a money pouch containing about {reg1} coins to {s2}."),
   ("s1_revealed_money_pouch_containing_reg1_to_near_by_players_s0","{s1} revealed a money pouch containing about {reg1} coins to near by players ({s0})."),
+  ("s1_revealed_money_pouch_containing_reg1_to_near_by_players_none","{s1} revealed a money pouch containing about {reg1} coins to near by players (None in range)."),
   ("your_target_too_far_away", "Your target is too far away."),
   ("no_target_selected", "No target selected."),
 
