@@ -53,7 +53,7 @@ scripts.extend([
 	(str_store_player_username, s2, ":kicked"),
 	(str_store_faction_name, s3, ":faction_id"),
 	
-	(server_add_message_to_log, "str_s1_kicked_s2_from_s3),
+	(server_add_message_to_log, "str_s1_kicked_s2_from_s3"),
 	(multiplayer_send_4_int_to_player, ":kicked", server_event_preset_message, "str_s2_kicked_you_from_the_faction",
 		preset_message_faction|preset_message_faction_lord|preset_message_log|preset_message_small, ":faction_id", ":kicker"),
   ]),
