@@ -956,8 +956,8 @@ Poisonous herbs can also sometimes be found, which are then applied to the blade
 
   #Shield Log
   ("shield_hit_log", "{s12} hit {s11}'s shield by {reg31} damage."),
-  ("log_faction_kicked", "{s10} kicked {s11} from {s12}."),
-  ("log_faction_outlawed", "{s10} outlawed {s11} from {s12}."),
+  ("s1_kicked_s2_from_s3", "{s1} kicked {s2} from {s3}."),
+  ("s1_outlawed_s2_from_s3", "{s1} outlawed {s2} from {s3}."),
   ("s2_kicked_you_from_the_faction", "{s2} kicked you from the faction!"),
   ("s2_outlawed_you_from_the_faction", "{s2} outlawed you from the faction!"),
 ]

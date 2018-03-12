@@ -49,11 +49,11 @@ scripts.extend([
 	(store_script_param, ":kicked", 2),
 	(store_script_param, ":faction_id", 3),
 	
-	(str_store_player_username, s10, ":kicker"),
-	(str_store_player_username, s11, ":kicked"),
-	(str_store_faction_name, s12, ":faction_id"),
+	(str_store_player_username, s1, ":kicker"),
+	(str_store_player_username, s2, ":kicked"),
+	(str_store_faction_name, s3, ":faction_id"),
 	
-	(server_add_message_to_log, "str_log_faction_kicked"),
+	(server_add_message_to_log, "str_s1_kicked_s2_from_s3),
 	(multiplayer_send_4_int_to_player, ":kicked", server_event_preset_message, "str_s2_kicked_you_from_the_faction",
 		preset_message_faction|preset_message_faction_lord|preset_message_log|preset_message_small, ":faction_id", ":kicker"),
   ]),
@@ -64,11 +64,11 @@ scripts.extend([
 	(store_script_param, ":kicked", 2),
 	(store_script_param, ":faction_id", 3),
 	
-	(str_store_player_username, s10, ":kicker"),
-	(str_store_player_username, s11, ":kicked"),
-	(str_store_faction_name, s12, ":faction_id"),
+	(str_store_player_username, s1, ":kicker"),
+	(str_store_player_username, s2, ":kicked"),
+	(str_store_faction_name, s3, ":faction_id"),
 	
-	(server_add_message_to_log, "str_log_faction_outlawed"),
+	(server_add_message_to_log, "str_s1_outlawed_s2_from_s3"),
 	(multiplayer_send_4_int_to_player, ":kicked", server_event_preset_message, "str_s2_outlawed_you_from_the_faction",
 		preset_message_faction|preset_message_faction_lord|preset_message_log|preset_message_small, ":faction_id", ":kicker"),
   ]),
