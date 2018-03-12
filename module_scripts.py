@@ -43,6 +43,37 @@ scripts.extend([
   ]),
   #End  
 
+  #Log and show that player is kicked
+  ("cf_log_and_show_kicked", [
+	(store_script_param, ":kicker", 1),
+	(store_script_param, ":kicked", 2),
+	(store_script_param, ":faction_id", 3),
+	
+	(str_store_player_username, s10, ":kicker"),
+	(str_store_player_username, s11, ":kicked"),
+	(str_store_faction_name, s12, ":faction_id"),
+	
+	(server_add_message_to_log, "str_log_faction_kicked"),
+	(multiplayer_send_4_int_to_player, ":kicked", server_event_preset_message, "str_msg_you_were_kicked", 
+		preset_message_faction|preset_message_log|preset_message_small, ":faction_id", ":kicker"),
+  ]),
+  
+  #Log and show that player is kicked
+  ("cf_log_and_show_outlawed", [
+	(store_script_param, ":kicker", 1),
+	(store_script_param, ":kicked", 2),
+	(store_script_param, ":faction_id", 3),
+	
+	(str_store_player_username, s10, ":kicker"),
+	(str_store_player_username, s11, ":kicked"),
+	(str_store_faction_name, s12, ":faction_id"),
+	
+	(server_add_message_to_log, "str_log_faction_outlawed"),
+	(multiplayer_send_4_int_to_player, ":kicked", server_event_preset_message, "str_msg_you_were_outlawed", 
+		preset_message_faction|preset_message_log|preset_message_small, ":faction_id", ":kicker"),
+  ]),
+  
+  
   ("game_start", []), # single player only, not used
 
   ("game_get_use_string", # clients: called by the game when the local player is aiming at a usable scene prop
@@ -2297,6 +2328,15 @@ scripts.extend([
     (store_script_param, ":flags", 2),
     (store_script_param, "$g_preset_message_value_1", 3),
     (store_script_param, "$g_preset_message_value_2", 4),
+	
+	#If the message string is str_msg_you_were_kicked or str_msg_you_were_outlawed, then assign s10 the name of the lord of the faction
+	(try_begin),
+	  (this_or_next|eq, "$g_preset_message_string_id", "str_msg_you_were_kicked"),
+	  (eq, "$g_preset_message_string_id", "str_msg_you_were_outlawed"),
+	  (assign, ":lord_player_id", "$g_preset_message_value_2"),
+	  (str_store_player_username, s10, ":lord_player_id"),
+	(try_end),
+	#End
 
     (assign, ":color", ":flags"), # unpack the color from the flags parameter
     (val_and, ":color", preset_message_color_mask),
@@ -12868,8 +12908,12 @@ scripts.extend([
       (try_begin),
         (eq, ":action", faction_admin_action_kick_player),
         (call_script, "script_change_faction", ":value_1", "fac_commoners", change_faction_type_no_respawn),
+        #Log and show that player was kicked
+        (call_script, "script_cf_log_and_show_kicked", ":sender_player_id", ":value_1", ":faction_id"),
       (else_try),
         (call_script, "script_player_change_check_outlaw_rating", ":value_1", outlaw_rating_for_lord_outlawed, 1),
+        #Log and show that player was outlawed
+        (call_script, "script_cf_log_and_show_outlawed", ":sender_player_id", ":value_1", ":faction_id"),
       (try_end),
       (player_set_slot, ":value_1", slot_player_last_faction_kicked_from, ":faction_id"),
     (else_try),
