@@ -60,8 +60,6 @@ scripts.extend([
       (neg|agent_is_non_player, ":owner_agent_id"),
       (agent_get_player_id, ":owner_player_id", ":owner_agent_id"),
       (str_store_player_username, s12, ":owner_player_id"),
-      (server_add_message_to_log, "str_log_loot_pcorpse"),
-    (else_try),
       (server_add_message_to_log, "str_log_loot_corpse"),
     (try_end),
   ]),

@@ -975,7 +975,6 @@ Poisonous herbs can also sometimes be found, which are then applied to the blade
   ("log_heal_player", "{s11} healed {s12} by {reg31} HP."),
   ("log_heal_phorse", "{s11} healed Horse ({s12}) by {reg31} HP."),
   ("log_heal_animal", "{s11} healed Horse ({s12}) by {reg31} HP."),
-  ("log_loot_pcorpse", "{s11} looted a corpse ({s12}, IID: {reg31})."),
-  ("log_loot_corpse", "{s11} looted a corpse (IID: {reg31})."),
+  ("log_loot_corpse", "{s11} looted a corpse ({s12}, IID: {reg31})."),
   #End
 ]
