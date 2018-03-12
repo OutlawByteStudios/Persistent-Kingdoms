@@ -54,8 +54,8 @@ scripts.extend([
 	(str_store_faction_name, s12, ":faction_id"),
 	
 	(server_add_message_to_log, "str_log_faction_kicked"),
-	(multiplayer_send_4_int_to_player, ":kicked", server_event_preset_message, "str_msg_you_were_kicked", 
-		preset_message_faction|preset_message_log|preset_message_small, ":faction_id", ":kicker"),
+	(multiplayer_send_4_int_to_player, ":kicked", server_event_preset_message, "str_s2_kicked_you_from_the_faction",
+		preset_message_faction|preset_message_faction_lord|preset_message_log|preset_message_small, ":faction_id", ":kicker"),
   ]),
   
   #Log and show that player is kicked
@@ -69,8 +69,8 @@ scripts.extend([
 	(str_store_faction_name, s12, ":faction_id"),
 	
 	(server_add_message_to_log, "str_log_faction_outlawed"),
-	(multiplayer_send_4_int_to_player, ":kicked", server_event_preset_message, "str_msg_you_were_outlawed", 
-		preset_message_faction|preset_message_log|preset_message_small, ":faction_id", ":kicker"),
+	(multiplayer_send_4_int_to_player, ":kicked", server_event_preset_message, "str_s2_outlawed_you_from_the_faction",
+		preset_message_faction|preset_message_faction_lord|preset_message_log|preset_message_small, ":faction_id", ":kicker"),
   ]),
   
   
@@ -2328,15 +2328,6 @@ scripts.extend([
     (store_script_param, ":flags", 2),
     (store_script_param, "$g_preset_message_value_1", 3),
     (store_script_param, "$g_preset_message_value_2", 4),
-	
-	#If the message string is str_msg_you_were_kicked or str_msg_you_were_outlawed, then assign s10 the name of the lord of the faction
-	(try_begin),
-	  (this_or_next|eq, "$g_preset_message_string_id", "str_msg_you_were_kicked"),
-	  (eq, "$g_preset_message_string_id", "str_msg_you_were_outlawed"),
-	  (assign, ":lord_player_id", "$g_preset_message_value_2"),
-	  (str_store_player_username, s10, ":lord_player_id"),
-	(try_end),
-	#End
 
     (assign, ":color", ":flags"), # unpack the color from the flags parameter
     (val_and, ":color", preset_message_color_mask),
@@ -2393,8 +2384,14 @@ scripts.extend([
         (is_between, "$g_preset_message_value_1", factions_begin, factions_end),
         (str_store_faction_name, s1, "$g_preset_message_value_1"),
         (faction_get_color, "$g_preset_message_color", "$g_preset_message_value_1"),
-        (eq, "$g_preset_message_params", preset_message_faction_castle),
-        (call_script, "script_str_store_castle_name", s2, "$g_preset_message_value_2"),
+        (try_begin),
+          (eq, "$g_preset_message_params", preset_message_faction_castle),
+          (call_script, "script_str_store_castle_name", s2, "$g_preset_message_value_2"),
+        (else_try),
+          (eq, "$g_preset_message_params", preset_message_faction_lord),
+          (assign, ":lord_player_id", "$g_preset_message_value_2"),
+          (str_store_player_username, s2, ":lord_player_id"),
+        (try_end),
       (else_try),
         (assign, reg1, "$g_preset_message_value_1"),
         (assign, reg2, "$g_preset_message_value_2"),
