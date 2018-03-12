@@ -42,6 +42,33 @@ scripts.extend([
     (server_add_message_to_log, "str_shield_hit_log"),
   ]),
   #End  
+  
+  ("log_equipment", [
+	(store_script_param_1, ":player_id"),
+	
+	(player_get_agent_id, ":agent_id", ":player_id"),
+	
+  	(agent_get_item_slot, reg31, ":agent_id", ek_head),
+	(agent_get_item_slot, reg32, ":agent_id", ek_body),
+	(agent_get_item_slot, reg33, ":agent_id", ek_foot),
+	(agent_get_item_slot, reg34, ":agent_id", ek_gloves),
+	(agent_get_item_slot, reg35, ":agent_id", ek_item_0),
+	(agent_get_item_slot, reg36, ":agent_id", ek_item_1),
+	(agent_get_item_slot, reg37, ":agent_id", ek_item_2),
+	(agent_get_item_slot, reg38, ":agent_id", ek_item_3),
+	(agent_get_horse, ":horse_agent_id", ":agent_id"),
+	
+	(assign, reg39, 0),
+	(try_begin),
+	  (gt, ":horse_agent_id", -1),
+	  (agent_get_item_id, reg39, ":horse_agent_id"),
+	(try_end),
+	
+	(str_store_player_username, s11, ":player_id"),
+	
+	(server_add_message_to_log, "str_log_equipment"),
+	#End
+  ]),
 
   ("game_start", []), # single player only, not used
 
@@ -4947,7 +4974,8 @@ scripts.extend([
   ("player_set_lord", # server: set a player as lord of a faction, changing all the appropriate slots
    [(store_script_param, ":player_id", 1), # must be valid
     (store_script_param, ":faction_id", 2),
-
+    #test
+	(display_message, "@test"),
     (get_max_players, ":max_players"),
     (try_for_range, ":other_player_id", 1, ":max_players"),
       (player_is_active, ":other_player_id"),
