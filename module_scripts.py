@@ -114,6 +114,7 @@ scripts.extend([
           (else_try),#Else, the horse or animal is Rogue (a weeabo)
             (agent_get_item_id, ":animal_item_id", ":attacked_agent_id"),
         	(str_store_item_name, s12, ":animal_item_id"),
+            (assign, reg32, ":attacked_agent_id"),
         	(server_add_message_to_log, "str_log_hit_animal"),
           (try_end),
         (try_end),

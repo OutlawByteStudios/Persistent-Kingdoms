@@ -643,8 +643,10 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("s0_joined_the_s1", "{s0} joined {s1}."),
   ("must_leave_s1_first", "You must leave {s1} first."),
   ("not_a_member_of_s1", "You are not a member of {s1}."),
-  ("s0_has_dismounted_a_s1", "{s0} has dismounted a {s1}."),
-  ("s0_has_mounted_a_s1", "{s0} has mounted a {s1}."),
+  #Alter mount/dismount logs to show the agent_id of the mount
+  ("s0_has_dismounted_a_s1", "{s0} has dismounted a {s1} (AID: {reg31})."),
+  ("s0_has_mounted_a_s1", "{s0} has mounted a {s1} (AID: {reg31})."),
+  #End
   ("s1_captured_s2", "{s1} have captured {s2}!"),
   ("your_faction_not_hostile_to_s1", "Your faction is not hostile to the {s1}."),
   ("your_faction_not_captured_required_points", "Your faction has not captured the required secondary points."),
@@ -968,7 +970,7 @@ Poisonous herbs can also sometimes be found, which are then applied to the blade
   ("log_take_item_from_finventory", "{s11} took {s12} from an inventory of {s10} (IID: {reg31})."),
   ("log_hit_player", "{s11} attacked {s12} with {s10} dealing {reg31} damage."),
   ("log_hit_phorse", "{s11} attacked Horse ({s12}) dealing {reg31} damage."),
-  ("log_hit_animal", "{s11} attacked Horse ({s12}) dealing {reg31} damage."),
+  ("log_hit_animal", "{s11} attacked Horse ({s12}) dealing {reg31} damage (AID: {reg32})."),
   ("log_bump", "Horse ({s11}) attacked {s12} dealing {reg31} damage."),
   ("log_heal_player", "{s11} healed {s12} by {reg31} HP."),
   ("log_heal_phorse", "{s11} healed Horse ({s12}) by {reg31} HP."),
