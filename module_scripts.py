@@ -6067,13 +6067,6 @@ scripts.extend([
       (neq, "$g_game_type", "mt_no_money"),
       (scene_prop_get_slot, ":value", ":instance_id", slot_scene_prop_gold_value),
       (scene_prop_set_slot, ":instance_id", slot_scene_prop_gold_value, 0),
-      #Log pick up money bag
-      (agent_get_player_id, ":player_id", ":agent_id"),
-      (str_store_player_username, s11, ":player_id"),
-      (assign, reg31, ":value"),
-      (assign, reg32, ":instance_id"),
-      (server_add_message_to_log, "str_log_pick_money_bag"),
-      #End
       (try_for_range, ":value_slot", slot_agent_money_bag_1_value, slot_agent_money_bag_4_value + 1),
         (agent_get_slot, ":next_value", ":agent_id", ":value_slot"),
         (agent_set_slot, ":agent_id", ":value_slot", ":value"),
