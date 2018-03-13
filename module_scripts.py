@@ -872,6 +872,24 @@ scripts.extend([
     (else_try), # section of events received by server from the clients
       (multiplayer_is_server),
       (try_begin), # handle players requesting to attach a cart to themselves or a horse
+		#Fast inventory transfer
+	    (eq, ":event_type", client_event_fast_unequip),#saptor
+		(store_script_param, ":slot", 3),
+		(store_sub, ":a_slot", ":slot", slot_scene_prop_inventory_item_0),
+		(player_get_agent_id, ":agent_id", ":sender_player_id"),
+		(agent_get_item_slot, ":item_id", ":agent_id", ":a_slot"),
+		(player_get_slot, ":container_id", ":sender_player_id", slot_player_accessing_instance_id),
+		(scene_prop_get_slot, ":inventory_length", ":container_id", slot_scene_prop_inventory_count),
+		(val_add, ":inventory_length", slot_scene_prop_inventory_begin + 1),
+		
+		(try_for_range, ":inventory_index", slot_scene_prop_inventory_begin, ":inventory_length"),
+			(scene_prop_get_slot, ":item_at_index", ":container_id", ":inventory_index"),
+			(lt, ":item_at_index", 1),
+			(call_script, "script_transfer_inventory", ":sender_player_id", ":container_id", ":slot", ":inventory_index", ":item_id"),
+			(assign, ":inventory_index", 999),
+		(try_end),
+		#End
+	  (else_try),
         (eq, ":event_type", client_event_attach_scene_prop),
         (store_script_param, ":instance_id", 3),
         (player_get_agent_id, ":agent_id", ":sender_player_id"),

@@ -3681,10 +3681,22 @@ presentations.extend([
       ]),
     (ti_on_presentation_event_state_change,
      [prsnt_generate_find_object_slot(),
-      (set_fixed_point_multiplier, 1000),
+	  (set_fixed_point_multiplier, 1000),
       (store_add, ":target_mesh_slot", ":found_obj_slot", slot_scene_prop_inventory_mesh_begin - slot_scene_prop_inventory_obj_begin),
       (scene_prop_get_slot, ":target_mesh_object_id", "$g_show_inventory_instance_id", ":target_mesh_slot"),
       (store_add, ":target_inventory_slot", ":found_obj_slot", slot_scene_prop_inventory_begin - slot_scene_prop_inventory_obj_begin),
+	 
+	  (assign, ":interruptdd", 0),
+	  (try_begin),
+		  (key_is_down, key_left_control),
+		  (assign, ":interruptdd", 1),
+		  (le, "$g_show_inventory_selected_slot", -1),
+		  (gt, ":target_mesh_object_id", -1),
+		  (store_add, ":show_inventory_selected_slot", ":found_obj_slot", slot_scene_prop_inventory_begin - slot_scene_prop_inventory_obj_begin),
+		  (multiplayer_send_2_int_to_server, client_event_fast_unequip, ":show_inventory_selected_slot"),
+	  (try_end),
+	  (neq, ":interruptdd", 1),
+	 
       (try_begin), # an item is already selected
         (gt, "$g_show_inventory_selected_slot", -1),
         (try_begin), # if the selected item was put back in its current slot, replace without sending a message to the server
