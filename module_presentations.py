@@ -3686,16 +3686,24 @@ presentations.extend([
       (scene_prop_get_slot, ":target_mesh_object_id", "$g_show_inventory_instance_id", ":target_mesh_slot"),
       (store_add, ":target_inventory_slot", ":found_obj_slot", slot_scene_prop_inventory_begin - slot_scene_prop_inventory_obj_begin),
 	 
-	  (assign, ":interruptdd", 0),
+	 #phoenix
+	  (assign, ":interrupt", 0),
 	  (try_begin),
 		  (key_is_down, key_left_control),
-		  (assign, ":interruptdd", 1),
+		  (assign, ":interrupt", 1),
 		  (le, "$g_show_inventory_selected_slot", -1),
 		  (gt, ":target_mesh_object_id", -1),
 		  (store_add, ":show_inventory_selected_slot", ":found_obj_slot", slot_scene_prop_inventory_begin - slot_scene_prop_inventory_obj_begin),
-		  (multiplayer_send_2_int_to_server, client_event_fast_unequip, ":show_inventory_selected_slot"),
+		  (try_begin),
+			(is_between, ":show_inventory_selected_slot", slot_scene_prop_inventory_begin, slot_scene_prop_inventory_end + 1),
+			(multiplayer_send_2_int_to_server, client_event_fast_equip, ":show_inventory_selected_slot"),
+		  (else_try),
+			(is_between, ":show_inventory_selected_slot", slot_scene_prop_inventory_item_0, slot_scene_prop_inventory_item_0 + ek_gloves + 1),
+			(multiplayer_send_2_int_to_server, client_event_fast_unequip, ":show_inventory_selected_slot"),
+		  (try_end),
 	  (try_end),
-	  (neq, ":interruptdd", 1),
+	  (neq, ":interrupt", 1),
+	  #end
 	 
       (try_begin), # an item is already selected
         (gt, "$g_show_inventory_selected_slot", -1),
