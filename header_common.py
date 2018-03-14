@@ -64,6 +64,8 @@ client_event_change_faction_banner              = 124
 client_event_transfer_inventory                 = 125
 client_event_control_scene_prop                 = 126
 client_event_attach_scene_prop                  = 127
+
+
 # Network events are limited to numbers between 0 and 127 by the game engine.
 
 preset_message_default                          = 0x0
