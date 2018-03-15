@@ -9394,6 +9394,11 @@ scripts.extend([
     (try_begin),
       (eq, ":action", 1),
       (call_script, "script_cf_use_inventory", ":agent_id", ":instance_id", 0),
+      #Log looking into carts
+      (str_store_player_username, s11, ":player_id"),
+	  (assign, reg31, ":instance_id"),
+	  (server_add_message_to_log, "str_log_use_cart"),
+      #End
     (else_try),
       (eq, ":action", -1),
       (scene_prop_get_slot, ":required_horse", ":instance_id", slot_scene_prop_required_horse),
