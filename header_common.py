@@ -36,8 +36,8 @@ server_event_update_scene_prop_hit_points       = 28
 
 # Add new events here: above if sent from the server, below if from clients.
 
-client_event_fast_equip                         = 92 #CTRL + LClick
-client_event_fast_unequip                       = 93 #CTRL + LClick
+client_event_fast_equip                         = 92 #Mouse Right Click Fast Inventory transfer
+client_event_fast_unequip                       = 93 #Mouse Right Click Fast Inventory transfer
 client_event_commit_suicide                     = 94
 client_event_request_animation                  = 95
 client_event_reveal_money_pouch                 = 96
