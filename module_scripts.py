@@ -12492,6 +12492,7 @@ scripts.extend([
           (call_script, "script_reuse_or_spawn_scene_prop", ":freeze_scene_prop_id"),
           (prop_instance_set_position, reg0, pos1),
           (agent_set_slot, ":target_agent_id", slot_agent_freeze_instance_id, reg0),
+          (player_set_slot, ":target_player_id", slot_player_freeze_instance_id, reg0), #Needed for removing freeze walls on disconnects
           (agent_set_speed_modifier, ":target_agent_id", 0),
         (try_end),
       (else_try),
