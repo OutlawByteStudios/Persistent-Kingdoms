@@ -70,6 +70,7 @@ preset_message_agent                            = 0x3 # converts value 1 from ag
 preset_message_player                           = 0x4 # converts value 1 from player id into username string
 preset_message_faction                          = 0x5 # converts value 1 from faction id into name string
 preset_message_faction_castle                   = 0x6 # converts value 1 from castle id into name string
+preset_message_faction_lord                     = 0x7 # converts value 1 from lord/marshal name id into name string
 preset_message_params_mask                      = 0xF
 
 preset_message_white                            = 0x00
