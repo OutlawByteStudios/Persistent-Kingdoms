@@ -201,6 +201,12 @@ player_exit = (ti_on_player_exit, 0, 0, [], # server: save player values on exit
     (str_store_player_username, s1, ":player_id"),
     (player_get_unique_id, reg0, ":player_id"),
     (server_add_message_to_log, "str_s1_has_left_the_game_with_id_reg0"),
+	
+	#Remove freeze walls if they exist
+    (player_get_agent_id, ":agent_id", ":player_id"),
+    (agent_get_slot, ":freeze_instance_id", ":agent_id", slot_agent_freeze_instance_id),
+	(gt, ":freeze_instance_id", -1),
+	(call_script, "script_remove_scene_prop", ":freeze_instance_id"),
     ])
 
 agent_spawn = (ti_on_agent_spawn, 0, 0, [], # server and clients: set up new agents after they spawn
