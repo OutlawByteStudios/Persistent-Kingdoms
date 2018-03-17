@@ -43,6 +43,7 @@ scripts.extend([
   ]),
   #End  
   
+  #Phoenix
   ("log_equipment", [
 	(multiplayer_is_server),
 	(store_script_param_1, ":player_id"),
