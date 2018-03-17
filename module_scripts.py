@@ -11500,7 +11500,13 @@ scripts.extend([
       (val_min, ":haze", 100),
       (set_global_haze_amount, ":haze"),
     (try_end),
-    ]),
+    (try_begin),
+      (scene_prop_get_instance, ":instance_id", "spr_pw_scene_skybox", 0),
+      (prop_instance_get_variation_id, ":hdr", ":instance_id"),
+      (prop_instance_get_variation_id, ":non_hdr", ":instance_id"),
+      (set_skybox, ":hdr", ":non_hdr"),
+    (try_end),
+   ]),
 
   ("scene_adjust_weather_situation", # server: periodically adjust the position and intensity of weather systems in the scene
    [
