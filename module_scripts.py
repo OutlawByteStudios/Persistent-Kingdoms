@@ -44,6 +44,7 @@ scripts.extend([
   #End  
   
   ("log_equipment", [
+	(multiplayer_is_server),
 	(store_script_param_1, ":player_id"),
 	
 	(player_get_agent_id, ":agent_id", ":player_id"),
