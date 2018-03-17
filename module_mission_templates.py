@@ -208,8 +208,8 @@ player_exit = (ti_on_player_exit, 0, 0, [], # server: save player values on exit
 	  (call_script, "script_remove_scene_prop", ":freeze_instance_id"),
 	  (player_set_slot, ":player_id", slot_player_freeze_instance_id, -1),
 
-  	#Log equipment on log out
-	  (call_script, "script_log_equipment", ":player_id"),
+  	  #Log equipment on log out
+	  (call_script, "script_cf_log_equipment", ":player_id"),
 	  #End
   ])
 
@@ -225,7 +225,7 @@ agent_spawn = (ti_on_agent_spawn, 0, 0, [], # server and clients: set up new age
 	(player_get_slot, ":first_spawn_occured", ":player_id", slot_player_first_spawn_occured),
 	(neq, ":first_spawn_occured", 1),
 	(player_set_slot, ":player_id", slot_player_first_spawn_occured, 1),
-	(call_script, "script_log_equipment", ":player_id"),
+	(call_script, "script_cf_log_equipment", ":player_id"),
 	#End
     ])
 
