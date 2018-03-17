@@ -3919,7 +3919,7 @@ presentations.extend([
 				(try_begin),
 				  (multiplayer_get_my_player, ":my_player_id"),
 				  (player_get_agent_id, ":my_agent_id", ":my_player_id"),
-				  (store_sub, ":actual_slot", ":show_inventory_selected_slot", slot_scene_prop_inventory_item_0),
+				  (store_mod, ":actual_slot", ":show_inventory_selected_slot", 10),
 				  (agent_get_item_slot, ":my_item_id", ":my_agent_id", ":actual_slot"),
 				  (item_get_slot, ":length", ":my_item_id", slot_item_length),
 				  (scene_prop_slot_ge, "$g_show_inventory_instance_id", slot_scene_prop_inventory_max_length, ":length"),
