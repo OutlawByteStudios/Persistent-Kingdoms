@@ -3733,19 +3733,23 @@ presentations.extend([
             (this_or_next|neq, ":item_id", "itm_money_bag"),
             (ge, ":target_inventory_slot", slot_scene_prop_inventory_item_0),
 
-            (assign, ":error_string_id", "str_cant_put_ammo_in_container"),
             (item_get_type, ":item_type", ":item_id"),
             (try_begin),
               (this_or_next | eq, ":item_type", itp_type_arrows),
               (this_or_next | eq, ":item_type", itp_type_bolts),
-              (this_or_next | eq, ":item_type", itp_type_thrown),
-              (eq, ":item_type", itp_type_crossbow),
+              (eq, ":item_type", itp_type_thrown),
               (assign, ":item_ammo", 0),
             (else_try),
               (assign, ":item_ammo", -1),
             (try_end),
+
+            (assign, ":error_string_id", "str_cant_put_ammo_in_container"),
             (this_or_next|eq, ":item_ammo", -1),
             (scene_prop_slot_eq, "$g_show_inventory_instance_id", slot_scene_prop_store_ammo, 1),
+
+            (assign, ":error_string_id", "str_cant_put_non_ammo_in_container"),
+            (this_or_next|eq, ":item_ammo", 0),
+            (scene_prop_slot_eq, "$g_show_inventory_instance_id", slot_scene_prop_store_only_ammo, 0),
 
             (multiplayer_send_4_int_to_server, client_event_transfer_inventory, "$g_show_inventory_instance_id", "$g_show_inventory_selected_slot", ":target_inventory_slot", ":item_id"),
           (else_try),

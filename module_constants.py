@@ -229,6 +229,7 @@ slot_scene_prop_crafting_resource_3   = 53
 slot_scene_prop_crafting_resource_4   = 54
 
 slot_scene_prop_store_ammo            = 55
+slot_scene_prop_store_only_ammo       = 56
 
 scene_prop_state_active               = 0
 scene_prop_state_destroyed            = 1

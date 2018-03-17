@@ -9022,11 +9022,18 @@ scripts.extend([
         (else_try), # check that the ammo is allowed when storing in the inventory
           (this_or_next | eq, ":item_type", itp_type_arrows),
           (this_or_next | eq, ":item_type", itp_type_bolts),
-          (this_or_next | eq, ":item_type", itp_type_thrown),
-          (eq, ":item_type", itp_type_crossbow),
+          (eq, ":item_type", itp_type_thrown),
           (scene_prop_slot_eq, ":instance_id", slot_scene_prop_store_ammo, 0),
           (assign, ":item_id", -1),
+        (else_try), # check that the non ammo is allowed when storing in the inventory
+          (neq, ":item_type", itp_type_arrows),
+          (neq, ":item_type", itp_type_bolts),
+          (neq, ":item_type", itp_type_thrown),
+          (scene_prop_slot_eq, ":instance_id", slot_scene_prop_store_only_ammo, 1),
+          (assign, ":item_id", -1),
         (try_end),
+
+        (server_add_message_to_log, "str_reg0"),
 
         (ge, ":item_id", all_items_begin),
         (try_begin),

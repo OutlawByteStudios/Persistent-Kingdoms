@@ -345,7 +345,7 @@ def spr_sliding_door_winch_triggers(target, move_steps=1, step_size=100, animati
 # Carts attachable to characters or horses. Set 'horse' to 1 to allow attaching to any horse, or the horse item id for restricting to a specific type.
 # The cart mesh should be oriented with the horse or agent position at the origin, and when detached it will be rotated by 'detach_rotation' and moved vertically by 'detach_offset'.
 # The absolute value of 'access_distance' is used for the radius from the origin that will allow attaching, and moved forwards by that value (back if negative) is the center of the radius for accessing.
-def spr_cart_triggers(horse=-1, detach_offset=0, detach_rotation=0, inventory_count=0, max_item_length=100, access_distance=100, use_string="str_attach", store_ammo=0):
+def spr_cart_triggers(horse=-1, detach_offset=0, detach_rotation=0, inventory_count=0, max_item_length=100, access_distance=100, use_string="str_attach", store_ammo=0, store_only_ammo=0):
   return [(ti_on_scene_prop_init,
      [(store_trigger_param_1, ":instance_id"),
       (scene_prop_set_slot, ":instance_id", slot_scene_prop_required_horse, horse),
@@ -358,6 +358,7 @@ def spr_cart_triggers(horse=-1, detach_offset=0, detach_rotation=0, inventory_co
       (scene_prop_set_slot, ":instance_id", slot_scene_prop_use_string, use_string),
       (scene_prop_set_slot, ":instance_id", slot_scene_prop_collision_kind, -1),
       (scene_prop_set_slot, ":instance_id", slot_scene_prop_store_ammo, store_ammo),
+      (scene_prop_set_slot, ":instance_id", slot_scene_prop_store_only_ammo, store_only_ammo),
       (call_script, "script_add_cart_to_list", ":instance_id"),
       ]),
     (ti_on_scene_prop_use,
@@ -759,7 +760,7 @@ def spr_castle_money_chest_triggers(use_string="str_gold_reg2", hit_points=1000,
 
 # Item storage chest that can be linked with a castle to allow the lord to control the access.
 # A 'probability' of the default 100 will give 1% chance of successful lock picking per looting skill level, which can be increased up to 10000 for guaranteed success.
-def spr_item_chest_triggers(inventory_count=6, max_item_length=100, use_string="str_access", hit_points=1000, probability=100, store_ammo=1):
+def spr_item_chest_triggers(inventory_count=6, max_item_length=100, use_string="str_access", hit_points=1000, probability=100, store_ammo=1, store_only_ammo=0):
   return [(ti_on_scene_prop_init,
      [(store_trigger_param_1, ":instance_id"),
       (scene_prop_set_hit_points, ":instance_id", spr_check_hit_points(hit_points)),
@@ -769,6 +770,7 @@ def spr_item_chest_triggers(inventory_count=6, max_item_length=100, use_string="
       (scene_prop_set_slot, ":instance_id", slot_scene_prop_inventory_max_length, max_item_length),
       (scene_prop_set_slot, ":instance_id", slot_scene_prop_use_string, use_string),
       (scene_prop_set_slot, ":instance_id", slot_scene_prop_store_ammo, store_ammo),
+      (scene_prop_set_slot, ":instance_id", slot_scene_prop_store_only_ammo, store_only_ammo),
       ]),
     (ti_on_scene_prop_hit,
      [(store_trigger_param_1, ":instance_id"),
@@ -3065,7 +3067,7 @@ scene_props = [
   ("pw_item_chest_b",spr_chest_flags(use_time=1),"pw_chest_b","bo_pw_chest_b", spr_item_chest_triggers(hit_points=5000, inventory_count=32, max_item_length=100)),
   ("pw_item_chest_invisible",sokf_invisible|spr_chest_flags(1),"pw_invisible_chest","bo_pw_invisible_chest", spr_item_chest_triggers(hit_points=2000, inventory_count=12, max_item_length=120)),
 
-  ("pk_arrow_holder_bucket",spr_chest_flags(use_time=1, destructible=False),"pk_arrow_holder_bucket","bo_pk_arrow_holder_bucket", spr_item_chest_triggers(inventory_count=10)),
+  ("pk_arrow_holder_bucket",spr_chest_flags(use_time=1, destructible=False),"pk_arrow_holder_bucket","bo_pk_arrow_holder_bucket", spr_item_chest_triggers(inventory_count=10, store_only_ammo=1)),
 
   ("pw_signpost_castle",0,"pw_signpost_castle","bo_pw_signpost", []),
   ("pw_signpost_docks",0,"pw_signpost_docks","bo_pw_signpost", []),
