@@ -49,6 +49,7 @@ scripts.extend([
 	(store_script_param_1, ":player_id"),
 	
 	(player_get_agent_id, ":agent_id", ":player_id"),
+	(gt, ":agent_id", -1),
 	
   	(agent_get_item_slot, reg31, ":agent_id", ek_head),
 	(agent_get_item_slot, reg32, ":agent_id", ek_body),
