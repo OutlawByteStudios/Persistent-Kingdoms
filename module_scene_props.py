@@ -726,8 +726,11 @@ def spr_capture_castle_triggers():
       ]),
     spr_call_script_use_trigger("script_cf_use_capture_point", 1)] # show new banner
 
-def spr_chest_flags(use_time=1):
-  return sokf_destructible|spr_use_time(max(use_time, 1))
+def spr_chest_flags(use_time=1, destructible=True):
+  if destructible:
+    return sokf_destructible|spr_use_time(max(use_time, 1))
+  else:
+      return spr_use_time(max(use_time, 1))
 
 # Money chest that can be linked with a castle to store tax automatically gathered, and allow the lord to control the access.
 # A 'probability' of the default 100 will give 1% chance of successful lock picking per looting skill level, which can be increased up to 10000 for guaranteed success.
@@ -3055,10 +3058,12 @@ scene_props = [
   ("pw_castle_sign",0,"tree_house_guard_a","bo_tree_house_guard_a", [(ti_on_scene_prop_use, [])]),
   ("pw_castle_capture_point",spr_use_time(capture_point_use_time),"pw_castle_flag_post","bo_pw_castle_flag_post", spr_capture_castle_triggers()),
   ("pw_castle_wall_banner",0,"pw_banner_wall_rail","bo_pw_banner_wall_rail", []),
-  ("pw_castle_money_chest",spr_chest_flags(2),"pw_chest_b","bo_pw_chest_b", spr_castle_money_chest_triggers(hit_points=6000)),
-  ("pw_item_chest_a",spr_chest_flags(1),"pw_chest_c","bo_pw_chest_c", spr_item_chest_triggers(hit_points=7000, inventory_count=48, max_item_length=180)),
-  ("pw_item_chest_b",spr_chest_flags(1),"pw_chest_b","bo_pw_chest_b", spr_item_chest_triggers(hit_points=5000, inventory_count=32, max_item_length=100)),
+  ("pw_castle_money_chest",spr_chest_flags(use_time=2),"pw_chest_b","bo_pw_chest_b", spr_castle_money_chest_triggers(hit_points=6000)),
+  ("pw_item_chest_a",spr_chest_flags(use_time=1),"pw_chest_c","bo_pw_chest_c", spr_item_chest_triggers(hit_points=7000, inventory_count=48, max_item_length=180)),
+  ("pw_item_chest_b",spr_chest_flags(use_time=1),"pw_chest_b","bo_pw_chest_b", spr_item_chest_triggers(hit_points=5000, inventory_count=32, max_item_length=100)),
   ("pw_item_chest_invisible",sokf_invisible|spr_chest_flags(1),"pw_invisible_chest","bo_pw_invisible_chest", spr_item_chest_triggers(hit_points=2000, inventory_count=12, max_item_length=120)),
+
+  ("pk_arrow_holder_bucket",spr_chest_flags(use_time=1, destructible=False),"pk_arrow_holder_bucket","bo_pk_arrow_holder_bucket", spr_item_chest_triggers(inventory_count=10)),
 
   ("pw_signpost_castle",0,"pw_signpost_castle","bo_pw_signpost", []),
   ("pw_signpost_docks",0,"pw_signpost_docks","bo_pw_signpost", []),
