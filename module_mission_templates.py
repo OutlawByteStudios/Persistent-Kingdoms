@@ -201,11 +201,25 @@ player_exit = (ti_on_player_exit, 0, 0, [], # server: save player values on exit
     (str_store_player_username, s1, ":player_id"),
     (player_get_unique_id, reg0, ":player_id"),
     (server_add_message_to_log, "str_s1_has_left_the_game_with_id_reg0"),
+	#Log equipment on log out
+	(call_script, "script_log_equipment", ":player_id"),
+	#End
     ])
 
 agent_spawn = (ti_on_agent_spawn, 0, 0, [], # server and clients: set up new agents after they spawn
    [(store_trigger_param_1, ":agent_id"),
     (call_script, "script_on_agent_spawned", ":agent_id"),
+	
+	#Log the player's equipment on log ins. Due to player actually not having items when they "joined", it needs to log when
+	#they are spawned for the first time
+	#CRUCIAL: Updates on the player's equipment should be done before this code block so the server logs properly
+	(neg|agent_is_non_player, ":agent_id"),
+	(agent_get_player_id, ":player_id", ":agent_id"),
+	(player_get_slot, ":first_spawn_occured", ":player_id", slot_player_first_spawn_occured),
+	(neq, ":first_spawn_occured", 1),
+	(player_set_slot, ":player_id", slot_player_first_spawn_occured, 1),
+	(call_script, "script_log_equipment", ":player_id"),
+	#End
     ])
 
 agent_killed = (ti_on_agent_killed_or_wounded, 0, 0, [], # server and clients: handle messages, score, loot, and more after agents die

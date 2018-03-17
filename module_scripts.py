@@ -42,6 +42,33 @@ scripts.extend([
     (server_add_message_to_log, "str_shield_hit_log"),
   ]),
   #End  
+  
+  ("log_equipment", [
+	(store_script_param_1, ":player_id"),
+	
+	(player_get_agent_id, ":agent_id", ":player_id"),
+	
+  	(agent_get_item_slot, reg31, ":agent_id", ek_head),
+	(agent_get_item_slot, reg32, ":agent_id", ek_body),
+	(agent_get_item_slot, reg33, ":agent_id", ek_foot),
+	(agent_get_item_slot, reg34, ":agent_id", ek_gloves),
+	(agent_get_item_slot, reg35, ":agent_id", ek_item_0),
+	(agent_get_item_slot, reg36, ":agent_id", ek_item_1),
+	(agent_get_item_slot, reg37, ":agent_id", ek_item_2),
+	(agent_get_item_slot, reg38, ":agent_id", ek_item_3),
+	(agent_get_horse, ":horse_agent_id", ":agent_id"),
+	
+	(assign, reg39, 0),
+	(try_begin),
+	  (gt, ":horse_agent_id", -1),
+	  (agent_get_item_id, reg39, ":horse_agent_id"),
+	(try_end),
+	
+	(str_store_player_username, s11, ":player_id"),
+	
+	(server_add_message_to_log, "str_log_equipment"),
+	#End
+  ]),
 
   ("cf_handle_fast_equip_request", [
 		(store_script_param_1, ":from_slot"),
@@ -115,6 +142,36 @@ scripts.extend([
 			(call_script, "script_transfer_inventory", ":sender_player_id", ":container_id", ":slot", ":inventory_index", ":item_id"),
 			(assign, ":inventory_index", 999),
 		(try_end),
+  ]),
+  
+  #Log and show that player is kicked
+  ("cf_log_and_show_kicked", [
+	(store_script_param, ":kicker", 1),
+	(store_script_param, ":kicked", 2),
+	(store_script_param, ":faction_id", 3),
+	
+	(str_store_player_username, s1, ":kicker"),
+	(str_store_player_username, s2, ":kicked"),
+	(str_store_faction_name, s3, ":faction_id"),
+	
+	(server_add_message_to_log, "str_s1_kicked_s2_from_s3"),
+	(multiplayer_send_4_int_to_player, ":kicked", server_event_preset_message, "str_s2_kicked_you_from_the_faction",
+		preset_message_faction|preset_message_faction_lord|preset_message_log|preset_message_small, ":faction_id", ":kicker"),
+  ]),
+  
+  #Log and show that player is kicked
+  ("cf_log_and_show_outlawed", [
+	(store_script_param, ":kicker", 1),
+	(store_script_param, ":kicked", 2),
+	(store_script_param, ":faction_id", 3),
+	
+	(str_store_player_username, s1, ":kicker"),
+	(str_store_player_username, s2, ":kicked"),
+	(str_store_faction_name, s3, ":faction_id"),
+	
+	(server_add_message_to_log, "str_s1_outlawed_s2_from_s3"),
+	(multiplayer_send_4_int_to_player, ":kicked", server_event_preset_message, "str_s2_outlawed_you_from_the_faction",
+		preset_message_faction|preset_message_faction_lord|preset_message_log|preset_message_small, ":faction_id", ":kicker"),
   ]),
   
   ("game_start", []), # single player only, not used
@@ -2437,8 +2494,14 @@ scripts.extend([
         (is_between, "$g_preset_message_value_1", factions_begin, factions_end),
         (str_store_faction_name, s1, "$g_preset_message_value_1"),
         (faction_get_color, "$g_preset_message_color", "$g_preset_message_value_1"),
-        (eq, "$g_preset_message_params", preset_message_faction_castle),
-        (call_script, "script_str_store_castle_name", s2, "$g_preset_message_value_2"),
+        (try_begin),
+          (eq, "$g_preset_message_params", preset_message_faction_castle),
+          (call_script, "script_str_store_castle_name", s2, "$g_preset_message_value_2"),
+        (else_try),
+          (eq, "$g_preset_message_params", preset_message_faction_lord),
+          (assign, ":lord_player_id", "$g_preset_message_value_2"),
+          (str_store_player_username, s2, ":lord_player_id"),
+        (try_end),
       (else_try),
         (assign, reg1, "$g_preset_message_value_1"),
         (assign, reg2, "$g_preset_message_value_2"),
@@ -5031,7 +5094,8 @@ scripts.extend([
   ("player_set_lord", # server: set a player as lord of a faction, changing all the appropriate slots
    [(store_script_param, ":player_id", 1), # must be valid
     (store_script_param, ":faction_id", 2),
-
+    #test
+	(display_message, "@test"),
     (get_max_players, ":max_players"),
     (try_for_range, ":other_player_id", 1, ":max_players"),
       (player_is_active, ":other_player_id"),
@@ -12953,8 +13017,12 @@ scripts.extend([
       (try_begin),
         (eq, ":action", faction_admin_action_kick_player),
         (call_script, "script_change_faction", ":value_1", "fac_commoners", change_faction_type_no_respawn),
+        #Log and show that player was kicked
+        (call_script, "script_cf_log_and_show_kicked", ":sender_player_id", ":value_1", ":faction_id"),
       (else_try),
         (call_script, "script_player_change_check_outlaw_rating", ":value_1", outlaw_rating_for_lord_outlawed, 1),
+        #Log and show that player was outlawed
+        (call_script, "script_cf_log_and_show_outlawed", ":sender_player_id", ":value_1", ":faction_id"),
       (try_end),
       (player_set_slot, ":value_1", slot_player_last_faction_kicked_from, ":faction_id"),
     (else_try),
