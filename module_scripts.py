@@ -9033,8 +9033,6 @@ scripts.extend([
           (assign, ":item_id", -1),
         (try_end),
 
-        (server_add_message_to_log, "str_reg0"),
-
         (ge, ":item_id", all_items_begin),
         (try_begin),
           (this_or_next|eq, ":item_type", itp_type_arrows),
