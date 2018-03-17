@@ -8971,6 +8971,7 @@ scripts.extend([
           (store_add, ":from_equip_slot", ":from_slot", ek_item_0 - slot_scene_prop_inventory_item_0),
           (agent_get_item_slot, ":equip_item_id", ":agent_id", ":from_equip_slot"),
           (eq, ":equip_item_id", ":item_id"),
+		  (neq, ":equip_item_id", "itm_money_bag"),#Dont allow players to put money bags in containers
           (try_begin),
             (is_between, ":item_type", itp_type_head_armor, itp_type_hand_armor + 1),
             (store_sub, ":no_item_id", ":item_type", itp_type_head_armor),

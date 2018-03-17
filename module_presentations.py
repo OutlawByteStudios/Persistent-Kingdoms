@@ -3896,6 +3896,7 @@ presentations.extend([
       (try_end),
       ]),
 	  (ti_on_presentation_mouse_press, [
+		#phoenix
 		  (store_trigger_param_2, ":mouse_button"),
 		  (eq, ":mouse_button", 1), #If it is the right mouse button
 		  
@@ -3904,7 +3905,6 @@ presentations.extend([
 		  (store_add, ":target_mesh_slot", ":found_obj_slot", slot_scene_prop_inventory_mesh_begin - slot_scene_prop_inventory_obj_begin),
 		  (scene_prop_get_slot, ":target_mesh_object_id", "$g_show_inventory_instance_id", ":target_mesh_slot"),
 		 
-		 #phoenix
 		  (try_begin),
 			  (le, "$g_show_inventory_selected_slot", -1),
 			  (gt, ":target_mesh_object_id", -1),
@@ -3915,7 +3915,21 @@ presentations.extend([
 				(multiplayer_send_2_int_to_server, client_event_fast_equip, ":show_inventory_selected_slot"),
 			  (else_try),
 				(is_between, ":show_inventory_selected_slot", slot_scene_prop_inventory_item_0, slot_scene_prop_inventory_item_0 + ek_gloves + 1),
-				(multiplayer_send_2_int_to_server, client_event_fast_unequip, ":show_inventory_selected_slot"),
+				(assign, ":my_item_id", -1),
+				(try_begin),
+				  (multiplayer_get_my_player, ":my_player_id"),
+				  (player_get_agent_id, ":my_agent_id", ":my_player_id"),
+				  (store_sub, ":actual_slot", ":show_inventory_selected_slot", slot_scene_prop_inventory_item_0),
+				  (agent_get_item_slot, ":my_item_id", ":my_agent_id", ":actual_slot"),
+				  (item_get_slot, ":length", ":my_item_id", slot_item_length),
+				  (scene_prop_slot_ge, "$g_show_inventory_instance_id", slot_scene_prop_inventory_max_length, ":length"),
+				  (multiplayer_send_2_int_to_server, client_event_fast_unequip, ":show_inventory_selected_slot"),
+				(else_try),
+				  (eq, ":my_item_id", "itm_money_bag"),
+				  (call_script, "script_preset_message", "str_cant_put_money_bag_in_container", preset_message_error, 0, 0),
+				(else_try),
+				  (call_script, "script_preset_message", "str_item_too_long_for_container", preset_message_error, 0, 0),
+				(try_end),
 			  (try_end),
 		  (try_end),
 		  #end
