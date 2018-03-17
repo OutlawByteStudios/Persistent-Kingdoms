@@ -690,6 +690,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("dismount_to_sell", "Dismount to sell your horse."),
   ("item_too_long_for_container", "That item is too long to fit inside the container."),
   ("cant_put_money_bag_in_container", "You can't put money bags inside containers."),
+  ("cant_put_ammo_in_container", "You can't put ammo inside container."),
   ("too_far_away_loot", "Too far away to loot."),
   ("herd_animal_limit_reached", "Herd animal limit reached."),
   ("s1_reveals_money_pouch_containing_about_reg1", "{s1} reveals a money pouch containing about {reg1} coins."),
