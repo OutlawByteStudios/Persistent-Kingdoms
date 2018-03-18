@@ -9092,7 +9092,20 @@ scripts.extend([
           (item_get_slot, ":length", ":item_id", slot_item_length),
           (neg|scene_prop_slot_ge, ":instance_id", slot_scene_prop_inventory_max_length, ":length"),
           (assign, ":item_id", -1),
+        (else_try), # check that the ammo is allowed when storing in the inventory
+          (this_or_next | eq, ":item_type", itp_type_arrows),
+          (this_or_next | eq, ":item_type", itp_type_bolts),
+          (eq, ":item_type", itp_type_thrown),
+          (scene_prop_slot_eq, ":instance_id", slot_scene_prop_store_ammo, 0),
+          (assign, ":item_id", -1),
+        (else_try), # check that the non ammo is allowed when storing in the inventory
+          (neq, ":item_type", itp_type_arrows),
+          (neq, ":item_type", itp_type_bolts),
+          (neq, ":item_type", itp_type_thrown),
+          (scene_prop_slot_eq, ":instance_id", slot_scene_prop_store_only_ammo, 1),
+          (assign, ":item_id", -1),
         (try_end),
+
         (ge, ":item_id", all_items_begin),
         (try_begin),
           (this_or_next|eq, ":item_type", itp_type_arrows),
@@ -9103,6 +9116,7 @@ scripts.extend([
         (else_try),
           (assign, ":item_ammo", -1),
         (try_end),
+
         (assign, ":neg_from_mod_slot", 0),
         (try_begin), # remove items taken from the agent's equipment
           (ge, ":from_slot", slot_scene_prop_inventory_item_0),
