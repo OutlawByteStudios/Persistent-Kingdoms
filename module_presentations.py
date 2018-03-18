@@ -3745,11 +3745,13 @@ presentations.extend([
 
             (assign, ":error_string_id", "str_cant_put_ammo_in_container"),
             (this_or_next|eq, ":item_ammo", -1),
-            (scene_prop_slot_eq, "$g_show_inventory_instance_id", slot_scene_prop_store_ammo, 1),
+            (this_or_next|scene_prop_slot_eq, "$g_show_inventory_instance_id", slot_scene_prop_store_ammo, 1),
+            (is_between, ":target_inventory_slot", slot_scene_prop_inventory_item_0, slot_scene_prop_inventory_item_0 + 5),
 
             (assign, ":error_string_id", "str_cant_put_non_ammo_in_container"),
             (this_or_next|eq, ":item_ammo", 0),
-            (scene_prop_slot_eq, "$g_show_inventory_instance_id", slot_scene_prop_store_only_ammo, 0),
+            (this_or_next|scene_prop_slot_eq, "$g_show_inventory_instance_id", slot_scene_prop_store_only_ammo, 0),
+            (is_between, ":target_inventory_slot", slot_scene_prop_inventory_item_0, slot_scene_prop_inventory_item_0 + 5),
 
             (multiplayer_send_4_int_to_server, client_event_transfer_inventory, "$g_show_inventory_instance_id", "$g_show_inventory_selected_slot", ":target_inventory_slot", ":item_id"),
           (else_try),
