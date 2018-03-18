@@ -729,10 +729,10 @@ def spr_capture_castle_triggers():
     spr_call_script_use_trigger("script_cf_use_capture_point", 1)] # show new banner
 
 def spr_chest_flags(use_time=1, destructible=True):
-  if destructible:
-    return sokf_destructible|spr_use_time(max(use_time, 1))
-  else:
-      return spr_use_time(max(use_time, 1))
+    if destructible:
+        return sokf_destructible|spr_use_time(max(use_time, 1))
+    else:
+        return spr_use_time(max(use_time, 1))
 
 # Money chest that can be linked with a castle to store tax automatically gathered, and allow the lord to control the access.
 # A 'probability' of the default 100 will give 1% chance of successful lock picking per looting skill level, which can be increased up to 10000 for guaranteed success.
@@ -760,26 +760,41 @@ def spr_castle_money_chest_triggers(use_string="str_gold_reg2", hit_points=1000,
 
 # Item storage chest that can be linked with a castle to allow the lord to control the access.
 # A 'probability' of the default 100 will give 1% chance of successful lock picking per looting skill level, which can be increased up to 10000 for guaranteed success.
-def spr_item_chest_triggers(inventory_count=6, max_item_length=100, use_string="str_access", hit_points=1000, probability=100, store_ammo=0, store_only_ammo=0):
-  return [(ti_on_scene_prop_init,
-     [(store_trigger_param_1, ":instance_id"),
-      (scene_prop_set_hit_points, ":instance_id", spr_check_hit_points(hit_points)),
-      (scene_prop_set_slot, ":instance_id", slot_scene_prop_full_hit_points, hit_points),
-      (scene_prop_set_slot, ":instance_id", slot_scene_prop_next_resource_hp, hit_points),
-      (scene_prop_set_slot, ":instance_id", slot_scene_prop_inventory_count, spr_check_inventory_count(inventory_count)),
-      (scene_prop_set_slot, ":instance_id", slot_scene_prop_inventory_max_length, max_item_length),
-      (scene_prop_set_slot, ":instance_id", slot_scene_prop_use_string, use_string),
-      (scene_prop_set_slot, ":instance_id", slot_scene_prop_store_ammo, store_ammo),
-      (scene_prop_set_slot, ":instance_id", slot_scene_prop_store_only_ammo, store_only_ammo),
-      ]),
-    (ti_on_scene_prop_hit,
-     [(store_trigger_param_1, ":instance_id"),
-      (store_trigger_param_2, ":hit_damage"),
-      (call_script, "script_cf_hit_chest", ":instance_id", ":hit_damage", hit_points),
-      ]),
-    (ti_on_scene_prop_destroy, []),
-    spr_call_script_cancel_use_trigger("script_cf_pick_chest_lock", 0),
-    spr_call_script_use_trigger("script_cf_use_inventory", probability)]
+def spr_item_chest_triggers(inventory_count=6, max_item_length=100, use_string="str_access", hit_points=1000, probability=100, store_ammo=0, store_only_ammo=0, destructible=True):
+  if destructible:
+      return [(ti_on_scene_prop_init,
+         [(store_trigger_param_1, ":instance_id"),
+          (scene_prop_set_hit_points, ":instance_id", spr_check_hit_points(hit_points)),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_full_hit_points, hit_points),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_next_resource_hp, hit_points),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_inventory_count, spr_check_inventory_count(inventory_count)),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_inventory_max_length, max_item_length),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_use_string, use_string),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_store_ammo, store_ammo),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_store_only_ammo, store_only_ammo),
+          ]),
+        (ti_on_scene_prop_hit,
+         [(store_trigger_param_1, ":instance_id"),
+          (store_trigger_param_2, ":hit_damage"),
+          (call_script, "script_cf_hit_chest", ":instance_id", ":hit_damage", hit_points),
+          ]),
+        (ti_on_scene_prop_destroy, []),
+        spr_call_script_cancel_use_trigger("script_cf_pick_chest_lock", 0),
+        spr_call_script_use_trigger("script_cf_use_inventory", probability)]
+  else:
+      return [(ti_on_scene_prop_init,
+         [(store_trigger_param_1, ":instance_id"),
+          (scene_prop_set_hit_points, ":instance_id", spr_check_hit_points(hit_points)),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_full_hit_points, hit_points),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_next_resource_hp, hit_points),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_inventory_count, spr_check_inventory_count(inventory_count)),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_inventory_max_length, max_item_length),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_use_string, use_string),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_store_ammo, store_ammo),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_store_only_ammo, store_only_ammo),
+          ]),
+        spr_call_script_cancel_use_trigger("script_cf_pick_chest_lock", 0),
+        spr_call_script_use_trigger("script_cf_use_inventory", probability)]
 
 # Item storage without any lock.
 def spr_item_storage_triggers(inventory_count=6, max_item_length=100, use_string="str_access"):
@@ -3067,7 +3082,7 @@ scene_props = [
   ("pw_item_chest_b",spr_chest_flags(use_time=1),"pw_chest_b","bo_pw_chest_b", spr_item_chest_triggers(hit_points=5000, inventory_count=32, max_item_length=100)),
   ("pw_item_chest_invisible",sokf_invisible|spr_chest_flags(1),"pw_invisible_chest","bo_pw_invisible_chest", spr_item_chest_triggers(hit_points=2000, inventory_count=12, max_item_length=120)),
 
-  ("pk_arrow_holder_bucket",spr_chest_flags(use_time=1, destructible=False),"pk_arrow_holder_bucket","bo_pk_arrow_holder_bucket", spr_item_chest_triggers(inventory_count=12, store_ammo=1, store_only_ammo=1)),
+  ("pk_arrow_holder_bucket",spr_chest_flags(use_time=1, destructible=False),"pk_arrow_holder_bucket","bo_pk_arrow_holder_bucket", spr_item_chest_triggers(inventory_count=12, store_ammo=1, store_only_ammo=1, destructible=False)),
 
   ("pw_signpost_castle",0,"pw_signpost_castle","bo_pw_signpost", []),
   ("pw_signpost_docks",0,"pw_signpost_docks","bo_pw_signpost", []),
