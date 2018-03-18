@@ -79,8 +79,14 @@ slot_player_admin_no_animals          = 57
 slot_player_admin_no_factions         = 58
 slot_player_admin_end                 = 59
 
+slot_player_freeze_instance_id        = 60 #Needed for removing freeze walls on disconnects
+
 slot_player_commit_suicide_time       = 59
 suicide_delay                         = 15 # suicide delay time
+
+#This slot is for the equipment logs
+slot_player_first_spawn_occured       = 60
+#End
 
 ########################################################
 ##  AGENT SLOTS            #############################

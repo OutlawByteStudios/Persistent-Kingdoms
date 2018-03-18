@@ -957,6 +957,12 @@ Poisonous herbs can also sometimes be found, which are then applied to the blade
   ("castle_name_65", "Halmar"),
   ("castle_name_66", "Brunwud Castle"),
   ("castle_names_end", "Invalid Castle Name"),
+
   #Shield Log
   ("shield_hit_log", "{s12} hit {s11}'s shield by {reg31} damage."),
+  ("log_equipment", "{s11} had these items: H:{reg31}, B:{reg32}, G:{reg33}, F:{reg34}, HO:{reg39}, 1:{reg35}, 2:{reg36}, 3:{reg37}, 4:{reg38}"),
+  ("s1_kicked_s2_from_s3", "{s1} kicked {s2} from {s3}."),
+  ("s1_outlawed_s2_from_s3", "{s1} outlawed {s2} from {s3}."),
+  ("s2_kicked_you_from_the_faction", "{s2} kicked you from the faction!"),
+  ("s2_outlawed_you_from_the_faction", "{s2} outlawed you from the faction!"),
 ]
