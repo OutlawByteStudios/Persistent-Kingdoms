@@ -79,8 +79,14 @@ slot_player_admin_no_animals          = 57
 slot_player_admin_no_factions         = 58
 slot_player_admin_end                 = 59
 
+slot_player_freeze_instance_id        = 60 #Needed for removing freeze walls on disconnects
+
 slot_player_commit_suicide_time       = 59
 suicide_delay                         = 15 # suicide delay time
+
+#This slot is for the equipment logs
+slot_player_first_spawn_occured       = 60
+#End
 
 ########################################################
 ##  AGENT SLOTS            #############################
@@ -224,6 +230,9 @@ slot_scene_prop_crafting_resource_4   = 54
 #Slot to keep agent_id of the killer
 slot_scene_prop_corpse_owner          = 60
 
+slot_scene_prop_store_ammo            = 55
+slot_scene_prop_store_only_ammo       = 56
+
 scene_prop_state_active               = 0
 scene_prop_state_destroyed            = 1
 scene_prop_state_hidden               = 2
@@ -314,14 +323,17 @@ slot_faction_castle_banner_variant    = 5 # work around an unwanted engine optim
 slot_faction_list_button_id           = 6 # overlay id in the faction list presentation
 slot_faction_is_locked                = 7 # 1 if an adminstrator locked the faction to prevent lord polls
 
-slot_faction_poll_end_time            = 20
-slot_faction_poll_voter_count         = 21
-slot_faction_poll_yes_votes           = 22
-slot_faction_poll_no_votes            = 23
-slot_faction_poll_type                = 24 # listed below, starting with poll_type_
-slot_faction_poll_value_1             = 25
-slot_faction_poll_value_2             = 26
-slot_faction_poll_target_unique_id    = 27 # when targeting a player, store their unique id to prevent accidentally harming another player reusing their id after they quit
+slot_faction_poll_last_time           = 20
+poll_cooldown_time                    = 20
+
+slot_faction_poll_end_time            = 21
+slot_faction_poll_voter_count         = 22
+slot_faction_poll_yes_votes           = 23
+slot_faction_poll_no_votes            = 24
+slot_faction_poll_type                = 25 # listed below, starting with poll_type_
+slot_faction_poll_value_1             = 26
+slot_faction_poll_value_2             = 27
+slot_faction_poll_target_unique_id    = 28 # when targeting a player, store their unique id to prevent accidentally harming another player reusing their id after they quit
 
 poll_type_change_scene                = 0
 poll_type_kick_player                 = 1
@@ -642,6 +654,7 @@ from header_common import *
 profile_options = [ # global flag variables for options stored in a player profile
   "$g_display_agent_labels",
   "$g_hide_faction_in_name_labels",
+  "$g_basic_name_labels",
   "$g_display_chat_overlay",
   "$g_chat_overlay_type_selected",
   "$g_disable_automatic_shadow_recalculation",
