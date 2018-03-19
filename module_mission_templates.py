@@ -205,7 +205,6 @@ player_exit = (ti_on_player_exit, 0, 0, [], # server: save player values on exit
 	#Log equipment on log out
 	(call_script, "script_cf_log_equipment", ":player_id"),
 	#End
-    ])
 
 	#Remove freeze walls if they exist
     (player_get_slot, ":freeze_instance_id", ":player_id", slot_player_freeze_instance_id),
