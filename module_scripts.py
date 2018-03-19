@@ -43,7 +43,8 @@ scripts.extend([
   ]),
   #End  
   
-  ("log_equipment", [
+  ("cf_log_equipment", [
+	(multiplayer_is_server),
 	(store_script_param_1, ":player_id"),
 	
 	(player_get_agent_id, ":agent_id", ":player_id"),
@@ -70,6 +71,80 @@ scripts.extend([
 	#End
   ]),
 
+  ("cf_handle_fast_equip_request", [
+		(store_script_param_1, ":from_slot"),
+		(store_script_param_2, ":sender_player_id"),
+		
+		(player_get_slot, ":container_id", ":sender_player_id", slot_player_accessing_instance_id),
+		(player_get_agent_id, ":agent_id", ":sender_player_id"),
+		
+		(is_between, ":from_slot", slot_scene_prop_inventory_begin, slot_scene_prop_inventory_item_0),
+		(scene_prop_get_slot, ":item_id", ":container_id", ":from_slot"),
+		(ge, ":item_id", all_items_begin),
+		(item_get_type, ":item_type", ":item_id"),
+		
+		(assign, ":equipped_item", -1),
+		(try_begin),
+			(eq, ":item_type", itp_type_head_armor),
+			(agent_get_item_slot, ":equipped_item", ":agent_id", ek_head),
+			(lt, ":equipped_item", all_items_begin),
+			(call_script, "script_transfer_inventory", ":sender_player_id", ":container_id", ":from_slot", slot_scene_prop_inventory_item_0 + ek_head, ":item_id"),
+		(else_try),
+			(eq, ":item_type", itp_type_body_armor),
+			(agent_get_item_slot, ":equipped_item", ":agent_id", ek_body),
+			(lt, ":equipped_item", all_items_begin),
+			(call_script, "script_transfer_inventory", ":sender_player_id", ":container_id", ":from_slot", slot_scene_prop_inventory_item_0 + ek_body, ":item_id"),
+		(else_try),
+			(eq, ":item_type", itp_type_foot_armor),
+			(agent_get_item_slot, ":equipped_item", ":agent_id", ek_foot),
+			(lt, ":equipped_item", all_items_begin),
+			(call_script, "script_transfer_inventory", ":sender_player_id", ":container_id", ":from_slot", slot_scene_prop_inventory_item_0 + ek_foot, ":item_id"),
+		(else_try),
+			(eq, ":item_type", itp_type_hand_armor),
+			(agent_get_item_slot, ":equipped_item", ":agent_id", ek_gloves),
+			(lt, ":equipped_item", all_items_begin),
+			(call_script, "script_transfer_inventory", ":sender_player_id", ":container_id", ":from_slot", slot_scene_prop_inventory_item_0 + ek_gloves, ":item_id"),
+		(else_try),
+			(store_add, ":offset", wielded_items_end, 1),
+			(is_between, ":item_id", wielded_items_begin, ":offset"),
+			(try_begin),
+				(agent_get_item_slot, ":item_0", ":agent_id", ek_item_0),
+				(lt, ":item_0", wielded_items_begin),
+				(call_script, "script_transfer_inventory", ":sender_player_id", ":container_id", ":from_slot", slot_scene_prop_inventory_item_0, ":item_id"),
+			(else_try),
+				(agent_get_item_slot, ":item_1", ":agent_id", ek_item_1),
+				(lt, ":item_1", wielded_items_begin),
+				(call_script, "script_transfer_inventory", ":sender_player_id", ":container_id", ":from_slot", slot_scene_prop_inventory_item_0 + 1, ":item_id"),
+			(else_try),
+				(agent_get_item_slot, ":item_2", ":agent_id", ek_item_2),
+				(lt, ":item_2", wielded_items_begin),
+				(call_script, "script_transfer_inventory", ":sender_player_id", ":container_id", ":from_slot", slot_scene_prop_inventory_item_0 + 2, ":item_id"),
+			(else_try),
+				(agent_get_item_slot, ":item_3", ":agent_id", ek_item_3),
+				(lt, ":item_3", wielded_items_begin),
+				(call_script, "script_transfer_inventory", ":sender_player_id", ":container_id", ":from_slot", slot_scene_prop_inventory_item_0 + 3, ":item_id"),
+			(try_end),
+		(try_end),
+  ]),
+  
+  ("cf_handle_fast_unequip_request", [
+	  (store_script_param_1, ":slot"),
+	  (store_script_param_2, ":sender_player_id"),
+  
+		(player_get_agent_id, ":agent_id", ":sender_player_id"),
+		(store_sub, ":actual_slot", ":slot", slot_scene_prop_inventory_item_0),
+		(agent_get_item_slot, ":item_id", ":agent_id", ":actual_slot"),
+		(player_get_slot, ":container_id", ":sender_player_id", slot_player_accessing_instance_id),
+		(scene_prop_get_slot, ":inventory_length", ":container_id", slot_scene_prop_inventory_count),
+		(val_add, ":inventory_length", slot_scene_prop_inventory_begin),
+		(try_for_range, ":inventory_index", slot_scene_prop_inventory_begin, ":inventory_length"),
+			(scene_prop_get_slot, ":item_at_index", ":container_id", ":inventory_index"),
+			(lt, ":item_at_index", all_items_begin),
+			(call_script, "script_transfer_inventory", ":sender_player_id", ":container_id", ":slot", ":inventory_index", ":item_id"),
+			(assign, ":inventory_index", 999),
+		(try_end),
+  ]),
+  
   #Log and show that player is kicked
   ("cf_log_and_show_kicked", [
 	(store_script_param, ":kicker", 1),
@@ -99,7 +174,6 @@ scripts.extend([
 	(multiplayer_send_4_int_to_player, ":kicked", server_event_preset_message, "str_s2_outlawed_you_from_the_faction",
 		preset_message_faction|preset_message_faction_lord|preset_message_log|preset_message_small, ":faction_id", ":kicker"),
   ]),
-  
   
   ("game_start", []), # single player only, not used
 
@@ -930,6 +1004,16 @@ scripts.extend([
     (else_try), # section of events received by server from the clients
       (multiplayer_is_server),
       (try_begin), # handle players requesting to attach a cart to themselves or a horse
+		#Fast inventory transfer
+	    (eq, ":event_type", client_event_fast_equip),#saptor
+		(store_script_param, ":from_slot", 3),
+		(call_script, "script_cf_handle_fast_equip_request", ":from_slot", ":sender_player_id"),
+	  (else_try),
+		#Fast inventory transfer
+	    (eq, ":event_type", client_event_fast_unequip),#saptor
+		(store_script_param, ":slot", 3),
+		(call_script, "script_cf_handle_fast_unequip_request", ":slot", ":sender_player_id"),
+	  (else_try),
         (eq, ":event_type", client_event_attach_scene_prop),
         (store_script_param, ":instance_id", 3),
         (player_get_agent_id, ":agent_id", ":sender_player_id"),
@@ -1449,6 +1533,79 @@ scripts.extend([
           (str_store_player_username, s2, ":target_player_id"),
           (assign, reg1, ":approximate_gold"),
           (server_add_message_to_log, "str_s1_revealed_money_pouch_containing_reg1_to_s2"),
+        (try_end),
+      (else_try), # handle player requests to reveal their money pouch to near by players
+        (eq, ":event_type", client_event_reveal_money_pouch_area),
+        (try_begin),
+          (neq, "$g_game_type", "mt_no_money"),
+
+          (store_mission_timer_a, ":time"), # don't allow spamming pouch reveal messages
+          (player_get_slot, ":last_action_time", ":sender_player_id", slot_player_last_action_time),
+          (store_sub, ":interval", ":time", ":last_action_time"),
+          (ge, ":interval", repeat_action_min_interval),
+          (player_set_slot, ":sender_player_id", slot_player_last_action_time, ":time"),
+
+          (player_get_gold, ":approximate_gold", ":sender_player_id"),
+          (assign, ":multiplier", 1), # repeatedly divide by 10, discarding the remainder, until only the most significant figure remains, then multiply back to the approximate value
+          (assign, ":loop_end", int(math.log10(max_possible_gold))),
+          (try_for_range, ":unused", 0, ":loop_end"),
+            (lt, ":approximate_gold", 10),
+            (assign, ":loop_end", -1),
+            (val_mul, ":approximate_gold", ":multiplier"),
+          (else_try),
+            (val_mul, ":multiplier", 10),
+            (val_div, ":approximate_gold", 10),
+          (try_end),
+
+          (player_get_agent_id, ":agent_id", ":sender_player_id"),
+          (gt, ":agent_id", -1),
+          (agent_is_alive, ":agent_id"),
+
+          (assign, ":max_sq_distance", sq(max_distance_local_chat)),
+          (assign, ":ambient_sq_distance", sq(ambient_distance_local_chat)),
+          (assign, ":server_event", server_event_local_chat),
+
+          (set_fixed_point_multiplier, 100),
+          (agent_get_position, pos1, ":agent_id"),
+          (position_move_z, pos1, 160),
+
+          (str_store_string, s0, "str_empty_string"),
+          (assign, ":first_player", 1),
+          (try_for_agents, ":other_agent_id"), # send the pouch message to other players whoose agents are close enough
+            (agent_is_alive, ":other_agent_id"),
+            (neg|agent_is_non_player, ":other_agent_id"),
+            (agent_get_player_id, ":other_player_id", ":other_agent_id"),
+            (player_is_active, ":other_player_id"),
+            (neq, ":other_player_id", ":sender_player_id"),
+            (agent_get_position, pos2, ":other_agent_id"),
+            (position_move_z, pos2, 160),
+            (get_sq_distance_between_positions, ":sq_distance", pos1, pos2),
+            (le, ":sq_distance", ":max_sq_distance"),
+            (this_or_next|le, ":sq_distance", ":ambient_sq_distance"),
+            (position_has_line_of_sight_to_position, pos1, pos2),
+
+            (multiplayer_send_4_int_to_player, ":other_player_id", server_event_preset_message, "str_s1_reveals_money_pouch_containing_about_reg1", preset_message_player|preset_message_chat_log|preset_message_yellow, ":sender_player_id", ":approximate_gold"),
+
+            (str_store_player_username, s0, ":other_player_id"),
+            (try_begin),
+              (eq, ":first_player", 1),
+              (str_store_string, s0, "str_s0"),
+              (assign, ":first_player", 0),
+            (else_try),
+              (str_store_string, s0, "str_s0__s1"),
+            (try_end),
+          (try_end),
+
+          (multiplayer_send_2_int_to_player, ":sender_player_id", server_event_preset_message, "str_you_reveal_money_pouch_to_near_by_players", preset_message_player|preset_message_chat_log|preset_message_yellow),
+          (str_store_player_username, s1, ":sender_player_id"),
+          (assign, reg1, ":approximate_gold"),
+
+          (try_begin),
+            (eq, ":first_player", 1),
+            (server_add_message_to_log, "str_s1_revealed_money_pouch_containing_reg1_to_near_by_players_none"),
+          (else_try),
+            (server_add_message_to_log, "str_s1_revealed_money_pouch_containing_reg1_to_near_by_players_s0"),
+          (try_end),
         (try_end),
       (else_try), # handle animation requests
         (eq, ":event_type", client_event_request_animation),
@@ -8935,7 +9092,20 @@ scripts.extend([
           (item_get_slot, ":length", ":item_id", slot_item_length),
           (neg|scene_prop_slot_ge, ":instance_id", slot_scene_prop_inventory_max_length, ":length"),
           (assign, ":item_id", -1),
+        (else_try), # check that the ammo is allowed when storing in the inventory
+          (this_or_next | eq, ":item_type", itp_type_arrows),
+          (this_or_next | eq, ":item_type", itp_type_bolts),
+          (eq, ":item_type", itp_type_thrown),
+          (scene_prop_slot_eq, ":instance_id", slot_scene_prop_store_ammo, 0),
+          (assign, ":item_id", -1),
+        (else_try), # check that the non ammo is allowed when storing in the inventory
+          (neq, ":item_type", itp_type_arrows),
+          (neq, ":item_type", itp_type_bolts),
+          (neq, ":item_type", itp_type_thrown),
+          (scene_prop_slot_eq, ":instance_id", slot_scene_prop_store_only_ammo, 1),
+          (assign, ":item_id", -1),
         (try_end),
+
         (ge, ":item_id", all_items_begin),
         (try_begin),
           (this_or_next|eq, ":item_type", itp_type_arrows),
@@ -8946,12 +9116,14 @@ scripts.extend([
         (else_try),
           (assign, ":item_ammo", -1),
         (try_end),
+
         (assign, ":neg_from_mod_slot", 0),
         (try_begin), # remove items taken from the agent's equipment
           (ge, ":from_slot", slot_scene_prop_inventory_item_0),
           (store_add, ":from_equip_slot", ":from_slot", ek_item_0 - slot_scene_prop_inventory_item_0),
           (agent_get_item_slot, ":equip_item_id", ":agent_id", ":from_equip_slot"),
           (eq, ":equip_item_id", ":item_id"),
+		  (neq, ":equip_item_id", "itm_money_bag"),#Dont allow players to put money bags in containers
           (try_begin),
             (is_between, ":item_type", itp_type_head_armor, itp_type_hand_armor + 1),
             (store_sub, ":no_item_id", ":item_type", itp_type_head_armor),
@@ -12563,6 +12735,7 @@ scripts.extend([
           (call_script, "script_reuse_or_spawn_scene_prop", ":freeze_scene_prop_id"),
           (prop_instance_set_position, reg0, pos1),
           (agent_set_slot, ":target_agent_id", slot_agent_freeze_instance_id, reg0),
+          (player_set_slot, ":target_player_id", slot_player_freeze_instance_id, reg0), #Needed for removing freeze walls on disconnects
           (agent_set_speed_modifier, ":target_agent_id", 0),
         (try_end),
       (else_try),

@@ -36,8 +36,11 @@ server_event_update_scene_prop_hit_points       = 28
 
 # Add new events here: above if sent from the server, below if from clients.
 
-client_event_commit_suicide                     = 94
-client_event_request_animation                  = 95
+client_event_fast_equip                         = 91 #Mouse Right Click Fast Inventory transfer
+client_event_fast_unequip                       = 92 #Mouse Right Click Fast Inventory transfer
+client_event_commit_suicide                     = 93
+client_event_request_animation                  = 94
+client_event_reveal_money_pouch_area            = 95
 client_event_reveal_money_pouch                 = 96
 client_event_agent_loot_armor                   = 97
 client_event_toggle_drop_armor                  = 98
@@ -62,6 +65,8 @@ client_event_change_faction_banner              = 124
 client_event_transfer_inventory                 = 125
 client_event_control_scene_prop                 = 126
 client_event_attach_scene_prop                  = 127
+
+
 # Network events are limited to numbers between 0 and 127 by the game engine.
 
 preset_message_default                          = 0x0

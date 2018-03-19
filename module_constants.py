@@ -79,6 +79,8 @@ slot_player_admin_no_animals          = 57
 slot_player_admin_no_factions         = 58
 slot_player_admin_end                 = 59
 
+slot_player_freeze_instance_id        = 60 #Needed for removing freeze walls on disconnects
+
 slot_player_commit_suicide_time       = 59
 suicide_delay                         = 15 # suicide delay time
 
@@ -225,6 +227,9 @@ slot_scene_prop_crafting_resource_1   = 51
 slot_scene_prop_crafting_resource_2   = 52
 slot_scene_prop_crafting_resource_3   = 53
 slot_scene_prop_crafting_resource_4   = 54
+
+slot_scene_prop_store_ammo            = 55
+slot_scene_prop_store_only_ammo       = 56
 
 scene_prop_state_active               = 0
 scene_prop_state_destroyed            = 1
