@@ -4649,7 +4649,6 @@ scripts.extend([
       (call_script, "script_redraw_castle_banners", redraw_castle_banners, ":castle_no"),
       (str_store_faction_name, s1, ":faction_id"),
       (call_script, "script_str_store_castle_name", s2, ":castle_no"),
-      (server_add_message_to_log, "str_s1_captured_s2"),
     (try_end),
     ]),
 
@@ -4748,6 +4747,13 @@ scripts.extend([
             (eq, ":completed", 1),
             (call_script, "script_cf_agent_consume_item", ":agent_id", ":banner_item_id", 1),
             (call_script, "script_capture_castle", ":player_faction_id", ":castle_no"),
+			#Log the capture /Phoenix
+			(str_store_player_username, s10, ":player_id"),
+			(call_script, "script_str_store_castle_name", s11, ":castle_no"),
+			(str_store_faction_name, s12, ":faction_id"),
+			(str_store_faction_name, s9, ":player_faction_id"),
+			(server_add_message_to_log, "str_log_capture"),
+			#End
           (try_end),
         (else_try),
           (multiplayer_send_3_int_to_player, ":player_id", server_event_preset_message, "str_your_faction_not_captured_required_points", preset_message_faction|preset_message_fail_sound, ":player_faction_id"),
@@ -4758,6 +4764,13 @@ scripts.extend([
         (call_script, "script_cf_agent_consume_item", ":agent_id", ":banner_item_id", 1),
         (scene_prop_set_slot, ":instance_id", slot_scene_prop_capture_faction_id, ":player_faction_id"),
         (call_script, "script_redraw_castle_banners", redraw_single_capture_point_banner, ":instance_id"),
+		#Log the capture /Phoenix
+		(str_store_player_username, s10, ":player_id"),
+		(call_script, "script_str_store_castle_name", s11, ":castle_no"),
+		(str_store_faction_name, s12, ":faction_id"),
+		(str_store_faction_name, s9, ":player_faction_id"),
+		(server_add_message_to_log, "str_log_capture_secondary"),
+		#End
       (try_end),
     (else_try), # as lord, giving away an owned castle using the other faction's banner
       (eq, ":completed", 1),
