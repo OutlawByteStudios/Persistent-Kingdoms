@@ -976,7 +976,7 @@ Poisonous herbs can also sometimes be found, which are then applied to the blade
   ("log_heal_animal", "{s11} healed Horse ({s12}) by {reg31} HP."),
   ("log_loot_corpse", "{s11} looted a corpse ({s12}, IID: {reg31})."),
   ("log_use_cart", "{s11} looked into a cart (IID: {reg31})."),
-  ("log_capture", "{s9} ({s10}) have captured {s11} from {s12}."),
-  ("log_capture_secondary", "{s9} ({s10}) have captured a secondary point of {s11} from {s12}."),
+  ("log_capture", "{s9} ({s10}) has captured {s11} from {s12}."),
+  ("log_capture_secondary", "{s9} ({s10}) has captured a secondary point of {s11} from {s12}."),
   #End
 ]
