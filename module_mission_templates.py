@@ -201,10 +201,24 @@ player_exit = (ti_on_player_exit, 0, 0, [], # server: save player values on exit
     (str_store_player_username, s1, ":player_id"),
     (player_get_unique_id, reg0, ":player_id"),
     (server_add_message_to_log, "str_s1_has_left_the_game_with_id_reg0"),
+
 	#Log equipment on log out
 	(call_script, "script_cf_log_equipment", ":player_id"),
 	#End
     ])
+
+	#Remove freeze walls if they exist
+    (player_get_slot, ":freeze_instance_id", ":player_id", slot_player_freeze_instance_id),
+	  (gt, ":freeze_instance_id", -1),
+	  (prop_instance_is_valid, ":freeze_instance_id"),
+	  (call_script, "script_remove_scene_prop", ":freeze_instance_id"),
+	  (player_set_slot, ":player_id", slot_player_freeze_instance_id, -1),
+
+  	  #Log equipment on log out
+	  (call_script, "script_cf_log_equipment", ":player_id"),
+	  #End
+  ])
+
 
 agent_spawn = (ti_on_agent_spawn, 0, 0, [], # server and clients: set up new agents after they spawn
    [(store_trigger_param_1, ":agent_id"),
