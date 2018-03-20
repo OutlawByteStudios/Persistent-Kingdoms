@@ -2759,6 +2759,7 @@ presentations.extend([
             (assign, ":spawn_point_selected", 5),
           (try_end),
           (try_begin),
+            (is_between, ":spawn_point_selected", 1, 6),
             (clear_omitted_keys),
             (try_begin),
               (is_between, "$g_respawn_castle_selected", slot_mission_data_castle_owner_faction_begin, slot_mission_data_castle_owner_faction_end),
