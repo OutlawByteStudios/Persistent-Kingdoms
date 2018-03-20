@@ -472,6 +472,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("respawning_in_reg0_seconds", "Respawning in {reg0} seconds"),
   ("press_select_spawn_point", "Press 1-5 to select spawn point"),
   ("press_select_spawn_area", "Press ~ to change: {s1}"),
+  ("press_select_confirm_spawn_area", "Are you sure you want to go commoner?"),
   ("restart_as_peasant_commoner", "restart as a peasant commoner"),
   ("number_of_factions_reg0", "Number of factions: {reg0}"),
   ("victory_condition_none", "No victory condition"),
