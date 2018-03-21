@@ -4091,8 +4091,8 @@ scripts.extend([
             (assign, ":gold_loot", "$g_round_gold_bonus"),
         (try_end),
         (val_min, ":gold_loot", 100), # ensure % is within 0-100 range.
-        (val_div, ":gold_loot", 100),
         (val_mul, ":gold_loot", ":gold"),
+        (val_div, ":gold_loot", 100),
         (val_sub, ":gold", ":gold_loot"),
       (else_try),
         (assign, ":gold_loot", ":gold"),
