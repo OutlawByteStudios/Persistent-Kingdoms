@@ -1412,7 +1412,7 @@ def add_shield_triggers(items, shield_trigger):
 		if "shield" in item_name.lower():
 			if len(item) == 8:
 				item.append([shield_trigger])
-			else if len(item) > 8:
+			elif len(item) > 8:
 				item[8].append(shield_trigger)
 
 add_shield_triggers(items, shield_trigger)
