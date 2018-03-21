@@ -322,6 +322,12 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("declare_faction_hostile", "Declare a faction hostile"),
   ("offer_faction_peace", "Offer a faction peace"),
 
+  ("you_have_door_keys", "You have been given door keys!"),
+  ("you_have_money_keys", "You have been given money chest keys!"),
+  ("you_have_item_keys", "You have been given item chest keys!"),
+  ("you_have_announcers", "You have been given announcers!"),
+  ("you_are_a_marshal", "You are now a Marshal!"),
+
   ("log_admin_target_player", "Admin {s0} ({reg0}) {s3} player {s1} ({reg1})."),
   ("log_admin_target_self", "Admin {s0} ({reg0}) {s3}."),
   ("log_admin_kick", "kicked"),
@@ -452,6 +458,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("s0_s1", "{!}{s0} {s1}"),
   ("s2_s3", "{!}{s2}^{s3}"),
   ("s0__s1", "{!}{s0}, {s1}"),
+  ("basic_name_labels", "+"),
   ("scene_name", "Scene name:"),
   ("server_name", "Server name:"),
   ("game_password", "Game password:"),
@@ -494,6 +501,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("un", "un"),
 
   ("toggle_name_labels", "Toggle name labels"),
+  ("toggle_basic_name_labels", "Toggle basic name labels"),
   ("toggle_faction_in_name_labels", "Toggle faction in name labels"),
   ("toggle_chat_overlay", "Toggle chat overlay"),
   ("toggle_local_faction_chat", "Toggle local or faction chat"),
@@ -504,7 +512,8 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("discard_foot", "Discard foot armor"),
   ("toggle_hand", "Toggle hand armor"),
   ("reveal_money_pouch_to_target", "Reveal money pouch to target"),
-  ("commit_suicide", "Commit Suicide"),
+  ("reveal_money_pouch_to_area", "Reveal money pouch to near by players"),
+  ("commit_suicide", "Commit suicide"),
   ("toggle_clickable_animation_menu", "Toggle clickable animation menu"),
   ("toggle_muting_global_chat", "Toggle muting global chat"),
   ("action_menu_end", "action_menu_end"),
@@ -684,11 +693,16 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("dismount_to_sell", "Dismount to sell your horse."),
   ("item_too_long_for_container", "That item is too long to fit inside the container."),
   ("cant_put_money_bag_in_container", "You can't put money bags inside containers."),
+  ("cant_put_ammo_in_container", "You can't put ammo inside this container."),
+  ("cant_put_non_ammo_in_container", "You can't put non ammo inside this container."),
   ("too_far_away_loot", "Too far away to loot."),
   ("herd_animal_limit_reached", "Herd animal limit reached."),
   ("s1_reveals_money_pouch_containing_about_reg1", "{s1} reveals a money pouch containing about {reg1} coins."),
-  ("you_reveal_money_pouch_to_s1", "You reveal your money pouch to {s1}."),
+  ("you_reveal_money_pouch_to_s1", "You revealed your money pouch to {s1}."),
+  ("you_reveal_money_pouch_to_near_by_players", "You revealed your money pouch to near by players."),
   ("s1_revealed_money_pouch_containing_reg1_to_s2", "{s1} revealed a money pouch containing about {reg1} coins to {s2}."),
+  ("s1_revealed_money_pouch_containing_reg1_to_near_by_players_s0","{s1} revealed a money pouch containing about {reg1} coins to near by players ({s0})."),
+  ("s1_revealed_money_pouch_containing_reg1_to_near_by_players_none","{s1} revealed a money pouch containing about {reg1} coins to near by players (None in range)."),
   ("your_target_too_far_away", "Your target is too far away."),
   ("no_target_selected", "No target selected."),
 
@@ -704,6 +718,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("admin_announcement_format", "*ANNOUNCEMENT* [{s1}] {s0}"),
   ("local_chat_log_format", "*LOCAL* {s0}"),
   ("faction_chat_log_format", "*FACTION* {s2} {s0}"),
+  ("s1_has_left_the_game_with_id_reg0", "{s1} has left the game with ID: {reg0}"),
 
   ("error_unable_to_find_link_scene_prop", "Unable to find link for scene prop - instance: {reg10} kind: {reg11} link kind: {reg12} link id: {reg13}"),
   ("error_unlinked_scene_prop", "Unlinked scene prop instance: {reg10} kind: {reg11} link id: {reg12} - only valid if this prop has not been added since loading the scene."),
@@ -946,6 +961,7 @@ Poisonous herbs can also sometimes be found, which are then applied to the blade
   ("castle_name_65", "Halmar"),
   ("castle_name_66", "Brunwud Castle"),
   ("castle_names_end", "Invalid Castle Name"),
+
   #Log formats
   ("shield_hit_log", "{s12} hit {s11}'s shield by {reg31} damage."),
   ("attach_to_himself_log", "{s11} attached a cart to himself (IID: {reg31})."),
@@ -979,4 +995,14 @@ Poisonous herbs can also sometimes be found, which are then applied to the blade
   ("log_capture", "{s9} ({s10}) has captured {s11} from {s12}."),
   ("log_capture_secondary", "{s9} ({s10}) has captured a secondary point of {s11} from {s12}."),
   #End
+
+  #Shield Log
+  ("shield_hit_log", "{s12} hit {s11}'s shield by {reg31} damage."),
+  
+  ("log_equipment", "{s11} had these items: H:{reg31}, B:{reg32}, G:{reg33}, F:{reg34}, HO:{reg39}, 1:{reg35}, 2:{reg36}, 3:{reg37}, 4:{reg38}"),
+  ("s1_kicked_s2_from_s3", "{s1} kicked {s2} from {s3}."),
+  ("s1_outlawed_s2_from_s3", "{s1} outlawed {s2} from {s3}."),
+  ("s2_kicked_you_from_the_faction", "{s2} kicked you from the faction!"),
+  ("s2_outlawed_you_from_the_faction", "{s2} outlawed you from the faction!"),
+
 ]

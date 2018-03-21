@@ -122,7 +122,7 @@ def spr_apply_pos_offset(trigger_block, pos_offset, rotate):
 # Buying, selling, and crafting stockpile for 'item_id': if the 'resources' list is blank, the item will only be buyable.
 # 'pos_offset' and 'rotate' are to adjust the position and rotation of the spawned item.
 # 'resources' is a list of the items needed for crafting - only the first 4 will be used (total agent equip slots); multiple of the same item can in a tuple with the count second: ("itm_example", 2).
-def spr_buy_item_triggers(item_id, pos_offset=(5,0,2), rotate=(0,0,0), use_string=None, tableau=None, resources=[], engineer=0, herding=0, tailoring=0, price_multiplier=None):
+def spr_buy_item_triggers(item_id, pos_offset=(8,0,8), rotate=(0,0,0), use_string=None, tableau=None, resources=[], engineer=0, herding=0, tailoring=0, price_multiplier=None):
   buy_trigger = (ti_on_scene_prop_cancel_use,
      [(store_trigger_param_1, ":agent_id"),
       (store_trigger_param_2, ":instance_id"),
@@ -183,7 +183,7 @@ def spr_export_item_triggers(item_id, use_string="str_export", price_multiplier=
     spr_call_script_use_trigger("script_cf_export_item")]
 
 # Import an item from outside the game world, normally for an inflated price.
-def spr_import_item_triggers(item_id, pos_offset=(5,0,2), rotate=(0,0,0), use_string="str_import", price_multiplier=500, check_script=None):
+def spr_import_item_triggers(item_id, pos_offset=(10,0,4), rotate=(0,0,0), use_string="str_import", price_multiplier=500, check_script=None):
   buy_trigger = (ti_on_scene_prop_use,
      [(store_trigger_param_1, ":agent_id"),
       (store_trigger_param_2, ":instance_id"),
@@ -258,8 +258,8 @@ def spr_buy_banner_triggers(banner_item_begin, mercenary=False, use_string="str_
   return [init_trigger, spr_call_script_use_trigger("script_cf_buy_banner")]
 
 # Teleport to a linked door of the same scene prop type. 'pos_offset' specifies the relative position from each door that the character will be moved to.
-def spr_teleport_door_triggers(pos_offset=(0,0,0), pickable=1):
-  triggers = [spr_call_script_use_trigger("script_cf_use_teleport_door", pos_offset[0], pos_offset[1], pos_offset[2], pickable),
+def spr_teleport_door_triggers(pos_offset=(0,0,0), pickable=1, horse_can_tp=0):
+  triggers = [spr_call_script_use_trigger("script_cf_use_teleport_door", pos_offset[0], pos_offset[1], pos_offset[2], pickable, horse_can_tp),
     [link_scene_prop, link_scene_prop_self]]
   if pickable == 1:
     triggers.append(spr_call_script_cancel_use_trigger("script_cf_lock_teleport_door"))
@@ -345,7 +345,7 @@ def spr_sliding_door_winch_triggers(target, move_steps=1, step_size=100, animati
 # Carts attachable to characters or horses. Set 'horse' to 1 to allow attaching to any horse, or the horse item id for restricting to a specific type.
 # The cart mesh should be oriented with the horse or agent position at the origin, and when detached it will be rotated by 'detach_rotation' and moved vertically by 'detach_offset'.
 # The absolute value of 'access_distance' is used for the radius from the origin that will allow attaching, and moved forwards by that value (back if negative) is the center of the radius for accessing.
-def spr_cart_triggers(horse=-1, detach_offset=0, detach_rotation=0, inventory_count=0, max_item_length=100, access_distance=100, use_string="str_attach"):
+def spr_cart_triggers(horse=-1, detach_offset=0, detach_rotation=0, inventory_count=0, max_item_length=100, access_distance=100, use_string="str_attach", store_ammo=0, store_only_ammo=0):
   return [(ti_on_scene_prop_init,
      [(store_trigger_param_1, ":instance_id"),
       (scene_prop_set_slot, ":instance_id", slot_scene_prop_required_horse, horse),
@@ -357,6 +357,8 @@ def spr_cart_triggers(horse=-1, detach_offset=0, detach_rotation=0, inventory_co
       (scene_prop_set_slot, ":instance_id", slot_scene_prop_width, access_distance),
       (scene_prop_set_slot, ":instance_id", slot_scene_prop_use_string, use_string),
       (scene_prop_set_slot, ":instance_id", slot_scene_prop_collision_kind, -1),
+      (scene_prop_set_slot, ":instance_id", slot_scene_prop_store_ammo, store_ammo),
+      (scene_prop_set_slot, ":instance_id", slot_scene_prop_store_only_ammo, store_only_ammo),
       (call_script, "script_add_cart_to_list", ":instance_id"),
       ]),
     (ti_on_scene_prop_use,
@@ -726,8 +728,11 @@ def spr_capture_castle_triggers():
       ]),
     spr_call_script_use_trigger("script_cf_use_capture_point", 1)] # show new banner
 
-def spr_chest_flags(use_time=1):
-  return sokf_destructible|spr_use_time(max(use_time, 1))
+def spr_chest_flags(use_time=1, destructible=True):
+    if destructible:
+        return sokf_destructible|spr_use_time(max(use_time, 1))
+    else:
+        return spr_use_time(max(use_time, 1))
 
 # Money chest that can be linked with a castle to store tax automatically gathered, and allow the lord to control the access.
 # A 'probability' of the default 100 will give 1% chance of successful lock picking per looting skill level, which can be increased up to 10000 for guaranteed success.
@@ -755,24 +760,41 @@ def spr_castle_money_chest_triggers(use_string="str_gold_reg2", hit_points=1000,
 
 # Item storage chest that can be linked with a castle to allow the lord to control the access.
 # A 'probability' of the default 100 will give 1% chance of successful lock picking per looting skill level, which can be increased up to 10000 for guaranteed success.
-def spr_item_chest_triggers(inventory_count=6, max_item_length=100, use_string="str_access", hit_points=1000, probability=100):
-  return [(ti_on_scene_prop_init,
-     [(store_trigger_param_1, ":instance_id"),
-      (scene_prop_set_hit_points, ":instance_id", spr_check_hit_points(hit_points)),
-      (scene_prop_set_slot, ":instance_id", slot_scene_prop_full_hit_points, hit_points),
-      (scene_prop_set_slot, ":instance_id", slot_scene_prop_next_resource_hp, hit_points),
-      (scene_prop_set_slot, ":instance_id", slot_scene_prop_inventory_count, spr_check_inventory_count(inventory_count)),
-      (scene_prop_set_slot, ":instance_id", slot_scene_prop_inventory_max_length, max_item_length),
-      (scene_prop_set_slot, ":instance_id", slot_scene_prop_use_string, use_string),
-      ]),
-    (ti_on_scene_prop_hit,
-     [(store_trigger_param_1, ":instance_id"),
-      (store_trigger_param_2, ":hit_damage"),
-      (call_script, "script_cf_hit_chest", ":instance_id", ":hit_damage", hit_points),
-      ]),
-    (ti_on_scene_prop_destroy, []),
-    spr_call_script_cancel_use_trigger("script_cf_pick_chest_lock", 0),
-    spr_call_script_use_trigger("script_cf_use_inventory", probability)]
+def spr_item_chest_triggers(inventory_count=6, max_item_length=100, use_string="str_access", hit_points=1000, probability=100, store_ammo=0, store_only_ammo=0, destructible=True):
+  if destructible:
+      return [(ti_on_scene_prop_init,
+         [(store_trigger_param_1, ":instance_id"),
+          (scene_prop_set_hit_points, ":instance_id", spr_check_hit_points(hit_points)),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_full_hit_points, hit_points),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_next_resource_hp, hit_points),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_inventory_count, spr_check_inventory_count(inventory_count)),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_inventory_max_length, max_item_length),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_use_string, use_string),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_store_ammo, store_ammo),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_store_only_ammo, store_only_ammo),
+          ]),
+        (ti_on_scene_prop_hit,
+         [(store_trigger_param_1, ":instance_id"),
+          (store_trigger_param_2, ":hit_damage"),
+          (call_script, "script_cf_hit_chest", ":instance_id", ":hit_damage", hit_points),
+          ]),
+        (ti_on_scene_prop_destroy, []),
+        spr_call_script_cancel_use_trigger("script_cf_pick_chest_lock", 0),
+        spr_call_script_use_trigger("script_cf_use_inventory", probability)]
+  else:
+      return [(ti_on_scene_prop_init,
+         [(store_trigger_param_1, ":instance_id"),
+          (scene_prop_set_hit_points, ":instance_id", spr_check_hit_points(hit_points)),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_full_hit_points, hit_points),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_next_resource_hp, hit_points),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_inventory_count, spr_check_inventory_count(inventory_count)),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_inventory_max_length, max_item_length),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_use_string, use_string),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_store_ammo, store_ammo),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_store_only_ammo, store_only_ammo),
+          ]),
+        spr_call_script_cancel_use_trigger("script_cf_pick_chest_lock", 0),
+        spr_call_script_use_trigger("script_cf_use_inventory", probability)]
 
 # Item storage without any lock.
 def spr_item_storage_triggers(inventory_count=6, max_item_length=100, use_string="str_access"):
@@ -2474,10 +2496,10 @@ scene_props = [
   ("pw_stockpile_linen_cloth",spr_use_time(1),"pw_linen_cloth","bo_pw_weapon_small", spr_stockpile_resource_triggers("itm_linen_cloth")),
   ("pw_stockpile_leather_roll",spr_use_time(1),"pw_leather_roll","bo_pw_weapon_small", spr_stockpile_resource_triggers("itm_leather_roll")),
   ("pw_stockpile_leather_piece",spr_use_time(1),"pw_leather_piece","bo_pw_weapon_small", spr_stockpile_resource_triggers("itm_leather_piece")),
-  ("pw_import_wheat_sack",spr_use_time(30),"pw_wheat_sack","bo_pw_weapon_small", spr_import_item_triggers("itm_wheat_sack", pos_offset=(0,0,-20), price_multiplier=3000)),
+  ("pw_import_wheat_sack",spr_use_time(10),"pw_wheat_sack","bo_pw_weapon_small", spr_import_item_triggers("itm_wheat_sack", pos_offset=(0,0,-20), price_multiplier=3000)),
   ("pw_import_fawn",spr_use_time(20),"sack","bo_sack_fixed", spr_import_item_triggers("itm_fawn", pos_offset=(0,50,50), price_multiplier=300, check_script="script_cf_can_spawn_herd_animal")),
-  ("pw_import_boarlet",spr_use_time(10),"sack","bo_sack_fixed", spr_import_item_triggers("itm_boarlet", pos_offset=(0,50,50), price_multiplier=300, check_script="script_cf_can_spawn_herd_animal")),
-  ("pw_import_calf",spr_use_time(25),"sack","bo_sack_fixed", spr_import_item_triggers("itm_calf", pos_offset=(0,50,50), price_multiplier=300, check_script="script_cf_can_spawn_herd_animal")),
+  ("pw_import_boarlet",spr_use_time(20),"sack","bo_sack_fixed", spr_import_item_triggers("itm_boarlet", pos_offset=(0,50,50), price_multiplier=300, check_script="script_cf_can_spawn_herd_animal")),
+  ("pw_import_calf",spr_use_time(20),"sack","bo_sack_fixed", spr_import_item_triggers("itm_calf", pos_offset=(0,50,50), price_multiplier=300, check_script="script_cf_can_spawn_herd_animal")),
   ("pw_export_wood_stick",spr_use_time(2),"pw_wood_box","bo_pw_wood_box", spr_export_item_triggers("itm_stick")),
   ("pw_export_wood_branch",spr_use_time(5),"wood_heap_b","bo_wood_heap_b", spr_export_item_triggers("itm_branch")),
   ("pw_export_wood_pole",spr_use_time(6),"pw_wood_pole","bo_pw_weapon_big", spr_export_item_triggers("itm_wood_pole")),
@@ -2935,6 +2957,17 @@ scene_props = [
   ("pw_door_teleport_inset_c",spr_use_time(1),"pw_teleport_door_c","bo_pw_teleport_door_a", spr_teleport_door_triggers(pos_offset=(0,50,0))),
   ("pw_door_teleport_invisible",sokf_invisible|spr_use_time(1),"pw_invisible_door","bo_pw_invisible_door", spr_teleport_door_triggers(pos_offset=(0,50,0))),
   ("pw_door_teleport_invisible_not_pickable",sokf_invisible|spr_use_time(1),"pw_invisible_door","bo_pw_invisible_door", spr_teleport_door_triggers(pos_offset=(0,50,0), pickable=0)),
+
+  ("pw_door_teleport_small_arch_a_horse",spr_use_time(1),"tutorial_door_a","bo_tutorial_door_a", spr_teleport_door_triggers(pos_offset=(-55,50,-98), horse_can_tp=1)),
+  ("pw_door_teleport_square_a_horse",spr_use_time(1),"tutorial_door_b","bo_tutorial_door_b", spr_teleport_door_triggers(pos_offset=(70,50,0), horse_can_tp=1)),
+  ("pw_door_teleport_arch_a_horse",spr_use_time(1),"dungeon_door_direction_a","bo_dungeon_door_direction_a", spr_teleport_door_triggers(pos_offset=(100,0,-230), horse_can_tp=1)),
+  ("pw_door_teleport_roof_horse",spr_use_time(1),"house_roof_door","bo_house_roof_door", spr_teleport_door_triggers(pos_offset=(0,0,100), horse_can_tp=1)),
+  ("pw_door_teleport_inset_a_horse",spr_use_time(1),"pw_teleport_door_a","bo_pw_teleport_door_a", spr_teleport_door_triggers(pos_offset=(0,50,0), horse_can_tp=1)),
+  ("pw_door_teleport_inset_b_horse",spr_use_time(1),"pw_teleport_door_b","bo_pw_teleport_door_a", spr_teleport_door_triggers(pos_offset=(0,50,0), horse_can_tp=1)),
+  ("pw_door_teleport_inset_c_horse",spr_use_time(1),"pw_teleport_door_c","bo_pw_teleport_door_a", spr_teleport_door_triggers(pos_offset=(0,50,0), horse_can_tp=1)),
+  ("pw_door_teleport_invisible_horse",sokf_invisible|spr_use_time(1),"pw_invisible_door","bo_pw_invisible_door", spr_teleport_door_triggers(pos_offset=(0,50,0), horse_can_tp=1)),
+  ("pw_door_teleport_invisible_not_pickable_horse",sokf_invisible|spr_use_time(1),"pw_invisible_door","bo_pw_invisible_door", spr_teleport_door_triggers(pos_offset=(0,50,0), pickable=0, horse_can_tp=1)),
+
   ("pw_door_rotate_a",spr_rotate_door_flags(1),"castle_f_sally_door_a","bo_castle_f_sally_door_a", spr_rotate_door_triggers(hit_points=5000)),
   ("pw_door_rotate_b",spr_rotate_door_flags(1),"castle_e_sally_door_a","bo_castle_e_sally_door_a_fixed", spr_rotate_door_triggers(hit_points=5000)),
   ("pw_door_rotate_c",spr_rotate_door_flags(1),"castle_f_door_a","bo_castle_f_door_a_fixed", spr_rotate_door_triggers(hit_points=5000)),
@@ -3044,10 +3077,12 @@ scene_props = [
   ("pw_castle_sign",0,"tree_house_guard_a","bo_tree_house_guard_a", [(ti_on_scene_prop_use, [])]),
   ("pw_castle_capture_point",spr_use_time(capture_point_use_time),"pw_castle_flag_post","bo_pw_castle_flag_post", spr_capture_castle_triggers()),
   ("pw_castle_wall_banner",0,"pw_banner_wall_rail","bo_pw_banner_wall_rail", []),
-  ("pw_castle_money_chest",spr_chest_flags(2),"pw_chest_b","bo_pw_chest_b", spr_castle_money_chest_triggers(hit_points=6000)),
-  ("pw_item_chest_a",spr_chest_flags(1),"pw_chest_c","bo_pw_chest_c", spr_item_chest_triggers(hit_points=7000, inventory_count=48, max_item_length=180)),
-  ("pw_item_chest_b",spr_chest_flags(1),"pw_chest_b","bo_pw_chest_b", spr_item_chest_triggers(hit_points=5000, inventory_count=32, max_item_length=100)),
+  ("pw_castle_money_chest",spr_chest_flags(use_time=2),"pw_chest_b","bo_pw_chest_b", spr_castle_money_chest_triggers(hit_points=6000)),
+  ("pw_item_chest_a",spr_chest_flags(use_time=1),"pw_chest_c","bo_pw_chest_c", spr_item_chest_triggers(hit_points=7000, inventory_count=48, max_item_length=180)),
+  ("pw_item_chest_b",spr_chest_flags(use_time=1),"pw_chest_b","bo_pw_chest_b", spr_item_chest_triggers(hit_points=5000, inventory_count=32, max_item_length=100)),
   ("pw_item_chest_invisible",sokf_invisible|spr_chest_flags(1),"pw_invisible_chest","bo_pw_invisible_chest", spr_item_chest_triggers(hit_points=2000, inventory_count=12, max_item_length=120)),
+
+  ("pk_arrow_holder_bucket",spr_chest_flags(use_time=1, destructible=False),"pk_arrow_holder_bucket","bo_pk_arrow_holder_bucket", spr_item_chest_triggers(inventory_count=12, store_ammo=1, store_only_ammo=1, destructible=False)),
 
   ("pw_signpost_castle",0,"pw_signpost_castle","bo_pw_signpost", []),
   ("pw_signpost_docks",0,"pw_signpost_docks","bo_pw_signpost", []),

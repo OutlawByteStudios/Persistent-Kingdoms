@@ -314,6 +314,138 @@ scripts.extend([
     (try_end),
 	
     (assign, reg0, ":reg0_value"),
+  #End  
+  
+  ("cf_log_equipment", [
+	(multiplayer_is_server),
+	(store_script_param_1, ":player_id"),
+	
+	(player_get_agent_id, ":agent_id", ":player_id"),
+	
+  	(agent_get_item_slot, reg31, ":agent_id", ek_head),
+	(agent_get_item_slot, reg32, ":agent_id", ek_body),
+	(agent_get_item_slot, reg33, ":agent_id", ek_foot),
+	(agent_get_item_slot, reg34, ":agent_id", ek_gloves),
+	(agent_get_item_slot, reg35, ":agent_id", ek_item_0),
+	(agent_get_item_slot, reg36, ":agent_id", ek_item_1),
+	(agent_get_item_slot, reg37, ":agent_id", ek_item_2),
+	(agent_get_item_slot, reg38, ":agent_id", ek_item_3),
+	(agent_get_horse, ":horse_agent_id", ":agent_id"),
+	
+	(assign, reg39, 0),
+	(try_begin),
+	  (gt, ":horse_agent_id", -1),
+	  (agent_get_item_id, reg39, ":horse_agent_id"),
+	(try_end),
+	
+	(str_store_player_username, s11, ":player_id"),
+	
+	(server_add_message_to_log, "str_log_equipment"),
+	#End
+  ]),
+
+  ("cf_handle_fast_equip_request", [
+		(store_script_param_1, ":from_slot"),
+		(store_script_param_2, ":sender_player_id"),
+		
+		(player_get_slot, ":container_id", ":sender_player_id", slot_player_accessing_instance_id),
+		(player_get_agent_id, ":agent_id", ":sender_player_id"),
+		
+		(is_between, ":from_slot", slot_scene_prop_inventory_begin, slot_scene_prop_inventory_item_0),
+		(scene_prop_get_slot, ":item_id", ":container_id", ":from_slot"),
+		(ge, ":item_id", all_items_begin),
+		(item_get_type, ":item_type", ":item_id"),
+		
+		(assign, ":equipped_item", -1),
+		(try_begin),
+			(eq, ":item_type", itp_type_head_armor),
+			(agent_get_item_slot, ":equipped_item", ":agent_id", ek_head),
+			(lt, ":equipped_item", all_items_begin),
+			(call_script, "script_transfer_inventory", ":sender_player_id", ":container_id", ":from_slot", slot_scene_prop_inventory_item_0 + ek_head, ":item_id"),
+		(else_try),
+			(eq, ":item_type", itp_type_body_armor),
+			(agent_get_item_slot, ":equipped_item", ":agent_id", ek_body),
+			(lt, ":equipped_item", all_items_begin),
+			(call_script, "script_transfer_inventory", ":sender_player_id", ":container_id", ":from_slot", slot_scene_prop_inventory_item_0 + ek_body, ":item_id"),
+		(else_try),
+			(eq, ":item_type", itp_type_foot_armor),
+			(agent_get_item_slot, ":equipped_item", ":agent_id", ek_foot),
+			(lt, ":equipped_item", all_items_begin),
+			(call_script, "script_transfer_inventory", ":sender_player_id", ":container_id", ":from_slot", slot_scene_prop_inventory_item_0 + ek_foot, ":item_id"),
+		(else_try),
+			(eq, ":item_type", itp_type_hand_armor),
+			(agent_get_item_slot, ":equipped_item", ":agent_id", ek_gloves),
+			(lt, ":equipped_item", all_items_begin),
+			(call_script, "script_transfer_inventory", ":sender_player_id", ":container_id", ":from_slot", slot_scene_prop_inventory_item_0 + ek_gloves, ":item_id"),
+		(else_try),
+			(store_add, ":offset", wielded_items_end, 1),
+			(is_between, ":item_id", wielded_items_begin, ":offset"),
+			(try_begin),
+				(agent_get_item_slot, ":item_0", ":agent_id", ek_item_0),
+				(lt, ":item_0", wielded_items_begin),
+				(call_script, "script_transfer_inventory", ":sender_player_id", ":container_id", ":from_slot", slot_scene_prop_inventory_item_0, ":item_id"),
+			(else_try),
+				(agent_get_item_slot, ":item_1", ":agent_id", ek_item_1),
+				(lt, ":item_1", wielded_items_begin),
+				(call_script, "script_transfer_inventory", ":sender_player_id", ":container_id", ":from_slot", slot_scene_prop_inventory_item_0 + 1, ":item_id"),
+			(else_try),
+				(agent_get_item_slot, ":item_2", ":agent_id", ek_item_2),
+				(lt, ":item_2", wielded_items_begin),
+				(call_script, "script_transfer_inventory", ":sender_player_id", ":container_id", ":from_slot", slot_scene_prop_inventory_item_0 + 2, ":item_id"),
+			(else_try),
+				(agent_get_item_slot, ":item_3", ":agent_id", ek_item_3),
+				(lt, ":item_3", wielded_items_begin),
+				(call_script, "script_transfer_inventory", ":sender_player_id", ":container_id", ":from_slot", slot_scene_prop_inventory_item_0 + 3, ":item_id"),
+			(try_end),
+		(try_end),
+  ]),
+  
+  ("cf_handle_fast_unequip_request", [
+	  (store_script_param_1, ":slot"),
+	  (store_script_param_2, ":sender_player_id"),
+  
+		(player_get_agent_id, ":agent_id", ":sender_player_id"),
+		(store_sub, ":actual_slot", ":slot", slot_scene_prop_inventory_item_0),
+		(agent_get_item_slot, ":item_id", ":agent_id", ":actual_slot"),
+		(player_get_slot, ":container_id", ":sender_player_id", slot_player_accessing_instance_id),
+		(scene_prop_get_slot, ":inventory_length", ":container_id", slot_scene_prop_inventory_count),
+		(val_add, ":inventory_length", slot_scene_prop_inventory_begin),
+		(try_for_range, ":inventory_index", slot_scene_prop_inventory_begin, ":inventory_length"),
+			(scene_prop_get_slot, ":item_at_index", ":container_id", ":inventory_index"),
+			(lt, ":item_at_index", all_items_begin),
+			(call_script, "script_transfer_inventory", ":sender_player_id", ":container_id", ":slot", ":inventory_index", ":item_id"),
+			(assign, ":inventory_index", 999),
+		(try_end),
+  ]),
+  
+  #Log and show that player is kicked
+  ("cf_log_and_show_kicked", [
+	(store_script_param, ":kicker", 1),
+	(store_script_param, ":kicked", 2),
+	(store_script_param, ":faction_id", 3),
+	
+	(str_store_player_username, s1, ":kicker"),
+	(str_store_player_username, s2, ":kicked"),
+	(str_store_faction_name, s3, ":faction_id"),
+	
+	(server_add_message_to_log, "str_s1_kicked_s2_from_s3"),
+	(multiplayer_send_4_int_to_player, ":kicked", server_event_preset_message, "str_s2_kicked_you_from_the_faction",
+		preset_message_faction|preset_message_faction_lord|preset_message_log|preset_message_small, ":faction_id", ":kicker"),
+  ]),
+  
+  #Log and show that player is kicked
+  ("cf_log_and_show_outlawed", [
+	(store_script_param, ":kicker", 1),
+	(store_script_param, ":kicked", 2),
+	(store_script_param, ":faction_id", 3),
+	
+	(str_store_player_username, s1, ":kicker"),
+	(str_store_player_username, s2, ":kicked"),
+	(str_store_faction_name, s3, ":faction_id"),
+	
+	(server_add_message_to_log, "str_s1_outlawed_s2_from_s3"),
+	(multiplayer_send_4_int_to_player, ":kicked", server_event_preset_message, "str_s2_outlawed_you_from_the_faction",
+		preset_message_faction|preset_message_faction_lord|preset_message_log|preset_message_small, ":faction_id", ":kicker"),
   ]),
   
   ("game_start", []), # single player only, not used
@@ -1145,6 +1277,16 @@ scripts.extend([
     (else_try), # section of events received by server from the clients
       (multiplayer_is_server),
       (try_begin), # handle players requesting to attach a cart to themselves or a horse
+		#Fast inventory transfer
+	    (eq, ":event_type", client_event_fast_equip),#saptor
+		(store_script_param, ":from_slot", 3),
+		(call_script, "script_cf_handle_fast_equip_request", ":from_slot", ":sender_player_id"),
+	  (else_try),
+		#Fast inventory transfer
+	    (eq, ":event_type", client_event_fast_unequip),#saptor
+		(store_script_param, ":slot", 3),
+		(call_script, "script_cf_handle_fast_unequip_request", ":slot", ":sender_player_id"),
+	  (else_try),
         (eq, ":event_type", client_event_attach_scene_prop),
         (store_script_param, ":instance_id", 3),
         (player_get_agent_id, ":agent_id", ":sender_player_id"),
@@ -1671,6 +1813,79 @@ scripts.extend([
           (str_store_player_username, s2, ":target_player_id"),
           (assign, reg1, ":approximate_gold"),
           (server_add_message_to_log, "str_s1_revealed_money_pouch_containing_reg1_to_s2"),
+        (try_end),
+      (else_try), # handle player requests to reveal their money pouch to near by players
+        (eq, ":event_type", client_event_reveal_money_pouch_area),
+        (try_begin),
+          (neq, "$g_game_type", "mt_no_money"),
+
+          (store_mission_timer_a, ":time"), # don't allow spamming pouch reveal messages
+          (player_get_slot, ":last_action_time", ":sender_player_id", slot_player_last_action_time),
+          (store_sub, ":interval", ":time", ":last_action_time"),
+          (ge, ":interval", repeat_action_min_interval),
+          (player_set_slot, ":sender_player_id", slot_player_last_action_time, ":time"),
+
+          (player_get_gold, ":approximate_gold", ":sender_player_id"),
+          (assign, ":multiplier", 1), # repeatedly divide by 10, discarding the remainder, until only the most significant figure remains, then multiply back to the approximate value
+          (assign, ":loop_end", int(math.log10(max_possible_gold))),
+          (try_for_range, ":unused", 0, ":loop_end"),
+            (lt, ":approximate_gold", 10),
+            (assign, ":loop_end", -1),
+            (val_mul, ":approximate_gold", ":multiplier"),
+          (else_try),
+            (val_mul, ":multiplier", 10),
+            (val_div, ":approximate_gold", 10),
+          (try_end),
+
+          (player_get_agent_id, ":agent_id", ":sender_player_id"),
+          (gt, ":agent_id", -1),
+          (agent_is_alive, ":agent_id"),
+
+          (assign, ":max_sq_distance", sq(max_distance_local_chat)),
+          (assign, ":ambient_sq_distance", sq(ambient_distance_local_chat)),
+          (assign, ":server_event", server_event_local_chat),
+
+          (set_fixed_point_multiplier, 100),
+          (agent_get_position, pos1, ":agent_id"),
+          (position_move_z, pos1, 160),
+
+          (str_store_string, s0, "str_empty_string"),
+          (assign, ":first_player", 1),
+          (try_for_agents, ":other_agent_id"), # send the pouch message to other players whoose agents are close enough
+            (agent_is_alive, ":other_agent_id"),
+            (neg|agent_is_non_player, ":other_agent_id"),
+            (agent_get_player_id, ":other_player_id", ":other_agent_id"),
+            (player_is_active, ":other_player_id"),
+            (neq, ":other_player_id", ":sender_player_id"),
+            (agent_get_position, pos2, ":other_agent_id"),
+            (position_move_z, pos2, 160),
+            (get_sq_distance_between_positions, ":sq_distance", pos1, pos2),
+            (le, ":sq_distance", ":max_sq_distance"),
+            (this_or_next|le, ":sq_distance", ":ambient_sq_distance"),
+            (position_has_line_of_sight_to_position, pos1, pos2),
+
+            (multiplayer_send_4_int_to_player, ":other_player_id", server_event_preset_message, "str_s1_reveals_money_pouch_containing_about_reg1", preset_message_player|preset_message_chat_log|preset_message_yellow, ":sender_player_id", ":approximate_gold"),
+
+            (str_store_player_username, s0, ":other_player_id"),
+            (try_begin),
+              (eq, ":first_player", 1),
+              (str_store_string, s0, "str_s0"),
+              (assign, ":first_player", 0),
+            (else_try),
+              (str_store_string, s0, "str_s0__s1"),
+            (try_end),
+          (try_end),
+
+          (multiplayer_send_2_int_to_player, ":sender_player_id", server_event_preset_message, "str_you_reveal_money_pouch_to_near_by_players", preset_message_player|preset_message_chat_log|preset_message_yellow),
+          (str_store_player_username, s1, ":sender_player_id"),
+          (assign, reg1, ":approximate_gold"),
+
+          (try_begin),
+            (eq, ":first_player", 1),
+            (server_add_message_to_log, "str_s1_revealed_money_pouch_containing_reg1_to_near_by_players_none"),
+          (else_try),
+            (server_add_message_to_log, "str_s1_revealed_money_pouch_containing_reg1_to_near_by_players_s0"),
+          (try_end),
         (try_end),
       (else_try), # handle animation requests
         (eq, ":event_type", client_event_request_animation),
@@ -2554,6 +2769,7 @@ scripts.extend([
       (faction_set_slot, ":faction_id", slot_faction_lord_player_uid, 0),
       (faction_set_slot, ":faction_id", slot_faction_lord_last_seen_time, 0),
       (faction_set_slot, ":faction_id", slot_faction_poll_end_time, 0),
+      (faction_set_slot, ":faction_id", slot_faction_poll_last_time, 0),
       (try_for_range, ":relations_slot", slot_faction_relations_begin, ":slot_relations_end"),
         (faction_set_slot, ":faction_id", ":relations_slot", 0),
       (try_end),
@@ -2632,8 +2848,14 @@ scripts.extend([
         (is_between, "$g_preset_message_value_1", factions_begin, factions_end),
         (str_store_faction_name, s1, "$g_preset_message_value_1"),
         (faction_get_color, "$g_preset_message_color", "$g_preset_message_value_1"),
-        (eq, "$g_preset_message_params", preset_message_faction_castle),
-        (call_script, "script_str_store_castle_name", s2, "$g_preset_message_value_2"),
+        (try_begin),
+          (eq, "$g_preset_message_params", preset_message_faction_castle),
+          (call_script, "script_str_store_castle_name", s2, "$g_preset_message_value_2"),
+        (else_try),
+          (eq, "$g_preset_message_params", preset_message_faction_lord),
+          (assign, ":lord_player_id", "$g_preset_message_value_2"),
+          (str_store_player_username, s2, ":lord_player_id"),
+        (try_end),
       (else_try),
         (assign, reg1, "$g_preset_message_value_1"),
         (assign, reg2, "$g_preset_message_value_2"),
@@ -3787,7 +4009,7 @@ scripts.extend([
       (faction_slot_eq, ":faction_id", slot_faction_is_active, 1),
       (ge, ":faction_id", castle_factions_begin),
       (faction_get_slot, ":banner_mesh", ":faction_id", slot_faction_banner_mesh),
-      (multiplayer_send_3_int_to_player, ":player_id", server_event_faction_set_slot, ":faction_id", slot_faction_banner_mesh, ":banner_mesh"),
+      (multiplayer_send_3_int_to_player, ":player_id", server_event_faction_set_slot, ":faction_id",slot_faction_banner_mesh, ":banner_mesh"),
       (try_begin),
         (faction_slot_eq, ":faction_id", slot_faction_name_is_custom, 1),
         (multiplayer_send_3_int_to_player, ":player_id", server_event_troop_set_slot, "trp_mission_data", slot_mission_data_faction_to_change_name_of, ":faction_id"),
@@ -3805,6 +4027,8 @@ scripts.extend([
         (faction_slot_eq, ":faction_id", slot_faction_is_locked, 1),
         (multiplayer_send_3_int_to_player, ":player_id", server_event_faction_set_slot, ":faction_id", slot_faction_is_locked, 1),
       (try_end),
+      (faction_get_slot, ":poll_last_time", ":faction_id", slot_faction_poll_last_time),
+      (multiplayer_send_3_int_to_player, ":player_id", server_event_faction_set_slot, ":faction_id", slot_faction_poll_last_time, ":poll_last_time"),
     (try_end),
     (scene_prop_get_num_instances, ":pole_num", "spr_pw_castle_capture_point"),
     (try_for_range, ":pole_no", 0, ":pole_num"), # so secondary capture point banner item ids match up for the client side repositioning script, after joining
@@ -5241,7 +5465,8 @@ scripts.extend([
   ("player_set_lord", # server: set a player as lord of a faction, changing all the appropriate slots
    [(store_script_param, ":player_id", 1), # must be valid
     (store_script_param, ":faction_id", 2),
-
+    #test
+	(display_message, "@test"),
     (get_max_players, ":max_players"),
     (try_for_range, ":other_player_id", 1, ":max_players"),
       (player_is_active, ":other_player_id"),
@@ -7331,6 +7556,7 @@ scripts.extend([
     (store_script_param, ":y_offset", 4), # position offset relative to the linked door that the agent is moved to
     (store_script_param, ":z_offset", 5),
     (store_script_param, ":is_pickable", 6),
+    (store_script_param, ":horse_can_tp", 7),
 
     (scene_prop_get_slot, ":linked_door_instance_id", ":instance_id", slot_scene_prop_linked_scene_prop),
     (gt, ":linked_door_instance_id", 0),
@@ -7370,6 +7596,12 @@ scripts.extend([
     (position_move_x, pos1, ":x_offset"),
     (position_move_y, pos1, ":y_offset"),
     (position_move_z, pos1, ":z_offset"),
+    (try_begin),
+      (eq, ":horse_can_tp", 1),
+      (agent_get_horse, ":horse_agent_id", ":agent_id"),
+      (gt, ":horse_agent_id", -1),
+      (assign, ":agent_id", ":horse_agent_id"),
+    (try_end),
     (agent_set_position, ":agent_id", pos1),
     ]),
 
@@ -9199,7 +9431,20 @@ scripts.extend([
           (item_get_slot, ":length", ":item_id", slot_item_length),
           (neg|scene_prop_slot_ge, ":instance_id", slot_scene_prop_inventory_max_length, ":length"),
           (assign, ":item_id", -1),
+        (else_try), # check that the ammo is allowed when storing in the inventory
+          (this_or_next | eq, ":item_type", itp_type_arrows),
+          (this_or_next | eq, ":item_type", itp_type_bolts),
+          (eq, ":item_type", itp_type_thrown),
+          (scene_prop_slot_eq, ":instance_id", slot_scene_prop_store_ammo, 0),
+          (assign, ":item_id", -1),
+        (else_try), # check that the non ammo is allowed when storing in the inventory
+          (neq, ":item_type", itp_type_arrows),
+          (neq, ":item_type", itp_type_bolts),
+          (neq, ":item_type", itp_type_thrown),
+          (scene_prop_slot_eq, ":instance_id", slot_scene_prop_store_only_ammo, 1),
+          (assign, ":item_id", -1),
         (try_end),
+
         (ge, ":item_id", all_items_begin),
         (try_begin),
           (this_or_next|eq, ":item_type", itp_type_arrows),
@@ -9210,6 +9455,7 @@ scripts.extend([
         (else_try),
           (assign, ":item_ammo", -1),
         (try_end),
+
         (assign, ":neg_from_mod_slot", 0),
         (try_begin), # remove items taken from the agent's equipment
           (ge, ":from_slot", slot_scene_prop_inventory_item_0),
@@ -9228,7 +9474,8 @@ scripts.extend([
           (else_try),
             (server_add_message_to_log, "str_log_put_item_in_inventory"),
 		  (try_end),
-          #End
+      #End
+		  (neq, ":equip_item_id", "itm_money_bag"),#Dont allow players to put money bags in containers
           (try_begin),
             (is_between, ":item_type", itp_type_head_armor, itp_type_hand_armor + 1),
             (store_sub, ":no_item_id", ":item_type", itp_type_head_armor),
@@ -12393,6 +12640,10 @@ scripts.extend([
         (else_try), # ensure that the player is not voting for themself if others are in faction.
           (neq, ":value_1", ":requester_player_id"),
           (player_slot_eq, ":value_1", slot_player_is_lord, 0),
+
+          (store_mission_timer_a, ":time"),
+          (faction_get_slot, ":last_time", ":poll_faction_id", slot_faction_poll_last_time),
+          (ge, ":time", ":last_time"),
         (else_try), # but allow admins to override the last conditions
           (player_is_admin, ":requester_player_id"),
           (player_slot_eq, ":requester_player_id", slot_player_admin_no_factions, 0),
@@ -12636,6 +12887,17 @@ scripts.extend([
       (eq, ":poll_type", poll_type_faction_lord),
       (this_or_next|neg|player_is_active, ":value_1"),
       (eq, ":check_unique_id", ":target_unique_id"),
+
+      (store_mission_timer_a, ":time"),
+      (val_add, ":time", poll_cooldown_time),
+      (faction_set_slot, ":poll_faction_id", slot_faction_poll_last_time, ":time"),
+
+      (get_max_players, ":max_players"),
+      (try_for_range, ":player_id", 1, ":max_players"),
+        (player_is_active, ":player_id"),
+        (multiplayer_send_3_int_to_player, ":player_id", server_event_faction_set_slot, ":poll_faction_id", slot_faction_poll_last_time, ":time"),
+      (try_end),
+
       (call_script, "script_cf_faction_set_lord", ":value_1", ":target_unique_id", ":poll_faction_id"),
     (try_end),
     ]),
@@ -12859,6 +13121,7 @@ scripts.extend([
           (call_script, "script_reuse_or_spawn_scene_prop", ":freeze_scene_prop_id"),
           (prop_instance_set_position, reg0, pos1),
           (agent_set_slot, ":target_agent_id", slot_agent_freeze_instance_id, reg0),
+          (player_set_slot, ":target_player_id", slot_player_freeze_instance_id, reg0), #Needed for removing freeze walls on disconnects
           (agent_set_speed_modifier, ":target_agent_id", 0),
         (try_end),
       (else_try),
@@ -12876,12 +13139,22 @@ scripts.extend([
             (agent_get_position, pos1, ":target_agent_id"),
             (position_move_y, pos1, -200),
           (try_end),
+          (try_begin),
+            (agent_get_horse, ":admin_horse_agent_id", ":admin_agent_id"),
+            (gt, ":admin_horse_agent_id", -1),
+            (assign, ":admin_agent_id", ":admin_horse_agent_id"),
+          (try_end),
           (agent_set_position, ":admin_agent_id", pos1),
         (else_try),
           (eq, ":admin_action", admin_action_teleport_player),
           (agent_is_active, ":target_agent_id"),
           (agent_get_position, pos1, ":admin_agent_id"),
           (position_move_y, pos1, 100),
+          (try_begin),
+            (agent_get_horse, ":target_horse_agent_id", ":target_agent_id"),
+            (gt, ":target_horse_agent_id", -1),
+            (assign, ":target_agent_id", ":target_horse_agent_id"),
+          (try_end),
           (agent_set_position, ":target_agent_id", pos1),
         (try_end),
       (else_try),
@@ -13225,8 +13498,12 @@ scripts.extend([
       (try_begin),
         (eq, ":action", faction_admin_action_kick_player),
         (call_script, "script_change_faction", ":value_1", "fac_commoners", change_faction_type_no_respawn),
+        #Log and show that player was kicked
+        (call_script, "script_cf_log_and_show_kicked", ":sender_player_id", ":value_1", ":faction_id"),
       (else_try),
         (call_script, "script_player_change_check_outlaw_rating", ":value_1", outlaw_rating_for_lord_outlawed, 1),
+        #Log and show that player was outlawed
+        (call_script, "script_cf_log_and_show_outlawed", ":sender_player_id", ":value_1", ":faction_id"),
       (try_end),
       (player_set_slot, ":value_1", slot_player_last_faction_kicked_from, ":faction_id"),
     (else_try),
@@ -13310,6 +13587,22 @@ scripts.extend([
         (this_or_next | player_slot_eq, ":player_id", slot_player_is_marshal, 1),
         (eq, ":player_id", ":value_1"),
         (multiplayer_send_3_int_to_player, ":player_id", server_event_player_set_slot, ":value_1", ":key_slot", ":has_key"),
+
+        (eq, ":player_id", ":value_1"),
+        (eq, ":has_key", 1),
+        (try_begin),
+          (eq, ":key_slot", slot_player_has_faction_door_key),
+          (multiplayer_send_3_int_to_player, ":player_id", server_event_preset_message, "str_you_have_door_keys", preset_message_faction|preset_message_log|preset_message_small, ":faction_id", 0),
+        (else_try),
+          (eq, ":key_slot", slot_player_has_faction_money_key),
+          (multiplayer_send_3_int_to_player, ":player_id", server_event_preset_message, "str_you_have_money_keys",preset_message_faction|preset_message_log|preset_message_small, ":faction_id", 0),
+        (else_try),
+          (eq, ":key_slot", slot_player_has_faction_item_key),
+          (multiplayer_send_3_int_to_player, ":player_id", server_event_preset_message, "str_you_have_item_keys",preset_message_faction|preset_message_log|preset_message_small, ":faction_id", 0),
+        (else_try),
+          (eq, ":key_slot", slot_player_can_faction_announce),
+          (multiplayer_send_3_int_to_player, ":player_id", server_event_preset_message, "str_you_have_announcers",preset_message_faction|preset_message_log|preset_message_small, ":faction_id", 0),
+        (try_end),
       (try_end),
 
     (else_try),
@@ -13354,6 +13647,10 @@ scripts.extend([
             (multiplayer_send_3_int_to_player, ":player_id", server_event_player_set_slot, ":value_1", slot_player_can_faction_announce, 1),
             (multiplayer_send_3_int_to_player, ":player_id", server_event_player_set_slot, ":value_1",slot_player_faction_chat_muted, 0),
           (try_end),
+
+          (eq, ":player_id", ":value_1"),
+          (eq, ":has_key", 1),
+          (multiplayer_send_3_int_to_player, ":player_id", server_event_preset_message,  "str_you_are_a_marshal",preset_message_faction|preset_message_log|preset_message_small, ":faction_id", 0),
         (try_end),
 
         (neq, ":player_id", ":value_1"),
