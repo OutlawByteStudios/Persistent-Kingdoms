@@ -976,7 +976,7 @@ render_weather_effects = (0.1, 0, 0, [], # clients: regularly display weather ef
     ])
 
 def common_triggers(self):
-  return [(ti_before_mission_start, 0, 0, [(assign, "$g_game_type", "mt_" + self)], []),
+	return [(ti_before_mission_start, 0, 0, [(assign, "$g_game_type", "mt_" + self)], []),
     before_mission_start_setup,
     after_mission_start_setup,
 
