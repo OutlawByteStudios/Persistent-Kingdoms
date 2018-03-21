@@ -4016,7 +4016,10 @@ scripts.extend([
         (call_script, "script_player_change_check_outlaw_rating", ":killer_player_id", outlaw_rating_for_kill, 0),
       (try_end),
       (try_begin),
-          (neq, ":dead_faction_id", ":killer_faction_id"),
+          (this_or_next|neq, ":dead_faction_id", ":killer_faction_id"),
+          (this_or_next|eq, ":dead_faction_id", "fac_commoners"),
+          (eq, ":dead_faction_id", "fac_outlaws"),
+
           (neq, "$g_game_type", "mt_no_money"),
           (try_begin),
             (eq, ":dead_faction_id", "fac_commoners"),
