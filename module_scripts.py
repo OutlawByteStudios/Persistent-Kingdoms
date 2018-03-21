@@ -4080,6 +4080,7 @@ scripts.extend([
       (gt, ":gold", 0),
       (try_begin),
         (neq, "$g_game_type", "mt_permanent_death"),
+        (assign, ":gold_loot", 20),
         (try_begin),
             (eq, ":lower_drop", 1),
             (assign, ":gold_loot", "$g_combat_gold_multiplier"),
