@@ -969,11 +969,11 @@ Poisonous herbs can also sometimes be found, which are then applied to the blade
   ("detach_from_horse_log", "{s11} detached a cart from his horse (IID: {reg31})."),
   ("log_use_money_bag", "{s11} used pouch containing {reg31} gold."),
   ("log_spawn_money_bag", "{s11} spawned pouch containing {reg31} gold (IID: {reg0})."),
-  ("log_money_chest_withdraw", "{s11} withdrew {reg31} money from chest belonging to {s12}."),
+  ("log_money_chest_withdraw", "{s11} withdrew {reg31} gold from chest belonging to {s12}."),
   ("log_money_chest_deposit", "{s11} put {reg31} money into chest belonging to {s12}."),
-  ("log_hit_door", "{s11} hit door of {s12} for {reg31} damage (IID: {reg32})."),
+  ("log_hit_door", "{s11} hit door of {s12} dealing {reg31} damage (IID: {reg32})."),
   ("log_repair_door", "{s11} repaired door of {s12} for {reg31} points (IID: {reg32})."),
-  ("log_hit_chest", "{s11} hit chest of {s12} for {reg31} damage (IID: {reg32})."),
+  ("log_hit_chest", "{s11} hit chest of {s12} dealing {reg31} damage (IID: {reg32})."),
   ("log_repair_chest", "{s11} repaired chest of {s12} for {reg31} points (IID: {reg32})."),
   ("log_hit_ship", "{s11} hit a ship (IID: {reg31})."),
   ("log_drop_item", "{s11} dropped {s12}(IID: {reg31}) on the ground."),
@@ -996,7 +996,7 @@ Poisonous herbs can also sometimes be found, which are then applied to the blade
   #End
 
   #Shield Log
-  ("shield_hit_log", "{s12} hit {s11}'s shield by {reg31} damage."),
+  ("shield_hit_log", "{s12} hit {s11}'s shield dealing {reg31} damage."),
   
   ("log_equipment", "{s11} had these items: H:{reg31}, B:{reg32}, G:{reg33}, F:{reg34}, HO:{reg39}, 1:{reg35}, 2:{reg36}, 3:{reg37}, 4:{reg38}"),
   ("s1_kicked_s2_from_s3", "{s1} kicked {s2} from {s3}."),
