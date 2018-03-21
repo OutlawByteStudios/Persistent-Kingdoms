@@ -293,8 +293,8 @@ scripts.extend([
     (str_store_player_username, s11, ":player_id"),
     (call_script, "script_scene_prop_get_owning_faction", ":instance_id"),
     (str_store_faction_name, s12, reg0),
-	(assign, reg31, ":hit_damage"),
-	(assign, reg32, ":instance_id"),
+    (assign, reg31, ":hit_damage"),
+    (assign, reg32, ":instance_id"),
 	
     (try_begin),
       (eq, ":hit_type", repairable_hit),
@@ -314,6 +314,7 @@ scripts.extend([
     (try_end),
 	
     (assign, reg0, ":reg0_value"),
+   ]),
   #End  
   
   ("cf_log_equipment", [
