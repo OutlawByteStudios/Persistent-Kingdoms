@@ -279,6 +279,8 @@ agent_hit = (ti_on_agent_hit, 0, 0, [], # server: apply extra scripted effects f
       (is_between, reg0, scripted_items_begin, scripted_items_end),
       (call_script, "script_agent_hit_with_scripted_item", ":attacked_agent_id", ":attacker_agent_id", ":damage_dealt", reg0),
     (try_end),
+	#Log hits
+	(call_script, "script_cf_log_hit", ":attacked_agent_id", ":attacker_agent_id", ":damage_dealt", reg0, 0),
     ])
 
 item_picked_up = (ti_on_item_picked_up, 0, 0, [], # handle agents picking up an item
@@ -326,6 +328,8 @@ agent_mount = (ti_on_agent_mount, 0, 0, [], # server: check speed factor and att
     (str_store_player_username, s0, ":player_id"),
     (agent_get_item_id, ":horse_item_id", ":horse_agent_id"),
     (str_store_item_name, s1, ":horse_item_id"),
+    #Alter mount/dismount logs to show the agent_id of the mount
+    (assign, reg31, ":horse_agent_id"),
     (server_add_message_to_log, "str_s0_has_mounted_a_s1"),
     ])
 
@@ -342,6 +346,8 @@ agent_dismount = (ti_on_agent_dismount, 0, 0, [], # server: make horses stand st
     (str_store_player_username, s0, ":player_id"),
     (agent_get_item_id, ":horse_item_id", ":horse_agent_id"),
     (str_store_item_name, s1, ":horse_item_id"),
+    #Alter mount/dismount logs to show the agent_id of the mount
+    (assign, reg31, ":horse_agent_id"),
     (server_add_message_to_log, "str_s0_has_dismounted_a_s1"),
     ])
 
@@ -976,7 +982,7 @@ render_weather_effects = (0.1, 0, 0, [], # clients: regularly display weather ef
     ])
 
 def common_triggers(self):
-  return [(ti_before_mission_start, 0, 0, [(assign, "$g_game_type", "mt_" + self)], []),
+	return [(ti_before_mission_start, 0, 0, [(assign, "$g_game_type", "mt_" + self)], []),
     before_mission_start_setup,
     after_mission_start_setup,
 

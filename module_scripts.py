@@ -28,8 +28,8 @@ scripts.extend([
   #TODO: log when someone hits someone else's shield
   ("cf_shield_hit", [
     (multiplayer_is_server),
-    (store_script_param_1, ":defender_agent_id"),
-    (store_script_param_2, ":attacker_agent_id"),
+    (store_script_param, ":defender_agent_id", 1),
+    (store_script_param, ":attacker_agent_id", 2),
     (store_script_param, ":damage", 3),
 	
     (agent_get_player_id, ":defender_player_id", ":defender_agent_id"),
@@ -41,6 +41,280 @@ scripts.extend([
 	
     (server_add_message_to_log, "str_shield_hit_log"),
   ]),
+  #End
+  
+  #Log looting corpse
+  ("cf_log_loot_corpse", [
+    (multiplayer_is_server),
+    (store_script_param_1, ":corpse_instance_id"),
+    (store_script_param_2, ":looter_agent_id"),
+    (assign, reg31, ":corpse_instance_id"),
+	
+    (scene_prop_get_slot, ":owner_agent_id", ":corpse_instance_id", slot_scene_prop_corpse_owner),
+	
+    (agent_get_player_id, ":looter_player_id", ":looter_agent_id"),
+    (str_store_player_username, s11, ":looter_player_id"),
+	
+    (try_begin),
+      (gt, ":owner_agent_id", 0),
+      (neg|agent_is_non_player, ":owner_agent_id"),
+      (agent_get_player_id, ":owner_player_id", ":owner_agent_id"),
+      (str_store_player_username, s12, ":owner_player_id"),
+      (server_add_message_to_log, "str_log_loot_corpse"),
+    (try_end),
+  ]),
+  
+  #Log hits by/to animals or players
+  ("cf_log_hit", [
+    (multiplayer_is_server),
+    (store_script_param, ":attacked_agent_id", 1),
+    (store_script_param, ":attacker_agent_id", 2),
+    (store_script_param, reg31, 3), #damage
+    (store_script_param, ":item_id", 4),
+    (store_script_param, ":log_nevertheless", 5),
+	
+    (try_begin),
+      (gt, ":item_id", -1),
+      (str_store_item_name, s10, ":item_id"),
+    (else_try),
+      (str_store_string, s10, "@fist"),
+    (try_end),
+	
+    (assign, ":log", 0),
+    (try_begin),
+      (eq, ":log_nevertheless", 1),
+      (assign, ":log", 1),
+    (else_try),
+      (neq, ":item_id", "itm_surgeon_scalpel"),
+      (neq, ":item_id", "itm_healing_herb"),
+      (assign, ":log", 1),
+    (try_end),
+	
+    (try_begin), #If it wasn't a heal or usage of healing herb
+      (eq, ":log", 1),
+	  
+      (try_begin), #If the attacker is a player
+        (neg|agent_is_non_player, ":attacker_agent_id"),
+        (agent_get_player_id, ":attacker_player_id", ":attacker_agent_id"),
+        (str_store_player_username, s11, ":attacker_player_id"),
+        (try_begin),#If the defender is a player
+          (neg|agent_is_non_player, ":attacked_agent_id"),
+          (agent_get_player_id, ":attacked_player_id", ":attacked_agent_id"),
+          (str_store_player_username, s12, ":attacked_player_id"),
+          (server_add_message_to_log, "str_log_hit_player"),
+        (else_try),#Else, the defender is either horse or animal
+          (agent_get_rider, ":rider_id", ":attacked_agent_id"),
+          (try_begin),#The horse is mounted by a player
+            (gt, ":rider_id", 0),
+        	(agent_get_player_id, ":rider_player_id", ":rider_id"),
+            (str_store_player_username, s12, ":rider_player_id"),
+        	(server_add_message_to_log, "str_log_hit_phorse"),
+          (else_try),#Else, the horse or animal is Rogue (a weeabo)
+            (agent_get_item_id, ":animal_item_id", ":attacked_agent_id"),
+        	(str_store_item_name, s12, ":animal_item_id"),
+            (assign, reg32, ":attacked_agent_id"),
+        	(server_add_message_to_log, "str_log_hit_animal"),
+          (try_end),
+        (try_end),
+      (else_try),#Else, the attacker is either horse or animal
+        (agent_get_player_id, ":attacked_player_id", ":attacked_agent_id"),
+        (str_store_player_username, s12, ":attacked_player_id"), 
+        (agent_get_rider, ":rider_id", ":attacker_agent_id"),
+        (try_begin),
+          (gt, ":rider_id", 0),#If a player rides the horse
+          (agent_get_player_id, ":attacker_player_id", ":attacker_agent_id"),
+          (str_store_player_username, s11, ":attacker_player_id"), 
+        (else_try),#Else, the horse or animal is Rogue (a weeabo)
+          (agent_get_item_id, ":animal_item_id", ":attacker_agent_id"),
+          (str_store_item_name, s11, ":animal_item_id"),
+        (try_end),
+        (server_add_message_to_log, "str_log_bump"),
+      (try_end),
+    (try_end),
+  ]),
+  
+  #Log healing
+  ("cf_log_heal", [
+    (multiplayer_is_server),
+    (store_script_param, ":healed_agent_id", 1),
+	(store_script_param, ":healer_agent_id", 2),
+	(store_script_param, ":healing", 3),
+	(store_script_param, ":health_percent", 4),
+	(store_script_param, ":healing_limit", 5),
+	
+	(try_begin),
+	  (store_add, ":total_health", ":healing", ":health_percent"),
+	  (gt, ":total_health", ":health_percent"),
+	  (store_sub, ":healing", ":healing_limit", ":health_percent"),
+	(try_end),
+	
+	(agent_get_player_id, ":healer_player_id", ":healer_agent_id"),
+    (str_store_player_username, s11, ":healer_player_id"),
+	(assign, reg31, ":healing"),
+	
+	(try_begin),#If the healed is a player
+	  (neg|agent_is_non_player, ":healed_agent_id"),
+	  (agent_get_player_id, ":healed_player_id", ":healed_agent_id"),
+	  (str_store_player_username, s12, ":healed_player_id"),
+	  (server_add_message_to_log, "str_log_heal_player"),
+	(else_try),#Else, the healed is either horse or animal
+	  (agent_get_rider, ":rider_id", ":healed_agent_id"),
+	  (try_begin),#The horse is mounted by a player
+	    (gt, ":rider_id", 0),
+		(agent_get_player_id, ":rider_player_id", ":rider_id"),
+	    (str_store_player_username, s12, ":rider_player_id"),
+		(server_add_message_to_log, "str_log_heal_phorse"),
+	  (else_try),#Else, the horse or animal is Rogue (a weeabo)
+	    (agent_get_item_id, ":animal_item_id", ":healed_agent_id"),
+		(str_store_item_name, s12, ":animal_item_id"),
+		(server_add_message_to_log, "str_log_heal_animal"),
+	  (try_end),
+	(try_end),
+  ]),
+  
+  #Cart Attach Log
+  ("cf_log_attach_cart", [
+    (multiplayer_is_server),
+	(store_script_param, ":attach_agent_id", 1),
+	(store_script_param, ":instance_id", 2),
+	(store_script_param, ":player_agent_id", 3),
+	
+	(agent_get_player_id, ":player_id", ":player_agent_id"),
+	(str_store_player_username, s11, ":player_id"),
+	(assign, reg31, ":instance_id"),
+	
+    (try_begin),
+      (eq, ":attach_agent_id", ":player_agent_id"),
+	  (server_add_message_to_log, "str_attach_to_himself_log"),
+    (else_try),
+      (server_add_message_to_log, "str_attach_to_horse_log"),
+    (try_end),
+  ]),
+  
+  #Cart Dettach Log
+  ("cf_log_detach_cart", [
+    (multiplayer_is_server),
+	(store_script_param, ":attach_agent_id", 1),
+	(store_script_param, ":instance_id", 2),
+	(store_script_param, ":player_agent_id", 3),
+	
+	(agent_get_player_id, ":player_id", ":player_agent_id"),
+	(str_store_player_username, s11, ":player_id"),
+	(assign, reg31, ":instance_id"),
+	
+    (try_begin),
+      (eq, ":attach_agent_id", ":player_agent_id"),
+	  (server_add_message_to_log, "str_detach_from_himself_log"),
+    (else_try),
+      (server_add_message_to_log, "str_detach_from_horse_log"),
+    (try_end),
+  ]),
+  #Log withdrawals from money chests
+  ("cf_log_money_chest_withdraw", [
+    (multiplayer_is_server),
+    (store_script_param, ":player_id", 1),
+    (store_script_param, ":instance_id", 2),
+    (store_script_param, ":gold_value", 3),
+	
+	(str_store_player_username, s11, ":player_id"),
+    (call_script, "script_scene_prop_get_owning_faction", ":instance_id"),
+    (str_store_faction_name, s12, reg0),
+	(assign, reg31, ":gold_value"),
+	(val_abs, reg31),
+	
+	(server_add_message_to_log, "str_log_money_chest_withdraw"),
+  ]),
+  
+  #Log deposits to money chests
+  ("cf_log_money_chest_deposit", [
+    (multiplayer_is_server),
+    (store_script_param, ":player_id", 1),
+    (store_script_param, ":instance_id", 2),
+    (store_script_param, ":gold_value", 3),
+	
+	(str_store_player_username, s11, ":player_id"),
+    (call_script, "script_scene_prop_get_owning_faction", ":instance_id"),
+    (str_store_faction_name, s12, reg0),
+	(assign, reg31, ":gold_value"),
+	
+	(server_add_message_to_log, "str_log_money_chest_deposit"),
+  ]),
+  
+  #Log door hits
+  ("cf_log_hit_door", [
+    (multiplayer_is_server),
+    (store_script_param, ":instance_id", 1),
+    (store_script_param, ":agent_id", 2),
+    (store_script_param, ":hit_damage", 3),
+    (store_script_param, ":hit_type", 4),
+	
+    #reg0's value should be saved because the function to which this function will return uses it
+    (assign, ":reg0_value", reg0),
+    
+    (agent_get_player_id, ":player_id", ":agent_id"),
+    (str_store_player_username, s11, ":player_id"),
+    (call_script, "script_scene_prop_get_owning_faction", ":instance_id"),
+    (str_store_faction_name, s12, reg0),
+	(assign, reg31, ":hit_damage"),
+	(assign, reg32, ":instance_id"),
+	
+    (try_begin),
+      (eq, ":hit_type", repairable_hit),
+      (server_add_message_to_log, "str_log_hit_door"),
+    (else_try),
+      (eq, ":hit_type", repairable_destroyed),
+      (server_add_message_to_log, "str_log_hit_door"),
+    (else_try),
+      (eq, ":hit_type", repairable_hit_destroyed),
+      (server_add_message_to_log, "str_log_hit_door"),
+    (else_try),
+      (eq, ":hit_type", repairable_repaired),
+      (server_add_message_to_log, "str_log_repair_door"),
+    (else_try),
+      (eq, ":hit_type", repairable_repairing),
+      (server_add_message_to_log, "str_log_repair_door"),
+    (try_end),
+	
+    (assign, reg0, ":reg0_value"),
+  ]),
+  
+  #Log door hits
+  ("cf_log_hit_chest", [
+    (multiplayer_is_server),
+    (store_script_param, ":instance_id", 1),
+    (store_script_param, ":agent_id", 2),
+    (store_script_param, ":hit_damage", 3),
+    (store_script_param, ":hit_type", 4),
+	
+    #reg0's value should be saved because the function to which this function will return uses it
+    (assign, ":reg0_value", reg0),
+    
+    (agent_get_player_id, ":player_id", ":agent_id"),
+    (str_store_player_username, s11, ":player_id"),
+    (call_script, "script_scene_prop_get_owning_faction", ":instance_id"),
+    (str_store_faction_name, s12, reg0),
+    (assign, reg31, ":hit_damage"),
+    (assign, reg32, ":instance_id"),
+	
+    (try_begin),
+      (eq, ":hit_type", repairable_hit),
+      (server_add_message_to_log, "str_log_hit_chest"),
+    (else_try),
+      (eq, ":hit_type", repairable_destroyed),
+      (server_add_message_to_log, "str_log_hit_chest"),
+    (else_try),
+      (eq, ":hit_type", repairable_hit_destroyed),
+      (server_add_message_to_log, "str_log_hit_chest"),
+    (else_try),
+      (eq, ":hit_type", repairable_repaired),
+      (server_add_message_to_log, "str_log_repair_chest"),
+    (else_try),
+      (eq, ":hit_type", repairable_repairing),
+      (server_add_message_to_log, "str_log_repair_chest"),
+    (try_end),
+	
+    (assign, reg0, ":reg0_value"),
+   ]),
   #End  
   
   #Phoenix
@@ -1462,6 +1736,10 @@ scripts.extend([
               (set_spawn_position, pos1),
               (spawn_item, "itm_agent_corpse", imod_rusty, "$g_spawn_item_prune_time"),
               (assign, ":corpse_instance_id", reg0),
+			  #Phoenix, to understand, check the spawning of corpses when people die lol
+              (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_corpse_owner, ":agent_id"),
+              (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_is_mercenary, 1),
+			  #End
               (agent_set_slot, ":agent_id", slot_agent_storage_corpse_instance_id, ":corpse_instance_id"),
               (prop_instance_set_position, ":corpse_instance_id", pos1),
               (store_mission_timer_a, ":prune_time"),
@@ -1496,6 +1774,9 @@ scripts.extend([
           (get_sq_distance_between_positions, ":sq_distance", pos1, pos2),
           (le, ":sq_distance", sq(max_distance_to_loot)),
           (call_script, "script_cf_use_inventory", ":agent_id", ":corpse_instance_id", 0),
+          #Log looting corpses
+          (call_script, "script_cf_log_loot_corpse", ":corpse_instance_id", ":agent_id"),
+          #End
         (try_end),
       (else_try), # handle player requests to reveal their money pouch to another player
         (eq, ":event_type", client_event_reveal_money_pouch),
@@ -3633,6 +3914,10 @@ scripts.extend([
       (store_random_in_range, ":imod", imod_plain, imod_cracked + 1),
       (spawn_item, "itm_agent_corpse", ":imod", "$g_spawn_item_prune_time"),
       (assign, ":corpse_instance_id", reg0),
+      #Set the according slot to keep the record of the corpse's owner's agent id
+      (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_corpse_owner, ":agent_id"),
+      (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_is_mercenary, 1),#To perevent faction names appearing in logs in inventory transfers
+      #End
       (prop_instance_set_position, ":corpse_instance_id", pos1),
       (store_mission_timer_a, ":prune_time"),
       (val_add, ":prune_time", "$g_spawn_item_prune_time"),
@@ -4591,7 +4876,6 @@ scripts.extend([
       (call_script, "script_redraw_castle_banners", redraw_castle_banners, ":castle_no"),
       (str_store_faction_name, s1, ":faction_id"),
       (call_script, "script_str_store_castle_name", s2, ":castle_no"),
-      (server_add_message_to_log, "str_s1_captured_s2"),
     (try_end),
     ]),
 
@@ -4690,6 +4974,13 @@ scripts.extend([
             (eq, ":completed", 1),
             (call_script, "script_cf_agent_consume_item", ":agent_id", ":banner_item_id", 1),
             (call_script, "script_capture_castle", ":player_faction_id", ":castle_no"),
+			#Log the capture /Phoenix
+			(str_store_player_username, s10, ":player_id"),
+			(call_script, "script_str_store_castle_name", s11, ":castle_no"),
+			(str_store_faction_name, s12, ":faction_id"),
+			(str_store_faction_name, s9, ":player_faction_id"),
+			(server_add_message_to_log, "str_log_capture"),
+			#End
           (try_end),
         (else_try),
           (multiplayer_send_3_int_to_player, ":player_id", server_event_preset_message, "str_your_faction_not_captured_required_points", preset_message_faction|preset_message_fail_sound, ":player_faction_id"),
@@ -4700,6 +4991,13 @@ scripts.extend([
         (call_script, "script_cf_agent_consume_item", ":agent_id", ":banner_item_id", 1),
         (scene_prop_set_slot, ":instance_id", slot_scene_prop_capture_faction_id, ":player_faction_id"),
         (call_script, "script_redraw_castle_banners", redraw_single_capture_point_banner, ":instance_id"),
+		#Log the capture /Phoenix
+		(str_store_player_username, s10, ":player_id"),
+		(call_script, "script_str_store_castle_name", s11, ":castle_no"),
+		(str_store_faction_name, s12, ":faction_id"),
+		(str_store_faction_name, s9, ":player_faction_id"),
+		(server_add_message_to_log, "str_log_capture_secondary"),
+		#End
       (try_end),
     (else_try), # as lord, giving away an owned castle using the other faction's banner
       (eq, ":completed", 1),
@@ -5893,6 +6191,9 @@ scripts.extend([
           (multiplayer_is_server),
           (val_sub, ":chest_gold", ":gold_requested"),
           (call_script, "script_player_adjust_gold", ":player_id", ":gold_requested", 1),
+		  #Log with from money chest
+		  (call_script, "script_cf_log_money_chest_withdraw", ":player_id", ":instance_id", ":gold_value"),
+		  #End
         (try_end),
         (assign, ":fail_message", 0),
       (else_try),
@@ -5902,6 +6203,10 @@ scripts.extend([
         (try_begin),
           (multiplayer_is_server),
           (call_script, "script_player_adjust_gold", ":player_id", ":gold_value", -1),
+          #Log with from money chest
+          #DISABLED
+          #(call_script, "script_cf_log_money_chest_deposit", ":player_id", ":instance_id", ":gold_value"),
+          #End
           (val_add, ":chest_gold", ":gold_value"),
           (val_clamp, ":chest_gold", 0, max_possible_gold),
         (try_end),
@@ -5946,6 +6251,12 @@ scripts.extend([
     (set_spawn_position, pos1),
     (spawn_item, "itm_money_bag", 0, "$g_spawn_item_prune_time"),
     (scene_prop_set_slot, reg0, slot_scene_prop_gold_value, ":gold_amount"),
+	
+    #Log spawn money bag
+    (str_store_player_username, s11, ":player_id"),
+    (assign, reg31, ":gold_amount"),
+    (server_add_message_to_log, "str_log_spawn_money_bag"),
+    #End
     ]),
 
   ("cf_pop_agent_money_bag_value", # remove the last added money bag amount from the agent's slots
@@ -5971,13 +6282,27 @@ scripts.extend([
     (agent_get_player_id, ":player_id", ":agent_id"),
     (player_is_active, ":player_id"),
     (call_script, "script_player_adjust_gold", ":player_id", ":gold_value", 1),
+	
+    #Log money bag use
+    (str_store_player_username, s11, ":player_id"),
+    (assign, reg31, ":gold_value"),
+    (server_add_message_to_log, "str_log_use_money_bag"),
+    #End
     ]),
 
   ("check_on_item_picked_up", # server: extra checks when an agent picks up an item
    [(store_script_param, ":agent_id", 1), # must be valid
     (store_script_param, ":item_id", 2),
     (store_script_param, ":instance_id", 3), # must be the item instance's id
-
+    #Log item pick ups
+	(try_begin),
+	  (agent_get_player_id, ":player_id", ":agent_id"),
+	  (str_store_player_username, s11, ":player_id"),
+	  (str_store_item_name, s12, ":item_id"),
+	  (assign, reg31, ":instance_id"),
+	  (server_add_message_to_log, "str_log_pick_up_item"),
+	(try_end),
+	#End
     (try_begin),
       (eq, ":item_id", "itm_money_bag"), # since the item instance will be removed immediately aftewards, transfer the contents to an agent slot
       (neq, "$g_game_type", "mt_no_money"),
@@ -6003,7 +6328,16 @@ scripts.extend([
     (store_script_param, ":item_id", 2),
     (store_script_param, ":instance_id", 3), # must be the dropped item instance's id
     (store_script_param, ":agent_died", 4), # set to 1 for dropping when the agent dies
-
+    #Log item drops
+	(try_begin),
+	  (neq, ":agent_died", 1),
+	  (agent_get_player_id, ":player_id", ":agent_id"),
+	  (str_store_player_username, s11, ":player_id"),
+	  (str_store_item_name, s12, ":item_id"),
+	  (assign, reg31, ":instance_id"),
+	  (server_add_message_to_log, "str_log_drop_item"),
+	(try_end),
+	#End
     (set_fixed_point_multiplier, 100),
     (try_begin), # only check for items over a certain id, near the end of the list
       (le, ":item_id", "itm_lock_pick"),
@@ -8288,6 +8622,9 @@ scripts.extend([
       (prop_instance_animate_to_position, ":instance_id", pos2, 400),
       (agent_play_sound, ":agent_id", "snd_man_grunt"),
     (try_end),
+    #Log door hits
+    (call_script, "script_cf_log_hit_door", ":instance_id", ":agent_id", ":hit_damage", ":result"), 
+    #End
     ]),
 
   ("destroy_door", # server: rotate destructible doors flat on the ground after destroyed
@@ -8459,6 +8796,9 @@ scripts.extend([
       (scene_prop_set_slot, ":instance_id", slot_scene_prop_unlocked, 0),
       (agent_play_sound, ":agent_id", "snd_repair_wood"),
     (try_end),
+    #Log door hits
+    (call_script, "script_cf_log_hit_chest", ":instance_id", ":agent_id", ":hit_damage", ":result"), 
+    #End
     ]),
 
   ("cf_pick_chest_lock", # server: handle players trying to pick the lock of a storage chest
@@ -9125,6 +9465,19 @@ scripts.extend([
           (store_add, ":from_equip_slot", ":from_slot", ek_item_0 - slot_scene_prop_inventory_item_0),
           (agent_get_item_slot, ":equip_item_id", ":agent_id", ":from_equip_slot"),
           (eq, ":equip_item_id", ":item_id"),
+		  #Log putting items in a container
+          (str_store_player_username, s11, ":player_id"),
+          (str_store_item_name, s12, ":item_id"),
+          (assign, reg31, ":instance_id"),
+		  (try_begin),
+            (call_script, "script_scene_prop_get_owning_faction", ":instance_id"),
+			(ge, reg1, 0),
+            (str_store_faction_name, s10, reg0),
+            (server_add_message_to_log, "str_log_put_item_in_finventory"),
+          (else_try),
+            (server_add_message_to_log, "str_log_put_item_in_inventory"),
+		  (try_end),
+      #End
 		  (neq, ":equip_item_id", "itm_money_bag"),#Dont allow players to put money bags in containers
           (try_begin),
             (is_between, ":item_type", itp_type_head_armor, itp_type_hand_armor + 1),
@@ -9143,6 +9496,19 @@ scripts.extend([
           (try_end),
         (else_try), # removing items from the scene prop
           (lt, ":from_slot", slot_scene_prop_inventory_item_0),
+		  #Log taking items from a container
+          (str_store_player_username, s11, ":player_id"),
+          (str_store_item_name, s12, ":item_id"),
+          (assign, reg31, ":instance_id"),
+		  (try_begin),
+            (call_script, "script_scene_prop_get_owning_faction", ":instance_id"),
+			(ge, reg1, 0),
+            (str_store_faction_name, s10, reg0),
+            (server_add_message_to_log, "str_log_take_item_from_finventory"),
+          (else_try),
+            (server_add_message_to_log, "str_log_take_item_from_inventory"),
+		  (try_end),
+          #End
           (scene_prop_slot_eq, ":instance_id", ":from_slot", ":item_id"),
           (scene_prop_set_slot, ":instance_id", ":from_slot", 0),
           (store_add, ":neg_from_mod_slot", ":from_slot", slot_scene_prop_inventory_mod_begin - slot_scene_prop_inventory_begin),
@@ -9291,6 +9657,11 @@ scripts.extend([
     (try_begin),
       (eq, ":action", 1),
       (call_script, "script_cf_use_inventory", ":agent_id", ":instance_id", 0),
+      #Log looking into carts
+      (str_store_player_username, s11, ":player_id"),
+	  (assign, reg31, ":instance_id"),
+	  (server_add_message_to_log, "str_log_use_cart"),
+      #End
     (else_try),
       (eq, ":action", -1),
       (scene_prop_get_slot, ":required_horse", ":instance_id", slot_scene_prop_required_horse),
@@ -9354,6 +9725,9 @@ scripts.extend([
         (scene_prop_set_slot, ":instance_id", slot_scene_prop_attached_to_agent, ":attach_agent_id"),
         (assign, ":new_attached_scene_prop", ":instance_id"),
         (agent_set_attached_scene_prop, ":attach_agent_id", ":new_attached_scene_prop"),
+        #Phoenix
+        (call_script, "script_cf_log_attach_cart", ":attach_agent_id", ":instance_id", ":agent_id"),
+        #End
       (try_end),
     (else_try),
       (gt, ":attached_scene_prop", -1),
@@ -9366,6 +9740,9 @@ scripts.extend([
       (assign, ":new_attached_scene_prop", -1),
       (agent_set_attached_scene_prop, ":attach_agent_id", ":new_attached_scene_prop"),
       (call_script, "script_cart_set_detached_position", ":instance_id"),
+      #Phoenix
+      (call_script, "script_cf_log_detach_cart", ":attach_agent_id", ":instance_id", ":agent_id"),
+      #End
     (else_try),
       (assign, ":fail", 1),
     (try_end),
@@ -9517,11 +9894,18 @@ scripts.extend([
           (lt, ":health_percent", ":healing_limit"),
           (store_mul, ":healing", ":skill_level", 2),
           (val_add, ":healing", 2),
+          #Log healing
+          (call_script, "script_cf_log_heal", ":attacked_agent_id", ":attacker_agent_id", ":healing", ":health_percent", ":healing_limit"),
+          #End
           (val_add, ":health_percent", ":healing"),
           (val_min, ":health_percent", ":healing_limit"),
           (agent_set_hit_points, ":attacked_agent_id", ":health_percent", 0),
         (try_end),
         (assign, ":damage_result", 0),
+	  (else_try),
+        #Log it as a normal hit because attacker's class can't heal
+        (call_script, "script_cf_log_hit", ":attacked_agent_id", ":attacker_agent_id", ":damage_dealt", reg0, 1),
+        #End
       (try_end),
     (else_try),
       (eq, ":weapon_item_id", "itm_admin_scalpel"),
@@ -11429,6 +11813,15 @@ scripts.extend([
         (particle_system_burst, "psys_dummy_straw", pos1, 10),
         (call_script, "script_hit_scene_prop_play_sound", ":agent_id", ":instance_id", "snd_cut_wood"),
       (try_end),
+      #Log ship hits
+      (try_begin),
+        (gt, ":agent_id", -1),
+        (agent_get_player_id, ":player_id", ":agent_id"),
+        (str_store_player_username, s11, ":player_id"),
+        (assign, reg31, ":instance_id"),
+        (server_add_message_to_log, "str_log_hit_ship"),
+      (try_end),
+      #End
     (else_try),
       (eq, ":result", repairable_destroyed),
       (prop_instance_get_position, pos20, ":instance_id"),

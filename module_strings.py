@@ -653,8 +653,10 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("s0_joined_the_s1", "{s0} joined {s1}."),
   ("must_leave_s1_first", "You must leave {s1} first."),
   ("not_a_member_of_s1", "You are not a member of {s1}."),
-  ("s0_has_dismounted_a_s1", "{s0} has dismounted a {s1}."),
-  ("s0_has_mounted_a_s1", "{s0} has mounted a {s1}."),
+  #Alter mount/dismount logs to show the agent_id of the mount
+  ("s0_has_dismounted_a_s1", "{s0} has dismounted a {s1} (AID: {reg31})."),
+  ("s0_has_mounted_a_s1", "{s0} has mounted a {s1} (AID: {reg31})."),
+  #End
   ("s1_captured_s2", "{s1} have captured {s2}!"),
   ("your_faction_not_hostile_to_s1", "Your faction is not hostile to the {s1}."),
   ("your_faction_not_captured_required_points", "Your faction has not captured the required secondary points."),
@@ -961,11 +963,46 @@ Poisonous herbs can also sometimes be found, which are then applied to the blade
   ("castle_name_66", "Brunwud Castle"),
   ("castle_names_end", "Invalid Castle Name"),
 
+  #Log formats
+  ("attach_to_himself_log", "{s11} attached a cart to himself (IID: {reg31})."),
+  ("attach_to_horse_log", "{s11} attached a cart to his horse (IID: {reg31})."),
+  ("detach_from_himself_log", "{s11} detached a cart from himself (IID: {reg31})."),
+  ("detach_from_horse_log", "{s11} detached a cart from his horse (IID: {reg31})."),
+  ("log_use_money_bag", "{s11} used pouch containing {reg31} gold."),
+  ("log_spawn_money_bag", "{s11} spawned pouch containing {reg31} gold (IID: {reg0})."),
+  ("log_money_chest_withdraw", "{s11} withdrew {reg31} gold from chest belonging to {s12}."),
+  ("log_money_chest_deposit", "{s11} put {reg31} money into chest belonging to {s12}."),
+  ("log_hit_door", "{s11} hit door of {s12} dealing {reg31} damage (IID: {reg32})."),
+  ("log_repair_door", "{s11} repaired door of {s12} for {reg31} points (IID: {reg32})."),
+  ("log_hit_chest", "{s11} hit chest of {s12} dealing {reg31} damage (IID: {reg32})."),
+  ("log_repair_chest", "{s11} repaired chest of {s12} for {reg31} points (IID: {reg32})."),
+  ("log_hit_ship", "{s11} hit a ship (IID: {reg31})."),
+  ("log_drop_item", "{s11} dropped {s12}(IID: {reg31}) on the ground."),
+  ("log_pick_up_item", "{s11} picked up {s12}(IID: {reg31}) from the ground."),
+  ("log_put_item_in_inventory", "{s11} put {s12} into an inventory (IID: {reg31})."),
+  ("log_put_item_in_finventory", "{s11} put {s12} into an inventory of {s10} (IID: {reg31})."),
+  ("log_take_item_from_inventory", "{s11} took {s12} from an inventory (IID: {reg31})."),
+  ("log_take_item_from_finventory", "{s11} took {s12} from an inventory of {s10} (IID: {reg31})."),
+  ("log_hit_player", "{s11} attacked {s12} with {s10} dealing {reg31} damage."),
+  ("log_hit_phorse", "{s11} attacked Horse ({s12}) with {s10} dealing {reg31} damage."),
+  ("log_hit_animal", "{s11} attacked Horse ({s12}) with {s10} dealing {reg31} damage (AID: {reg32})."),
+  ("log_bump", "Horse ({s11}) attacked {s12} dealing {reg31} damage."),
+  ("log_heal_player", "{s11} healed {s12} by {reg31} HP."),
+  ("log_heal_phorse", "{s11} healed Horse ({s12}) by {reg31} HP."),
+  ("log_heal_animal", "{s11} healed Horse ({s12}) by {reg31} HP."),
+  ("log_loot_corpse", "{s11} looted a corpse ({s12}, IID: {reg31})."),
+  ("log_use_cart", "{s11} looked into a cart (IID: {reg31})."),
+  ("log_capture", "{s9} ({s10}) has captured {s11} from {s12}."),
+  ("log_capture_secondary", "{s9} ({s10}) has captured a secondary point of {s11} from {s12}."),
+  #End
+
   #Shield Log
-  ("shield_hit_log", "{s12} hit {s11}'s shield by {reg31} damage."),
+  ("shield_hit_log", "{s12} hit {s11}'s shield dealing {reg31} damage."),
+  
   ("log_equipment", "{s11} had these items: H:{reg31}, B:{reg32}, G:{reg33}, F:{reg34}, HO:{reg39}, 1:{reg35}, 2:{reg36}, 3:{reg37}, 4:{reg38}"),
   ("s1_kicked_s2_from_s3", "{s1} kicked {s2} from {s3}."),
   ("s1_outlawed_s2_from_s3", "{s1} outlawed {s2} from {s3}."),
   ("s2_kicked_you_from_the_faction", "{s2} kicked you from the faction!"),
   ("s2_outlawed_you_from_the_faction", "{s2} outlawed you from the faction!"),
+
 ]
