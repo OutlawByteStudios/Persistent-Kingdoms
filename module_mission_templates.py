@@ -238,6 +238,7 @@ agent_spawn = (ti_on_agent_spawn, 0, 0, [], # server and clients: set up new age
         (player_get_slot, ":faction_id", ":player_id", slot_player_faction_id),
         (faction_slot_eq, ":faction_id", slot_faction_is_active, 0),
         (call_script, "script_change_faction", ":player_id", "fac_commoners", change_faction_type_no_respawn),
+        (call_script, "script_player_set_worse_respawn_troop", ":player_id", "trp_peasant"),
     (try_end),
     ])
 
