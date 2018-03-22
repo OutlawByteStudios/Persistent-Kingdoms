@@ -278,6 +278,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("remove_stray_horses", "Remove stray horses"),
   ("teleport_to_ships", "Teleport to ships"),
   ("reset_sunken_ships", "Reset sunken ships"),
+  ("join_faction", "Join faction"),
   ("lock_current_faction", "Lock current faction"),
   ("unlock_current_faction", "Unlock current faction"),
   ("quit", "Quit"),
@@ -330,6 +331,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
 
   ("log_admin_target_player", "Admin {s0} ({reg0}) {s3} player {s1} ({reg1})."),
   ("log_admin_target_self", "Admin {s0} ({reg0}) {s3}."),
+  ("log_admin_target_faction", "Admin {s0} ({reg0}) {s3} {s4}."),
   ("log_admin_kick", "kicked"),
   ("log_admin_ban_temp", "temporarily banned"),
   ("log_admin_ban_perm", "permanently banned"),
@@ -350,6 +352,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("log_admin_remove_stray_horses", "removed stray horses"),
   ("log_admin_teleport_to_ships", "teleported to the next ship"),
   ("log_admin_reset_ships", "reset sunken ships"),
+  ("log_admin_join_faction", "joined"),
   ("log_admin_lock_faction", "{s4}locked faction {s5}"),
   ("log_admin_cheat_money", "took {reg0} gold"),
   ("log_admin_cheat_item", "took item '{s4}'"),
