@@ -2445,6 +2445,13 @@ scripts.extend([
       (val_clamp, ":value", 0, 10001),
       (assign, "$g_combat_gold_multiplier", ":value"),
     (else_try),
+      (eq, ":command", command_get_round_gold_bonus),
+      (assign, ":value", "$g_round_gold_bonus"),
+    (else_try),
+      (eq, ":command", command_set_round_gold_bonus),
+      (val_clamp, ":value", 0, 10001),
+      (assign, "$g_round_gold_bonus", ":value"),
+    (else_try),
       (eq, ":command", command_get_force_default_armor),
       (assign, ":value", "$g_force_weather"),
     (else_try),
@@ -4222,7 +4229,9 @@ scripts.extend([
         (player_is_active, ":killer_player_id"),
         (player_get_slot, ":dead_faction_id", ":dead_player_id", slot_player_faction_id),
         (player_get_slot, ":killer_faction_id", ":killer_player_id", slot_player_faction_id),
-        (try_begin),
+
+
+        (try_begin), # calculate score.
           (lt, ":dead_faction_id", castle_factions_begin),
           (lt, ":killer_faction_id", castle_factions_begin),
           (assign, ":dead_player_add_score", -1),
@@ -4258,7 +4267,9 @@ scripts.extend([
       (assign, ":dead_player_add_score", 0),
       (assign, ":killer_player_add_score", 0),
     (try_end),
-    (try_begin),
+
+
+    (try_begin), # update scores
       (le, ":dead_player_add_score", -1),
       (player_get_score, ":dead_player_score", ":dead_player_id"),
       (val_add, ":dead_player_score", ":dead_player_add_score"),
@@ -4266,11 +4277,6 @@ scripts.extend([
       (player_get_death_count, ":dead_player_deaths", ":dead_player_id"),
       (val_add, ":dead_player_deaths", 1),
       (player_set_death_count, ":dead_player_id", ":dead_player_deaths"),
-      (try_begin),
-        (multiplayer_is_server),
-        (neq, "$g_game_type", "mt_no_money"),
-        (call_script, "script_player_drop_loot", ":dead_player_id"),
-      (try_end),
     (try_end),
     (try_begin),
       (neq, ":killer_player_add_score", 0),
@@ -4282,6 +4288,8 @@ scripts.extend([
       (val_add, ":killer_player_kills", 1),
       (player_set_kill_count, ":killer_player_id", ":killer_player_kills"),
     (try_end),
+
+
     (try_begin),
       (multiplayer_is_server),
       (try_begin),
@@ -4291,6 +4299,19 @@ scripts.extend([
         (player_is_active, ":killer_player_id"),
         (player_slot_eq, ":killer_player_id", slot_player_faction_id, "fac_outlaws"),
         (call_script, "script_player_change_check_outlaw_rating", ":killer_player_id", outlaw_rating_for_kill, 0),
+      (try_end),
+      (try_begin),
+          (this_or_next|neq, ":dead_faction_id", ":killer_faction_id"),
+          (this_or_next|eq, ":dead_faction_id", "fac_commoners"),
+          (eq, ":dead_faction_id", "fac_outlaws"),
+
+          (neq, "$g_game_type", "mt_no_money"),
+          (try_begin),
+            (eq, ":dead_faction_id", "fac_commoners"),
+            (call_script, "script_player_drop_loot", ":dead_player_id", 1),
+          (else_try),
+            (call_script, "script_player_drop_loot", ":dead_player_id", 0),
+          (try_end),
       (try_end),
     (else_try),
       (agent_is_active, ":killer_agent_id"),
@@ -4339,6 +4360,7 @@ scripts.extend([
 
   ("player_drop_loot", # server: drop a loot money bag based on amount carried and server settings
    [(store_script_param, ":player_id", 1), # must be valid
+    (store_script_param, ":lower_drop", 2),
 
     (try_begin),
       (neq, "$g_game_type", "mt_no_money"),
@@ -4346,12 +4368,20 @@ scripts.extend([
       (gt, ":gold", 0),
       (try_begin),
         (neq, "$g_game_type", "mt_permanent_death"),
-        (store_random_in_range, ":loot_multiplier", 10, 21),
-        (store_mul, ":gold_loot", ":loot_multiplier", "$g_combat_gold_multiplier"),
-        (val_min, ":gold_loot", 10000),
+        (try_begin),
+            (eq, ":lower_drop", 1),
+            (assign, ":gold_loot", "$g_combat_gold_multiplier"),
+        (else_try),
+            (assign, ":gold_loot", "$g_round_gold_bonus"),
+        (try_end),
+        (val_min, ":gold_loot", 100), # ensure % is within 0-100 range.
         (val_mul, ":gold_loot", ":gold"),
-        (val_div, ":gold_loot", 10000),
+        (val_div, ":gold_loot", 100),
         (val_sub, ":gold", ":gold_loot"),
+        (assign, reg0, ":gold"),
+        (server_add_message_to_log, "@{reg0}"),
+        (assign, reg0, ":gold_loot"),
+        (server_add_message_to_log, "@{reg0}"),
       (else_try),
         (assign, ":gold_loot", ":gold"),
         (assign, ":gold", 0),
