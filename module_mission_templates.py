@@ -233,6 +233,12 @@ agent_spawn = (ti_on_agent_spawn, 0, 0, [], # server and clients: set up new age
 	(player_set_slot, ":player_id", slot_player_first_spawn_occured, 1),
 	(call_script, "script_cf_log_equipment", ":player_id"),
 	#End
+
+    (try_begin),
+        (player_get_slot, ":faction_id", ":player_id", slot_player_faction_id),
+        (faction_slot_eq, ":faction_id", slot_faction_is_active, 0),
+        (call_script, "script_change_faction", ":player_id", "fac_commoners", change_faction_type_no_respawn),
+    (try_end),
     ])
 
 agent_killed = (ti_on_agent_killed_or_wounded, 0, 0, [], # server and clients: handle messages, score, loot, and more after agents die
