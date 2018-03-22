@@ -1879,7 +1879,7 @@ scripts.extend([
             (try_end),
           (try_end),
 
-          (multiplayer_send_2_int_to_player, ":sender_player_id", server_event_preset_message, "str_you_reveal_money_pouch_to_near_by_players", preset_message_player|preset_message_chat_log|preset_message_yellow),
+          (multiplayer_send_2_int_to_player, ":sender_player_id", server_event_preset_message, "str_you_reveal_money_pouch_to_near_by_players", preset_message_chat_log|preset_message_yellow),
           (str_store_player_username, s1, ":sender_player_id"),
           (assign, reg1, ":approximate_gold"),
 
