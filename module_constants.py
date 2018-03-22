@@ -76,16 +76,17 @@ slot_player_admin_no_override_poll    = 54
 slot_player_admin_no_all_items        = 55
 slot_player_admin_no_mute             = 56
 slot_player_admin_no_animals          = 57
-slot_player_admin_no_factions         = 58
-slot_player_admin_end                 = 59
+slot_player_admin_no_join_factions    = 58
+slot_player_admin_no_factions         = 59
+slot_player_admin_end                 = 60
 
-slot_player_freeze_instance_id        = 60 #Needed for removing freeze walls on disconnects
+slot_player_freeze_instance_id        = 61 #Needed for removing freeze walls on disconnects
 
-slot_player_commit_suicide_time       = 59
+slot_player_commit_suicide_time       = 62
 suicide_delay                         = 15 # suicide delay time
 
 #This slot is for the equipment logs
-slot_player_first_spawn_occured       = 60
+slot_player_first_spawn_occured       = 63
 #End
 
 ########################################################

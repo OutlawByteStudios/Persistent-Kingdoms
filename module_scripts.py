@@ -5587,6 +5587,7 @@ scripts.extend([
    [(store_script_param, ":player_id", 1), # must be valid
     (store_script_param, ":faction_id", 2),
     (store_script_param, ":change_faction_type", 3), # constants starting with change_faction_type_
+    (store_script_param, ":no_log", 3),
 
     (try_begin),
       (neg|player_slot_eq, ":player_id", slot_player_faction_id, ":faction_id"),
@@ -5613,6 +5614,8 @@ scripts.extend([
       (player_set_slot, ":player_id", slot_player_has_faction_item_key, 0),
       (player_set_slot, ":player_id", slot_player_can_faction_announce, 0),
       (str_store_player_username, s0, ":player_id"),
+
+      (neq, ":no_log", 1),
       (try_begin),
         (eq, ":change_faction_type", change_faction_type_outlawed),
         (server_add_message_to_log, "str_s0_has_been_outlawed"),
@@ -13080,8 +13083,19 @@ scripts.extend([
     (store_script_param, ":target_player_id", 3), # either the target player id or 0 for no target
 
     (player_is_admin, ":admin_player_id"),
-    (this_or_next|eq, ":target_player_id", 0),
-    (player_is_active, ":target_player_id"),
+
+    (assign,":target_is_player", 1),
+    (try_begin),
+        (eq, ":admin_action", admin_action_join_faction),
+        (assign,":target_is_player", 0),
+    (try_end),
+
+    (try_begin),
+        (eq, ":target_is_player", 1),
+        (this_or_next|eq, ":target_player_id", 0),
+        (player_is_active, ":target_player_id"),
+    (try_end),
+
     (try_begin),
       (eq, ":admin_action", admin_action_kick_player),
       (player_slot_eq, ":admin_player_id", slot_player_admin_no_kick, 0),
@@ -13106,6 +13120,7 @@ scripts.extend([
       (try_end),
       (player_set_is_muted, ":target_player_id", ":is_muted", 1),
     (else_try),
+      (eq, ":target_is_player", 1),
       (player_get_agent_id, ":admin_agent_id", ":admin_player_id"),
       (neq, ":target_player_id", 0),
       (player_get_agent_id, ":target_agent_id", ":target_player_id"),
@@ -13421,6 +13436,9 @@ scripts.extend([
         (try_end),
       (try_end),
     (else_try),
+      (eq, ":admin_action", admin_action_join_faction),
+      (call_script, "script_change_faction", ":admin_player_id", ":target_player_id", change_faction_type_no_respawn, 1),
+    (else_try),
       (eq, ":admin_action", admin_action_lock_faction),
       (player_slot_eq, ":admin_player_id", slot_player_admin_no_factions, 0),
       (player_get_slot, ":faction_id", ":admin_player_id", slot_player_faction_id),
@@ -13450,6 +13468,10 @@ scripts.extend([
     (player_get_unique_id, reg0, ":admin_player_id"),
     (str_store_player_username, s0, ":admin_player_id"),
     (try_begin),
+        (eq, ":admin_action", admin_action_join_faction), # log for faction related admin action.
+        (str_store_faction_name, s4, ":target_player_id"),
+        (assign, ":log_string_id", "str_log_admin_target_faction"),
+    (else_try),
       (neq, ":target_player_id", 0),
       (neq, ":target_player_id", ":admin_player_id"),
       (player_get_unique_id, reg1, ":target_player_id"),
