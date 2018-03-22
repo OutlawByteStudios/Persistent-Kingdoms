@@ -1879,7 +1879,7 @@ scripts.extend([
             (try_end),
           (try_end),
 
-          (multiplayer_send_2_int_to_player, ":sender_player_id", server_event_preset_message, "str_you_reveal_money_pouch_to_near_by_players", preset_message_player|preset_message_chat_log|preset_message_yellow),
+          (multiplayer_send_2_int_to_player, ":sender_player_id", server_event_preset_message, "str_you_reveal_money_pouch_to_near_by_players", preset_message_chat_log|preset_message_yellow),
           (str_store_player_username, s1, ":sender_player_id"),
           (assign, reg1, ":approximate_gold"),
 
@@ -4069,10 +4069,6 @@ scripts.extend([
       (troop_get_slot, ":troop_id", "trp_inactive_players_array", ":temp_index"),
       (store_add, ":temp_index", ":inactive_index", player_array_faction_id),
       (troop_get_slot, ":faction_id", "trp_inactive_players_array", ":temp_index"),
-      (try_begin),
-        (faction_slot_eq, ":faction_id", slot_faction_is_active, 0),
-        (assign, ":faction_id", "fac_commoners"),
-      (try_end),
       (store_add, ":temp_index", ":inactive_index", player_array_gold_value),
       (troop_get_slot, ":gold_value", "trp_inactive_players_array", ":temp_index"),
       (store_add, ":temp_index", ":inactive_index", player_array_outlaw_rating),

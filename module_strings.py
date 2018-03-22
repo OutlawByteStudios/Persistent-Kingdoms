@@ -653,6 +653,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("s0_joined_the_s1", "{s0} joined {s1}."),
   ("must_leave_s1_first", "You must leave {s1} first."),
   ("not_a_member_of_s1", "You are not a member of {s1}."),
+  ("inactive_faction_change", "The faction you were in no longer exists, so you have been moved to commoner. Join another faction to avoid losing your class!"),
   #Alter mount/dismount logs to show the agent_id of the mount
   ("s0_has_dismounted_a_s1", "{s0} has dismounted a {s1} (AID: {reg31})."),
   ("s0_has_mounted_a_s1", "{s0} has mounted a {s1} (AID: {reg31})."),
