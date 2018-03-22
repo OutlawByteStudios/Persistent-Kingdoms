@@ -4378,8 +4378,6 @@ scripts.extend([
         (val_mul, ":gold_loot", ":gold"),
         (val_div, ":gold_loot", 100),
         (val_sub, ":gold", ":gold_loot"),
-        (assign, reg0, ":gold"),
-        (assign, reg0, ":gold_loot"),
       (else_try),
         (assign, ":gold_loot", ":gold"),
         (assign, ":gold", 0),
