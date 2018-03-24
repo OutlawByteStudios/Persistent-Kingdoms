@@ -4749,6 +4749,8 @@ presentations.extend([
           (agent_is_active, ":my_agent_id"),
           (agent_is_alive, ":my_agent_id"),
           (assign, ":error_string_id", "str_no_target_selected"),
+          (call_script, "script_select_target_agent"), #Ease the process of revealing money pouch
+          (gt, "$g_target_agent_id", -1),
           (agent_is_active, "$g_target_agent_id"),
           (agent_is_alive, "$g_target_agent_id"),
           (agent_slot_eq, "$g_target_agent_id", slot_agent_is_targeted, 1),
