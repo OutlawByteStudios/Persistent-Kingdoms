@@ -122,7 +122,7 @@ scripts.extend([
         (agent_get_rider, ":rider_id", ":attacker_agent_id"),
         (try_begin),
           (gt, ":rider_id", 0),#If a player rides the horse
-          (agent_get_player_id, ":attacker_player_id", ":attacker_agent_id"),
+          (agent_get_player_id, ":attacker_player_id", ":rider_id"),
           (str_store_player_username, s11, ":attacker_player_id"), 
         (else_try),#Else, the horse or animal is Rogue (a weeabo)
           (agent_get_item_id, ":animal_item_id", ":attacker_agent_id"),
