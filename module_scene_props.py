@@ -3095,6 +3095,7 @@ scene_props = [
 
   ("pw_scene_day_time",sokf_invisible,"barrier_box","0", []),
   ("pw_scene_cloud_haze",sokf_invisible,"barrier_box","0", []),
+  ("pw_scene_skybox",sokf_invisible,"barrier_box","0", []),
   ("pw_scene_ambient_sound",sokf_invisible,"barrier_cone","0",
    [(ti_on_scene_prop_init,
      [(store_trigger_param_1, ":instance_id"),
