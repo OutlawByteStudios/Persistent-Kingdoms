@@ -6267,6 +6267,7 @@ scripts.extend([
           (neg|multiplayer_is_server),
         (else_try),
           (scene_prop_slot_eq, ":instance_id", slot_scene_prop_unlocked, 1),
+          (multiplayer_send_2_int_to_player, ":player_id", server_event_preset_message, "str_chest_appears_lockpicked",preset_message_error),
         (else_try),
           (player_slot_eq, ":player_id", slot_player_faction_id, reg0),
           (player_slot_eq, ":player_id", slot_player_has_faction_money_key, 1),
@@ -6296,10 +6297,6 @@ scripts.extend([
         (try_begin),
           (multiplayer_is_server),
           (call_script, "script_player_adjust_gold", ":player_id", ":gold_value", -1),
-          #Log with from money chest
-          #DISABLED
-          #(call_script, "script_cf_log_money_chest_deposit", ":player_id", ":instance_id", ":gold_value"),
-          #End
           (val_add, ":chest_gold", ":gold_value"),
           (val_clamp, ":chest_gold", 0, max_possible_gold),
         (try_end),
@@ -9384,6 +9381,7 @@ scripts.extend([
       (scene_prop_slot_eq, ":instance_id", slot_scene_prop_full_hit_points, 0),
     (else_try),
       (scene_prop_slot_eq, ":instance_id", slot_scene_prop_unlocked, 1),
+      (multiplayer_send_2_int_to_player, ":player_id", server_event_preset_message, "str_chest_appears_lockpicked", preset_message_error),
     (else_try),
       (call_script, "script_scene_prop_get_owning_faction", ":instance_id"),
       (eq, reg1, -1),

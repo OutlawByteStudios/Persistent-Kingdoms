@@ -640,6 +640,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("no_money_chest_nearby", "No money chests nearby."),
   ("cant_open_money_chest", "You can't open the money chest."),
   ("not_enough_money_in_chest", "Not enough money in the chest."),
+  ("chest_appears_lockpicked", "This chest appears to be lockpicked."),
   ("gold_reg2", "Gold: {reg2}"),
   ("buy_banner_faction", "Buy a banner for the {s1}"),
   ("stock_count_reg0", "Stock count: {reg0}"),
