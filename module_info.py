@@ -1,5 +1,5 @@
 # set this to your module directory, using forward slashes (/) not backward slashes (\):
-export_dir = "PW_4.5"
+export_dir = "PK"
 
 import os
 import sys

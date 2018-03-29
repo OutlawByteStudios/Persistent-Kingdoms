@@ -1,0 +1,3548 @@
+itemsfile version 3
+767
+ itm_no_item INVALID_ITEM INVALID_ITEM 1  invalid_item 0  12599298 9223372036879941647 0 0 1.000000 100 0 0 0 0 1024 1 0 1 0 513 513
+ 0
+0
+
+ itm_no_head INVALID_HEAD INVALID_HEAD 1  invalid_item 0  12 0 0 0 1.000000 100 1 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_no_body INVALID_BODY INVALID_BODY 1  invalid_item 0  13 0 0 0 1.000000 100 0 1 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_no_foot INVALID_FOOT INVALID_FOOT 1  invalid_item 0  14 0 0 0 1.000000 100 0 0 1 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_no_hand INVALID_HAND INVALID_HAND 1  invalid_item 0  15 0 0 0 1.000000 100 0 1 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_no_horse INVALID_HORSE INVALID_HORSE 1  invalid_item 0  1 0 0 0 0.000000 100 0 1 0 0 1 40 10 1 0 1 0
+ 0
+0
+
+ itm_tattered_headcloth Tattered_Headcloth Tattered_Headcloth 1  headcloth_a_new 0  12 0 14 123731968 0.500000 100 3 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270505 1224979098644774912 1224979098644774913 
+
+ itm_ragged_woolen_cap Ragged_Woolen_Cap Ragged_Woolen_Cap 1  woolen_cap_new 0  12 0 16 123731968 1.000000 100 4 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270506 1224979098644774912 1224979098644774913 
+
+ itm_stained_felt_hat_b Stained_Felt_Hat Stained_Felt_Hat 1  felt_hat_b_new 0  12 0 15 123731968 1.000000 100 4 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270504 1224979098644774912 1224979098644774913 
+
+ itm_straw_hat Straw_Hat Straw_Hat 1  straw_hat_new 0  12 0 29 123731968 1.000000 100 2 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_head_wrappings Head_Wrapping Head_Wrapping 1  head_wrapping 0  1073741836 0 26 123731968 0.250000 100 3 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_headcloth Headcloth Headcloth 1  headcloth_a_new 0  12 0 80 123731968 0.500000 100 4 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270505 1224979098644774912 1224979098644774913 
+
+ itm_woolen_cap Woolen_Cap Woolen_Cap 1  woolen_cap_new 0  12 0 62 123731968 1.000000 100 6 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270506 1224979098644774912 1224979098644774913 
+
+ itm_sarranid_felt_hat Felt_Hat Felt_Hat 1  sar_helmet3 0  12 0 55 123731968 1.000000 100 5 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_sarranid_felt_head_cloth Head_Cloth Head_Cloth 1  common_tulbent 0  3852 0 221 17303601152 0.500000 100 4 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_sarranid_felt_head_cloth_b Head_Cloth Head_Cloth 1  common_tulbent_b 0  3852 0 225 17303601152 0.500000 100 4 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_bride_crown Crown_of_Flowers Crown_of_Flowers 1  bride_crown 0  16781068 0 302 17303601152 0.500000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_khergit_lady_hat Blue_Head_Scarf Blue_Head_Scarf 1  khergit_lady_hat 0  1090519052 0 239 17303601152 0.500000 100 1 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_khergit_lady_hat_b Leather_Head_Scarf Leather_Head_Scarf 1  khergit_lady_hat_b 0  1090519052 0 267 17303601152 0.500000 100 4 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_sarranid_head_cloth Lady_Head_Cloth Lady_Head_Cloth 1  tulbent 0  16781068 0 321 17303601152 0.500000 100 4 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_sarranid_head_cloth_b Lady_Head_Cloth Lady_Head_Cloth 1  tulbent_b 0  16781068 0 340 17303601152 0.500000 100 4 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_wimple_a Wimple Wimple 1  wimple_a_new 0  1073741836 0 230 17303601152 0.500000 100 4 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_wimple_b Wimple Wimple 1  wimple_b_new 0  1073741836 0 230 17303601152 0.500000 100 4 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_barbette Barbette Barbette 1  barbette_new 0  1073741836 0 403 17303601152 1.000000 100 8 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_arming_cap Arming_Cap Arming_Cap 1  arming_cap_a_new 0  12 0 78 123731968 1.000000 100 7 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270505 1224979098644774912 1224979098644774913 
+
+ itm_ladys_hood Woolen_Hood Woolen_Hood 1  ladys_hood_new 0  12 0 120 123731968 1.000000 100 8 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_fur_hat Fur_Hat Fur_Hat 1  fur_hat_a_new 0  12 0 110 123731968 0.500000 100 8 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_felt_hat Felt_Hat Felt_Hat 1  felt_hat_a_new 0  12 0 74 123731968 1.000000 100 8 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270504 1224979098644774912 1224979098644774913 
+
+ itm_felt_hat_b Felt_Hat Felt_Hat 1  felt_hat_b_new 0  12 0 85 123731968 1.000000 100 8 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270504 1224979098644774912 1224979098644774913 
+
+ itm_leather_cap Leather_Cap Leather_Cap 1  leather_cap_a_new 0  12 0 106 123731968 1.000000 100 10 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_common_hood Hood Hood 1  hood_new 0  12 0 129 123731968 1.000000 100 10 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270506 1224979098644774912 1224979098644774913 
+
+ itm_hood_b Hood Hood 1  hood_b 0  12 0 116 123731968 1.000000 100 10 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_hood_c Hood Hood 1  hood_c 0  12 0 124 123731968 1.000000 100 10 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_hood_d Hood Hood 1  hood_d 0  12 0 131 123731968 1.000000 100 10 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_nomad_cap Nomad_Cap Nomad_Cap 1  nomad_cap_a_new 0  12 0 272 123731968 2.250000 100 15 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_nomad_cap_b Nomad_Cap Nomad_Cap 1  nomad_cap_b_new 0  12 0 243 123731968 0.750000 100 13 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_black_hood Black_Hood Black_Hood 1  hood_black 0  12 0 143 123731968 2.000000 100 11 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_surgeon_coif Surgeon's_Coif Surgeon's_Coif 1  pw_surgeon_coif 0  12 0 182 123731968 1.500000 100 10 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_pilgrim_hood Pilgrim_Hood Pilgrim_Hood 1  pilgrim_hood 0  12 0 123 123731968 1.250000 100 11 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_priest_coif Priestly_Coif Priestly_Coif 1  pw_priest_coif 0  12 0 265 123731968 1.000000 100 10 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_padded_coif Padded_Coif Padded_Coif 1  padded_coif_a_new 0  12 0 116 123731968 1.000000 100 11 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270504 1224979098644774912 1224979098644774913 
+
+ itm_turban Turban Turban 1  tuareg_open 0  12 0 143 123731968 2.000000 100 11 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_leather_steppe_cap_a Steppe_Cap Steppe_Cap 1  leather_steppe_cap_a_new 0  12 0 203 123731968 1.000000 100 12 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_leather_steppe_cap_b Steppe_Cap Steppe_Cap 1  tattered_steppe_cap_b_new 0  12 0 234 123731968 1.000000 100 14 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_nordic_archer_helmet Leather_Helmet Leather_Helmet 1  Helmet_A_vs2 0  12 0 240 704643238 1.250000 100 14 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_vaegir_fur_cap Cap_with_Fur Cap_with_Fur 1  vaeg_helmet3 0  12 0 250 704643238 2.000000 100 15 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_steppe_cap Steppe_Cap Steppe_Cap 1  steppe_cap_a_new 0  12 0 276 123731968 1.000000 100 16 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_leather_warrior_cap Leather_Warrior_Cap Leather_Warrior_Cap 1  skull_cap_new_b 0  12 0 340 123731968 1.000000 100 18 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_sarranid_warrior_cap Turban_with_Warrior_Cap Turban_with_Warrior_Cap 1  tuareg_helmet 0  68719476748 0 344 704643238 2.000000 100 19 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_nordic_veteran_archer_helmet Leather_Helmet Leather_Helmet 1  Helmet_A 0  12 0 356 704643238 1.500000 100 20 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_skullcap Skullcap Skullcap 1  skull_cap_new_a 0  12 0 376 704643238 1.000000 100 20 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_vaegir_fur_helmet Fur_Helmet Fur_Helmet 1  vaeg_helmet2 0  12 0 395 704643238 1.500000 100 21 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_bishop_mitre Bishop's_Mitre Bishop's_Mitre 1  pw_bishop_mitre 0  12 0 546 123731968 1.500000 100 13 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_mail_coif Mail_Coif Mail_Coif 1  mail_coif_new 0  12 0 403 704643236 1.250000 100 22 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_footman_helmet Footman's_Helmet Footman's_Helmet 1  skull_cap_new 0  12 0 495 704643238 1.500000 100 24 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_sarranid_horseman_helmet Horseman_Helmet Horseman_Helmet 1  sar_helmet2 0  12 0 580 704643238 2.000000 100 25 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_nasal_helmet Nasal_Helmet Nasal_Helmet 1  nasal_helmet_b 0  12 0 605 704643238 1.250000 100 26 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_norman_helmet Helmet_with_Cap Helmet_with_Cap 1  norman_helmet_a 0  1073741836 0 654 704643238 1.250000 100 28 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_nordic_footman_helmet Footman_Helmet Footman_Helmet 1  Helmet_B_vs2 0  1073741836 0 670 704643238 1.750000 100 30 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_khergit_war_helmet War_Helmet War_Helmet 1  tattered_steppe_cap_a_new 0  12 0 710 704643238 2.000000 100 31 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_segmented_helmet Segmented_Helmet Segmented_Helmet 1  segmented_helm_new 0  12 0 724 704643238 1.250000 100 31 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_vaegir_spiked_helmet Spiked_Cap Spiked_Cap 1  vaeg_helmet1 0  12 0 823 704643238 2.000000 100 32 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_helmet_with_neckguard Helmet_with_Neckguard Helmet_with_Neckguard 1  neckguard_helm_new 0  12 0 840 704643238 1.500000 100 33 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_flat_topped_helmet Flat_Topped_Helmet Flat_Topped_Helmet 1  flattop_helmet_new 0  12 0 869 704643238 1.750000 100 33 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_nordic_fighter_helmet Fighter_Helmet Fighter_Helmet 1  Helmet_B 0  1073741836 0 912 704643238 2.000000 100 34 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_kettle_hat Kettle_Hat Kettle_Hat 1  kettle_hat_new 0  12 0 940 704643238 1.750000 100 35 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_sarranid_helmet1 Keffiyeh_Helmet Keffiyeh_Helmet 1  sar_helmet1 0  12 0 923 704643238 2.000000 100 35 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_vaegir_lamellar_helmet Helmet_with_Lamellar_Guard Helmet_with_Lamellar_Guard 1  vaeg_helmet4 0  12 0 960 704643238 2.000000 100 38 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_spiked_helmet Spiked_Helmet Spiked_Helmet 1  spiked_helmet_new 0  12 0 1078 704643238 2.000000 100 38 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_sarranid_mail_coif Mail_Coif Mail_Coif 1  tuareg_helmet2 0  12 0 1230 704643238 2.000000 100 39 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_nordic_huscarl_helmet Huscarl's_Helmet Huscarl's_Helmet 1  Helmet_C_vs2 0  12 0 1420 704643238 2.000000 100 40 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_bascinet Bascinet Bascinet 1  bascinet_avt_new 0  12 0 1579 704643238 2.000000 100 42 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_bascinet_2 Bascinet_with_Aventail Bascinet_with_Aventail 1  bascinet_new_a 0  12 0 1654 704643238 2.250000 100 44 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_bascinet_3 Bascinet_with_Nose_Guard Bascinet_with_Nose_Guard 1  bascinet_new_b 0  12 0 1683 704643238 2.500000 100 45 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_vaegir_noble_helmet Nobleman_Helmet Nobleman_Helmet 1  vaeg_helmet7 0  12 0 1710 704643238 2.000000 100 45 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_guard_helmet Guard_Helmet Guard_Helmet 1  reinf_helmet_new 0  12 0 2355 704643238 2.500000 100 47 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_sarranid_veiled_helmet Veiled_Helmet Veiled_Helmet 1  sar_helmet4 0  68719476748 0 2341 704643238 3.000000 100 47 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_vaegir_war_helmet War_Helmet War_Helmet 1  vaeg_helmet6 0  12 0 2420 704643238 2.250000 100 47 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_nordic_warlord_helmet Warlord_Helmet Warlord_Helmet 1  Helmet_C 0  12 0 3180 704643238 2.250000 100 48 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_bishop_helm Bishop's_Helm Bishop's_Helm 1  pw_bishop_helm 0  2147483660 0 6034 704643238 3.000000 100 49 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_full_helm Full_Helm Full_Helm 1  great_helmet_new_b 0  2147483660 0 5121 704643238 2.500000 100 51 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_vaegir_mask War_Mask War_Mask 1  vaeg_helmet8 0  12 0 6950 704643238 2.500000 100 50 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_vaegir_mask_b War_Mask War_Mask 1  vaeg_helmet9 0  68719476748 0 7012 704643238 2.750000 100 52 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_great_helmet Great_Helmet Great_Helmet 1  great_helmet_new 0  2147483660 0 7380 704643238 2.750000 100 53 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_winged_great_helmet Winged_Great_Helmet Winged_Great_Helmet 1  maciejowski_helmet_new 0  2147483660 0 9240 704643238 2.750000 100 55 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_black_helmet Black_Helmet Black_Helmet 1  black_helm 0  12 0 9638 704643238 2.750000 100 55 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_ragged_shirt Ragged_Shirt Ragged_Shirt 1  shirt 0  16777229 0 2 123731968 1.000000 100 0 2 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_old_coarse_tunic Old_Coarse_Tunic Old_Coarse_Tunic 1  coarse_tunic 0  16777229 0 23 123731968 2.000000 100 0 7 4 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_old_linen_tunic Old_Linen_Tunic Old_Linen_Tunic 1  linen_tunic 0  16777229 0 10 123731968 1.000000 100 0 4 1 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_ragged_leather_apron Ragged_Leather_Apron Ragged_Leather_Apron 1  leather_apron 0  16777229 0 27 123731968 2.500000 100 0 6 5 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_old_tabard Old_Tabard Old_Tabard 1  tabard_a 0  16777229 0 31 123731968 3.000000 100 0 8 4 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_shirt Shirt Shirt 1  shirt 0  16777229 0 45 123731968 1.000000 100 0 5 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_linen_tunic Linen_Tunic Linen_Tunic 1  shirt_a 0  16777229 0 60 123731968 1.000000 100 0 6 1 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_black_robe Black_Robe Black_Robe 1  robe 0  16777229 0 43 123731968 3.500000 100 0 8 6 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_dress Dress Dress 1  dress 0  16777229 0 60 17303601152 3.000000 100 0 6 2 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_blue_dress Blue_Dress Blue_Dress 1  blue_dress_new 0  16777229 0 76 17303601152 3.000000 100 0 6 2 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_peasant_dress Peasant_Dress Peasant_Dress 1  peasant_dress_b_new 0  16777229 0 83 17303601152 3.000000 100 0 6 2 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_woolen_dress Woolen_Dress Woolen_Dress 1  woolen_dress 0  16777229 0 100 17303601152 3.750000 100 0 8 2 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_sarranid_common_dress Gray_Dress Gray_Dress 1  sarranid_common_dress 0  16777229 0 80 17303601152 5.000000 100 0 5 5 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_sarranid_common_dress_b Brown_Dress Brown_Dress 1  sarranid_common_dress_b 0  16777229 0 102 17303601152 5.000000 100 0 6 5 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_lady_dress_ruby Red_Dress Red_Dress 1  lady_dress_r 0  16777229 0 200 17303601152 3.000000 100 0 10 10 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_lady_dress_green Green_Dress Green_Dress 1  lady_dress_g 0  16777229 0 200 17303601152 3.000000 100 0 10 10 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_lady_dress_blue Blue_Dress Blue_Dress 1  lady_dress_b 0  16777229 0 200 17303601152 3.000000 100 0 10 10 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_court_dress Red_Pattern_Dress Red_Pattern_Dress 1  court_dress 0  16777229 0 200 17303601152 3.000000 100 0 10 10 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_red_dress Red_Dress Red_Dress 1  red_dress 0  16777229 0 200 17303601152 3.000000 100 0 10 10 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_brown_dress Brown_Dress Brown_Dress 1  brown_dress 0  16777229 0 200 17303601152 3.000000 100 0 10 10 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_green_dress Green_Dress Green_Dress 1  green_dress 0  16777229 0 200 17303601152 3.000000 100 0 10 10 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_sarranid_lady_dress Purple_Dress Purple_Dress 1  sarranid_lady_dress 0  16777229 0 200 17303601152 3.000000 100 0 10 10 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_sarranid_lady_dress_b Orange_Dress Orange_Dress 1  sarranid_lady_dress_b 0  16777229 0 200 17303601152 3.000000 100 0 10 10 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_khergit_lady_dress Blue_Dress Blue_Dress 1  khergit_lady_dress 0  16777229 0 200 17303601152 3.000000 100 0 10 10 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_khergit_lady_dress_b Leather_Dress Leather_Dress 1  khergit_lady_dress_b 0  16777229 0 500 17303601152 3.000000 100 0 15 20 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_bride_dress Bride_Dress Bride_Dress 1  bride_dress 0  16777229 0 2500 17303601152 3.000000 100 0 3 1 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_tunic_with_green_cape Tunic_with_Green_Cape Tunic_with_Green_Cape 1  peasant_man_a 0  16777229 0 220 123731968 1.000000 100 0 12 4 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_rough_tunic Rough_Tunic Rough_Tunic 1  pw_rough_tunic 0  16777229 0 134 123731968 1.000000 100 0 7 1 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_red_shirt Red_Shirt Red_Shirt 1  rich_tunic_a 0  16777229 0 150 123731968 1.000000 100 0 7 1 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_pelt_coat Pelt_Coat Pelt_Coat 1  thick_coat_a 0  16777229 0 193 123731968 2.000000 100 0 11 3 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_sarranid_cloth_robe Worn_Robe Worn_Robe 1  sar_robe 0  16777229 0 233 123731968 4.000000 100 0 9 9 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_sarranid_cloth_robe_b Worn_Robe Worn_Robe 1  sar_robe_b 0  16777229 0 237 123731968 4.000000 100 0 9 9 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_rawhide_coat Rawhide_Coat Rawhide_Coat 1  coat_of_plates_b 0  16777229 0 220 123731968 5.000000 100 0 13 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_coarse_tunic Tunic_with_Vest Tunic_with_Vest 1  coarse_tunic_a 0  16777229 0 87 123731968 2.000000 100 0 11 6 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_leather_apron Leather_Apron Leather_Apron 1  leather_apron 0  16777229 0 125 123731968 3.000000 100 0 12 7 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_fur_coat Fur_Coat Fur_Coat 1  fur_coat 0  16777229 0 257 704643236 6.000000 100 0 13 6 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_friar_robe Friar's_Robe Friar's_Robe 1  pw_friar_robe 0  16777229 0 342 123731968 8.000000 100 0 14 12 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_skirmisher_armor Skirmisher_Armor Skirmisher_Armor 1  skirmisher_armor 0  16777229 0 374 123731968 3.000000 100 0 15 7 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_rich_outfit Rich_Outfit Rich_Outfit 1  merchant_outf 0  16777229 0 348 123731968 4.000000 100 0 16 4 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_tabard Tabard Tabard 1  tabard_b 0  16777229 0 230 123731968 3.000000 100 0 14 6 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270494 1224979098644774912 1224979098644774913 
+
+ itm_khergit_armor Tribesman_Armor Tribesman_Armor 1  khergit_armor_new 0  16777229 0 380 123731968 2.000000 100 0 14 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_leather_vest_plain Leather_Vest Leather_Vest 1  leather_vest_a 0  16777229 0 370 123731968 4.000000 100 0 15 7 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_leather_vest Heraldic_Leather_Vest Heraldic_Leather_Vest 1  leather_vest_a 0  16777229 0 377 123731968 4.000000 100 0 15 7 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270491 1224979098644774912 1224979098644774913 
+
+ itm_leather_jacket Leather_Jacket Leather_Jacket 1  leather_jacket_new 0  16777229 0 400 123731968 3.000000 100 0 15 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_priest_robe Priestly_Robes Priestly_Robes 1  pw_priest_robe 0  16777229 0 453 123731968 10.000000 100 0 17 13 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_arena_tunic Arena_Tunic Arena_Tunic 1  arena_tunicW_new 0  16777229 0 473 123731968 4.000000 100 0 16 6 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270500 1224979098644774912 1224979098644774913 
+
+ itm_steppe_armor Leather_Breastplate Leather_Breastplate 1  lamellar_leather 0  16777229 0 430 123731968 5.000000 100 0 16 8 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270502 1224979098644774912 1224979098644774913 
+
+ itm_leather_armor Leather_Armor Leather_Armor 1  tattered_leather_armor_a 0  16777229 0 450 123731968 7.000000 100 0 18 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_pilgrim_disguise Pilgrim_Disguise Pilgrim_Disguise 1  pilgrim_outfit 0  16777229 0 710 123731968 2.000000 100 0 19 8 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_red_gambeson Red_Gambeson Red_Gambeson 1  red_gambeson_a 0  16777229 0 461 123731968 5.000000 100 0 21 5 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_padded_cloth Aketon Aketon 1  padded_cloth_a 0  16777229 0 430 123731968 11.000000 100 0 22 6 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270492 1224979098644774912 1224979098644774913 
+
+ itm_aketon_green Padded_Cloth Padded_Cloth 1  padded_cloth_b 0  16777229 0 454 123731968 11.000000 100 0 23 6 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270493 1224979098644774912 1224979098644774913 
+
+ itm_archers_vest Archer's_Padded_Vest Archer's_Padded_Vest 1  archers_vest 0  16777229 0 460 123731968 8.000000 100 0 23 10 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_nomad_vest Nomad_Vest Nomad_Vest 1  nomad_vest_new 0  16777229 0 490 123731968 7.000000 100 0 22 8 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_ragged_outfit Ragged_Outfit Ragged_Outfit 1  ragged_outfit_a_new 0  16777229 0 521 123731968 7.000000 100 0 23 9 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_surgeon_coat Surgeon's_Coat Surgeon's_Coat 1  pw_surgeon_coat 0  16777229 0 732 123731968 11.000000 100 0 24 9 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_nomad_armor Nomad_Armor Nomad_Armor 1  nomad_armor_new 0  16777229 0 550 123731968 3.000000 100 0 24 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_nomad_robe Nomad_Robe Nomad_Robe 1  nomad_robe_a 0  16777229 0 670 123731968 10.000000 100 0 25 8 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_light_leather Light_Leather Light_Leather 1  light_leather 0  16777229 0 594 704643236 5.000000 100 0 26 7 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_leather_jerkin Leather_Jerkin Leather_Jerkin 1  ragged_leather_jerkin 0  16777229 0 540 123731968 6.000000 100 0 25 6 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_padded_leather Padded_Leather Padded_Leather 1  leather_armor_b 0  16777229 0 623 123731968 12.000000 100 0 27 7 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_arena_armor Arena_Armor Arena_Armor 1  arena_armorW_new 0  16777229 0 650 704643236 16.000000 100 0 29 13 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270501 1224979098644774912 1224979098644774913 
+
+ itm_tribal_warrior_outfit Tribal_Warrior_Outfit Tribal_Warrior_Outfit 1  tribal_warrior_outfit_a_new 0  16777229 0 720 123731968 14.000000 100 0 30 10 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_sarranid_leather_armor Leather_Armor Leather_Armor 1  sarranid_leather_armor 0  16777229 0 1020 704643236 9.000000 100 0 32 12 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_courtly_outfit Courtly_Outfit Courtly_Outfit 1  nobleman_outf 0  16777229 0 1320 123731968 4.000000 100 0 24 10 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_nobleman_outfit Nobleman_Outfit Nobleman_Outfit 1  nobleman_outfit_b_new 0  16777229 0 1348 123731968 4.000000 100 0 25 12 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_sarranid_cavalry_robe Brown_Mail_Shirt Brown_Mail_Shirt 1  arabian_armor_a 0  16777229 0 1220 704643236 15.000000 100 0 36 8 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_studded_leather_coat Studded_Leather_Coat Studded_Leather_Coat 1  leather_armor_a 0  16777229 0 1320 704643236 14.000000 100 0 36 10 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_byrnie Byrnie Byrnie 1  byrnie_a_new 0  16777229 0 2101 704643236 17.000000 100 0 39 6 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_haubergeon Haubergeon Haubergeon 1  haubergeon_c 0  16777229 0 2330 704643236 18.000000 100 0 41 6 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_arabian_armor_b Guard_Armor Guard_Armor 1  arabian_armor_b 0  16777229 0 2010 704643236 19.000000 100 0 38 8 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_lamellar_vest Lamellar_Vest Lamellar_Vest 1  lamellar_vest_a 0  16777229 0 2595 123731968 18.000000 100 0 40 8 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_lamellar_vest_khergit Lamellar_Vest Lamellar_Vest 1  lamellar_vest_b 0  16777229 0 2500 123731968 18.000000 100 0 40 8 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270503 1224979098644774912 1224979098644774913 
+
+ itm_mail_shirt Mail_Shirt Mail_Shirt 1  mail_shirt_a 0  16777229 0 2740 704643236 19.000000 100 0 39 12 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_mail_hauberk Mail_Hauberk Mail_Hauberk 1  hauberk_a_new 0  16777229 0 3320 704643236 19.000000 100 0 42 12 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_sarranid_mail_shirt Orange_Mail_Shirt Orange_Mail_Shirt 1  sarranian_mail_shirt 0  16777229 0 4400 704643236 19.000000 100 0 40 14 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_bishop_armor Bishop's_Armor Bishop's_Armor 1  pw_bishop_armor 0  16777229 0 6345 704643236 23.000000 100 0 41 13 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_mail_with_surcoat Surcoat_over_Mail Surcoat_over_Mail 1  mail_long_surcoat_new 0  16777229 0 5544 704643236 22.000000 100 0 42 14 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270498 1224979098644774912 1224979098644774913 
+
+ itm_surcoat_over_mail Surcoat_over_Mail Surcoat_over_Mail 1  surcoat_over_mail_new 0  16777229 0 5620 704643236 22.000000 100 0 43 14 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270499 1224979098644774912 1224979098644774913 
+
+ itm_brigandine_red Brigandine Brigandine 1  brigandine_b 0  16777229 0 5830 704643236 19.000000 100 0 45 12 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270495 1224979098644774912 1224979098644774913 
+
+ itm_mamluke_mail Mail_Robe Mail_Robe 1  sarranid_elite_cavalary 0  16777229 0 7900 704643236 24.000000 100 0 46 16 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_lamellar_armor Lamellar_Armor Lamellar_Armor 1  lamellar_armor_b 0  16777229 0 7410 704643236 25.000000 100 0 46 13 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_scale_armor Scale_Armor Scale_Armor 1  lamellar_armor_e 0  16777229 0 9558 704643236 25.000000 100 0 47 13 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_banded_armor Banded_Armor Banded_Armor 1  banded_armor_a 0  16777229 0 9710 704643236 23.000000 100 0 46 14 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_cuir_bouilli Cuir_Bouilli Cuir_Bouilli 1  cuir_bouilli_a 0  16777229 0 9100 704643236 24.000000 100 0 45 15 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_coat_of_plates Coat_of_Plates Coat_of_Plates 1  coat_of_plates_a 0  16777229 0 12828 704643236 25.000000 100 0 47 16 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_coat_of_plates_red Heraldic_Coat_of_Plates Heraldic_Coat_of_Plates 1  coat_of_plates_red 0  16777229 0 12828 704643236 25.000000 100 0 47 16 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270496 1224979098644774912 1224979098644774913 
+
+ itm_khergit_elite_armor Heraldic_Elite_Armor Heraldic_Elite_Armor 1  lamellar_armor_d 0  16777229 0 15802 704643236 25.000000 100 0 48 16 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270497 1224979098644774912 1224979098644774913 
+
+ itm_vaegir_elite_armor Elite_Armor Elite_Armor 1  lamellar_armor_c 0  16777229 0 15230 704643236 25.000000 100 0 48 16 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_sarranid_elite_armor Elite_Armor Elite_Armor 1  tunic_armor_a 0  16777229 0 15605 704643236 25.000000 100 0 48 16 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_plate_armor Plate_Armor Plate_Armor 1  full_plate_armor 0  16777229 0 35030 704643238 30.000000 100 0 55 17 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_black_armor Black_Armor Black_Armor 1  black_armor 0  16777229 0 55200 704643238 31.000000 100 0 57 18 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_light_heraldic_mail Light_Heraldic_Mail Light_Heraldic_Mail 1  heraldic_armor_new_c 0  16777229 0 1313 704643236 12.000000 100 0 30 5 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270489 1224979098644774912 1224979098644774913 
+
+ itm_heraldic_mail_with_tunic Heraldic_Mail_with_Tunic Heraldic_Mail_with_Tunic 1  heraldic_armor_new_b 0  16777229 0 2045 704643236 15.000000 100 0 35 8 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270488 1224979098644774912 1224979098644774913 
+
+ itm_heraldic_mail_with_tabard Heraldic_Mail_with_Tabard Heraldic_Mail_with_Tabard 1  heraldic_armor_new_d 0  16777229 0 2970 704643236 20.000000 100 0 40 10 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270490 1224979098644774912 1224979098644774913 
+
+ itm_heraldic_mail_with_surcoat Heraldic_Mail_with_Surcoat Heraldic_Mail_with_Surcoat 1  heraldic_armor_new_a 0  16777229 0 7800 704643236 25.000000 100 0 44 15 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270487 1224979098644774912 1224979098644774913 
+
+ itm_tattered_wrapping_boots Tattered_Wrapping_Boots Tattered_Wrapping_Boots 1  shoe_fur 0  3854 0 8 123731968 1.000000 100 0 0 2 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_ripped_woolen_hose Ripped_Woolen_Hose Ripped_Woolen_Hose 1  woolen_hose 0  3854 0 6 123731968 1.000000 100 0 0 1 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_old_hide_boots Old_Hide_Boots Old_Hide_Boots 1  boot_nomad_b 0  3854 0 13 123731968 1.000000 100 0 0 4 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_wrapping_boots Wrapping_Boots Wrapping_Boots 1  wrapping_boots_a 0  3854 0 30 123731968 1.000000 100 0 0 3 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_woolen_hose Woolen_Hose Woolen_Hose 1  woolen_hose_a 0  3854 0 60 123731968 1.000000 100 0 0 4 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_friar_sandals Friar's_Sandals Friar's_Sandals 1  pw_friar_sandals 0  3854 0 87 123731968 1.000000 100 0 0 4 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_blue_hose Blue_Hose Blue_Hose 1  blue_hose_a 0  3854 0 110 123731968 1.000000 100 0 0 5 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_bride_shoes Bride_Shoes Bride_Shoes 1  bride_shoes 0  3854 0 565 17303601152 1.000000 100 0 0 1 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_priest_leggings Priestly_Leggings Priestly_Leggings 1  pw_priest_leggings 0  3854 0 230 123731968 1.000000 100 0 0 8 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_sarranid_boots_a Pointed_Shoes Pointed_Shoes 1  sarranid_shoes 0  3854 0 150 123731968 1.000000 100 0 0 8 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_hunter_boots Hunter_Boots Hunter_Boots 1  hunter_boots_a 0  3854 0 190 123731968 1.250000 100 0 0 9 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_hide_boots Hide_Boots Hide_Boots 1  hide_boots_a 0  3854 0 240 123731968 1.000000 100 0 0 10 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_ankle_boots Ankle_Boots Ankle_Boots 1  ankle_boots_a_new 0  3854 0 270 123731968 1.000000 100 0 0 12 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_nomad_boots Nomad_Boots Nomad_Boots 1  nomad_boots_a 0  3854 0 310 123731968 1.250000 100 0 0 14 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_light_leather_boots Light_Leather_Boots Light_Leather_Boots 1  light_leather_boots 0  3854 0 366 123731968 1.000000 100 0 0 15 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_leather_boots Leather_Boots Leather_Boots 1  leather_boots_a 0  3854 0 400 123731968 1.250000 100 0 0 16 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_sarranid_boots_b Pointed_Leather_Boots Pointed_Leather_Boots 1  sarranid_boots 0  3854 0 440 123731968 1.250000 100 0 0 17 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_khergit_leather_boots Black_Leather_Boots Black_Leather_Boots 1  khergit_leather_boots 0  3854 0 465 123731968 1.500000 100 0 0 18 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_sarranid_boots_c Plated_Boots Plated_Boots 1  sarranid_camel_boots 0  3854 0 532 704643238 2.500000 100 0 0 20 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_splinted_leather_greaves Splinted_Leather_Greaves Splinted_Leather_Greaves 1  leather_greaves_a 0  3854 0 612 704643236 3.000000 100 0 0 21 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_bishop_chausses Bishop's_Chausses Bishop's_Chausses 1  pw_bishop_chausses 0  3854 0 886 704643236 3.000000 100 0 0 22 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_mail_chausses Mail_Chausses Mail_Chausses 1  mail_chausses_a 0  3854 0 930 704643236 3.000000 100 0 0 24 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_splinted_greaves Splinted_Greaves Splinted_Greaves 1  splinted_greaves_a 0  3854 0 1353 704643236 3.500000 100 0 0 28 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_sarranid_boots_d Mail_Boots Mail_Boots 1  sarranid_mail_chausses 0  3854 0 1420 704643236 2.500000 100 0 0 30 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_mail_boots Mail_Boots Mail_Boots 1  mail_boots_a 0  3854 0 1750 704643236 3.000000 100 0 0 31 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_iron_greaves Iron_Greaves Iron_Greaves 1  iron_greaves_a 0  3854 0 2470 704643236 3.500000 100 0 0 33 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_plate_boots Plate_Boots Plate_Boots 1  plate_boots 0  3854 0 2864 704643238 3.500000 100 0 0 34 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_black_greaves Black_Greaves Black_Greaves 1  black_greaves 0  3854 0 5661 704643238 3.500000 100 0 0 35 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_leather_gloves Leather_Gloves Leather_Gloves 1  leather_gloves_L 0  15 0 545 123731968 0.250000 100 0 2 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_bishop_gloves Bishop's_Gloves Bishop's_Gloves 1  pw_bishop_glove_L 0  15 0 1293 123731968 0.500000 100 0 3 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_mail_mittens Mail_Mittens Mail_Mittens 1  mail_mittens_L 0  15 0 1350 704643236 0.500000 100 0 4 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_lamellar_gauntlets Lamellar_Gauntlets Lamellar_Gauntlets 1  scale_gauntlets_a_L 0  15 0 2320 704643236 0.750000 100 0 5 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_scale_gauntlets Scale_Gauntlets Scale_Gauntlets 1  scale_gauntlets_b_L 0  15 0 2503 704643236 0.750000 100 0 6 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_gauntlets Gauntlets Gauntlets 1  gauntlets_L 0  15 0 3042 704643236 1.000000 100 0 7 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_club Club Club 1  club 0  4587522 9223388532775583758 35 0 2.500000 100 0 0 0 0 10240 92 0 70 0 256 522
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_spiked_club Spiked_Club Spiked_Club 1  spiked_club 0  4456450 9223388532775583759 383 262164 3.000000 100 0 0 0 0 15360 90 0 80 0 273 271
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_old_knife Old_Knife Old_Knife 1  peasant_knife 0  4210690 9223372037685248015 78 24596 0.500000 100 0 0 0 0 11264 100 0 43 0 263 11
+ 0
+0
+
+ itm_crude_spear Crude_Spear Crude_Spear 1  spear_g_1-9m 0  4456452 4222131026005760 374 8202 2.000000 100 0 0 0 0 6144 92 0 120 0 274 6
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_blunt_falchion Blunt_Falchion Blunt_Falchion 1  falchion 0  4194306 9223388529822793742 217 24596 1.000000 100 0 0 0 0 12288 91 0 72 0 256 12
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_chipped_falchion Chipped_Falchion Chipped_Falchion 1  falchion 0  4194306 9223388529822793742 314 24596 2.500000 100 0 0 0 0 16384 95 0 72 0 256 16
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_rusty_sword Rusty_Sword Rusty_Sword 2  sword_rusty_a 0  sword_rusty_a_scabbard 3458764513820540928  4194306 9223388564182532111 321 24596 1.500000 100 0 0 0 0 15360 97 0 95 0 268 15
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_worn_sword Worn_Sword Worn_Sword 2  sword_norman_rusty 0  sword_norman_rusty_scabbard 3458764513820540928  4194306 9223388564182532111 355 24596 1.250000 100 0 0 0 0 16384 98 0 91 0 269 16
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_bent_lance Bent_Lance Bent_Lance 1  spear 0  1212416004 4222131026002176 364 8202 4.500000 100 0 0 0 0 0 87 0 156 0 272 0
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_practice_sword Practice_Sword Practice_Sword 1  pw_practice_sword 0  4587522 9223388529822793743 103 0 2.000000 100 0 0 0 0 6144 94 0 100 0 6 6
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_heavy_practice_sword Heavy_Practice_Sword Heavy_Practice_Sword 1  pw_heavy_practice_sword 0  6684675 9223635924301119728 174 0 3.000000 100 0 0 0 0 6144 90 0 117 0 6 6
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_winged_mace Flanged_Mace Flanged_Mace 1  flanged_mace 0  274882363394 9223388532775583758 322 262164 3.000000 100 0 0 0 0 26624 100 0 70 0 256 538
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_spiked_mace Spiked_Mace Spiked_Mace 1  spiked_mace_new 0  274882363394 9223388532775583758 380 270356 3.500000 100 0 0 0 0 30720 97 0 70 0 256 542
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_mace_2 Knobbed_Mace Knobbed_Mace 1  mace_a 0  274882363394 9223388532775583758 198 262164 2.500000 100 0 0 0 0 21504 98 0 70 0 256 533
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_mace_4 Winged_Mace Winged_Mace 1  mace_b 0  274882363394 9223388532775583758 312 262164 2.500000 100 0 0 0 0 24576 98 0 70 0 256 536
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_club_with_spike_head Spiked_Staff Spiked_Staff 1  mace_e 0  274882363395 9223635923965575423 600 262164 3.500000 100 0 0 0 0 24576 95 0 117 0 276 536
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_long_spiked_club Long_Spiked_Club Long_Spiked_Club 1  mace_long_c 0  274882363396 4222129146957568 764 262164 3.000000 100 0 0 0 0 23552 96 0 126 0 532 279
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_long_hafted_spiked_mace Long_Hafted_Spiked_Mace Long_Hafted_Spiked_Mace 1  mace_long_b 0  274882363396 4222129146957568 810 262164 4.000000 100 0 0 0 0 28672 94 0 138 0 538 540
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_fighting_pick Fighting_Pick Fighting_Pick 1  fighting_pick_new 0  4456450 9223388530091229198 408 270356 1.000000 100 0 0 0 0 24576 98 0 68 0 256 280
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_military_pick Military_Pick Military_Pick 1  steel_pick_new 0  4456450 9223388530091229198 680 270356 1.500000 100 0 0 0 0 31744 97 0 68 0 256 287
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_military_sickle Military_Sickle Military_Sickle 1  military_sickle_a 0  4456450 9223388530091229198 585 262164 1.000000 100 0 0 0 0 27648 98 0 75 0 256 283
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_military_hammer Military_Hammer Military_Hammer 1  military_hammer 0  274882363394 9223388530091229198 543 262164 2.000000 100 0 0 0 0 31744 95 0 70 0 256 543
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_morningstar Morningstar Morningstar 1  mace_morningstar_new 0  38659162115 9223635920207479022 1305 262164 4.500000 100 0 0 0 0 38912 95 0 85 0 256 294
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_falchion Falchion Falchion 1  falchion_new 0  4194306 9223388529822793742 335 24596 2.500000 100 0 0 0 0 30720 96 0 73 0 256 30
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_curved_sword Curved_Sword Curved_Sword 2  khergit_sword 0  khergit_sword_scabbard 3458764513820540928  4194306 9223388564182532111 654 24596 1.250000 100 0 0 0 0 25600 98 0 99 0 270 25
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_sword_medieval_a Sword Sword 2  sword_medieval_a 0  sword_medieval_a_scabbard 3458764513820540928  4194306 9223388564182532111 663 155668 1.500000 100 0 0 0 0 27648 99 0 95 0 278 27
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_sword_medieval_b_small Short_Sword Short_Sword 2  sword_medieval_b_small 0  sword_medieval_b_small_scabbard 3458764513820540928  4194306 9223388564182532111 558 155668 1.250000 100 0 0 0 0 26624 103 0 82 0 280 26
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_sword_medieval_c_long Arming_Sword Arming_Sword 2  sword_medieval_c_long 0  sword_medieval_c_long_scabbard 3458764513820540928  4194306 9223388564182532111 880 155668 1.500000 100 0 0 0 0 27648 98 0 102 0 283 27
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_sword_medieval_d_long Knightly_Sword Knightly_Sword 2  sword_medieval_d_long 0  sword_medieval_d_long_scabbard 3458764513820540928  4194306 9223388564182532111 950 24596 1.500000 100 0 0 0 0 33792 97 0 102 0 281 33
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_sword_viking_c Nordic_Sword Nordic_Sword 2  sword_viking_c 0  sword_viking_c_scabbard 3458764513820540928  4194306 9223388564182532111 647 155668 1.500000 100 0 0 0 0 28672 99 0 95 0 276 28
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_sword_viking_b_small Nordic_Short_Sword Nordic_Short_Sword 2  sword_viking_b_small 0  sword_viking_b_small_scabbard 3458764513820540928  4194306 9223388564182532111 572 155668 1.250000 100 0 0 0 0 27648 102 0 82 0 278 27
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_sword_viking_a_long Nordic_Long_Sword Nordic_Long_Sword 2  sword_viking_a_long 0  sword_viking_a_long_scabbard 3458764513820540928  4194306 9223388564182532111 842 24596 1.500000 100 0 0 0 0 29696 97 0 101 0 275 29
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_arabian_sword_a Arabian_Sword Arabian_Sword 2  arabian_sword_a 0  scab_arabian_sword_a 3458764513820540928  4194306 9223388564182532111 612 155668 1.500000 100 0 0 0 0 26624 99 0 100 0 275 26
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_arabian_sword_b Arabian_Arming_Sword Arabian_Arming_Sword 2  arabian_sword_b 0  scab_arabian_sword_b 3458764513820540928  4194306 9223388564182532111 832 155668 1.750000 100 0 0 0 0 28672 99 0 100 0 275 28
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_arabian_sword_c Arabian_Cavalry_Sword Arabian_Cavalry_Sword 2  arabian_sword_c 0  scab_arabian_sword_c 3458764513820540928  4194306 9223388564182532111 945 155668 2.000000 100 0 0 0 0 28672 97 0 106 0 275 28
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_arabian_sword_d Arabian_Guard_Sword Arabian_Guard_Sword 2  arabian_sword_d 0  scab_arabian_sword_d 3458764513820540928  4194306 9223388564182532111 893 155668 1.500000 100 0 0 0 0 30720 98 0 100 0 276 30
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_scimitar Scimitar Scimitar 2  scimitar_a 0  scab_scimeter_a 3458764513820540928  4194306 9223388564182532110 750 155668 1.500000 100 0 0 0 0 30720 101 0 97 0 256 30
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_scimitar_b Elite_Scimitar Elite_Scimitar 2  scimitar_b 0  scab_scimeter_b 3458764513820540928  4194306 9223388564182532110 890 155668 1.500000 100 0 0 0 0 32768 100 0 100 0 256 32
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_khergit_sword_c Sabre Sabre 2  khergit_sword_c 0  khergit_sword_c_scabbard 3458764513820540928  4194306 9223388564182532110 580 155668 1.500000 100 0 0 0 0 31744 101 0 88 0 0 31
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_khergit_sword_d Heavy_Sabre Heavy_Sabre 2  khergit_sword_d 0  khergit_sword_d_scabbard 3458764513820540928  4194306 9223388564182532110 734 155668 1.750000 100 0 0 0 0 34816 98 0 88 0 0 34
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_khergit_sword_two_handed_a Two_Handed_Sabre Two_Handed_Sabre 1  khergit_sword_two_handed_a 0  6291459 9223635924234010848 2523 155668 2.750000 100 0 0 0 0 40960 96 0 113 0 256 40
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_two_handed_cleaver War_Cleaver War_Cleaver 1  military_cleaver_a 0  6291459 9223635924234010848 2440 155668 2.750000 100 0 0 0 0 46080 93 0 120 0 0 45
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_military_cleaver_b Soldier's_Cleaver Soldier's_Cleaver 1  military_cleaver_b 0  4194306 9223388529822793742 693 155668 1.500000 100 0 0 0 0 31744 95 0 91 0 256 31
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_military_cleaver_c Military_Cleaver Military_Cleaver 1  military_cleaver_c 0  4194306 9223388529822793742 763 155668 1.500000 100 0 0 0 0 35840 95 0 91 0 256 35
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_bastard_sword_a Bastard_Sword Bastard_Sword 2  bastard_sword_a 0  bastard_sword_a_scabbard 3458764513820540928  4194307 9223635954298781951 1294 155668 2.000000 100 0 0 0 0 35840 98 0 98 0 282 35
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_bastard_sword_b Heavy_Bastard_Sword Heavy_Bastard_Sword 2  bastard_sword_b 0  bastard_sword_b_scabbard 3458764513820540928  4194307 9223635954298781951 1526 155668 2.250000 100 0 0 0 0 37888 97 0 105 0 283 37
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_sword_two_handed_b Two_Handed_Sword Two_Handed_Sword 1  sword_two_handed_b 0  6291459 9223635924301119728 1970 155668 2.750000 100 0 0 0 0 40960 97 0 109 0 284 40
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_sword_two_handed_a Great_Sword Great_Sword 1  sword_two_handed_a 0  6291459 9223635924301119728 4134 155668 2.750000 100 0 0 0 0 43008 96 0 119 0 285 42
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_one_handed_war_axe_b One_Handed_War_Axe One_Handed_War_Axe 1  one_handed_war_axe_b 0  71565314 9223388530091229198 490 262164 1.500000 100 0 0 0 0 31744 94 0 71 0 256 31
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_one_handed_battle_axe_a One_Handed_Axe One_Handed_Axe 1  one_handed_battle_axe_a 0  71565314 9223388530091229198 521 262164 1.500000 100 0 0 0 0 29696 95 0 73 0 256 29
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_one_handed_battle_axe_b One_Handed_Battle_Axe One_Handed_Battle_Axe 1  one_handed_battle_axe_b 0  71565314 9223388530091229198 830 262164 1.750000 100 0 0 0 0 36864 97 0 76 0 256 36
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_one_handed_battle_axe_c Spiked_One_Handed_Battle_Axe Spiked_One_Handed_Battle_Axe 1  one_handed_battle_axe_c 0  71565314 9223388530091229198 750 262164 2.000000 100 0 0 0 0 37888 97 0 73 0 256 37
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_sarranid_axe_a Iron_Battle_Axe Iron_Battle_Axe 1  one_handed_battle_axe_g 0  71565314 9223388530091229198 1150 262164 1.750000 100 0 0 0 0 35840 97 0 71 0 256 35
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_sarranid_axe_b Iron_War_Axe Iron_War_Axe 1  one_handed_battle_axe_h 0  71565314 9223388530091229198 1360 262164 1.750000 100 0 0 0 0 38912 97 0 69 0 256 38
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_two_handed_axe Two_Handed_Axe Two_Handed_Axe 1  two_handed_battle_axe_a 0  34433400835 9223635923965575392 1490 262164 4.500000 100 0 0 0 0 38912 96 0 89 0 256 38
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_two_handed_battle_axe Two_Handed_War_Axe Two_Handed_War_Axe 1  two_handed_battle_axe_b 0  34433400835 9223635923965575392 2025 262164 4.500000 100 0 0 0 0 45056 96 0 90 0 256 44
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_shortened_voulge Shortened_Voulge Shortened_Voulge 1  two_handed_battle_axe_c 0  34433400835 9223635923965575392 2328 262164 5.000000 100 0 0 0 0 46080 92 0 99 0 256 45
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_bardiche Bardiche Bardiche 1  two_handed_battle_axe_d 0  34433400835 9223635923965575392 2901 262164 5.500000 100 0 0 0 0 48128 91 0 101 0 256 47
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_shortened_military_scythe Shortened_Military_Scythe Shortened_Military_Scythe 1  two_handed_battle_scythe_a 0  6291459 9223635924234010848 1640 155668 2.000000 100 0 0 0 0 38912 90 0 114 0 256 38
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_sarranid_two_handed_axe_a Two_Handed_Iron_Axe Two_Handed_Iron_Axe 1  two_handed_battle_axe_g 0  34433138691 9223635923965575392 2350 262164 5.000000 100 0 0 0 0 46080 89 0 95 0 256 45
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_sarranid_two_handed_axe_b Two_Handed_Iron_Axe Two_Handed_Iron_Axe 1  two_handed_battle_axe_h 0  34433138691 9223635923965575392 2870 262164 5.500000 100 0 0 0 0 48128 92 0 89 0 256 47
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_long_axe_a Long_Axe Long_Axe 1  long_axe_a 0  73662468 4222129146957568 3120 262164 4.500000 100 0 0 0 0 47104 91 0 113 0 527 46
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_glaive Glaive Glaive 1  glaive_b 0  274989060 4222131026005760 1752 8202 2.500000 100 0 0 0 0 39936 90 0 157 0 277 39
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_staff Staff Staff 1  wooden_staff 0  1212547076 4222129415393024 160 8202 1.500000 100 0 0 0 0 15360 98 0 128 0 524 527
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_quarter_staff Quarter_Staff Quarter_Staff 1  quarter_staff 0  1078329348 4222129415393024 220 8202 2.000000 100 0 0 0 0 18432 97 0 137 0 525 530
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_iron_staff Iron_Staff Iron_Staff 1  iron_staff 0  1077936132 4222129415393024 575 8202 4.000000 100 0 0 0 0 25600 93 0 128 0 538 537
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_shortened_spear Shortened_Spear Shortened_Spear 1  spear_g_1-9m 0  1078198276 4222131026005760 353 8202 2.000000 100 0 0 0 0 18432 102 0 120 0 280 530
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_spear Spear Spear 1  spear_h_2-15m 0  1078198276 4222131026005760 485 8202 2.250000 100 0 0 0 0 20480 98 0 135 0 282 532
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_bamboo_spear Bamboo_Spear Bamboo_Spear 1  arabian_spear_a_3m 0  1212416004 4222131026005760 580 8202 3.000000 100 0 0 0 0 15360 88 0 200 0 276 527
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_war_spear War_Spear War_Spear 1  spear_i_2-3m 0  1078198276 4222131026005760 640 8202 2.500000 100 0 0 0 0 20480 95 0 150 0 283 532
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_light_lance Light_Lance Light_Lance 1  spear_b_2-75m 0  3359899652 4222131026002176 580 8202 2.500000 100 0 0 0 0 16384 85 0 175 0 283 528
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_lance Lance Lance 1  spear_d_2-8m 0  3359899652 4222131026002176 670 8202 3.000000 100 0 0 0 0 16384 80 0 180 0 282 528
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_heavy_lance Heavy_Lance Heavy_Lance 1  spear_f_2-9m 0  3359899652 4222131026002176 960 8202 3.500000 100 0 0 0 0 16384 75 0 190 0 282 528
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_great_lance Great_Lance Great_Lance 1  pw_great_lance 0  2286157828 6174015488 1410 8202 5.000000 100 0 0 0 0 0 70 0 227 0 277 0
+ 0
+0
+
+ itm_jousting_lance Jousting_Lance Jousting_Lance 1  pw_jousting_lance 0  2286157828 6174015488 1258 8202 5.000000 100 0 0 0 0 0 70 0 226 0 527 0
+ 0
+0
+
+ itm_awlpike Awlpike Awlpike 1  awl_pike_b 0  562950360530948 4222131026002176 745 8202 2.250000 100 0 0 0 0 20480 92 0 165 0 289 532
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_awlpike_long Long_Awlpike Long_Awlpike 1  awl_pike_a 0  562950360530948 4222131026002176 1085 8202 2.500000 100 0 0 0 0 20480 89 0 185 0 288 532
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_pike Pike Pike 1  spear_a_3m 0  562950362628100 4222131026002176 1250 8202 3.000000 100 0 0 0 0 16384 81 0 245 0 282 528
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_bec_de_corbin_a War_Hammer War_Hammer 1  bec_de_corbin_a 0  409206788 4222131026005760 1350 8202 3.000000 100 0 0 0 0 28672 87 0 120 0 286 540
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_bishop_crosier Bishop's_Crosier Bishop's_Crosier 1  pw_bishop_crosier 0  6291459 5905580033 15238 8202 4.000000 100 0 0 0 0 0 70 0 125 0 0 512
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_crude_bow Crude_Bow Crude_Bow 2  hunting_bow 0  hunting_bow_carry 3458764513820540928  274726920 5905584128 260 655370 1.000000 100 0 0 0 0 0 82 42 0 0 265 0
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_bent_arrows Bent_Arrows Bent_Arrows 3  arrow 0  flying_missile 2305843009213693952  quiver 3458764513820540928  32773 2147483648 61 4398046511112 3.000000 100 0 0 0 0 0 0 0 95 10 256 0
+ 0
+0
+
+ itm_flimsy_crossbow Flimsy_Crossbow Flimsy_Crossbow 1  light_crossbow 0  274726921 5637160960 284 131082 3.000000 100 0 0 0 0 0 35 57 0 1 274 0
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_crude_bolts Crude_Bolts Crude_Bolts 3  bolt 0  flying_missile 2305843009213693952  bolt_bag 3458764513820540928  6 1879048192 47 4398046511112 2.250000 100 0 0 0 0 0 0 0 55 8 0 0
+ 0
+0
+
+ itm_hunting_bow Hunting_Bow Hunting_Bow 2  hunting_bow 0  hunting_bow_carry 3458764513820540928  274726920 5905584128 260 655370 1.000000 100 0 0 0 0 0 100 52 0 0 271 0
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_short_bow Short_Bow Short_Bow 2  short_bow 0  short_bow_carry 3458764513820540928  274726920 5905584128 304 655370 1.000000 100 0 0 0 0 0 97 55 0 0 274 0
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_nomad_bow Nomad_Bow Nomad_Bow 2  nomad_bow 0  nomad_bow_case 3458764513820540928  274726920 37312532480 414 655370 1.250000 100 0 0 0 0 0 94 56 0 0 276 0
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_long_bow Long_Bow Long_Bow 2  long_bow 0  long_bow_carry 3458764513820540928  274726920 5905584128 545 655370 1.750000 100 0 0 0 0 0 86 56 0 0 278 0
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_khergit_bow Khergit_Bow Khergit_Bow 2  khergit_bow 0  khergit_bow_case 3458764513820540928  274726920 37312532480 569 655370 1.250000 100 0 0 0 0 0 90 57 0 0 277 0
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_strong_bow Strong_Bow Strong_Bow 2  strong_bow 0  strong_bow_case 3458764513820540928  274726920 37312532480 837 655370 1.250000 100 0 0 0 0 0 88 58 0 0 279 0
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_war_bow War_Bow War_Bow 2  war_bow 0  war_bow_carry 3458764513820540928  274726920 5905584128 1328 655370 1.500000 100 0 0 0 0 0 85 59 0 0 281 0
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_arrows Arrows Arrows 3  arrow_b 0  flying_missile 2305843009213693952  quiver 3458764513820540928  32773 2147483648 72 4398046511112 3.000000 100 0 0 0 0 0 0 0 95 30 257 0
+ 0
+0
+
+ itm_barbed_arrows Barbed_Arrows Barbed_Arrows 3  barbed_arrow 0  flying_missile 2305843009213693952  quiver_d 3458764513820540928  5 1610612736 124 4398046511112 3.000000 100 0 0 0 0 0 0 0 95 30 258 0
+ 0
+0
+
+ itm_khergit_arrows Broadhead_Arrows Broadhead_Arrows 3  arrow 0  flying_missile 2305843009213693952  quiver_b 3458764513820540928  5 1610612736 210 4398046511112 3.500000 100 0 0 0 0 0 0 0 95 30 259 0
+ 0
+0
+
+ itm_bodkin_arrows Bodkin_Arrows Bodkin_Arrows 3  piercing_arrow 0  flying_missile 2305843009213693952  quiver_c 3458764513820540928  5 1610612736 220 4398046511112 3.000000 100 0 0 0 0 0 0 0 91 30 259 0
+ 0
+0
+
+ itm_hunting_crossbow Hunting_Crossbow Hunting_Crossbow 1  crossbow_a 0  274726921 5637160960 562 131082 2.250000 100 0 0 0 0 0 47 50 0 1 293 0
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_light_crossbow Light_Crossbow Light_Crossbow 1  crossbow_b 0  274726921 5637160960 778 131082 2.500000 100 0 0 0 0 0 45 59 0 1 300 0
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_crossbow Crossbow Crossbow 1  crossbow_a 0  274726921 5637160960 1182 131082 3.000000 100 0 0 0 0 0 42 66 0 1 305 0
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_heavy_crossbow Heavy_Crossbow Heavy_Crossbow 1  crossbow_c 0  274726921 5637160960 1749 131082 3.500000 100 0 0 0 0 0 37 68 0 1 312 0
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_sniper_crossbow Siege_Crossbow Siege_Crossbow 1  crossbow_c 0  274726921 5637160960 3483 131082 3.750000 100 0 0 0 0 0 32 70 0 1 319 0
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_bolts Bolts Bolts 3  bolt 0  flying_missile 2305843009213693952  bolt_bag_b 3458764513820540928  16809990 1879048192 95 4398046511112 2.250000 100 0 0 0 0 0 0 0 63 29 257 0
+ 0
+0
+
+ itm_steel_bolts Steel_Bolts Steel_Bolts 3  bolt 0  flying_missile 2305843009213693952  bolt_bag_c 3458764513820540928  16777222 1879048192 190 4398046511112 2.500000 100 0 0 0 0 0 0 0 63 29 258 0
+ 0
+0
+
+ itm_old_shield Old_Shield Old_Shield 1  shield_heater_c 0  262151 4831838208 157 167772194 3.500000 100 0 2 0 0 210 70 0 50 0 0 0
+ 0
+0
+
+ itm_practice_shield Practice_Shield Practice_Shield 1  tableau_shield_round_5 0  262151 5100273664 76 167772194 4.000000 100 0 0 0 0 100 90 0 50 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270475 1224979098644774912 1224979098644774913 
+
+ itm_tab_shield_round_b Plain_Round_Shield Plain_Round_Shield 1  tableau_shield_round_3 0  262151 5100273664 265 167772194 3.000000 100 0 8 0 0 260 90 0 50 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270473 1224979098644774912 1224979098644774913 
+
+ itm_tab_shield_round_c Round_Shield Round_Shield 1  tableau_shield_round_2 0  262151 5100273664 305 167772194 3.500000 100 0 12 0 0 310 87 0 50 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270472 1224979098644774912 1224979098644774913 
+
+ itm_tab_shield_round_d Heavy_Round_Shield Heavy_Round_Shield 1  tableau_shield_round_1 0  262151 5100273664 410 167772194 4.000000 100 0 15 0 0 350 84 0 50 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270471 1224979098644774912 1224979098644774913 
+
+ itm_tab_shield_round_e Huscarl's_Round_Shield Huscarl's_Round_Shield 1  tableau_shield_round_4 0  268697607 5100273664 630 167772194 5.000000 100 0 16 0 0 380 81 0 50 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270474 1224979098644774912 1224979098644774913 
+
+ itm_tab_shield_kite_b Plain_Kite_Shield Plain_Kite_Shield 1  tableau_shield_kite_3 0  262151 4831838208 270 167772194 2.500000 100 0 10 0 0 215 93 70 36 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270481 1224979098644774912 1224979098644774913 
+
+ itm_tab_shield_kite_c Kite_Shield Kite_Shield 1  tableau_shield_kite_2 0  262151 4831838208 356 167772194 3.000000 100 0 13 0 0 265 90 70 36 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270480 1224979098644774912 1224979098644774913 
+
+ itm_tab_shield_kite_d Heavy_Kite_Shield Heavy_Kite_Shield 1  tableau_shield_kite_2 0  262151 4831838208 420 167772194 3.500000 100 0 18 0 0 310 87 70 36 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270480 1224979098644774912 1224979098644774913 
+
+ itm_tab_shield_kite_cav_a Horseman's_Kite_Shield Horseman's_Kite_Shield 1  tableau_shield_kite_4 0  262151 4831838208 405 167772194 2.000000 100 0 14 0 0 165 103 50 30 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270482 1224979098644774912 1224979098644774913 
+
+ itm_tab_shield_kite_cav_b Knightly_Kite_Shield Knightly_Kite_Shield 1  tableau_shield_kite_4 0  7 4831838208 760 167772194 2.500000 100 0 23 0 0 225 100 50 30 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270482 1224979098644774912 1224979098644774913 
+
+ itm_tab_shield_heater_b Plain_Heater_Shield Plain_Heater_Shield 1  tableau_shield_heater_1 0  262151 4831838208 274 167772194 2.500000 100 0 11 0 0 210 93 70 36 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270483 1224979098644774912 1224979098644774913 
+
+ itm_tab_shield_heater_c Heater_Shield Heater_Shield 1  tableau_shield_heater_1 0  262151 4831838208 360 167772194 3.000000 100 0 14 0 0 260 90 70 36 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270483 1224979098644774912 1224979098644774913 
+
+ itm_tab_shield_heater_d Heavy_Heater_Shield Heavy_Heater_Shield 1  tableau_shield_heater_1 0  262151 4831838208 432 167772194 3.500000 100 0 19 0 0 305 87 70 36 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270483 1224979098644774912 1224979098644774913 
+
+ itm_tab_shield_heater_cav_a Horseman's_Heater_Shield Horseman's_Heater_Shield 1  tableau_shield_heater_2 0  262151 4831838208 429 167772194 2.000000 100 0 16 0 0 160 103 50 30 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270484 1224979098644774912 1224979098644774913 
+
+ itm_tab_shield_heater_cav_b Knightly_Heater_Shield Knightly_Heater_Shield 1  tableau_shield_heater_2 0  262151 4831838208 790 167772194 2.500000 100 0 23 0 0 220 100 50 30 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270484 1224979098644774912 1224979098644774913 
+
+ itm_tab_shield_pavise_b Plain_Board_Shield Plain_Board_Shield 1  tableau_shield_pavise_2 0  268697607 6442450944 414 167772194 4.000000 100 0 8 0 0 360 85 100 43 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270486 1224979098644774912 1224979098644774913 
+
+ itm_tab_shield_pavise_c Board_Shield Board_Shield 1  tableau_shield_pavise_1 0  268697607 6442450944 610 167772194 4.500000 100 0 10 0 0 430 81 100 43 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270485 1224979098644774912 1224979098644774913 
+
+ itm_tab_shield_pavise_d Heavy_Board_Shield Heavy_Board_Shield 1  tableau_shield_pavise_1 0  268697607 6442450944 870 167772194 5.000000 100 0 14 0 0 550 78 100 43 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270485 1224979098644774912 1224979098644774913 
+
+ itm_tab_shield_small_round_a Plain_Cavalry_Shield Plain_Cavalry_Shield 1  tableau_shield_small_round_3 0  262151 5100273664 396 167772194 2.000000 100 0 8 0 0 160 105 0 40 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270478 1224979098644774912 1224979098644774913 
+
+ itm_tab_shield_small_round_b Round_Cavalry_Shield Round_Cavalry_Shield 1  tableau_shield_small_round_1 0  262151 5100273664 595 167772194 2.500000 100 0 14 0 0 200 103 0 40 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270476 1224979098644774912 1224979098644774913 
+
+ itm_tab_shield_small_round_c Elite_Cavalry_Shield Elite_Cavalry_Shield 1  tableau_shield_small_round_2 0  7 5100273664 870 167772194 3.000000 100 0 22 0 0 250 100 0 40 0 0 0
+ 0
+1
+-50.000000  3 2071 1 1224979098644774912 2072 1 1224979098644774913 1 4 936748722493063240 1729382256910270477 1224979098644774912 1224979098644774913 
+
+ itm_hide_covered_round_shield Hide_Covered_Round_Shield Hide_Covered_Round_Shield 1  shield_round_f 0  262151 5100273664 140 167772194 3.500000 100 0 3 0 0 260 100 0 40 0 0 0
+ 0
+0
+
+ itm_hide_covered_kite_shield Hide_Covered_Kite_Shield Hide_Covered_Kite_Shield 1  shield_kite_m 0  262151 4831838208 327 167772194 5.500000 100 0 1 0 0 600 76 71 38 0 0 0
+ 0
+0
+
+ itm_steel_shield Steel_Shield Steel_Shield 1  shield_dragon 0  7 5100273664 2120 167772194 4.000000 100 0 17 0 0 700 61 0 40 0 0 0
+ 0
+0
+
+ itm_sumpter_horse Sumpter_Horse Sumpter_Horse 1  sumpter_horse 0  1 0 504 0 0.000000 100 0 14 0 1 100 39 37 100 0 9 0
+ 0
+0
+
+ itm_cart_horse Cart_Horse Cart_Horse 1  sumpter_horse 0  1 0 1520 0 0.000000 100 0 10 0 1 150 20 35 115 0 20 0
+ 0
+0
+
+ itm_saddle_horse Saddle_Horse Saddle_Horse 1  saddle_horse 0  1 0 1208 0 0.000000 100 0 8 0 1 100 44 43 104 0 10 0
+ 0
+0
+
+ itm_steppe_horse Steppe_Horse Steppe_Horse 1  steppe_horse 0  1 0 1455 0 0.000000 100 0 10 0 2 120 51 40 98 0 8 0
+ 0
+0
+
+ itm_arabian_horse_a Desert_Horse Desert_Horse 1  arabian_horse_a 0  1 0 1760 0 0.000000 100 0 10 0 2 110 50 42 100 0 12 0
+ 0
+0
+
+ itm_arabian_horse_b Silver_Horse Silver_Horse 1  arabian_horse_b 0  1 0 2090 0 0.000000 100 0 10 0 3 120 54 43 100 0 16 0
+ 0
+0
+
+ itm_courser Courser Courser 1  courser 0  1 0 3670 0 0.000000 100 0 12 0 3 110 44 50 106 0 12 0
+ 0
+0
+
+ itm_hunter Hunter Hunter 1  hunting_horse 0  1 0 4303 0 0.000000 100 0 18 0 3 160 44 46 108 0 24 0
+ 0
+0
+
+ itm_warhorse War_Horse War_Horse 1  warhorse_chain 0  1 0 5400 0 0.000000 100 0 40 0 4 165 41 44 110 0 28 0
+ 0
+0
+
+ itm_warhorse_steppe Steppe_War_Horse Steppe_War_Horse 1  warhorse_steppe 0  1 0 5670 0 0.000000 100 0 40 0 4 150 50 40 112 0 28 0
+ 0
+0
+
+ itm_warhorse_sarranid Barded_War_Horse Barded_War_Horse 1  warhorse_sarranid 0  1 0 8711 0 0.000000 100 0 58 0 4 165 44 43 112 0 32 0
+ 0
+0
+
+ itm_charger Charger Charger 1  charger_new 0  1 0 8640 0 0.000000 100 0 58 0 4 165 44 43 112 0 32 0
+ 0
+0
+
+ itm_plated_charger Plated_Charger Plated_Charger 1  plated_charger 0  1 0 10340 0 0.000000 100 0 65 0 4 180 45 40 112 0 40 0
+ 0
+0
+
+ itm_deer Deer Deer 1  pw_deer 0  1 0 1232 0 0.000000 100 0 5 0 11 60 75 55 100 0 30 0
+ 0
+0
+
+ itm_fawn Fawn Fawn 1  pw_deer 0  1 0 426 0 0.000000 100 0 2 0 11 25 70 45 60 0 5 0
+ 0
+0
+
+ itm_boar Boar Boar 1  pw_boar 0  1 0 859 0 0.000000 100 0 20 0 11 70 70 40 70 0 250 0
+ 0
+0
+
+ itm_boarlet Boarlet Boarlet 1  pw_boar 0  1 0 315 0 0.000000 100 0 10 0 11 30 65 30 40 0 10 0
+ 0
+0
+
+ itm_cow Cow Cow 1  pw_cow 0  1 0 1718 0 0.000000 100 0 15 0 11 85 65 35 100 0 100 0
+ 0
+0
+
+ itm_calf Calf Calf 1  pw_cow 0  1 0 723 0 0.000000 100 0 8 0 11 45 60 37 60 0 30 0
+ 0
+0
+
+ itm_stick Stick Stick 2  wooden_stick 0  pw_stick_carry 3458764513820540928  4194306 9223388531701841934 53 0 3.000000 100 0 0 0 0 5120 90 0 63 0 0 517
+ 0
+0
+
+ itm_stick_melee Stick Stick 2  wooden_stick 0  pw_stick_carry 3458764513820540928  4194306 9223388531701841934 53 0 3.000000 100 0 0 0 0 5120 90 0 63 0 0 517
+ 0
+0
+
+ itm_branch Branch Branch 3  pw_branch_a 0  pw_branch_b 262144  pw_branch_c 32  274726916 6174016256 124 10 25.000000 100 0 0 0 0 20480 30 0 250 0 522 532
+ 0
+0
+
+ itm_wood_pole_short Short_Wooden_Pole Short_Wooden_Pole 1  pw_wood_pole_short 0  274726916 4222130824679168 108 0 7.000000 100 0 0 0 0 15360 75 0 92 0 522 527
+ 0
+0
+
+ itm_wood_pole Wooden_Pole Wooden_Pole 1  pw_wood_pole 0  274726916 4222130824676096 221 0 15.000000 100 0 0 0 0 20480 70 0 150 0 522 532
+ 0
+0
+
+ itm_wood_block Wood_Block Wood_Block 3  pw_wood_block_a 0  pw_wood_block_b 262144  pw_wood_block_c 32  6291460 5905580033 142 0 30.000000 100 0 0 0 0 5120 50 0 32 0 517 517
+ 0
+0
+
+ itm_board Board Board 1  pw_board 0  4194306 9223372041174908943 210 0 10.000000 100 0 0 0 0 10240 60 0 50 0 522 522
+ 0
+0
+
+ itm_iron_ore_small Small_Iron_Ore Small_Iron_Ore 1  pw_iron_ore_small 0  6291460 5905580032 400 0 30.000000 100 0 0 0 0 7168 60 0 50 0 519 519
+ 0
+0
+
+ itm_iron_ore Iron_Ore Iron_Ore 1  pw_iron_ore 0  6291460 5905580032 850 0 60.000000 100 0 0 0 0 10240 50 0 50 0 522 522
+ 0
+0
+
+ itm_iron_piece Iron_Piece Iron_Piece 1  pw_iron_piece 0  4194306 9223372042785521679 100 0 5.000000 100 0 0 0 0 5120 80 0 20 0 517 517
+ 0
+0
+
+ itm_iron_bar_short Short_Iron_Bar Short_Iron_Bar 1  pw_iron_bar_short 0  4194306 9223372042785521679 220 0 10.000000 100 0 0 0 0 10240 70 0 25 0 522 522
+ 0
+0
+
+ itm_iron_bar Iron_Bar Iron_Bar 1  pw_iron_bar 0  4194306 9223388535459938318 450 0 20.000000 100 0 0 0 0 15360 60 0 60 0 522 527
+ 0
+0
+
+ itm_iron_bar_long Long_Iron_Bar Long_Iron_Bar 1  pw_iron_bar_long 0  6291460 4222130556239872 1000 0 40.000000 100 0 0 0 0 20480 50 0 100 0 522 532
+ 0
+0
+
+ itm_gold_nugget Gold_Nugget Gold_Nugget 1  pw_gold_nugget 0  4194306 9223372039564296207 11000 0 10.000000 100 0 0 0 0 5120 70 0 20 0 517 517
+ 0
+0
+
+ itm_gold_bar Gold_Bar Gold_Bar 1  pw_gold_bar 0  4194306 9223372039295860751 70000 0 30.000000 100 0 0 0 0 10240 60 0 20 0 522 522
+ 0
+0
+
+ itm_silver_nugget Silver_Nugget Silver_Nugget 1  pw_silver_nugget 0  4194306 9223372039564296207 6000 0 7.000000 100 0 0 0 0 5120 70 0 20 0 517 517
+ 0
+0
+
+ itm_silver_bar Silver_Bar Silver_Bar 1  pw_silver_bar 0  4194306 9223372039295860751 40000 0 15.000000 100 0 0 0 0 8192 60 0 20 0 520 520
+ 0
+0
+
+ itm_flax_bundle Flax_Bundle Flax_Bundle 1  pw_flax_bundle 0  6307842 5905580032 50 0 4.000000 100 0 0 0 0 0 20 0 45 0 0 0
+ 0
+0
+
+ itm_linen_thread Linen_Thread Linen_Thread 1  pw_linen_thread 0  4210690 9223372037953683471 91 0 2.000000 100 0 0 0 0 0 90 0 45 0 0 0
+ 0
+0
+
+ itm_linen_cloth Linen_Cloth Linen_Cloth 1  pw_linen_cloth 0  4210690 9223372041174908943 220 0 5.000000 100 0 0 0 0 0 60 0 80 0 0 0
+ 0
+0
+
+ itm_linen_cloth_small Small_Linen_Cloth Small_Linen_Cloth 1  pw_linen_cloth_small 0  4210690 9223372041174908943 55 0 1.000000 100 0 0 0 0 0 70 0 60 0 0 0
+ 0
+0
+
+ itm_raw_hide Raw_Hide Raw_Hide 1  pw_raw_hide 0  4210690 4294967296 257 0 15.000000 100 0 0 0 0 0 20 0 60 0 0 0
+ 0
+0
+
+ itm_leather_roll Leather_Roll Leather_Roll 1  pw_leather_roll 0  4210690 9223372042785521679 354 0 5.000000 100 0 0 0 0 4096 20 0 50 0 516 516
+ 0
+0
+
+ itm_leather_piece Leather_Piece Leather_Piece 1  pw_leather_piece 0  4210690 9223372041174908943 87 0 1.000000 100 0 0 0 0 2048 20 0 50 0 514 514
+ 0
+0
+
+ itm_saddle Saddle Saddle 1  pw_saddle 0  6307844 4294967296 745 0 30.000000 100 0 0 0 0 0 0 0 100 0 0 0
+ 0
+0
+
+ itm_horse_armor Horse_Armor Horse_Armor 1  pw_horse_armor 0  6307844 4294967296 2103 0 50.000000 100 0 0 0 0 0 0 0 120 0 0 0
+ 0
+0
+
+ itm_hatchet Hatchet Hatchet 1  pw_hatchet 0  4456450 9223388530091229198 40 0 3.000000 100 0 0 0 0 10240 75 0 50 0 256 10
+ 0
+0
+
+ itm_small_mining_pick Small_Mining_Pick Small_Mining_Pick 2  pw_small_mining_pick 0  pw_small_mining_pick_inv 1152921504606846976  34364194818 4222128945627648 193 0 3.000000 100 0 0 0 0 15360 70 0 70 0 256 271
+ 0
+0
+
+ itm_woodcutter_axe Woodcutter's_Axe Woodcutter's_Axe 1  pw_wood_axe 0  34701836291 9223635923965575392 245 0 4.000000 100 0 0 0 0 20480 80 0 72 0 256 20
+ 0
+0
+
+ itm_mining_pick Mining_Pick Mining_Pick 2  pw_mining_pick 0  pw_mining_pick_inv 1152921504606846976  34634465284 4222128945627648 423 0 5.000000 100 0 0 0 0 30720 70 0 93 0 256 286
+ 0
+0
+
+ itm_repair_hammer Repair_Hammer Repair_Hammer 1  pw_repair_hammer 0  4456450 9223388535459938318 634 0 3.000000 100 0 0 0 0 5120 92 0 65 0 256 517
+ 0
+0
+
+ itm_lock_pick Lock_Pick Lock_Pick 1  pw_lock_pick 0  4210690 9223372036879941647 1260 0 0.250000 100 0 0 0 0 1024 100 0 23 0 261 513
+ 0
+0
+
+ itm_admin_lock_pick Admin_Lock_Pick Admin_Lock_Pick 1  pw_lock_pick 0  4210690 9223372036879941647 0 0 0.250000 100 0 0 0 30 20480 100 0 23 0 281 532
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_bucket Bucket Bucket 2  pw_bucket 0  pw_bucket_ground 3458764513820540928  4210690 4 240 0 5.000000 100 0 0 0 0 5120 70 0 100 0 0 517
+ 0
+1
+-51.000000  2 2071 1 1224979098644774912 1 2 936748722493063411 1224979098644774912 
+
+ itm_water_bucket Water_Bucket Water_Bucket 2  pw_bucket_water 0  pw_bucket_water_ground 3458764513820540928  4210690 4 250 0 40.000000 100 0 0 0 0 10240 50 0 100 0 0 522
+ 0
+0
+
+ itm_fishing_spear Fishing_Spear Fishing_Spear 1  pw_fishing_spear 0  274989060 4222131026002176 340 0 2.250000 100 0 0 0 0 0 55 0 183 0 266 0
+ 0
+1
+-51.000000  3 721 2 1 270 2071 1 1224979098644774912 1 2 936748722493063414 1224979098644774912 
+
+ itm_fishing_net Fishing_Net Fishing_Net 2  pw_fishing_net_b 0  pw_fishing_net_a 3458764513820540928  274726914 4 823 0 5.000000 100 0 0 0 0 0 40 0 50 0 0 0
+ 0
+1
+-51.000000  4 721 2 1 -50 722 2 1 -200 2071 1 1224979098644774912 1 2 936748722493063414 1224979098644774912 
+
+ itm_blunt_sickle Blunt_Sickle Blunt_Sickle 1  pw_sickle 0  272646146 1073741828 65 0 0.750000 100 0 0 0 0 6144 75 0 100 0 0 6
+ 0
+0
+
+ itm_sickle Sickle Sickle 1  pw_sickle 0  272646146 1073741828 136 0 0.500000 100 0 0 0 0 10240 80 0 100 0 0 10
+ 0
+0
+
+ itm_scythe Scythe Scythe 1  pw_scythe 0  34634481668 6174017536 549 8202 2.000000 100 0 0 0 0 25600 70 0 160 0 0 25
+ 0
+0
+
+ itm_kitchen_knife Kitchen_Knife Kitchen_Knife 1  pw_kitchen_knife 0  12599298 9223372037953683471 68 24596 0.250000 100 0 0 0 0 10240 100 0 40 0 262 10
+ 0
+0
+
+ itm_cleaver Butchering_Cleaver Butchering_Cleaver 1  cleaver_new 0  12599298 9223372037953683470 247 24596 1.500000 100 0 0 0 0 26624 103 0 48 0 256 26
+ 0
+1
+-51.000000  6 417 0 2071 1 1224979098644774912 1718 2 1224979098644774913 1224979098644774912 2170 3 1224979098644774914 1369094286720630790 1224979098644774913 32 2 1224979098644774914 0 1 2 936748722493063419 1224979098644774912 
+
+ itm_knife Knife Knife 1  peasant_knife_new 0  12599298 9223372037953683471 306 24596 0.500000 100 0 0 0 0 21504 110 0 55 0 269 21
+ 0
+0
+
+ itm_butchering_knife Butchering_Knife Butchering_Knife 1  khyber_knife_new 0  12599298 9223372037685248015 473 24596 0.750000 100 0 0 0 0 24576 108 0 70 0 273 24
+ 0
+1
+-51.000000  6 417 0 2071 1 1224979098644774912 1718 2 1224979098644774913 1224979098644774912 2170 3 1224979098644774914 1369094286720630790 1224979098644774913 32 2 1224979098644774914 0 1 2 936748722493063419 1224979098644774912 
+
+ itm_broom Broom Broom 2  pw_broom 0  pw_broom_inv 1152921504606846976  274743300 4222131026005760 39 0 2.500000 100 0 0 0 0 3072 60 0 130 0 513 515
+ 0
+0
+
+ itm_herding_crook Herding_Crook Herding_Crook 1  pw_herding_crook 0  35171729411 9223635923965575392 120 8202 1.500000 100 0 0 0 0 10240 70 0 108 0 0 522
+ 0
+0
+
+ itm_herding_crook_alt Herding_Crook Herding_Crook 1  pw_herding_crook 0  34634858500 4222129146957568 120 8202 1.500000 100 0 0 0 0 10240 60 0 108 0 521 522
+ 0
+0
+
+ itm_fish Fish Fish 1  pw_fish 0  4210690 9223372037953683471 68 0 1.000000 100 0 0 0 0 2048 72 0 45 0 0 2
+ 0
+1
+-51.000000  2 2071 1 1224979098644774912 1 3 936748722493063415 1224979098644774912 409 
+
+ itm_cooked_fish Cooked_Fish Cooked_Fish 1  pw_fish_cooked 0  4210690 9223372037953683471 114 0 1.000000 100 0 0 0 0 1024 70 0 45 0 0 1
+ 0
+1
+-51.000000  2 2071 1 1224979098644774912 1 3 936748722493063415 1224979098644774912 410 
+
+ itm_salted_fish Salted_Fish Salted_Fish 1  pw_fish 0  4210690 9223372037953683471 140 0 1.000000 100 0 0 0 0 1024 70 0 45 0 0 1
+ 0
+1
+-51.000000  2 2071 1 1224979098644774912 1 3 936748722493063415 1224979098644774912 411 
+
+ itm_wheat_sack Wheat_Sack Wheat_Sack 4  pw_throwing_wheat 0  pw_thrown_wheat 2305843009213693952  pw_wheat_sack 3458764513820540928  pw_wheat_sack 1152921504606846976  272629770 36238852096 75 0 0.250000 100 0 0 0 0 0 90 10 20 10 0 0
+ 0
+1
+-51.000000  7 417 0 720 2 1 -10 721 2 1 50 722 2 1 -50 723 2 1 -30 724 2 1 -30 1969 3 1008806316530991169 1 50 
+
+ itm_wheat_sheaf Wheat_Sheaf Wheat_Sheaf 1  pw_wheat_sheaf 0  6307842 5905580044 80 0 3.000000 100 0 0 0 0 7168 60 0 45 0 0 519
+ 0
+0
+
+ itm_flour_sack Flour_Sack Flour_Sack 2  pw_flour_sack 0  pw_flour_sack_carry 3458764513820540928  274743300 2147483648 324 0 25.000000 100 0 0 0 0 0 0 0 100 0 0 0
+ 0
+0
+
+ itm_bread Bread Bread 1  pw_bread_a 0  4210690 9223372039832731663 136 0 1.000000 100 0 0 0 0 1024 65 0 20 0 0 1
+ 0
+1
+-51.000000  2 2071 1 1224979098644774912 1 3 936748722493063415 1224979098644774912 415 
+
+ itm_beer_cask Beer_Cask Beer_Cask 2  pw_beer_cask 0  pw_beer_cask_carry 3458764513820540928  274743300 5905580032 360 0 18.000000 100 0 0 0 0 0 20 0 100 0 0 0
+ 0
+1
+-51.000000  2 2071 1 1224979098644774912 1 3 936748722493063415 1224979098644774912 416 
+
+ itm_beer_jug Beer_Jug Beer_Jug 1  pw_beer_jug 0  6307842 9223372039832731663 90 0 3.000000 100 0 0 0 0 4096 70 0 40 0 0 4
+ 0
+1
+-51.000000  2 2071 1 1224979098644774912 1 3 936748722493063415 1224979098644774912 417 
+
+ itm_grapes Grapes Grapes 3  pw_grape_bunch 0  pw_grape_a 256  pw_grape_b 1024  4210690 9223372037953683471 34 0 0.250000 100 0 0 0 0 0 90 0 25 0 0 0
+ 0
+1
+-51.000000  2 2071 1 1224979098644774912 1 3 936748722493063415 1224979098644774912 418 
+
+ itm_must_barrel Must_Barrel Must_Barrel 2  pw_must_barrel 0  pw_must_barrel_carry 3458764513820540928  274743300 5905580032 160 0 3.000000 100 0 0 0 0 0 20 0 100 0 0 0
+ 0
+1
+-51.000000  2 2071 1 1224979098644774912 1 3 936748722493063415 1224979098644774912 419 
+
+ itm_wine_barrel Wine_Barrel Wine_Barrel 2  pw_wine_barrel 0  pw_wine_barrel_carry 3458764513820540928  274743300 5905580032 816 0 20.000000 100 0 0 0 0 0 20 0 100 0 0 0
+ 0
+1
+-51.000000  2 2071 1 1224979098644774912 1 3 936748722493063415 1224979098644774912 420 
+
+ itm_wine_jar Wine_Jar Wine_Jar 1  pw_wine_jar 0  4210690 9223372039832731663 204 0 5.000000 100 0 0 0 0 4096 65 0 50 0 0 4
+ 0
+1
+-51.000000  2 2071 1 1224979098644774912 1 3 936748722493063415 1224979098644774912 421 
+
+ itm_raw_meat Raw_Meat Raw_Meat 1  pw_meat_raw 0  274726916 9223372042785521679 112 0 25.000000 100 0 0 0 0 10240 65 0 53 0 0 522
+ 0
+1
+-51.000000  2 2071 1 1224979098644774912 1 3 936748722493063415 1224979098644774912 422 
+
+ itm_cooked_meat Cooked_Meat Cooked_Meat 1  pw_meat_cooked 0  274726916 9223372042785521679 316 0 25.000000 100 0 0 0 0 8192 60 0 53 0 0 520
+ 0
+1
+-51.000000  2 2071 1 1224979098644774912 1 3 936748722493063415 1224979098644774912 423 
+
+ itm_salted_meat Salted_Meat Salted_Meat 1  pw_meat_salted 0  274726916 9223372042785521679 386 0 25.000000 100 0 0 0 0 8192 60 0 53 0 0 520
+ 0
+1
+-51.000000  2 2071 1 1224979098644774912 1 3 936748722493063415 1224979098644774912 424 
+
+ itm_meat_pie Meat_Pie Meat_Pie 1  pw_meat_pie 0  4210690 9223372039832731663 280 0 4.000000 100 0 0 0 0 1024 65 0 20 0 0 1
+ 0
+1
+-51.000000  2 2071 1 1224979098644774912 1 3 936748722493063415 1224979098644774912 425 
+
+ itm_red_apple Red_Apple Red_Apple 1  pw_apple_red 0  4210690 9223372038758989839 20 0 0.250000 100 0 0 0 0 0 90 0 25 0 0 0
+ 0
+1
+-51.000000  2 2071 1 1224979098644774912 1 3 936748722493063415 1224979098644774912 426 
+
+ itm_apple_pie Apple_Pie Apple_Pie 1  pw_apple_pie 0  4210690 9223372039832731663 190 0 4.000000 100 0 0 0 0 1024 65 0 20 0 0 1
+ 0
+1
+-51.000000  2 2071 1 1224979098644774912 1 3 936748722493063415 1224979098644774912 427 
+
+ itm_carrot Carrot Carrot 1  pw_carrot 0  4210690 9223372037953683471 30 0 0.250000 100 0 0 0 0 0 90 0 25 0 0 0
+ 0
+1
+-51.000000  2 2071 1 1224979098644774912 1 3 936748722493063415 1224979098644774912 428 
+
+ itm_salt_sack Salt_Sack Salt_Sack 1  pw_salt_sack 0  4210690 9223372038758989839 800 0 2.000000 100 0 0 0 0 5120 60 0 20 0 517 517
+ 0
+0
+
+ itm_salt Salt Salt 1  pw_salt 0  4194306 9223372036879941647 100 0 0.250000 100 0 0 0 0 5120 70 0 20 0 517 517
+ 0
+0
+
+ itm_surgeon_scalpel Surgeon's_Scalpel Surgeon's_Scalpel 2  dagger_b 0  dagger_b_scabbard 3458764513820540928  4210690 35165044737 730 24596 0.750000 100 0 0 0 0 0 50 0 36 0 271 0
+ 0
+0
+
+ itm_admin_scalpel Admin_Scalpel Admin_Scalpel 1  dagger_b 0  4210690 1 0 24596 0.750000 100 0 0 0 30 0 100 0 50 0 271 0
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_healing_herb Herb Herb 1  pw_herb_a 0  4210690 805306369 240 0 0.250000 100 0 0 0 0 0 50 0 40 0 1 0
+ 0
+0
+
+ itm_poison_herb Herb Herb 1  pw_herb_b 0  4210690 805306369 325 0 0.250000 100 0 0 0 0 0 50 0 40 0 1 0
+ 0
+0
+
+ itm_dagger Dagger Dagger 2  dagger 0  scab_dagger 3458764513820540928  4210690 9223372072044986383 533 24596 0.750000 100 0 0 0 0 18432 105 0 47 0 280 18
+ 0
+0
+
+ itm_poisoned_dagger Poisoned_Dagger Poisoned_Dagger 2  pw_dagger_poison 0  scab_dagger 3458764513820540928  4210690 9223372072044986383 1570 24596 0.750000 100 0 0 0 0 18432 105 0 47 0 280 18
+ 0
+0
+
+ itm_thin_lance Thin_Lance Thin_Lance 1  spear_d_2-8m 0  3359899652 4222131026002176 230 8202 3.000000 100 0 0 0 0 16384 80 0 180 0 282 528
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_broken_lance Broken_Lance Broken_Lance 1  pw_broken_lance 0  137438953476 0 0 8202 3.000000 100 0 0 0 0 0 0 0 180 0 512 512
+ 0
+0
+
+ itm_money_bag Money_Bag Money_Bag 3  pw_money_bag_hold 0  pw_money_bag 3458764513820540928  pw_money_bag_inv 1152921504606846976  4194306 1342177281 0 0 1.000000 100 0 0 0 0 0 80 0 0 0 0 0
+ 0
+1
+-51.000000  2 2071 1 1224979098644774912 1 2 936748722493063327 1224979098644774912 
+
+ itm_torch Torch Torch 2  pw_torch 0  pw_torch 3458764513820540928  4194306 9223388535728373774 50 0 2.500000 100 0 0 0 0 5120 95 0 95 0 256 517
+ 0
+1
+-50.000000  5 1955 3 0 60 0 1965 1 1008806316530991114 1965 1 1008806316530991117 1950 3 150 130 70 1960 2 10 30 
+
+ itm_book_a Book_of_Clothing Book_of_Clothing 1  pw_book_a 0  4210690 9223388531970277390 3203 0 2.000000 100 0 0 0 0 0 80 0 50 0 0 0
+ 0
+1
+-51.000000  2 2071 1 1224979098644774912 1 3 936748722493063317 216172782113784294 1224979098644774912 
+
+ itm_book_b Book_of_Weapons Book_of_Weapons 1  pw_book_b 0  4210690 9223388531970277390 7324 0 2.000000 100 0 0 0 0 0 80 0 50 0 0 0
+ 0
+1
+-51.000000  2 2071 1 1224979098644774912 1 3 936748722493063317 216172782113784295 1224979098644774912 
+
+ itm_book_c Book_of_Armor Book_of_Armor 1  pw_book_c 0  4210690 9223388531970277390 12030 0 2.000000 100 0 0 0 0 0 80 0 50 0 0 0
+ 0
+1
+-51.000000  2 2071 1 1224979098644774912 1 3 936748722493063317 216172782113784296 1224979098644774912 
+
+ itm_book_d Book_of_Healing Book_of_Healing 1  pw_book_d 0  4210690 9223388531970277390 1076 0 2.500000 100 0 0 0 0 0 80 0 50 0 0 0
+ 0
+1
+-51.000000  2 2071 1 1224979098644774912 1 3 936748722493063317 216172782113784297 1224979098644774912 
+
+ itm_book_e Book Book 1  pw_book_e 0  4210690 9223388531970277390 20634 0 2.250000 100 0 0 0 0 0 80 0 50 0 0 0
+ 0
+0
+
+ itm_book_f Sacred_Book Sacred_Book 1  pw_book_f 0  541081602 2415919108 46400 0 2.000000 100 0 0 0 0 0 80 0 50 0 0 0
+ 0
+1
+-51.000000  11 2071 1 1224979098644774912 2133 2 1224979098644774913 4 6 3 1224979098644774914 0 1224979098644774913 1804 3 1224979098644774915 1224979098644774912 1224979098644774914 31 2 1224979098644774915 288230376151712190 2133 2 1224979098644774913 -1 2105 2 1224979098644774914 1 1774 3 1224979098644774912 288230376151712190 1224979098644774914 1779 3 1224979098644774912 288230376151712191 1224979098644774914 1747 2 1224979098644774912 288230376151712191 3 0 
+
+ itm_book_f_open Sacred_Book Sacred_Book 3  pw_book_f_held 0  pw_book_f_open 3458764513820540928  pw_book_f 1152921504606846976  6307843 2415919105 46400 0 2.000000 100 0 0 0 0 0 80 0 50 0 0 0
+ 0
+1
+-51.000000  11 2071 1 1224979098644774912 2133 2 1224979098644774913 4 6 3 1224979098644774914 0 1224979098644774913 1804 3 1224979098644774915 1224979098644774912 1224979098644774914 31 2 1224979098644774915 288230376151712191 2133 2 1224979098644774913 -1 2105 2 1224979098644774914 1 1774 3 1224979098644774912 288230376151712191 1224979098644774914 1779 3 1224979098644774912 288230376151712190 1224979098644774914 1747 2 1224979098644774912 288230376151712190 3 0 
+
+ itm_lyre Lyre Lyre 2  pw_lyre 0  pw_lyre_carry 3458764513820540928  274743300 4294967296 659 0 1.750000 100 0 0 0 0 0 0 0 80 0 0 0
+ 0
+0
+
+ itm_lute Lute Lute 2  pw_lute 0  pw_lute_carry 3458764513820540928  274743300 4294967296 850 0 2.500000 100 0 0 0 0 0 0 0 85 0 0 0
+ 0
+0
+
+ itm_dart Dart Dart 1  pw_dart 0  4194314 1879310336 35 4398046781448 1.000000 100 0 0 0 0 0 90 21 32 3 512 0
+ 0
+0
+
+ itm_die Die Die 2  pw_die 0  pw_die_inv 1152921504606846976  4210690 2684354560 120 0 0.250000 100 0 0 0 0 0 0 0 30 0 0 0
+ 0
+0
+
+ itm_pw_banner_pole_a01 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558766 
+
+ itm_pw_banner_pole_a02 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558767 
+
+ itm_pw_banner_pole_a03 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558768 
+
+ itm_pw_banner_pole_a04 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558769 
+
+ itm_pw_banner_pole_a05 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558770 
+
+ itm_pw_banner_pole_a06 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558771 
+
+ itm_pw_banner_pole_a07 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558772 
+
+ itm_pw_banner_pole_a08 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558773 
+
+ itm_pw_banner_pole_a09 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558774 
+
+ itm_pw_banner_pole_a10 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558775 
+
+ itm_pw_banner_pole_a11 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558776 
+
+ itm_pw_banner_pole_a12 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558777 
+
+ itm_pw_banner_pole_a13 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558778 
+
+ itm_pw_banner_pole_a14 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558779 
+
+ itm_pw_banner_pole_a15 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558780 
+
+ itm_pw_banner_pole_a16 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558781 
+
+ itm_pw_banner_pole_a17 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558782 
+
+ itm_pw_banner_pole_a18 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558783 
+
+ itm_pw_banner_pole_a19 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558784 
+
+ itm_pw_banner_pole_a20 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558785 
+
+ itm_pw_banner_pole_a21 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558786 
+
+ itm_pw_banner_pole_b01 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558787 
+
+ itm_pw_banner_pole_b02 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558788 
+
+ itm_pw_banner_pole_b03 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558789 
+
+ itm_pw_banner_pole_b04 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558790 
+
+ itm_pw_banner_pole_b05 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558791 
+
+ itm_pw_banner_pole_b06 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558792 
+
+ itm_pw_banner_pole_b07 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558793 
+
+ itm_pw_banner_pole_b08 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558794 
+
+ itm_pw_banner_pole_b09 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558795 
+
+ itm_pw_banner_pole_b10 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558796 
+
+ itm_pw_banner_pole_b11 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558797 
+
+ itm_pw_banner_pole_b12 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558798 
+
+ itm_pw_banner_pole_b13 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558799 
+
+ itm_pw_banner_pole_b14 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558800 
+
+ itm_pw_banner_pole_b15 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558801 
+
+ itm_pw_banner_pole_b16 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558802 
+
+ itm_pw_banner_pole_b17 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558803 
+
+ itm_pw_banner_pole_b18 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558804 
+
+ itm_pw_banner_pole_b19 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558805 
+
+ itm_pw_banner_pole_b20 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558806 
+
+ itm_pw_banner_pole_b21 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558807 
+
+ itm_pw_banner_pole_c01 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558808 
+
+ itm_pw_banner_pole_c02 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558809 
+
+ itm_pw_banner_pole_c03 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558810 
+
+ itm_pw_banner_pole_c04 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558811 
+
+ itm_pw_banner_pole_c05 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558812 
+
+ itm_pw_banner_pole_c06 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558813 
+
+ itm_pw_banner_pole_c07 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558814 
+
+ itm_pw_banner_pole_c08 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558815 
+
+ itm_pw_banner_pole_c09 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558816 
+
+ itm_pw_banner_pole_c10 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558817 
+
+ itm_pw_banner_pole_c11 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558818 
+
+ itm_pw_banner_pole_c12 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558819 
+
+ itm_pw_banner_pole_c13 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558820 
+
+ itm_pw_banner_pole_c14 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558821 
+
+ itm_pw_banner_pole_c15 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558822 
+
+ itm_pw_banner_pole_c16 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558823 
+
+ itm_pw_banner_pole_c17 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558824 
+
+ itm_pw_banner_pole_c18 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558825 
+
+ itm_pw_banner_pole_c19 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558826 
+
+ itm_pw_banner_pole_c20 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558827 
+
+ itm_pw_banner_pole_c21 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558828 
+
+ itm_pw_banner_pole_d01 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558829 
+
+ itm_pw_banner_pole_d02 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558830 
+
+ itm_pw_banner_pole_d03 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558831 
+
+ itm_pw_banner_pole_d04 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558832 
+
+ itm_pw_banner_pole_d05 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558833 
+
+ itm_pw_banner_pole_d06 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558834 
+
+ itm_pw_banner_pole_d07 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558835 
+
+ itm_pw_banner_pole_d08 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558836 
+
+ itm_pw_banner_pole_d09 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558837 
+
+ itm_pw_banner_pole_d10 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558838 
+
+ itm_pw_banner_pole_d11 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558839 
+
+ itm_pw_banner_pole_d12 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558840 
+
+ itm_pw_banner_pole_d13 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558841 
+
+ itm_pw_banner_pole_d14 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558842 
+
+ itm_pw_banner_pole_d15 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558843 
+
+ itm_pw_banner_pole_d16 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558844 
+
+ itm_pw_banner_pole_d17 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558845 
+
+ itm_pw_banner_pole_d18 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558846 
+
+ itm_pw_banner_pole_d19 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558847 
+
+ itm_pw_banner_pole_d20 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558848 
+
+ itm_pw_banner_pole_d21 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558849 
+
+ itm_pw_banner_pole_e01 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558850 
+
+ itm_pw_banner_pole_e02 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558851 
+
+ itm_pw_banner_pole_e03 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558852 
+
+ itm_pw_banner_pole_e04 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558853 
+
+ itm_pw_banner_pole_e05 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558854 
+
+ itm_pw_banner_pole_e06 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558855 
+
+ itm_pw_banner_pole_e07 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558856 
+
+ itm_pw_banner_pole_e08 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558857 
+
+ itm_pw_banner_pole_e09 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558858 
+
+ itm_pw_banner_pole_e10 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558859 
+
+ itm_pw_banner_pole_e11 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558860 
+
+ itm_pw_banner_pole_e12 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558861 
+
+ itm_pw_banner_pole_e13 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558862 
+
+ itm_pw_banner_pole_e14 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558863 
+
+ itm_pw_banner_pole_e15 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558864 
+
+ itm_pw_banner_pole_e16 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558865 
+
+ itm_pw_banner_pole_e17 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558866 
+
+ itm_pw_banner_pole_e18 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558867 
+
+ itm_pw_banner_pole_e19 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558868 
+
+ itm_pw_banner_pole_e20 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558869 
+
+ itm_pw_banner_pole_e21 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558870 
+
+ itm_pw_banner_pole_f01 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558871 
+
+ itm_pw_banner_pole_f02 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558872 
+
+ itm_pw_banner_pole_f03 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558873 
+
+ itm_pw_banner_pole_f04 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558874 
+
+ itm_pw_banner_pole_f05 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558875 
+
+ itm_pw_banner_pole_f06 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558876 
+
+ itm_pw_banner_pole_f07 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558877 
+
+ itm_pw_banner_pole_f08 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558878 
+
+ itm_pw_banner_pole_f09 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558879 
+
+ itm_pw_banner_pole_f10 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558880 
+
+ itm_pw_banner_pole_f11 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558881 
+
+ itm_pw_banner_pole_f12 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558882 
+
+ itm_pw_banner_pole_f13 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558883 
+
+ itm_pw_banner_pole_f14 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558884 
+
+ itm_pw_banner_pole_f15 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558885 
+
+ itm_pw_banner_pole_f16 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558886 
+
+ itm_pw_banner_pole_f17 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558887 
+
+ itm_pw_banner_pole_f18 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558888 
+
+ itm_pw_banner_pole_f19 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558889 
+
+ itm_pw_banner_pole_f20 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558890 
+
+ itm_pw_banner_pole_f21 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558891 
+
+ itm_pw_banner_pole_g01 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558892 
+
+ itm_pw_banner_pole_g02 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558893 
+
+ itm_pw_banner_pole_g03 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558894 
+
+ itm_pw_banner_pole_g04 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558895 
+
+ itm_pw_banner_pole_g05 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558896 
+
+ itm_pw_banner_pole_g06 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558897 
+
+ itm_pw_banner_pole_g07 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558898 
+
+ itm_pw_banner_pole_g08 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558899 
+
+ itm_pw_banner_pole_g09 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558900 
+
+ itm_pw_banner_pole_g10 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558901 
+
+ itm_pw_banner_pole_g11 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558902 
+
+ itm_pw_banner_pole_g12 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558903 
+
+ itm_pw_banner_pole_g13 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558904 
+
+ itm_pw_banner_pole_g14 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558905 
+
+ itm_pw_banner_pole_g15 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558906 
+
+ itm_pw_banner_pole_g16 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558907 
+
+ itm_pw_banner_pole_g17 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558908 
+
+ itm_pw_banner_pole_g18 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558909 
+
+ itm_pw_banner_pole_g19 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558910 
+
+ itm_pw_banner_pole_g20 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558911 
+
+ itm_pw_banner_pole_g21 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558912 
+
+ itm_pw_banner_pole_h01 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558913 
+
+ itm_pw_banner_pole_h02 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558914 
+
+ itm_pw_banner_pole_h03 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558915 
+
+ itm_pw_banner_pole_h04 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558916 
+
+ itm_pw_banner_pole_h05 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558917 
+
+ itm_pw_banner_pole_h06 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558918 
+
+ itm_pw_banner_pole_h07 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558919 
+
+ itm_pw_banner_pole_h08 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558920 
+
+ itm_pw_banner_pole_h09 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558921 
+
+ itm_pw_banner_pole_h10 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558922 
+
+ itm_pw_banner_pole_h11 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558923 
+
+ itm_pw_banner_pole_h12 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558924 
+
+ itm_pw_banner_pole_h13 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558925 
+
+ itm_pw_banner_pole_h14 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558926 
+
+ itm_pw_banner_pole_h15 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558927 
+
+ itm_pw_banner_pole_h16 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558928 
+
+ itm_pw_banner_pole_h17 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558929 
+
+ itm_pw_banner_pole_h18 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558930 
+
+ itm_pw_banner_pole_h19 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558931 
+
+ itm_pw_banner_pole_h20 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558932 
+
+ itm_pw_banner_pole_h21 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558933 
+
+ itm_pw_banner_pole_i01 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558934 
+
+ itm_pw_banner_pole_i02 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558935 
+
+ itm_pw_banner_pole_i03 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558936 
+
+ itm_pw_banner_pole_i04 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558937 
+
+ itm_pw_banner_pole_i05 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558938 
+
+ itm_pw_banner_pole_i06 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558939 
+
+ itm_pw_banner_pole_i07 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558940 
+
+ itm_pw_banner_pole_i08 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558941 
+
+ itm_pw_banner_pole_i09 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558942 
+
+ itm_pw_banner_pole_i10 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558943 
+
+ itm_pw_banner_pole_i11 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558944 
+
+ itm_pw_banner_pole_i12 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558945 
+
+ itm_pw_banner_pole_i13 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558946 
+
+ itm_pw_banner_pole_i14 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558947 
+
+ itm_pw_banner_pole_i15 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558948 
+
+ itm_pw_banner_pole_i16 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558949 
+
+ itm_pw_banner_pole_i17 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558950 
+
+ itm_pw_banner_pole_i18 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558951 
+
+ itm_pw_banner_pole_i19 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558952 
+
+ itm_pw_banner_pole_i20 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558953 
+
+ itm_pw_banner_pole_i21 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558954 
+
+ itm_pw_banner_pole_j01 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558955 
+
+ itm_pw_banner_pole_j02 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558956 
+
+ itm_pw_banner_pole_j03 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558957 
+
+ itm_pw_banner_pole_j04 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558958 
+
+ itm_pw_banner_pole_j05 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558959 
+
+ itm_pw_banner_pole_j06 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558960 
+
+ itm_pw_banner_pole_j07 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558961 
+
+ itm_pw_banner_pole_j08 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558962 
+
+ itm_pw_banner_pole_j09 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558963 
+
+ itm_pw_banner_pole_j10 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558964 
+
+ itm_pw_banner_pole_j11 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558965 
+
+ itm_pw_banner_pole_j12 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558966 
+
+ itm_pw_banner_pole_j13 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558967 
+
+ itm_pw_banner_pole_j14 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558968 
+
+ itm_pw_banner_pole_j15 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558969 
+
+ itm_pw_banner_pole_j16 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558970 
+
+ itm_pw_banner_pole_j17 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558971 
+
+ itm_pw_banner_pole_j18 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558972 
+
+ itm_pw_banner_pole_j19 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558973 
+
+ itm_pw_banner_pole_j20 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558974 
+
+ itm_pw_banner_pole_j21 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558975 
+
+ itm_pw_banner_pole_k01 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558976 
+
+ itm_pw_banner_pole_k02 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558977 
+
+ itm_pw_banner_pole_k03 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558978 
+
+ itm_pw_banner_pole_k04 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558979 
+
+ itm_pw_banner_pole_k05 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558980 
+
+ itm_pw_banner_pole_k06 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558981 
+
+ itm_pw_banner_pole_k07 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558982 
+
+ itm_pw_banner_pole_k08 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558983 
+
+ itm_pw_banner_pole_k09 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558984 
+
+ itm_pw_banner_pole_k10 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558985 
+
+ itm_pw_banner_pole_k11 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558986 
+
+ itm_pw_banner_pole_k12 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558987 
+
+ itm_pw_banner_pole_k13 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558988 
+
+ itm_pw_banner_pole_k14 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558989 
+
+ itm_pw_banner_pole_k15 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558990 
+
+ itm_pw_banner_pole_k16 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558991 
+
+ itm_pw_banner_pole_k17 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558992 
+
+ itm_pw_banner_pole_k18 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558993 
+
+ itm_pw_banner_pole_k19 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558994 
+
+ itm_pw_banner_pole_k20 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558995 
+
+ itm_pw_banner_pole_k21 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558996 
+
+ itm_pw_banner_pole_l01 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558997 
+
+ itm_pw_banner_pole_l02 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558998 
+
+ itm_pw_banner_pole_l03 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758558999 
+
+ itm_pw_banner_pole_l04 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559000 
+
+ itm_pw_banner_pole_l05 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559001 
+
+ itm_pw_banner_pole_l06 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559002 
+
+ itm_pw_banner_pole_l07 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559003 
+
+ itm_pw_banner_pole_l08 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559004 
+
+ itm_pw_banner_pole_l09 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559005 
+
+ itm_pw_banner_pole_l10 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559006 
+
+ itm_pw_banner_pole_l11 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559007 
+
+ itm_pw_banner_pole_l12 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559008 
+
+ itm_pw_banner_pole_l13 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559009 
+
+ itm_pw_banner_pole_l14 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559010 
+
+ itm_pw_banner_pole_l15 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559011 
+
+ itm_pw_banner_pole_l16 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559012 
+
+ itm_pw_banner_pole_l17 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559013 
+
+ itm_pw_banner_pole_l18 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559014 
+
+ itm_pw_banner_pole_l19 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559015 
+
+ itm_pw_banner_pole_l20 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559016 
+
+ itm_pw_banner_pole_l21 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559017 
+
+ itm_pw_banner_pole_m01 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559018 
+
+ itm_pw_banner_pole_m02 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559019 
+
+ itm_pw_banner_pole_m03 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559020 
+
+ itm_pw_banner_pole_m04 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559021 
+
+ itm_pw_banner_pole_m05 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559022 
+
+ itm_pw_banner_pole_m06 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559023 
+
+ itm_pw_banner_pole_m07 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559024 
+
+ itm_pw_banner_pole_m08 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559025 
+
+ itm_pw_banner_pole_m09 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559026 
+
+ itm_pw_banner_pole_m10 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559027 
+
+ itm_pw_banner_pole_m11 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559028 
+
+ itm_pw_banner_pole_m12 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559029 
+
+ itm_pw_banner_pole_m13 Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559030 
+
+ itm_pw_banner_pole_kingdom_a Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559031 
+
+ itm_pw_banner_pole_kingdom_b Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559032 
+
+ itm_pw_banner_pole_kingdom_c Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559033 
+
+ itm_pw_banner_pole_kingdom_d Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559034 
+
+ itm_pw_banner_pole_kingdom_e Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559035 
+
+ itm_pw_banner_pole_kingdom_f Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559036 
+
+ itm_pw_banner_pole_kingdom_g Banner Banner 1  pw_banner_pole 0  6553604 4222130824675328 1200 0 7.000000 100 0 0 0 0 10240 70 0 250 0 517 522
+ 0
+1
+-50.000000  1 1981 2 1729382256910270509 1441151880758559037 
+
+ itm_pw_banner_castle_fac_1a Castle_Banner Castle_Banner 1  pw_banner_castle 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270507 432345564227567618 
+
+ itm_pw_banner_castle_fac_2a Castle_Banner Castle_Banner 1  pw_banner_castle 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270507 432345564227567619 
+
+ itm_pw_banner_castle_fac_3a Castle_Banner Castle_Banner 1  pw_banner_castle 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270507 432345564227567620 
+
+ itm_pw_banner_castle_fac_4a Castle_Banner Castle_Banner 1  pw_banner_castle 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270507 432345564227567621 
+
+ itm_pw_banner_castle_fac_5a Castle_Banner Castle_Banner 1  pw_banner_castle 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270507 432345564227567622 
+
+ itm_pw_banner_castle_fac_6a Castle_Banner Castle_Banner 1  pw_banner_castle 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270507 432345564227567623 
+
+ itm_pw_banner_castle_fac_7a Castle_Banner Castle_Banner 1  pw_banner_castle 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270507 432345564227567624 
+
+ itm_pw_banner_castle_fac_8a Castle_Banner Castle_Banner 1  pw_banner_castle 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270507 432345564227567625 
+
+ itm_pw_banner_castle_fac_1b Castle_Banner Castle_Banner 1  pw_banner_castle 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270508 432345564227567618 
+
+ itm_pw_banner_castle_fac_2b Castle_Banner Castle_Banner 1  pw_banner_castle 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270508 432345564227567619 
+
+ itm_pw_banner_castle_fac_3b Castle_Banner Castle_Banner 1  pw_banner_castle 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270508 432345564227567620 
+
+ itm_pw_banner_castle_fac_4b Castle_Banner Castle_Banner 1  pw_banner_castle 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270508 432345564227567621 
+
+ itm_pw_banner_castle_fac_5b Castle_Banner Castle_Banner 1  pw_banner_castle 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270508 432345564227567622 
+
+ itm_pw_banner_castle_fac_6b Castle_Banner Castle_Banner 1  pw_banner_castle 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270508 432345564227567623 
+
+ itm_pw_banner_castle_fac_7b Castle_Banner Castle_Banner 1  pw_banner_castle 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270508 432345564227567624 
+
+ itm_pw_banner_castle_fac_8b Castle_Banner Castle_Banner 1  pw_banner_castle 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270508 432345564227567625 
+
+ itm_pw_banner_wall_fac_1a Wall_Banner Wall_Banner 1  pw_banner_wall 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270507 432345564227567618 
+
+ itm_pw_banner_wall_fac_2a Wall_Banner Wall_Banner 1  pw_banner_wall 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270507 432345564227567619 
+
+ itm_pw_banner_wall_fac_3a Wall_Banner Wall_Banner 1  pw_banner_wall 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270507 432345564227567620 
+
+ itm_pw_banner_wall_fac_4a Wall_Banner Wall_Banner 1  pw_banner_wall 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270507 432345564227567621 
+
+ itm_pw_banner_wall_fac_5a Wall_Banner Wall_Banner 1  pw_banner_wall 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270507 432345564227567622 
+
+ itm_pw_banner_wall_fac_6a Wall_Banner Wall_Banner 1  pw_banner_wall 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270507 432345564227567623 
+
+ itm_pw_banner_wall_fac_7a Wall_Banner Wall_Banner 1  pw_banner_wall 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270507 432345564227567624 
+
+ itm_pw_banner_wall_fac_8a Wall_Banner Wall_Banner 1  pw_banner_wall 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270507 432345564227567625 
+
+ itm_pw_banner_wall_fac_1b Wall_Banner Wall_Banner 1  pw_banner_wall 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270508 432345564227567618 
+
+ itm_pw_banner_wall_fac_2b Wall_Banner Wall_Banner 1  pw_banner_wall 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270508 432345564227567619 
+
+ itm_pw_banner_wall_fac_3b Wall_Banner Wall_Banner 1  pw_banner_wall 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270508 432345564227567620 
+
+ itm_pw_banner_wall_fac_4b Wall_Banner Wall_Banner 1  pw_banner_wall 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270508 432345564227567621 
+
+ itm_pw_banner_wall_fac_5b Wall_Banner Wall_Banner 1  pw_banner_wall 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270508 432345564227567622 
+
+ itm_pw_banner_wall_fac_6b Wall_Banner Wall_Banner 1  pw_banner_wall 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270508 432345564227567623 
+
+ itm_pw_banner_wall_fac_7b Wall_Banner Wall_Banner 1  pw_banner_wall 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270508 432345564227567624 
+
+ itm_pw_banner_wall_fac_8b Wall_Banner Wall_Banner 1  pw_banner_wall 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+1
+-50.000000  1 1981 2 1729382256910270508 432345564227567625 
+
+ itm_admin_horse Admin_Horse Admin_Horse 1  plated_charger_black 0  1 0 0 34359738368 0.000000 100 0 100 0 0 500 100 400 130 0 50 0
+ 0
+0
+
+ itm_invisible_head Invisible_Head Invisible_Head 1  invisible 0  2147483660 0 0 0 1.000000 100 80 0 0 30 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_invisible_body Invisible_Body Invisible_Body 1  invisible 0  16777229 0 0 0 1.000000 100 0 80 30 30 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_invisible_foot Invisible_Foot Invisible_Foot 1  invisible 0  3854 0 0 0 1.000000 100 0 0 65 30 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_invisible_hand Invisible_Hand Invisible_Hand 1  invisible_L 0  15 0 0 0 1.000000 100 0 20 0 30 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_invisible_sword Invisible_Sword Invisible_Sword 1  invisible 0  6291459 9223635924301119728 0 155668 1.000000 100 0 0 0 30 64512 120 0 120 0 511 255
+ 0
+1
+-51.000000  3 2071 1 1224979098644774912 545 3 1224979098644774912 64 1 1747 2 1224979098644774912 -1 
+
+ itm_all_items_end all_items_end all_items_end 1  invisible 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_pointer_arrow pointer_arrow pointer_arrow 1  pointer_arrow 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_animal_herd_manager animal_herd_manager animal_herd_manager 1  invisible 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_animal_carcass animal_carcass animal_carcass 1  pw_blood_a 0  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+
+ itm_agent_corpse agent_corpse agent_corpse 3  pw_blood_b 1  pw_blood_c 2  pw_dropped_armor 4  137438953472 0 0 0 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ 0
+0
+

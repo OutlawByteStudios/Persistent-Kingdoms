@@ -1,0 +1,16 @@
+15
+qstr_{s0}^Ironflesh:_{reg {s0}^Ironflesh:_{reg10}
+qstr_{s0}^Power_strike:_{ {s0}^Power_strike:_{reg10}
+qstr_{s0}^Power_draw:_{re {s0}^Power_draw:_{reg10}
+qstr_{s0}^Power_throw:_{r {s0}^Power_throw:_{reg10}
+qstr_{s0}^Shield:_{reg10} {s0}^Shield:_{reg10}
+qstr_{s0}^Athletics:_{reg {s0}^Athletics:_{reg10}
+qstr_{s0}^Riding:_{reg10} {s0}^Riding:_{reg10}
+qstr_{s0}^Horse_archery:_ {s0}^Horse_archery:_{reg10}
+qstr_{s0}^Engineer:_{reg1 {s0}^Engineer:_{reg10}
+qstr_{s0}^Wound_treatment {s0}^Wound_treatment:_{reg10}
+qstr_{s0}^Labouring:_{reg {s0}^Labouring:_{reg10}
+qstr_{s0}^Looting:_{reg10 {s0}^Looting:_{reg10}
+qstr_{s0}^Sailing:_{reg10 {s0}^Sailing:_{reg10}
+qstr_{s0}^Tailoring:_{reg {s0}^Tailoring:_{reg10}
+qstr_{s0}^Herding:_{reg10 {s0}^Herding:_{reg10}
