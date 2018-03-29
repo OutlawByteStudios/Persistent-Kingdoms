@@ -17,7 +17,7 @@ skl_pathfinding Path-finding 18 10 Party_map_speed_is_increased_by_3%%_per_skill
 skl_tactics Tactics 18 10 Every_two_levels_of_this_skill_increases_starting_battle_advantage_by_1._(Party_skill)
 skl_tracking Tracking 18 10 Tracks_become_more_informative._(Party_skill)
 skl_trainer Trainer 2 10 Every_day,_each_hero_with_this_skill_adds_some_experience_to_every_other_member_of_the_party_whose_level_is_lower_than_his/hers._Experience_gained_goes_as:_{0,4,10,16,23,30,38,46,55,65,80}._(Personal_skill)
-skl_reserved_5 Reserved_Skill_5 258 10 This_is_a_reserved_skill.
+skl_musician Musician 3 10 This_skill_allows_you_to_play_musical_instruments.
 skl_reserved_6 Reserved_Skill_6 258 10 This_is_a_reserved_skill.
 skl_reserved_7 Reserved_Skill_7 258 10 This_is_a_reserved_skill.
 skl_reserved_8 Reserved_Skill_8 258 10 This_is_a_reserved_skill.

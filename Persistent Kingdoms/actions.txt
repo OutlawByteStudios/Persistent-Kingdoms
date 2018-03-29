@@ -1013,14 +1013,14 @@
  pause_encumbered 1024 33554465  2
   2.000000 sword_loop02 10 55 5 0 0.0 0.0 0.0 0.0 
   2.000000 sword_loop02 65 100 5 0 0.0 0.0 0.0 0.0 
- unused_human_anim_46 0 0  1
-  1.000000 anim_human 0 1 0 0 0.0 0.0 0.0 0.0 
- unused_human_anim_47 0 0  1
-  1.000000 anim_human 0 1 0 0 0.0 0.0 0.0 0.0 
- unused_human_anim_48 0 0  1
-  1.000000 anim_human 0 1 0 0 0.0 0.0 0.0 0.0 
- unused_human_anim_49 0 0  1
-  1.000000 anim_human 0 1 0 0 0.0 0.0 0.0 0.0 
+ play_lute 1024 100663360  1
+  1.000000 dedal_lute_standing 3 7 1342177280 0 0.000000 0.000000 0.000000  0.250000 
+ play_lyre 1024 100663360  1
+  1.000000 dedal_lyre_standing 3 7 1342177280 0 0.000000 0.000000 0.000000  0.250000 
+ play_horn 0 33554433  1
+  6.000000 skel_hornblow 1 10 268435462 0 0.000000 0.000000 0.000000  0.250000 
+ pose_finish 0 33554496  1
+  0.100000 stand_man 0 1 6 0 0.0 0.0 0.0 0.0 
  unused_human_anim_50 0 0  1
   1.000000 anim_human 0 1 0 0 0.0 0.0 0.0 0.0 
  unused_human_anim_51 0 0  1
