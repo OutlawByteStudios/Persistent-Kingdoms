@@ -34,6 +34,9 @@ server_event_set_attached_scene_prop            = 26
 server_event_local_animation                    = 27
 server_event_update_scene_prop_hit_points       = 28
 
+server_event_agent_stop_sound                   = 29
+server_event_agent_play_sound                   = 30
+
 # Add new events here: above if sent from the server, below if from clients.
 
 client_event_fast_equip                         = 91 #Mouse Right Click Fast Inventory transfer

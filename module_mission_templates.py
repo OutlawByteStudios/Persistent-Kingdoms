@@ -355,6 +355,30 @@ agent_dismount = (ti_on_agent_dismount, 0, 0, [], # server: make horses stand st
     (server_add_message_to_log, "str_s0_has_dismounted_a_s1"),
     ])
 
+instrument_check = (2, 0, 0, [], # server: handle agents playing instruments
+   [(multiplayer_is_server),
+    (call_script, "script_cf_check_musical_instrument"),
+    ])
+
+instrument_killed = (ti_on_agent_killed_or_wounded, 0, 0, [], # handle instruments
+   [(store_trigger_param_1, ":dead_agent_id"),
+    (call_script, "script_client_stop_playing_musical_instrument", ":dead_agent_id"),
+    ])
+
+instrument_unwielded = (ti_on_item_unwielded, 0, 0, [], # handle instruments
+   [(store_trigger_param_1, ":agent_id"),
+    (call_script, "script_cf_stop_playing_musical_instrument", ":agent_id"),
+    (eq,reg20,1),
+    (call_script, "script_client_stop_playing_musical_instrument", ":agent_id"),
+    ])
+
+instrument_dropped = (ti_on_item_dropped, 0, 0, [], # handle instruments
+   [(store_trigger_param_1, ":agent_id"),
+    (call_script, "script_cf_stop_playing_musical_instrument", ":agent_id"),
+    (eq,reg20,1),
+    (call_script, "script_client_stop_playing_musical_instrument", ":agent_id"),
+    ])
+
 player_check_loop = (0, 0, 0.5, # server: check all players to see if any need agents spawned, also periodically lowering outlaw ratings
    [(multiplayer_is_server),
     (store_mission_timer_a, ":time"),
@@ -1004,6 +1028,11 @@ def common_triggers(self):
 
     agent_mount,
     agent_dismount,
+
+    instrument_check,
+    instrument_killed,
+    instrument_unwielded,
+    instrument_dropped,
 
     player_check_loop,
     agent_check_loop,

@@ -1275,6 +1275,41 @@ scripts.extend([
             (prop_instance_clear_attached_missiles, ":linked_instance_id_2"),
           (try_end),
         (try_end),
+      (else_try),
+        (eq, ":event_type", server_event_agent_stop_sound),
+        (store_script_param, ":agent_id", 3),
+        (try_begin),
+          (agent_is_active, ":agent_id"),
+          (agent_stop_sound, ":agent_id"),
+        (try_end),
+      (else_try),
+        (eq, ":event_type", server_event_agent_play_sound),
+        (store_script_param, ":agent_id", 3),
+        (store_script_param, ":sound", 4),
+        (store_script_param, ":max_distance", 5), # How far you want the sound to travel
+        (try_begin),
+          (agent_is_active, ":agent_id"),
+          (agent_is_alive,":agent_id"),
+
+          (multiplayer_get_my_player, ":my_player_no"),
+          (player_get_agent_id,":my_agent", ":my_player_no"),
+          (agent_is_active, ":my_agent"),
+
+          (agent_get_position,pos1,":agent_id"),
+          (agent_get_position,pos2,":my_agent"),
+          (get_distance_between_positions_in_meters,":distance",pos1,pos2),
+
+          (agent_play_sound, ":agent_id", ":sound"),# Play the normal sound position
+          (neq,":max_distance",0),
+          #Work out how far the distance is being traveled
+          (gt,":distance",200),
+          (store_sub, ":dis_sound", ":distance", 200),
+          (val_clamp, ":dis_sound", 0, 800),#Keep to a 1k range
+          (neg|gt,":dis_sound",":max_distance"),#Ensure it doesnt travel over the max range
+          (val_div, ":dis_sound", 100),#Divide by 100 to get a single digit value
+          (val_add, ":dis_sound", ":sound"),
+          (play_sound, ":dis_sound"),
+        (try_end),
       (try_end),
 
     (else_try), # section of events received by server from the clients
@@ -13780,6 +13815,11 @@ scripts.extend([
     (troop_set_slot, "trp_animation_menu_strings", 3 + animation_menu_end_offset, "str_anim_stand_and_deliver"),
     (troop_set_slot, "trp_animation_menu_strings", 4, "str_anim_stand_and_deliver"),
     (troop_set_slot, "trp_animation_menu_strings", 4 + animation_menu_end_offset, "str_log_animation"),
+    (troop_set_slot, "trp_animation_menu_strings", 4 + animation_menu_end_offset, "str_anim_horn_charge"),
+    (troop_set_slot, "trp_animation_menu_strings", 5, "str_anim_horn_charge"),
+    (troop_set_slot, "trp_animation_menu_strings", 5 + animation_menu_end_offset, "str_anim_lute_1"),
+    (troop_set_slot, "trp_animation_menu_strings", 6, "str_anim_lute_1"),
+    (troop_set_slot, "trp_animation_menu_strings", 6 + animation_menu_end_offset, "str_log_animation"),
     ]),
 
   ("initialize_animation_durations", []), # copies animation durations in milliseconds from module_animations.py to slots of trp_animation_durations
@@ -13803,7 +13843,7 @@ def animation_menu_entry(string_id, **kwargs):
 
 scripts.extend([
 
-  ("cf_try_execute_animation", # clients, server: check if an agent can play an animation; if successful, on clients return test result in reg0 or send a message, execute if the server
+("cf_try_execute_animation", # clients, server: check if an agent can play an animation; if successful, on clients return test result in reg0 or send a message, execute if the server
    [(store_script_param, ":player_id", 1), # must be valid
     (store_script_param, ":string_id", 2),
     (store_script_param, ":only_test", 3), # if 1, the level of tests passed is returned in reg0
@@ -13840,6 +13880,9 @@ scripts.extend([
       (assign, ":prevent_if_wielding", 0), # 1 = prevent this animation from being triggered if the agent is wielding any items
       (assign, ":prevent_if_moving", 0), # 1 = prevent this animation from being triggered if the agent is moving
       (assign, ":add_to_chat", 0), # display the animation string in the local chat for near the player
+      (assign, ":music", -1), # ensure that music is handled correctly
+      (assign, ":instrument", -1), # required wielded item
+      (assign, ":max_distance", 0), # distance in which the sound can reach in meters
       (try_begin), # the first script parameter is the name string id, which must be in the appropriate section of module_strings.py
         animation_menu_entry("str_anim_cheer", animation="anim_cheer", man_sound="snd_man_victory"),
         animation_menu_entry("str_anim_clap", animation="anim_man_clap", woman_alt_animation="anim_woman_clap", prevent_if_wielding=1),
@@ -13870,11 +13913,21 @@ scripts.extend([
         animation_menu_entry("str_anim_easy_way_or_hard_way", man_sound="snd_easy_way_or_hard_way", duration_ms=3400, add_to_chat=1),
         animation_menu_entry("str_anim_everything_has_a_price", man_sound="snd_everything_has_a_price", duration_ms=3100, add_to_chat=1),
         animation_menu_entry("str_anim_slit_your_throat", man_sound="snd_slit_your_throat", duration_ms=2400, add_to_chat=1),
+        animation_menu_entry("str_anim_lute_1", animation="anim_play_lute", man_sound="snd_lute_1", woman_sound="snd_lute_1", music=2, instrument="itm_lute"),
+        animation_menu_entry("str_anim_lute_2", animation="anim_play_lute", man_sound="snd_lute_2", woman_sound="snd_lute_2", music=2, instrument="itm_lute"),
+        animation_menu_entry("str_anim_lute_3", animation="anim_play_lute", man_sound="snd_lute_3", woman_sound="snd_lute_3", music=2, instrument="itm_lute"),
+        animation_menu_entry("str_anim_lute_4", animation="anim_play_lute", man_sound="snd_lute_4", woman_sound="snd_lute_4", music=2, instrument="itm_lute"),
+        animation_menu_entry("str_anim_lyre_1", animation="anim_play_lyre", man_sound="snd_lyre_1", woman_sound="snd_lyre_1", music=3, instrument="itm_lyre"),
+        animation_menu_entry("str_anim_lyre_2", animation="anim_play_lyre", man_sound="snd_lyre_2", woman_sound="snd_lyre_2", music=3, instrument="itm_lyre"),
+        animation_menu_entry("str_anim_lyre_3", animation="anim_play_lyre", man_sound="snd_lyre_3", woman_sound="snd_lyre_3", music=3, instrument="itm_lyre"),
+        animation_menu_entry("str_anim_lyre_4", animation="anim_play_lyre", man_sound="snd_lyre_4", woman_sound="snd_lyre_4", music=3, instrument="itm_lyre"),
+        animation_menu_entry("str_anim_horn_charge", animation="anim_play_horn", man_sound="snd_horncharge", woman_sound="snd_horncharge", instrument="itm_warhorn", music=0, max_distance=700),
+        animation_menu_entry("str_anim_horn_regroup", animation="anim_play_horn", man_sound="snd_hornregroup", woman_sound="snd_hornregroup", instrument="itm_warhorn", music=0, max_distance=700),
+        animation_menu_entry("str_anim_horn_retreat", animation="anim_play_horn", man_sound="snd_hornretreat", woman_sound="snd_hornretreat", instrument="itm_warhorn", music=0, max_distance=700),
       (else_try),
         (assign, ":string_id", -1),
       (try_end),
       (gt, ":string_id", -1),
-
       (player_get_gender, ":gender", ":player_id"),
       (try_begin),
         (eq, ":gender", tf_female),
@@ -13889,6 +13942,14 @@ scripts.extend([
         (this_or_next|neq, ":weapon", -1),
         (neq, ":shield", -1),
         (assign, ":animation", -1),
+      (try_end),
+      (try_begin),
+        (ge, ":instrument", 0),
+        (agent_get_wielded_item, ":instrumentheld", ":agent_id", 0),
+        (neq, ":instrumentheld", ":instrument"),
+        (assign, ":animation", -1),
+        (assign, ":man_sound", -1),
+        (assign, ":woman_sound", -1),
       (try_end),
       (try_begin),
         (eq, ":prevent_if_moving", 1),
@@ -13908,6 +13969,22 @@ scripts.extend([
         (eq, ":gender", tf_female),
         (gt, ":woman_sound", -1),
         (assign, ":sound", ":woman_sound"),
+      (try_end),
+      (try_begin),#cancel music if playing already
+        (agent_slot_ge, ":agent_id", slot_agent_playing_music, 1),
+        (call_script, "script_cf_stop_playing_musical_instrument", ":agent_id"),
+        (call_script, "script_client_stop_playing_musical_instrument", ":agent_id"),
+      (try_end),
+      (try_begin),# Music handle animations/sound
+        (ge,":music",0), # is the agent playing music
+        (call_script, "script_cf_has_enough_skill_level", ":agent_id", "skl_musician", ":music"),
+        (call_script, "script_cf_can_play_musical_instrument", ":agent_id", ":animation", ":sound"),
+        (try_begin),
+          (this_or_next|eq,reg4,1),
+          (eq,reg5,1),
+          (assign, ":animation", -1),
+          (assign, ":sound", -1),
+        (try_end),
       (try_end),
       (this_or_next|gt, ":animation", -1),
       (this_or_next|gt, ":sound", -1),
@@ -13947,7 +14024,12 @@ scripts.extend([
         (try_end),
         (try_begin),
           (gt, ":sound", -1),
-          (agent_play_sound, ":agent_id", ":sound"),
+          (try_begin),
+            (eq,":music",1),#Ensure all players know the agent is playing a sound
+            (call_script, "script_cf_play_global_agent_sound", ":agent_id", ":sound", ":max_distance"),
+          (else_try),
+            (agent_play_sound, ":agent_id", ":sound"),
+          (try_end),
         (try_end),
       (try_end),
       (try_begin),
@@ -13987,6 +14069,133 @@ scripts.extend([
     (assign, reg0, ":test_passed"),
     (this_or_next|ge, ":test_passed", 3),
     (neq, ":only_test", 0),
+    ]),
+
+    ("cf_stop_playing_musical_instrument", # server: Handle stop playing a musical instrument
+       [(multiplayer_is_server),
+        (store_script_param, ":agent_id", 1), # must be valid
+        (agent_is_active,":agent_id"),
+        (agent_is_human,":agent_id"),
+        (agent_get_slot,":playingmusic",":agent_id",slot_agent_playing_music),
+        (gt,":playingmusic",0),
+        (assign,reg20,1),
+        (agent_set_slot,":agent_id",slot_agent_playing_music,0),
+        (get_max_players, ":max_players"),
+        (try_for_range, ":player_id", 1, ":max_players"),
+          (player_is_active, ":player_id"),
+          (multiplayer_send_int_to_player, ":player_id", server_event_agent_stop_sound, ":agent_id"),
+          (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_pose_finish",1),
+        (try_end),
+    ]),
+
+    ("client_stop_playing_musical_instrument", # client: Handle stop playing a musical instrument
+       [(store_script_param, ":agent_id", 1), # must be valid
+        (try_begin),
+         (neg|multiplayer_is_dedicated_server),
+          (try_begin),
+            (agent_is_active,":agent_id"),
+            (agent_stop_sound,":agent_id"),
+          (try_end),
+        (try_end),
+    ]),
+
+    ("cf_do_custom_anims", # server: Do custom animations
+       [(multiplayer_is_server),
+        (store_script_param, ":agent_id", 1), # must be valid
+        (store_script_param, ":anim", 2), # must be valid
+        (store_script_param, ":body", 3),
+        (agent_set_animation,":agent_id",":anim",":body"),
+    ]),
+
+    ("cf_has_enough_skill_level", # server: Handle checking for required skill level
+       [(multiplayer_is_server),
+        (store_script_param, ":agent_id", 1), # must be valid
+        (store_script_param, ":skill", 2), # must be valid
+        (store_script_param, ":required", 3), # must be valid
+        (agent_get_troop_id, ":troop_id", ":agent_id"),
+        (store_skill_level, ":troop_skill_level", ":skill", ":troop_id"),
+        (assign,reg4,1),
+        (try_begin),
+          (ge,":troop_skill_level",":required"),
+          (assign,reg4,0),
+        (try_end),
+    ]),
+
+    ("cf_can_play_musical_instrument", # server: Handle starting a musical instrument
+       [(multiplayer_is_server),
+        (store_script_param, ":agent_id", 1), # must be valid
+        (store_script_param, ":anim", 2), # must be valid
+        (store_script_param, ":sound", 3), # must be valid
+        (agent_get_slot,":playingmusic",":agent_id",slot_agent_playing_music),
+        (assign,reg5,1),
+        (eq,":playingmusic",0),
+        (agent_get_wielded_item, ":weapon", ":agent_id", 0),
+        (try_begin),
+          (eq,":anim","anim_play_lute"),
+          (try_begin),
+            (eq,":weapon","itm_lute"),
+            (agent_set_slot,":agent_id",slot_agent_playing_music, ":sound"),
+            (assign,reg5,0),
+          (try_end),
+        (else_try),
+          (eq,":anim","anim_play_lyre"),
+          (try_begin),
+            (eq,":weapon","itm_lyre"),
+            (agent_set_slot,":agent_id",slot_agent_playing_music, ":sound"),
+            (assign,reg5,0),
+          (try_end),
+        (else_try),
+          (eq,":anim","anim_play_horn"),
+          (try_begin),
+            (eq,":weapon","itm_warhorn"),
+            (agent_set_slot,":agent_id",slot_agent_playing_music, ":sound"),
+            (assign,reg5,0),
+          (try_end),
+        (try_end),
+    ]),
+
+    ("cf_check_musical_instrument", # server: Keep checking if user can continue to play music
+       [(multiplayer_is_server),
+        (get_max_players, ":max_players"),
+        (try_for_range, ":player_id", 1, ":max_players"),
+          (player_is_active, ":player_id"),
+          (player_get_agent_id,":agent_id",":player_id"),
+          (agent_is_active,":agent_id"),
+          (agent_is_alive,":agent_id"),
+          (agent_get_slot,":playing",":agent_id",slot_agent_playing_music),
+          (try_begin),
+            (ge,":playing",1),
+            (agent_get_animation, ":anim", ":agent_id", 1),
+            (assign,":fail",1),
+            (try_begin),
+              (eq,":anim","anim_play_lute"),
+                (assign,":fail",0),
+            (else_try),
+              (eq,":anim","anim_play_lyre"),
+                (assign,":fail",0),
+            (else_try),
+              (eq,":anim","anim_play_horn"),
+                (assign,":fail",0),
+            (try_end),
+            (try_begin),
+              (eq,":fail",1),
+                (call_script, "script_cf_stop_playing_musical_instrument", ":agent_id"),
+            (try_end),
+          (try_end),
+        (try_end),
+    ]),
+
+    ("cf_play_global_agent_sound", # server: Handle global sound of agents
+       [(multiplayer_is_server),
+        (store_script_param, ":agent_id", 1), # must be valid
+        (store_script_param, ":sound", 2), # sound to be played must be valid
+        (store_script_param, ":distance", 3), # Meters
+        (agent_is_active,":agent_id"),
+        (get_max_players, ":max_players"),
+        (try_for_range, ":player_id", 1, ":max_players"),
+          (player_is_active, ":player_id"),
+          (multiplayer_send_3_int_to_player, ":player_id", server_event_agent_play_sound, ":agent_id", ":sound", ":distance"),
+        (try_end),
     ]),
 
 ])
