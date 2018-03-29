@@ -28,8 +28,8 @@ scripts.extend([
   #TODO: log when someone hits someone else's shield
   ("cf_shield_hit", [
     (multiplayer_is_server),
-    (store_script_param_1, ":defender_agent_id"),
-    (store_script_param_2, ":attacker_agent_id"),
+    (store_script_param, ":defender_agent_id", 1),
+    (store_script_param, ":attacker_agent_id", 2),
     (store_script_param, ":damage", 3),
 	
     (agent_get_player_id, ":defender_player_id", ":defender_agent_id"),
@@ -41,13 +41,289 @@ scripts.extend([
 	
     (server_add_message_to_log, "str_shield_hit_log"),
   ]),
+  #End
+  
+  #Log looting corpse
+  ("cf_log_loot_corpse", [
+    (multiplayer_is_server),
+    (store_script_param_1, ":corpse_instance_id"),
+    (store_script_param_2, ":looter_agent_id"),
+    (assign, reg31, ":corpse_instance_id"),
+	
+    (scene_prop_get_slot, ":owner_agent_id", ":corpse_instance_id", slot_scene_prop_corpse_owner),
+	
+    (agent_get_player_id, ":looter_player_id", ":looter_agent_id"),
+    (str_store_player_username, s11, ":looter_player_id"),
+	
+    (try_begin),
+      (gt, ":owner_agent_id", 0),
+      (neg|agent_is_non_player, ":owner_agent_id"),
+      (agent_get_player_id, ":owner_player_id", ":owner_agent_id"),
+      (str_store_player_username, s12, ":owner_player_id"),
+      (server_add_message_to_log, "str_log_loot_corpse"),
+    (try_end),
+  ]),
+  
+  #Log hits by/to animals or players
+  ("cf_log_hit", [
+    (multiplayer_is_server),
+    (store_script_param, ":attacked_agent_id", 1),
+    (store_script_param, ":attacker_agent_id", 2),
+    (store_script_param, reg31, 3), #damage
+    (store_script_param, ":item_id", 4),
+    (store_script_param, ":log_nevertheless", 5),
+	
+    (try_begin),
+      (gt, ":item_id", -1),
+      (str_store_item_name, s10, ":item_id"),
+    (else_try),
+      (str_store_string, s10, "@fist"),
+    (try_end),
+	
+    (assign, ":log", 0),
+    (try_begin),
+      (eq, ":log_nevertheless", 1),
+      (assign, ":log", 1),
+    (else_try),
+      (neq, ":item_id", "itm_surgeon_scalpel"),
+      (neq, ":item_id", "itm_healing_herb"),
+      (assign, ":log", 1),
+    (try_end),
+	
+    (try_begin), #If it wasn't a heal or usage of healing herb
+      (eq, ":log", 1),
+	  
+      (try_begin), #If the attacker is a player
+        (neg|agent_is_non_player, ":attacker_agent_id"),
+        (agent_get_player_id, ":attacker_player_id", ":attacker_agent_id"),
+        (str_store_player_username, s11, ":attacker_player_id"),
+        (try_begin),#If the defender is a player
+          (neg|agent_is_non_player, ":attacked_agent_id"),
+          (agent_get_player_id, ":attacked_player_id", ":attacked_agent_id"),
+          (str_store_player_username, s12, ":attacked_player_id"),
+          (server_add_message_to_log, "str_log_hit_player"),
+        (else_try),#Else, the defender is either horse or animal
+          (agent_get_rider, ":rider_id", ":attacked_agent_id"),
+          (try_begin),#The horse is mounted by a player
+            (gt, ":rider_id", 0),
+        	(agent_get_player_id, ":rider_player_id", ":rider_id"),
+            (str_store_player_username, s12, ":rider_player_id"),
+        	(server_add_message_to_log, "str_log_hit_phorse"),
+          (else_try),#Else, the horse or animal is Rogue (a weeabo)
+            (agent_get_item_id, ":animal_item_id", ":attacked_agent_id"),
+        	(str_store_item_name, s12, ":animal_item_id"),
+            (assign, reg32, ":attacked_agent_id"),
+        	(server_add_message_to_log, "str_log_hit_animal"),
+          (try_end),
+        (try_end),
+      (else_try),#Else, the attacker is either horse or animal
+        (agent_get_player_id, ":attacked_player_id", ":attacked_agent_id"),
+        (str_store_player_username, s12, ":attacked_player_id"), 
+        (agent_get_rider, ":rider_id", ":attacker_agent_id"),
+        (try_begin),
+          (gt, ":rider_id", 0),#If a player rides the horse
+          (agent_get_player_id, ":attacker_player_id", ":rider_id"),
+          (str_store_player_username, s11, ":attacker_player_id"), 
+        (else_try),#Else, the horse or animal is Rogue (a weeabo)
+          (agent_get_item_id, ":animal_item_id", ":attacker_agent_id"),
+          (str_store_item_name, s11, ":animal_item_id"),
+        (try_end),
+        (server_add_message_to_log, "str_log_bump"),
+      (try_end),
+    (try_end),
+  ]),
+  
+  #Log healing
+  ("cf_log_heal", [
+    (multiplayer_is_server),
+    (store_script_param, ":healed_agent_id", 1),
+	(store_script_param, ":healer_agent_id", 2),
+	(store_script_param, ":healing", 3),
+	(store_script_param, ":health_percent", 4),
+	(store_script_param, ":healing_limit", 5),
+	
+	(try_begin),
+	  (store_add, ":total_health", ":healing", ":health_percent"),
+	  (gt, ":total_health", ":health_percent"),
+	  (store_sub, ":healing", ":healing_limit", ":health_percent"),
+	(try_end),
+	
+	(agent_get_player_id, ":healer_player_id", ":healer_agent_id"),
+    (str_store_player_username, s11, ":healer_player_id"),
+	(assign, reg31, ":healing"),
+	
+	(try_begin),#If the healed is a player
+	  (neg|agent_is_non_player, ":healed_agent_id"),
+	  (agent_get_player_id, ":healed_player_id", ":healed_agent_id"),
+	  (str_store_player_username, s12, ":healed_player_id"),
+	  (server_add_message_to_log, "str_log_heal_player"),
+	(else_try),#Else, the healed is either horse or animal
+	  (agent_get_rider, ":rider_id", ":healed_agent_id"),
+	  (try_begin),#The horse is mounted by a player
+	    (gt, ":rider_id", 0),
+		(agent_get_player_id, ":rider_player_id", ":rider_id"),
+	    (str_store_player_username, s12, ":rider_player_id"),
+		(server_add_message_to_log, "str_log_heal_phorse"),
+	  (else_try),#Else, the horse or animal is Rogue (a weeabo)
+	    (agent_get_item_id, ":animal_item_id", ":healed_agent_id"),
+		(str_store_item_name, s12, ":animal_item_id"),
+		(server_add_message_to_log, "str_log_heal_animal"),
+	  (try_end),
+	(try_end),
+  ]),
+  
+  #Cart Attach Log
+  ("cf_log_attach_cart", [
+    (multiplayer_is_server),
+	(store_script_param, ":attach_agent_id", 1),
+	(store_script_param, ":instance_id", 2),
+	(store_script_param, ":player_agent_id", 3),
+	
+	(agent_get_player_id, ":player_id", ":player_agent_id"),
+	(str_store_player_username, s11, ":player_id"),
+	(assign, reg31, ":instance_id"),
+	
+    (try_begin),
+      (eq, ":attach_agent_id", ":player_agent_id"),
+	  (server_add_message_to_log, "str_attach_to_himself_log"),
+    (else_try),
+      (server_add_message_to_log, "str_attach_to_horse_log"),
+    (try_end),
+  ]),
+  
+  #Cart Dettach Log
+  ("cf_log_detach_cart", [
+    (multiplayer_is_server),
+	(store_script_param, ":attach_agent_id", 1),
+	(store_script_param, ":instance_id", 2),
+	(store_script_param, ":player_agent_id", 3),
+	
+	(agent_get_player_id, ":player_id", ":player_agent_id"),
+	(str_store_player_username, s11, ":player_id"),
+	(assign, reg31, ":instance_id"),
+	
+    (try_begin),
+      (eq, ":attach_agent_id", ":player_agent_id"),
+	  (server_add_message_to_log, "str_detach_from_himself_log"),
+    (else_try),
+      (server_add_message_to_log, "str_detach_from_horse_log"),
+    (try_end),
+  ]),
+  #Log withdrawals from money chests
+  ("cf_log_money_chest_withdraw", [
+    (multiplayer_is_server),
+    (store_script_param, ":player_id", 1),
+    (store_script_param, ":instance_id", 2),
+    (store_script_param, ":gold_value", 3),
+	
+	(str_store_player_username, s11, ":player_id"),
+    (call_script, "script_scene_prop_get_owning_faction", ":instance_id"),
+    (str_store_faction_name, s12, reg0),
+	(assign, reg31, ":gold_value"),
+	(val_abs, reg31),
+	
+	(server_add_message_to_log, "str_log_money_chest_withdraw"),
+  ]),
+  
+  #Log deposits to money chests
+  ("cf_log_money_chest_deposit", [
+    (multiplayer_is_server),
+    (store_script_param, ":player_id", 1),
+    (store_script_param, ":instance_id", 2),
+    (store_script_param, ":gold_value", 3),
+	
+	(str_store_player_username, s11, ":player_id"),
+    (call_script, "script_scene_prop_get_owning_faction", ":instance_id"),
+    (str_store_faction_name, s12, reg0),
+	(assign, reg31, ":gold_value"),
+	
+	(server_add_message_to_log, "str_log_money_chest_deposit"),
+  ]),
+  
+  #Log door hits
+  ("cf_log_hit_door", [
+    (multiplayer_is_server),
+    (store_script_param, ":instance_id", 1),
+    (store_script_param, ":agent_id", 2),
+    (store_script_param, ":hit_damage", 3),
+    (store_script_param, ":hit_type", 4),
+	
+    #reg0's value should be saved because the function to which this function will return uses it
+    (assign, ":reg0_value", reg0),
+    
+    (agent_get_player_id, ":player_id", ":agent_id"),
+    (str_store_player_username, s11, ":player_id"),
+    (call_script, "script_scene_prop_get_owning_faction", ":instance_id"),
+    (str_store_faction_name, s12, reg0),
+	(assign, reg31, ":hit_damage"),
+	(assign, reg32, ":instance_id"),
+	
+    (try_begin),
+      (eq, ":hit_type", repairable_hit),
+      (server_add_message_to_log, "str_log_hit_door"),
+    (else_try),
+      (eq, ":hit_type", repairable_destroyed),
+      (server_add_message_to_log, "str_log_hit_door"),
+    (else_try),
+      (eq, ":hit_type", repairable_hit_destroyed),
+      (server_add_message_to_log, "str_log_hit_door"),
+    (else_try),
+      (eq, ":hit_type", repairable_repaired),
+      (server_add_message_to_log, "str_log_repair_door"),
+    (else_try),
+      (eq, ":hit_type", repairable_repairing),
+      (server_add_message_to_log, "str_log_repair_door"),
+    (try_end),
+	
+    (assign, reg0, ":reg0_value"),
+  ]),
+  
+  #Log door hits
+  ("cf_log_hit_chest", [
+    (multiplayer_is_server),
+    (store_script_param, ":instance_id", 1),
+    (store_script_param, ":agent_id", 2),
+    (store_script_param, ":hit_damage", 3),
+    (store_script_param, ":hit_type", 4),
+	
+    #reg0's value should be saved because the function to which this function will return uses it
+    (assign, ":reg0_value", reg0),
+    
+    (agent_get_player_id, ":player_id", ":agent_id"),
+    (str_store_player_username, s11, ":player_id"),
+    (call_script, "script_scene_prop_get_owning_faction", ":instance_id"),
+    (str_store_faction_name, s12, reg0),
+    (assign, reg31, ":hit_damage"),
+    (assign, reg32, ":instance_id"),
+	
+    (try_begin),
+      (eq, ":hit_type", repairable_hit),
+      (server_add_message_to_log, "str_log_hit_chest"),
+    (else_try),
+      (eq, ":hit_type", repairable_destroyed),
+      (server_add_message_to_log, "str_log_hit_chest"),
+    (else_try),
+      (eq, ":hit_type", repairable_hit_destroyed),
+      (server_add_message_to_log, "str_log_hit_chest"),
+    (else_try),
+      (eq, ":hit_type", repairable_repaired),
+      (server_add_message_to_log, "str_log_repair_chest"),
+    (else_try),
+      (eq, ":hit_type", repairable_repairing),
+      (server_add_message_to_log, "str_log_repair_chest"),
+    (try_end),
+	
+    (assign, reg0, ":reg0_value"),
+   ]),
   #End  
   
+  #Phoenix
   ("cf_log_equipment", [
 	(multiplayer_is_server),
 	(store_script_param_1, ":player_id"),
 	
 	(player_get_agent_id, ":agent_id", ":player_id"),
+	(gt, ":agent_id", -1),
 	
   	(agent_get_item_slot, reg31, ":agent_id", ek_head),
 	(agent_get_item_slot, reg32, ":agent_id", ek_body),
@@ -999,6 +1275,41 @@ scripts.extend([
             (prop_instance_clear_attached_missiles, ":linked_instance_id_2"),
           (try_end),
         (try_end),
+      (else_try),
+        (eq, ":event_type", server_event_agent_stop_sound),
+        (store_script_param, ":agent_id", 3),
+        (try_begin),
+          (agent_is_active, ":agent_id"),
+          (agent_stop_sound, ":agent_id"),
+        (try_end),
+      (else_try),
+        (eq, ":event_type", server_event_agent_play_sound),
+        (store_script_param, ":agent_id", 3),
+        (store_script_param, ":sound", 4),
+        (store_script_param, ":max_distance", 5), # How far you want the sound to travel
+        (try_begin),
+          (agent_is_active, ":agent_id"),
+          (agent_is_alive,":agent_id"),
+
+          (multiplayer_get_my_player, ":my_player_no"),
+          (player_get_agent_id,":my_agent", ":my_player_no"),
+          (agent_is_active, ":my_agent"),
+
+          (agent_get_position,pos1,":agent_id"),
+          (agent_get_position,pos2,":my_agent"),
+          (get_distance_between_positions_in_meters,":distance",pos1,pos2),
+
+          (agent_play_sound, ":agent_id", ":sound"),# Play the normal sound position
+          (neq,":max_distance",0),
+          #Work out how far the distance is being traveled
+          (gt,":distance",200),
+          (store_sub, ":dis_sound", ":distance", 200),
+          (val_clamp, ":dis_sound", 0, 800),#Keep to a 1k range
+          (neg|gt,":dis_sound",":max_distance"),#Ensure it doesnt travel over the max range
+          (val_div, ":dis_sound", 100),#Divide by 100 to get a single digit value
+          (val_add, ":dis_sound", ":sound"),
+          (play_sound, ":dis_sound"),
+        (try_end),
       (try_end),
 
     (else_try), # section of events received by server from the clients
@@ -1460,6 +1771,10 @@ scripts.extend([
               (set_spawn_position, pos1),
               (spawn_item, "itm_agent_corpse", imod_rusty, "$g_spawn_item_prune_time"),
               (assign, ":corpse_instance_id", reg0),
+			  #Phoenix, to understand, check the spawning of corpses when people die lol
+              (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_corpse_owner, ":agent_id"),
+              (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_is_mercenary, 1),
+			  #End
               (agent_set_slot, ":agent_id", slot_agent_storage_corpse_instance_id, ":corpse_instance_id"),
               (prop_instance_set_position, ":corpse_instance_id", pos1),
               (store_mission_timer_a, ":prune_time"),
@@ -1494,6 +1809,9 @@ scripts.extend([
           (get_sq_distance_between_positions, ":sq_distance", pos1, pos2),
           (le, ":sq_distance", sq(max_distance_to_loot)),
           (call_script, "script_cf_use_inventory", ":agent_id", ":corpse_instance_id", 0),
+          #Log looting corpses
+          (call_script, "script_cf_log_loot_corpse", ":corpse_instance_id", ":agent_id"),
+          #End
         (try_end),
       (else_try), # handle player requests to reveal their money pouch to another player
         (eq, ":event_type", client_event_reveal_money_pouch),
@@ -1596,7 +1914,7 @@ scripts.extend([
             (try_end),
           (try_end),
 
-          (multiplayer_send_2_int_to_player, ":sender_player_id", server_event_preset_message, "str_you_reveal_money_pouch_to_near_by_players", preset_message_player|preset_message_chat_log|preset_message_yellow),
+          (multiplayer_send_2_int_to_player, ":sender_player_id", server_event_preset_message, "str_you_reveal_money_pouch_to_near_by_players", preset_message_chat_log|preset_message_yellow),
           (str_store_player_username, s1, ":sender_player_id"),
           (assign, reg1, ":approximate_gold"),
 
@@ -2162,6 +2480,13 @@ scripts.extend([
       (val_clamp, ":value", 0, 10001),
       (assign, "$g_combat_gold_multiplier", ":value"),
     (else_try),
+      (eq, ":command", command_get_round_gold_bonus),
+      (assign, ":value", "$g_round_gold_bonus"),
+    (else_try),
+      (eq, ":command", command_set_round_gold_bonus),
+      (val_clamp, ":value", 0, 10001),
+      (assign, "$g_round_gold_bonus", ":value"),
+    (else_try),
       (eq, ":command", command_get_force_default_armor),
       (assign, ":value", "$g_force_weather"),
     (else_try),
@@ -2686,13 +3011,13 @@ scripts.extend([
    [
     (troop_set_slot, "trp_banner_background_color_array", 0, 0xFFAAAA99), # plain white for scene props and item icons
     (troop_set_slot, "trp_banner_background_color_array", 1, 0xFF554433), # brown for commoners and outlaws
-    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_a01", 0xFF8f4531),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_a01", 0xFF232323),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_a02", 0xFFd9d7d1),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_a03", 0xFF373736),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_a04", 0xFFa48b28),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_a05", 0xFF497735),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_a06", 0xFF82362d),
-    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_a07", 0xFF793329),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_a07", 0xFF8f4531),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_a08", 0xFF262521),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_a09", 0xFFd9dad1),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_a10", 0xFF524563),
@@ -2790,7 +3115,7 @@ scripts.extend([
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_e18", 0xFFdcdbd3),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_e19", 0xFFdbdcd3),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_e20", 0xFF843831),
-    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_e21", 0xFF8c3421),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_e21", 0xFFa23b26),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_f01", 0xFF8f4631),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_f02", 0xFF672a29),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_f03", 0xFF4f6d86),
@@ -2854,14 +3179,14 @@ scripts.extend([
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_h19", 0xFF908b0b),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_h20", 0xFF2d2d2d),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_h21", 0xFF272727),
-    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_i01", 0xFF840008),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_i01", 0xFF6e0000),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_i02", 0xFFb0880d),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_i03", 0xFFb5ae94),
-    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_i04", 0xFFfcdc1b),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_i04", 0xFFf4d700),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_i05", 0xFF948908),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_i06", 0xFF630408),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_i07", 0xFF9f9300),
-    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_i08", 0xFFbaa773),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_i08", 0xFF848284),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_i09", 0xFFbdbeb5),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_i10", 0xFF9c9a94),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_i11", 0xFFd3ceaa),
@@ -2883,7 +3208,7 @@ scripts.extend([
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_j06", 0xFF981817),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_j07", 0xFF841f14),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_j08", 0xFF2b3234),
-    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_j09", 0xFF591d1d),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_j09", 0xFF521c18),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_j10", 0xFF622419),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_j11", 0xFF950404),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_j12", 0xFF950404),
@@ -2896,13 +3221,13 @@ scripts.extend([
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_j19", 0xFF2d462f),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_j20", 0xFF183f21),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_j21", 0xFF730000),
-    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_k01", 0xFF2539ad),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_k01", 0xFF214781),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_k02", 0xFF6b0000),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_k03", 0xFF252525),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_k04", 0xFF2b3153),
-    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_k05", 0xFF7b1212),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_k05", 0xFF424142),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_k06", 0xFFbabbb2),
-    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_k07", 0xFF6b140b),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_k07", 0xFF9a2424),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_k08", 0xFFecebe9),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_k09", 0xFF2b4e7f),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_k10", 0xFF626157),
@@ -2915,7 +3240,7 @@ scripts.extend([
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_k17", 0xFFbabbb2),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_k18", 0xFF3d0101),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_k19", 0xFF47908c),
-    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_k20", 0xFF3f7084),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_k20", 0xFF949694),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_k21", 0xFF989c90),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_l01", 0xFF5a1901),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_l02", 0xFF3f495d),
@@ -2930,7 +3255,7 @@ scripts.extend([
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_l11", 0xFF001943),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_l12", 0xFFc9cac6),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_l13", 0xFFe9cd12),
-    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_l14", 0xFFa02d35),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_l14", 0xFF912831),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_l15", 0xFFb0b0a7),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_l16", 0xFF6b0809),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_l17", 0xFF2d5b01),
@@ -2949,8 +3274,37 @@ scripts.extend([
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_m09", 0xFF762221),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_m10", 0xFF555555),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_m11", 0xFF004388),
-    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_m12", 0xFF313031),
-    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_m13", 0xFFbabbb2),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_m12", 0xFFa53031),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_m13", 0xFF313031),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_m14", 0xFF425d21), 
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_m15", 0xFF212021), 
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_m16", 0xFF186d1b), 
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_m17", 0xFF292829), 
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_m18", 0xFF2e5a36), 
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_m19", 0xFF15618f), 
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_m20", 0xFF1d5823), 
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_m21", 0xFF7a9000), 
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_n01", 0xFFc8a905),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_n02", 0xFF212021),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_n03", 0xFF7e1818),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_n04", 0xFF232323),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_n05", 0xFFd3b700),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_n06", 0xFF21426e),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_n07", 0xFF8a0505),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_n08", 0xFF8c2c31),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_n09", 0xFF812b29),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_n10", 0xFFb87c13),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_n11", 0xFF8c1c18),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_n12", 0xFF345181),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_n13", 0xFF8c1c21),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_n14", 0xFF91701b),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_n15", 0xFFbbbdb0),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_n16", 0xFF232323),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_n17", 0xFF787878),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_n18", 0xFF232323),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_n19", 0xFF9c1f1f),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_n20", 0xFF263324),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_n21", 0xFF242d3a),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_kingdom_a", 0xFF316184),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_kingdom_b", 0xFFd6d3bd),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_kingdom_c", 0xFF633039),
@@ -3631,6 +3985,10 @@ scripts.extend([
       (store_random_in_range, ":imod", imod_plain, imod_cracked + 1),
       (spawn_item, "itm_agent_corpse", ":imod", "$g_spawn_item_prune_time"),
       (assign, ":corpse_instance_id", reg0),
+      #Set the according slot to keep the record of the corpse's owner's agent id
+      (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_corpse_owner, ":agent_id"),
+      (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_is_mercenary, 1),#To perevent faction names appearing in logs in inventory transfers
+      #End
       (prop_instance_set_position, ":corpse_instance_id", pos1),
       (store_mission_timer_a, ":prune_time"),
       (val_add, ":prune_time", "$g_spawn_item_prune_time"),
@@ -3935,7 +4293,9 @@ scripts.extend([
         (player_is_active, ":killer_player_id"),
         (player_get_slot, ":dead_faction_id", ":dead_player_id", slot_player_faction_id),
         (player_get_slot, ":killer_faction_id", ":killer_player_id", slot_player_faction_id),
-        (try_begin),
+
+
+        (try_begin), # calculate score.
           (lt, ":dead_faction_id", castle_factions_begin),
           (lt, ":killer_faction_id", castle_factions_begin),
           (assign, ":dead_player_add_score", -1),
@@ -3971,7 +4331,9 @@ scripts.extend([
       (assign, ":dead_player_add_score", 0),
       (assign, ":killer_player_add_score", 0),
     (try_end),
-    (try_begin),
+
+
+    (try_begin), # update scores
       (le, ":dead_player_add_score", -1),
       (player_get_score, ":dead_player_score", ":dead_player_id"),
       (val_add, ":dead_player_score", ":dead_player_add_score"),
@@ -3979,11 +4341,6 @@ scripts.extend([
       (player_get_death_count, ":dead_player_deaths", ":dead_player_id"),
       (val_add, ":dead_player_deaths", 1),
       (player_set_death_count, ":dead_player_id", ":dead_player_deaths"),
-      (try_begin),
-        (multiplayer_is_server),
-        (neq, "$g_game_type", "mt_no_money"),
-        (call_script, "script_player_drop_loot", ":dead_player_id"),
-      (try_end),
     (try_end),
     (try_begin),
       (neq, ":killer_player_add_score", 0),
@@ -3995,6 +4352,8 @@ scripts.extend([
       (val_add, ":killer_player_kills", 1),
       (player_set_kill_count, ":killer_player_id", ":killer_player_kills"),
     (try_end),
+
+
     (try_begin),
       (multiplayer_is_server),
       (try_begin),
@@ -4004,6 +4363,19 @@ scripts.extend([
         (player_is_active, ":killer_player_id"),
         (player_slot_eq, ":killer_player_id", slot_player_faction_id, "fac_outlaws"),
         (call_script, "script_player_change_check_outlaw_rating", ":killer_player_id", outlaw_rating_for_kill, 0),
+      (try_end),
+      (try_begin),
+          (this_or_next|neq, ":dead_faction_id", ":killer_faction_id"),
+          (this_or_next|eq, ":dead_faction_id", "fac_commoners"),
+          (eq, ":dead_faction_id", "fac_outlaws"),
+
+          (neq, "$g_game_type", "mt_no_money"),
+          (try_begin),
+            (eq, ":dead_faction_id", "fac_commoners"),
+            (call_script, "script_player_drop_loot", ":dead_player_id", 1),
+          (else_try),
+            (call_script, "script_player_drop_loot", ":dead_player_id", 0),
+          (try_end),
       (try_end),
     (else_try),
       (agent_is_active, ":killer_agent_id"),
@@ -4052,6 +4424,7 @@ scripts.extend([
 
   ("player_drop_loot", # server: drop a loot money bag based on amount carried and server settings
    [(store_script_param, ":player_id", 1), # must be valid
+    (store_script_param, ":lower_drop", 2),
 
     (try_begin),
       (neq, "$g_game_type", "mt_no_money"),
@@ -4059,11 +4432,15 @@ scripts.extend([
       (gt, ":gold", 0),
       (try_begin),
         (neq, "$g_game_type", "mt_permanent_death"),
-        (store_random_in_range, ":loot_multiplier", 10, 21),
-        (store_mul, ":gold_loot", ":loot_multiplier", "$g_combat_gold_multiplier"),
-        (val_min, ":gold_loot", 10000),
+        (try_begin),
+            (eq, ":lower_drop", 1),
+            (assign, ":gold_loot", "$g_combat_gold_multiplier"),
+        (else_try),
+            (assign, ":gold_loot", "$g_round_gold_bonus"),
+        (try_end),
+        (val_min, ":gold_loot", 100), # ensure % is within 0-100 range.
         (val_mul, ":gold_loot", ":gold"),
-        (val_div, ":gold_loot", 10000),
+        (val_div, ":gold_loot", 100),
         (val_sub, ":gold", ":gold_loot"),
       (else_try),
         (assign, ":gold_loot", ":gold"),
@@ -4589,7 +4966,6 @@ scripts.extend([
       (call_script, "script_redraw_castle_banners", redraw_castle_banners, ":castle_no"),
       (str_store_faction_name, s1, ":faction_id"),
       (call_script, "script_str_store_castle_name", s2, ":castle_no"),
-      (server_add_message_to_log, "str_s1_captured_s2"),
     (try_end),
     ]),
 
@@ -4688,6 +5064,13 @@ scripts.extend([
             (eq, ":completed", 1),
             (call_script, "script_cf_agent_consume_item", ":agent_id", ":banner_item_id", 1),
             (call_script, "script_capture_castle", ":player_faction_id", ":castle_no"),
+			#Log the capture /Phoenix
+			(str_store_player_username, s10, ":player_id"),
+			(call_script, "script_str_store_castle_name", s11, ":castle_no"),
+			(str_store_faction_name, s12, ":faction_id"),
+			(str_store_faction_name, s9, ":player_faction_id"),
+			(server_add_message_to_log, "str_log_capture"),
+			#End
           (try_end),
         (else_try),
           (multiplayer_send_3_int_to_player, ":player_id", server_event_preset_message, "str_your_faction_not_captured_required_points", preset_message_faction|preset_message_fail_sound, ":player_faction_id"),
@@ -4698,6 +5081,13 @@ scripts.extend([
         (call_script, "script_cf_agent_consume_item", ":agent_id", ":banner_item_id", 1),
         (scene_prop_set_slot, ":instance_id", slot_scene_prop_capture_faction_id, ":player_faction_id"),
         (call_script, "script_redraw_castle_banners", redraw_single_capture_point_banner, ":instance_id"),
+		#Log the capture /Phoenix
+		(str_store_player_username, s10, ":player_id"),
+		(call_script, "script_str_store_castle_name", s11, ":castle_no"),
+		(str_store_faction_name, s12, ":faction_id"),
+		(str_store_faction_name, s9, ":player_faction_id"),
+		(server_add_message_to_log, "str_log_capture_secondary"),
+		#End
       (try_end),
     (else_try), # as lord, giving away an owned castle using the other faction's banner
       (eq, ":completed", 1),
@@ -5257,6 +5647,7 @@ scripts.extend([
    [(store_script_param, ":player_id", 1), # must be valid
     (store_script_param, ":faction_id", 2),
     (store_script_param, ":change_faction_type", 3), # constants starting with change_faction_type_
+    (store_script_param, ":no_log", 3),
 
     (try_begin),
       (neg|player_slot_eq, ":player_id", slot_player_faction_id, ":faction_id"),
@@ -5283,6 +5674,8 @@ scripts.extend([
       (player_set_slot, ":player_id", slot_player_has_faction_item_key, 0),
       (player_set_slot, ":player_id", slot_player_can_faction_announce, 0),
       (str_store_player_username, s0, ":player_id"),
+
+      (neq, ":no_log", 1),
       (try_begin),
         (eq, ":change_faction_type", change_faction_type_outlawed),
         (server_add_message_to_log, "str_s0_has_been_outlawed"),
@@ -5874,6 +6267,7 @@ scripts.extend([
           (neg|multiplayer_is_server),
         (else_try),
           (scene_prop_slot_eq, ":instance_id", slot_scene_prop_unlocked, 1),
+          (multiplayer_send_2_int_to_player, ":player_id", server_event_preset_message, "str_chest_appears_lockpicked",preset_message_error),
         (else_try),
           (player_slot_eq, ":player_id", slot_player_faction_id, reg0),
           (player_slot_eq, ":player_id", slot_player_has_faction_money_key, 1),
@@ -5891,6 +6285,9 @@ scripts.extend([
           (multiplayer_is_server),
           (val_sub, ":chest_gold", ":gold_requested"),
           (call_script, "script_player_adjust_gold", ":player_id", ":gold_requested", 1),
+		  #Log with from money chest
+		  (call_script, "script_cf_log_money_chest_withdraw", ":player_id", ":instance_id", ":gold_value"),
+		  #End
         (try_end),
         (assign, ":fail_message", 0),
       (else_try),
@@ -5944,6 +6341,12 @@ scripts.extend([
     (set_spawn_position, pos1),
     (spawn_item, "itm_money_bag", 0, "$g_spawn_item_prune_time"),
     (scene_prop_set_slot, reg0, slot_scene_prop_gold_value, ":gold_amount"),
+	
+    #Log spawn money bag
+    (str_store_player_username, s11, ":player_id"),
+    (assign, reg31, ":gold_amount"),
+    (server_add_message_to_log, "str_log_spawn_money_bag"),
+    #End
     ]),
 
   ("cf_pop_agent_money_bag_value", # remove the last added money bag amount from the agent's slots
@@ -5969,13 +6372,27 @@ scripts.extend([
     (agent_get_player_id, ":player_id", ":agent_id"),
     (player_is_active, ":player_id"),
     (call_script, "script_player_adjust_gold", ":player_id", ":gold_value", 1),
+	
+    #Log money bag use
+    (str_store_player_username, s11, ":player_id"),
+    (assign, reg31, ":gold_value"),
+    (server_add_message_to_log, "str_log_use_money_bag"),
+    #End
     ]),
 
   ("check_on_item_picked_up", # server: extra checks when an agent picks up an item
    [(store_script_param, ":agent_id", 1), # must be valid
     (store_script_param, ":item_id", 2),
     (store_script_param, ":instance_id", 3), # must be the item instance's id
-
+    #Log item pick ups
+	(try_begin),
+	  (agent_get_player_id, ":player_id", ":agent_id"),
+	  (str_store_player_username, s11, ":player_id"),
+	  (str_store_item_name, s12, ":item_id"),
+	  (assign, reg31, ":instance_id"),
+	  (server_add_message_to_log, "str_log_pick_up_item"),
+	(try_end),
+	#End
     (try_begin),
       (eq, ":item_id", "itm_money_bag"), # since the item instance will be removed immediately aftewards, transfer the contents to an agent slot
       (neq, "$g_game_type", "mt_no_money"),
@@ -6001,7 +6418,16 @@ scripts.extend([
     (store_script_param, ":item_id", 2),
     (store_script_param, ":instance_id", 3), # must be the dropped item instance's id
     (store_script_param, ":agent_died", 4), # set to 1 for dropping when the agent dies
-
+    #Log item drops
+	(try_begin),
+	  (neq, ":agent_died", 1),
+	  (agent_get_player_id, ":player_id", ":agent_id"),
+	  (str_store_player_username, s11, ":player_id"),
+	  (str_store_item_name, s12, ":item_id"),
+	  (assign, reg31, ":instance_id"),
+	  (server_add_message_to_log, "str_log_drop_item"),
+	(try_end),
+	#End
     (set_fixed_point_multiplier, 100),
     (try_begin), # only check for items over a certain id, near the end of the list
       (le, ":item_id", "itm_lock_pick"),
@@ -8286,6 +8712,9 @@ scripts.extend([
       (prop_instance_animate_to_position, ":instance_id", pos2, 400),
       (agent_play_sound, ":agent_id", "snd_man_grunt"),
     (try_end),
+    #Log door hits
+    (call_script, "script_cf_log_hit_door", ":instance_id", ":agent_id", ":hit_damage", ":result"), 
+    #End
     ]),
 
   ("destroy_door", # server: rotate destructible doors flat on the ground after destroyed
@@ -8457,6 +8886,9 @@ scripts.extend([
       (scene_prop_set_slot, ":instance_id", slot_scene_prop_unlocked, 0),
       (agent_play_sound, ":agent_id", "snd_repair_wood"),
     (try_end),
+    #Log door hits
+    (call_script, "script_cf_log_hit_chest", ":instance_id", ":agent_id", ":hit_damage", ":result"), 
+    #End
     ]),
 
   ("cf_pick_chest_lock", # server: handle players trying to pick the lock of a storage chest
@@ -8949,6 +9381,7 @@ scripts.extend([
       (scene_prop_slot_eq, ":instance_id", slot_scene_prop_full_hit_points, 0),
     (else_try),
       (scene_prop_slot_eq, ":instance_id", slot_scene_prop_unlocked, 1),
+      (multiplayer_send_2_int_to_player, ":player_id", server_event_preset_message, "str_chest_appears_lockpicked", preset_message_error),
     (else_try),
       (call_script, "script_scene_prop_get_owning_faction", ":instance_id"),
       (eq, reg1, -1),
@@ -9123,6 +9556,19 @@ scripts.extend([
           (store_add, ":from_equip_slot", ":from_slot", ek_item_0 - slot_scene_prop_inventory_item_0),
           (agent_get_item_slot, ":equip_item_id", ":agent_id", ":from_equip_slot"),
           (eq, ":equip_item_id", ":item_id"),
+		  #Log putting items in a container
+          (str_store_player_username, s11, ":player_id"),
+          (str_store_item_name, s12, ":item_id"),
+          (assign, reg31, ":instance_id"),
+		  (try_begin),
+            (call_script, "script_scene_prop_get_owning_faction", ":instance_id"),
+			(ge, reg1, 0),
+            (str_store_faction_name, s10, reg0),
+            (server_add_message_to_log, "str_log_put_item_in_finventory"),
+          (else_try),
+            (server_add_message_to_log, "str_log_put_item_in_inventory"),
+		  (try_end),
+      #End
 		  (neq, ":equip_item_id", "itm_money_bag"),#Dont allow players to put money bags in containers
           (try_begin),
             (is_between, ":item_type", itp_type_head_armor, itp_type_hand_armor + 1),
@@ -9141,6 +9587,19 @@ scripts.extend([
           (try_end),
         (else_try), # removing items from the scene prop
           (lt, ":from_slot", slot_scene_prop_inventory_item_0),
+		  #Log taking items from a container
+          (str_store_player_username, s11, ":player_id"),
+          (str_store_item_name, s12, ":item_id"),
+          (assign, reg31, ":instance_id"),
+		  (try_begin),
+            (call_script, "script_scene_prop_get_owning_faction", ":instance_id"),
+			(ge, reg1, 0),
+            (str_store_faction_name, s10, reg0),
+            (server_add_message_to_log, "str_log_take_item_from_finventory"),
+          (else_try),
+            (server_add_message_to_log, "str_log_take_item_from_inventory"),
+		  (try_end),
+          #End
           (scene_prop_slot_eq, ":instance_id", ":from_slot", ":item_id"),
           (scene_prop_set_slot, ":instance_id", ":from_slot", 0),
           (store_add, ":neg_from_mod_slot", ":from_slot", slot_scene_prop_inventory_mod_begin - slot_scene_prop_inventory_begin),
@@ -9289,6 +9748,11 @@ scripts.extend([
     (try_begin),
       (eq, ":action", 1),
       (call_script, "script_cf_use_inventory", ":agent_id", ":instance_id", 0),
+      #Log looking into carts
+      (str_store_player_username, s11, ":player_id"),
+	  (assign, reg31, ":instance_id"),
+	  (server_add_message_to_log, "str_log_use_cart"),
+      #End
     (else_try),
       (eq, ":action", -1),
       (scene_prop_get_slot, ":required_horse", ":instance_id", slot_scene_prop_required_horse),
@@ -9352,6 +9816,9 @@ scripts.extend([
         (scene_prop_set_slot, ":instance_id", slot_scene_prop_attached_to_agent, ":attach_agent_id"),
         (assign, ":new_attached_scene_prop", ":instance_id"),
         (agent_set_attached_scene_prop, ":attach_agent_id", ":new_attached_scene_prop"),
+        #Phoenix
+        (call_script, "script_cf_log_attach_cart", ":attach_agent_id", ":instance_id", ":agent_id"),
+        #End
       (try_end),
     (else_try),
       (gt, ":attached_scene_prop", -1),
@@ -9364,6 +9831,9 @@ scripts.extend([
       (assign, ":new_attached_scene_prop", -1),
       (agent_set_attached_scene_prop, ":attach_agent_id", ":new_attached_scene_prop"),
       (call_script, "script_cart_set_detached_position", ":instance_id"),
+      #Phoenix
+      (call_script, "script_cf_log_detach_cart", ":attach_agent_id", ":instance_id", ":agent_id"),
+      #End
     (else_try),
       (assign, ":fail", 1),
     (try_end),
@@ -9515,11 +9985,18 @@ scripts.extend([
           (lt, ":health_percent", ":healing_limit"),
           (store_mul, ":healing", ":skill_level", 2),
           (val_add, ":healing", 2),
+          #Log healing
+          (call_script, "script_cf_log_heal", ":attacked_agent_id", ":attacker_agent_id", ":healing", ":health_percent", ":healing_limit"),
+          #End
           (val_add, ":health_percent", ":healing"),
           (val_min, ":health_percent", ":healing_limit"),
           (agent_set_hit_points, ":attacked_agent_id", ":health_percent", 0),
         (try_end),
         (assign, ":damage_result", 0),
+	  (else_try),
+        #Log it as a normal hit because attacker's class can't heal
+        (call_script, "script_cf_log_hit", ":attacked_agent_id", ":attacker_agent_id", ":damage_dealt", reg0, 1),
+        #End
       (try_end),
     (else_try),
       (eq, ":weapon_item_id", "itm_admin_scalpel"),
@@ -11427,6 +11904,15 @@ scripts.extend([
         (particle_system_burst, "psys_dummy_straw", pos1, 10),
         (call_script, "script_hit_scene_prop_play_sound", ":agent_id", ":instance_id", "snd_cut_wood"),
       (try_end),
+      #Log ship hits
+      (try_begin),
+        (gt, ":agent_id", -1),
+        (agent_get_player_id, ":player_id", ":agent_id"),
+        (str_store_player_username, s11, ":player_id"),
+        (assign, reg31, ":instance_id"),
+        (server_add_message_to_log, "str_log_hit_ship"),
+      (try_end),
+      #End
     (else_try),
       (eq, ":result", repairable_destroyed),
       (prop_instance_get_position, pos20, ":instance_id"),
@@ -12661,8 +13147,19 @@ scripts.extend([
     (store_script_param, ":target_player_id", 3), # either the target player id or 0 for no target
 
     (player_is_admin, ":admin_player_id"),
-    (this_or_next|eq, ":target_player_id", 0),
-    (player_is_active, ":target_player_id"),
+
+    (assign,":target_is_player", 1),
+    (try_begin),
+        (eq, ":admin_action", admin_action_join_faction),
+        (assign,":target_is_player", 0),
+    (try_end),
+
+    (try_begin),
+        (eq, ":target_is_player", 1),
+        (this_or_next|eq, ":target_player_id", 0),
+        (player_is_active, ":target_player_id"),
+    (try_end),
+
     (try_begin),
       (eq, ":admin_action", admin_action_kick_player),
       (player_slot_eq, ":admin_player_id", slot_player_admin_no_kick, 0),
@@ -12687,6 +13184,7 @@ scripts.extend([
       (try_end),
       (player_set_is_muted, ":target_player_id", ":is_muted", 1),
     (else_try),
+      (eq, ":target_is_player", 1),
       (player_get_agent_id, ":admin_agent_id", ":admin_player_id"),
       (neq, ":target_player_id", 0),
       (player_get_agent_id, ":target_agent_id", ":target_player_id"),
@@ -13002,6 +13500,9 @@ scripts.extend([
         (try_end),
       (try_end),
     (else_try),
+      (eq, ":admin_action", admin_action_join_faction),
+      (call_script, "script_change_faction", ":admin_player_id", ":target_player_id", change_faction_type_no_respawn, 1),
+    (else_try),
       (eq, ":admin_action", admin_action_lock_faction),
       (player_slot_eq, ":admin_player_id", slot_player_admin_no_factions, 0),
       (player_get_slot, ":faction_id", ":admin_player_id", slot_player_faction_id),
@@ -13031,6 +13532,10 @@ scripts.extend([
     (player_get_unique_id, reg0, ":admin_player_id"),
     (str_store_player_username, s0, ":admin_player_id"),
     (try_begin),
+        (eq, ":admin_action", admin_action_join_faction), # log for faction related admin action.
+        (str_store_faction_name, s4, ":target_player_id"),
+        (assign, ":log_string_id", "str_log_admin_target_faction"),
+    (else_try),
       (neq, ":target_player_id", 0),
       (neq, ":target_player_id", ":admin_player_id"),
       (player_get_unique_id, reg1, ":target_player_id"),
@@ -13314,6 +13819,11 @@ scripts.extend([
     (troop_set_slot, "trp_animation_menu_strings", 3 + animation_menu_end_offset, "str_anim_stand_and_deliver"),
     (troop_set_slot, "trp_animation_menu_strings", 4, "str_anim_stand_and_deliver"),
     (troop_set_slot, "trp_animation_menu_strings", 4 + animation_menu_end_offset, "str_log_animation"),
+    (troop_set_slot, "trp_animation_menu_strings", 4 + animation_menu_end_offset, "str_anim_horn_charge"),
+    (troop_set_slot, "trp_animation_menu_strings", 5, "str_anim_horn_charge"),
+    (troop_set_slot, "trp_animation_menu_strings", 5 + animation_menu_end_offset, "str_anim_lute_1"),
+    (troop_set_slot, "trp_animation_menu_strings", 6, "str_anim_lute_1"),
+    (troop_set_slot, "trp_animation_menu_strings", 6 + animation_menu_end_offset, "str_log_animation"),
     ]),
 
   ("initialize_animation_durations", []), # copies animation durations in milliseconds from module_animations.py to slots of trp_animation_durations
@@ -13337,7 +13847,7 @@ def animation_menu_entry(string_id, **kwargs):
 
 scripts.extend([
 
-  ("cf_try_execute_animation", # clients, server: check if an agent can play an animation; if successful, on clients return test result in reg0 or send a message, execute if the server
+("cf_try_execute_animation", # clients, server: check if an agent can play an animation; if successful, on clients return test result in reg0 or send a message, execute if the server
    [(store_script_param, ":player_id", 1), # must be valid
     (store_script_param, ":string_id", 2),
     (store_script_param, ":only_test", 3), # if 1, the level of tests passed is returned in reg0
@@ -13374,6 +13884,9 @@ scripts.extend([
       (assign, ":prevent_if_wielding", 0), # 1 = prevent this animation from being triggered if the agent is wielding any items
       (assign, ":prevent_if_moving", 0), # 1 = prevent this animation from being triggered if the agent is moving
       (assign, ":add_to_chat", 0), # display the animation string in the local chat for near the player
+      (assign, ":music", -1), # ensure that music is handled correctly
+      (assign, ":instrument", -1), # required wielded item
+      (assign, ":max_distance", 0), # distance in which the sound can reach in meters
       (try_begin), # the first script parameter is the name string id, which must be in the appropriate section of module_strings.py
         animation_menu_entry("str_anim_cheer", animation="anim_cheer", man_sound="snd_man_victory"),
         animation_menu_entry("str_anim_clap", animation="anim_man_clap", woman_alt_animation="anim_woman_clap", prevent_if_wielding=1),
@@ -13404,11 +13917,21 @@ scripts.extend([
         animation_menu_entry("str_anim_easy_way_or_hard_way", man_sound="snd_easy_way_or_hard_way", duration_ms=3400, add_to_chat=1),
         animation_menu_entry("str_anim_everything_has_a_price", man_sound="snd_everything_has_a_price", duration_ms=3100, add_to_chat=1),
         animation_menu_entry("str_anim_slit_your_throat", man_sound="snd_slit_your_throat", duration_ms=2400, add_to_chat=1),
+        animation_menu_entry("str_anim_lute_1", animation="anim_play_lute", man_sound="snd_lute_1", woman_sound="snd_lute_1", music=2, instrument="itm_lute"),
+        animation_menu_entry("str_anim_lute_2", animation="anim_play_lute", man_sound="snd_lute_2", woman_sound="snd_lute_2", music=2, instrument="itm_lute"),
+        animation_menu_entry("str_anim_lute_3", animation="anim_play_lute", man_sound="snd_lute_3", woman_sound="snd_lute_3", music=2, instrument="itm_lute"),
+        animation_menu_entry("str_anim_lute_4", animation="anim_play_lute", man_sound="snd_lute_4", woman_sound="snd_lute_4", music=2, instrument="itm_lute"),
+        animation_menu_entry("str_anim_lyre_1", animation="anim_play_lyre", man_sound="snd_lyre_1", woman_sound="snd_lyre_1", music=3, instrument="itm_lyre"),
+        animation_menu_entry("str_anim_lyre_2", animation="anim_play_lyre", man_sound="snd_lyre_2", woman_sound="snd_lyre_2", music=3, instrument="itm_lyre"),
+        animation_menu_entry("str_anim_lyre_3", animation="anim_play_lyre", man_sound="snd_lyre_3", woman_sound="snd_lyre_3", music=3, instrument="itm_lyre"),
+        animation_menu_entry("str_anim_lyre_4", animation="anim_play_lyre", man_sound="snd_lyre_4", woman_sound="snd_lyre_4", music=3, instrument="itm_lyre"),
+        animation_menu_entry("str_anim_horn_charge", animation="anim_play_horn", man_sound="snd_horncharge", woman_sound="snd_horncharge", instrument="itm_warhorn", music=0, max_distance=700),
+        animation_menu_entry("str_anim_horn_regroup", animation="anim_play_horn", man_sound="snd_hornregroup", woman_sound="snd_hornregroup", instrument="itm_warhorn", music=0, max_distance=700),
+        animation_menu_entry("str_anim_horn_retreat", animation="anim_play_horn", man_sound="snd_hornretreat", woman_sound="snd_hornretreat", instrument="itm_warhorn", music=0, max_distance=700),
       (else_try),
         (assign, ":string_id", -1),
       (try_end),
       (gt, ":string_id", -1),
-
       (player_get_gender, ":gender", ":player_id"),
       (try_begin),
         (eq, ":gender", tf_female),
@@ -13423,6 +13946,14 @@ scripts.extend([
         (this_or_next|neq, ":weapon", -1),
         (neq, ":shield", -1),
         (assign, ":animation", -1),
+      (try_end),
+      (try_begin),
+        (ge, ":instrument", 0),
+        (agent_get_wielded_item, ":instrumentheld", ":agent_id", 0),
+        (neq, ":instrumentheld", ":instrument"),
+        (assign, ":animation", -1),
+        (assign, ":man_sound", -1),
+        (assign, ":woman_sound", -1),
       (try_end),
       (try_begin),
         (eq, ":prevent_if_moving", 1),
@@ -13442,6 +13973,22 @@ scripts.extend([
         (eq, ":gender", tf_female),
         (gt, ":woman_sound", -1),
         (assign, ":sound", ":woman_sound"),
+      (try_end),
+      (try_begin),#cancel music if playing already
+        (agent_slot_ge, ":agent_id", slot_agent_playing_music, 1),
+        (call_script, "script_cf_stop_playing_musical_instrument", ":agent_id"),
+        (call_script, "script_client_stop_playing_musical_instrument", ":agent_id"),
+      (try_end),
+      (try_begin),# Music handle animations/sound
+        (ge,":music",0), # is the agent playing music
+        (call_script, "script_cf_has_enough_skill_level", ":agent_id", "skl_musician", ":music"),
+        (call_script, "script_cf_can_play_musical_instrument", ":agent_id", ":animation", ":sound"),
+        (try_begin),
+          (this_or_next|eq,reg4,1),
+          (eq,reg5,1),
+          (assign, ":animation", -1),
+          (assign, ":sound", -1),
+        (try_end),
       (try_end),
       (this_or_next|gt, ":animation", -1),
       (this_or_next|gt, ":sound", -1),
@@ -13481,7 +14028,12 @@ scripts.extend([
         (try_end),
         (try_begin),
           (gt, ":sound", -1),
-          (agent_play_sound, ":agent_id", ":sound"),
+          (try_begin),
+            (eq,":music",1),#Ensure all players know the agent is playing a sound
+            (call_script, "script_cf_play_global_agent_sound", ":agent_id", ":sound", ":max_distance"),
+          (else_try),
+            (agent_play_sound, ":agent_id", ":sound"),
+          (try_end),
         (try_end),
       (try_end),
       (try_begin),
@@ -13521,6 +14073,133 @@ scripts.extend([
     (assign, reg0, ":test_passed"),
     (this_or_next|ge, ":test_passed", 3),
     (neq, ":only_test", 0),
+    ]),
+
+    ("cf_stop_playing_musical_instrument", # server: Handle stop playing a musical instrument
+       [(multiplayer_is_server),
+        (store_script_param, ":agent_id", 1), # must be valid
+        (agent_is_active,":agent_id"),
+        (agent_is_human,":agent_id"),
+        (agent_get_slot,":playingmusic",":agent_id",slot_agent_playing_music),
+        (gt,":playingmusic",0),
+        (assign,reg20,1),
+        (agent_set_slot,":agent_id",slot_agent_playing_music,0),
+        (get_max_players, ":max_players"),
+        (try_for_range, ":player_id", 1, ":max_players"),
+          (player_is_active, ":player_id"),
+          (multiplayer_send_int_to_player, ":player_id", server_event_agent_stop_sound, ":agent_id"),
+          (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_pose_finish",1),
+        (try_end),
+    ]),
+
+    ("client_stop_playing_musical_instrument", # client: Handle stop playing a musical instrument
+       [(store_script_param, ":agent_id", 1), # must be valid
+        (try_begin),
+         (neg|multiplayer_is_dedicated_server),
+          (try_begin),
+            (agent_is_active,":agent_id"),
+            (agent_stop_sound,":agent_id"),
+          (try_end),
+        (try_end),
+    ]),
+
+    ("cf_do_custom_anims", # server: Do custom animations
+       [(multiplayer_is_server),
+        (store_script_param, ":agent_id", 1), # must be valid
+        (store_script_param, ":anim", 2), # must be valid
+        (store_script_param, ":body", 3),
+        (agent_set_animation,":agent_id",":anim",":body"),
+    ]),
+
+    ("cf_has_enough_skill_level", # server: Handle checking for required skill level
+       [(multiplayer_is_server),
+        (store_script_param, ":agent_id", 1), # must be valid
+        (store_script_param, ":skill", 2), # must be valid
+        (store_script_param, ":required", 3), # must be valid
+        (agent_get_troop_id, ":troop_id", ":agent_id"),
+        (store_skill_level, ":troop_skill_level", ":skill", ":troop_id"),
+        (assign,reg4,1),
+        (try_begin),
+          (ge,":troop_skill_level",":required"),
+          (assign,reg4,0),
+        (try_end),
+    ]),
+
+    ("cf_can_play_musical_instrument", # server: Handle starting a musical instrument
+       [(multiplayer_is_server),
+        (store_script_param, ":agent_id", 1), # must be valid
+        (store_script_param, ":anim", 2), # must be valid
+        (store_script_param, ":sound", 3), # must be valid
+        (agent_get_slot,":playingmusic",":agent_id",slot_agent_playing_music),
+        (assign,reg5,1),
+        (eq,":playingmusic",0),
+        (agent_get_wielded_item, ":weapon", ":agent_id", 0),
+        (try_begin),
+          (eq,":anim","anim_play_lute"),
+          (try_begin),
+            (eq,":weapon","itm_lute"),
+            (agent_set_slot,":agent_id",slot_agent_playing_music, ":sound"),
+            (assign,reg5,0),
+          (try_end),
+        (else_try),
+          (eq,":anim","anim_play_lyre"),
+          (try_begin),
+            (eq,":weapon","itm_lyre"),
+            (agent_set_slot,":agent_id",slot_agent_playing_music, ":sound"),
+            (assign,reg5,0),
+          (try_end),
+        (else_try),
+          (eq,":anim","anim_play_horn"),
+          (try_begin),
+            (eq,":weapon","itm_warhorn"),
+            (agent_set_slot,":agent_id",slot_agent_playing_music, ":sound"),
+            (assign,reg5,0),
+          (try_end),
+        (try_end),
+    ]),
+
+    ("cf_check_musical_instrument", # server: Keep checking if user can continue to play music
+       [(multiplayer_is_server),
+        (get_max_players, ":max_players"),
+        (try_for_range, ":player_id", 1, ":max_players"),
+          (player_is_active, ":player_id"),
+          (player_get_agent_id,":agent_id",":player_id"),
+          (agent_is_active,":agent_id"),
+          (agent_is_alive,":agent_id"),
+          (agent_get_slot,":playing",":agent_id",slot_agent_playing_music),
+          (try_begin),
+            (ge,":playing",1),
+            (agent_get_animation, ":anim", ":agent_id", 1),
+            (assign,":fail",1),
+            (try_begin),
+              (eq,":anim","anim_play_lute"),
+                (assign,":fail",0),
+            (else_try),
+              (eq,":anim","anim_play_lyre"),
+                (assign,":fail",0),
+            (else_try),
+              (eq,":anim","anim_play_horn"),
+                (assign,":fail",0),
+            (try_end),
+            (try_begin),
+              (eq,":fail",1),
+                (call_script, "script_cf_stop_playing_musical_instrument", ":agent_id"),
+            (try_end),
+          (try_end),
+        (try_end),
+    ]),
+
+    ("cf_play_global_agent_sound", # server: Handle global sound of agents
+       [(multiplayer_is_server),
+        (store_script_param, ":agent_id", 1), # must be valid
+        (store_script_param, ":sound", 2), # sound to be played must be valid
+        (store_script_param, ":distance", 3), # Meters
+        (agent_is_active,":agent_id"),
+        (get_max_players, ":max_players"),
+        (try_for_range, ":player_id", 1, ":max_players"),
+          (player_is_active, ":player_id"),
+          (multiplayer_send_3_int_to_player, ":player_id", server_event_agent_play_sound, ":agent_id", ":sound", ":distance"),
+        (try_end),
     ]),
 
 ])

@@ -34,6 +34,9 @@ server_event_set_attached_scene_prop            = 26
 server_event_local_animation                    = 27
 server_event_update_scene_prop_hit_points       = 28
 
+server_event_agent_stop_sound                   = 29
+server_event_agent_play_sound                   = 30
+
 # Add new events here: above if sent from the server, below if from clients.
 
 client_event_fast_equip                         = 91 #Mouse Right Click Fast Inventory transfer
@@ -262,7 +265,8 @@ admin_action_remove_horses                      = 16
 admin_action_remove_stray_horses                = 17
 admin_action_teleport_to_ships                  = 18
 admin_action_reset_ships                        = 19
-admin_action_lock_faction                       = 20
+admin_action_join_faction                       = 20
+admin_action_lock_faction                       = 21
 
 faction_admin_action_change_banner              = 0
 faction_admin_action_kick_player                = 1
@@ -274,7 +278,7 @@ faction_admin_action_set_relation_peaceful      = 6
 faction_admin_action_outlaw_player              = 7
 faction_admin_action_mute_player                = 8
 faction_admin_action_toggle_player_announce     = 9
-faction_admin_action_toggle_player_marshal     = 10
+faction_admin_action_toggle_player_marshal      = 10
 
 max_possible_gold                               = 1000000000
 max_correctly_displayed_gold                    = 131071 # player gold over this value will not be updated correctly by the game engine

@@ -201,17 +201,19 @@ player_exit = (ti_on_player_exit, 0, 0, [], # server: save player values on exit
     (str_store_player_username, s1, ":player_id"),
     (player_get_unique_id, reg0, ":player_id"),
     (server_add_message_to_log, "str_s1_has_left_the_game_with_id_reg0"),
+
 	#Remove freeze walls if they exist
     (player_get_slot, ":freeze_instance_id", ":player_id", slot_player_freeze_instance_id),
-	  (gt, ":freeze_instance_id", -1),
-	  (prop_instance_is_valid, ":freeze_instance_id"),
-	  (call_script, "script_remove_scene_prop", ":freeze_instance_id"),
-	  (player_set_slot, ":player_id", slot_player_freeze_instance_id, -1),
+    (gt, ":freeze_instance_id", -1),
+    (prop_instance_is_valid, ":freeze_instance_id"),
+    (call_script, "script_remove_scene_prop", ":freeze_instance_id"),
+    (player_set_slot, ":player_id", slot_player_freeze_instance_id, -1),
 
-  	  #Log equipment on log out
-	  (call_script, "script_cf_log_equipment", ":player_id"),
-	  #End
+    #Log equipment on log out
+    (call_script, "script_cf_log_equipment", ":player_id"),
+    #End
   ])
+
 
 agent_spawn = (ti_on_agent_spawn, 0, 0, [], # server and clients: set up new agents after they spawn
    [(store_trigger_param_1, ":agent_id"),
@@ -227,6 +229,14 @@ agent_spawn = (ti_on_agent_spawn, 0, 0, [], # server and clients: set up new age
 	(player_set_slot, ":player_id", slot_player_first_spawn_occured, 1),
 	(call_script, "script_cf_log_equipment", ":player_id"),
 	#End
+
+    (try_begin),
+        (player_get_slot, ":faction_id", ":player_id", slot_player_faction_id),
+        (faction_slot_eq, ":faction_id", slot_faction_is_active, 0),
+        (call_script, "script_change_faction", ":player_id", "fac_commoners", change_faction_type_no_respawn),
+        (call_script, "script_player_set_worse_respawn_troop", ":player_id", "trp_peasant"),
+        (multiplayer_send_3_int_to_player, ":player_id", server_event_preset_message, "str_inactive_faction_change", preset_message_chat_log|preset_message_red, ":faction_id"),
+    (try_end),
     ])
 
 agent_killed = (ti_on_agent_killed_or_wounded, 0, 0, [], # server and clients: handle messages, score, loot, and more after agents die
@@ -273,6 +283,8 @@ agent_hit = (ti_on_agent_hit, 0, 0, [], # server: apply extra scripted effects f
       (is_between, reg0, scripted_items_begin, scripted_items_end),
       (call_script, "script_agent_hit_with_scripted_item", ":attacked_agent_id", ":attacker_agent_id", ":damage_dealt", reg0),
     (try_end),
+	#Log hits
+	(call_script, "script_cf_log_hit", ":attacked_agent_id", ":attacker_agent_id", ":damage_dealt", reg0, 0),
     ])
 
 item_picked_up = (ti_on_item_picked_up, 0, 0, [], # handle agents picking up an item
@@ -320,6 +332,8 @@ agent_mount = (ti_on_agent_mount, 0, 0, [], # server: check speed factor and att
     (str_store_player_username, s0, ":player_id"),
     (agent_get_item_id, ":horse_item_id", ":horse_agent_id"),
     (str_store_item_name, s1, ":horse_item_id"),
+    #Alter mount/dismount logs to show the agent_id of the mount
+    (assign, reg31, ":horse_agent_id"),
     (server_add_message_to_log, "str_s0_has_mounted_a_s1"),
     ])
 
@@ -336,7 +350,33 @@ agent_dismount = (ti_on_agent_dismount, 0, 0, [], # server: make horses stand st
     (str_store_player_username, s0, ":player_id"),
     (agent_get_item_id, ":horse_item_id", ":horse_agent_id"),
     (str_store_item_name, s1, ":horse_item_id"),
+    #Alter mount/dismount logs to show the agent_id of the mount
+    (assign, reg31, ":horse_agent_id"),
     (server_add_message_to_log, "str_s0_has_dismounted_a_s1"),
+    ])
+
+instrument_check = (2, 0, 0, [], # server: handle agents playing instruments
+   [(multiplayer_is_server),
+    (call_script, "script_cf_check_musical_instrument"),
+    ])
+
+instrument_killed = (ti_on_agent_killed_or_wounded, 0, 0, [], # handle instruments
+   [(store_trigger_param_1, ":dead_agent_id"),
+    (call_script, "script_client_stop_playing_musical_instrument", ":dead_agent_id"),
+    ])
+
+instrument_unwielded = (ti_on_item_unwielded, 0, 0, [], # handle instruments
+   [(store_trigger_param_1, ":agent_id"),
+    (call_script, "script_cf_stop_playing_musical_instrument", ":agent_id"),
+    (eq,reg20,1),
+    (call_script, "script_client_stop_playing_musical_instrument", ":agent_id"),
+    ])
+
+instrument_dropped = (ti_on_item_dropped, 0, 0, [], # handle instruments
+   [(store_trigger_param_1, ":agent_id"),
+    (call_script, "script_cf_stop_playing_musical_instrument", ":agent_id"),
+    (eq,reg20,1),
+    (call_script, "script_client_stop_playing_musical_instrument", ":agent_id"),
     ])
 
 player_check_loop = (0, 0, 0.5, # server: check all players to see if any need agents spawned, also periodically lowering outlaw ratings
@@ -970,7 +1010,7 @@ render_weather_effects = (0.1, 0, 0, [], # clients: regularly display weather ef
     ])
 
 def common_triggers(self):
-  return [(ti_before_mission_start, 0, 0, [(assign, "$g_game_type", "mt_" + self)], []),
+	return [(ti_before_mission_start, 0, 0, [(assign, "$g_game_type", "mt_" + self)], []),
     before_mission_start_setup,
     after_mission_start_setup,
 
@@ -988,6 +1028,11 @@ def common_triggers(self):
 
     agent_mount,
     agent_dismount,
+
+    instrument_check,
+    instrument_killed,
+    instrument_unwielded,
+    instrument_dropped,
 
     player_check_loop,
     agent_check_loop,

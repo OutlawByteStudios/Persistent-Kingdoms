@@ -76,16 +76,17 @@ slot_player_admin_no_override_poll    = 54
 slot_player_admin_no_all_items        = 55
 slot_player_admin_no_mute             = 56
 slot_player_admin_no_animals          = 57
-slot_player_admin_no_factions         = 58
-slot_player_admin_end                 = 59
+slot_player_admin_no_join_factions    = 58
+slot_player_admin_no_factions         = 59
+slot_player_admin_end                 = 60
 
-slot_player_freeze_instance_id        = 60 #Needed for removing freeze walls on disconnects
+slot_player_freeze_instance_id        = 61 #Needed for removing freeze walls on disconnects
 
-slot_player_commit_suicide_time       = 59
+slot_player_commit_suicide_time       = 62
 suicide_delay                         = 15 # suicide delay time
 
 #This slot is for the equipment logs
-slot_player_first_spawn_occured       = 60
+slot_player_first_spawn_occured       = 63
 #End
 
 ########################################################
@@ -152,6 +153,9 @@ slot_agent_weapon_reload_factor       = 63
 slot_agent_cannot_attack              = 64 # marks that any attack should be canceled
 slot_agent_armor_damage_through       = 65 # factor of letting damage received bleed through the armor
 slot_agent_last_apply_factors_item_id = 66 # last item id that modifier factors were last checked for, to avoid duplicating calculations due to trigger activation quirks
+
+slot_agent_playing_music              = 67
+
 
 ########################################################
 ##  SCENE PROP SLOTS       #############################
@@ -227,6 +231,8 @@ slot_scene_prop_crafting_resource_1   = 51
 slot_scene_prop_crafting_resource_2   = 52
 slot_scene_prop_crafting_resource_3   = 53
 slot_scene_prop_crafting_resource_4   = 54
+#Slot to keep agent_id of the killer
+slot_scene_prop_corpse_owner          = 60
 
 slot_scene_prop_store_ammo            = 55
 slot_scene_prop_store_only_ammo       = 56

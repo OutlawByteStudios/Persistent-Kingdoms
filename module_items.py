@@ -1063,10 +1063,12 @@ items = [
 ["book_f_open", "Sacred Book", [("pw_book_f_held",0),("pw_book_f_open",ixmesh_carry),("pw_book_f",ixmesh_inventory)], itp_type_two_handed_wpn|itp_two_handed|itp_primary|itp_no_parry, itcf_thrust_onehanded|itcf_carry_revolver_right,
  46400, weight(2)|spd_rtng(80)|weapon_length(50), imodbits_none, [itm_swap_item_trigger(this_item="itm_book_f_open", other_item="itm_book_f")]],
 
-["lyre", "Lyre", [("pw_lyre",0),("pw_lyre_carry",ixmesh_carry)], itp_type_polearm|itp_two_handed|itp_primary|itp_cant_use_on_horseback|itp_no_parry, itcf_carry_axe_back,
+["lyre", "Lyre", [("lyre_left_hand",0),("pw_lyre_carry",ixmesh_carry),("pw_lyre",ixmesh_inventory)], itp_type_one_handed_wpn|itp_force_attach_left_hand|itp_primary|itp_no_parry, itcf_carry_axe_back,
  659, weight(1.75)|weapon_length(80), imodbits_none],
-["lute", "Lute", [("pw_lute",0),("pw_lute_carry",ixmesh_carry)], itp_type_polearm|itp_two_handed|itp_primary|itp_cant_use_on_horseback|itp_no_parry, itcf_carry_axe_back,
- 850, weight(2.5)|weapon_length(85), imodbits_none],
+["lute", "Lute", [("lute_left_hand",0),("pw_lute_carry",ixmesh_carry),("pw_lute",ixmesh_inventory)], itp_type_one_handed_wpn|itp_force_attach_left_hand|itp_primary|itp_no_parry, itcf_carry_axe_back,
+ 850, weight(2.5)|spd_rtng(100)|weapon_length(85), imodbits_none],
+["warhorn", "Warhorn", [("warhorn_carry",0),("warhorn",ixmesh_carry),("warhorn",ixmesh_inventory)], itp_type_one_handed_wpn|itp_primary|itp_no_parry, itcf_carry_dagger_front_left,
+ 659, weight(1.75)|weapon_length(80), imodbits_none],
 ["dart", "Dart", [("pw_dart",0)], itp_type_thrown|itp_primary, itcf_throw_javelin|itcf_carry_quiver_right_vertical,
  35, weight(1)|difficulty(0)|spd_rtng(90)|shoot_speed(21)|thrust_damage(0, blunt)|max_ammo(3)|weapon_length(32), imodbits_thrown],
 ["die", "Die", [("pw_die",0),("pw_die_inv",ixmesh_inventory)], itp_type_one_handed_wpn|itp_primary|itp_no_parry, itcf_carry_pistol_front_left,
@@ -1400,7 +1402,7 @@ itm_wall_banner("fac_8", "b"),
 #Shield Log Triggers
 #TODO: Add the trigger defined below to all shield type items and make it call "script_cf_shield_hit"
 shield_trigger = (ti_on_shield_hit, [
-    (store_trigger_param_1, ":defender_agent_id"),
+  (store_trigger_param_1, ":defender_agent_id"),
 	(store_trigger_param_2, ":attacker_agent_id"),
 	(store_trigger_param_3, ":damage"),
 	(call_script, "script_cf_shield_hit", ":defender_agent_id", ":attacker_agent_id", ":damage"),
@@ -1412,7 +1414,7 @@ def add_shield_triggers(items, shield_trigger):
 		if "shield" in item_name.lower():
 			if len(item) == 8:
 				item.append([shield_trigger])
-			if len(item) > 8:
+			elif len(item) > 8:
 				item[8].append(shield_trigger)
 
 add_shield_triggers(items, shield_trigger)
