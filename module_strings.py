@@ -525,6 +525,8 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("s0_are_you_sure", "{s0} - are you sure?"),
   ("confirmation", "confirmation"),
 
+  ("open_close_helmet_error", "This helmet has no toggleable visor!"),
+
   ("suicide_in_reg1", "You will commit suicide in {reg1} seconds!"),
   ("log_s1_committed_suicide", "{s1} committed suicide."),
 
