@@ -1592,8 +1592,6 @@ scripts.extend([
               (try_begin),
                 (eq, ":other_player_id", ":sender_player_id"),
               (else_try),
-                (player_is_admin, ":other_player_id"),
-              (else_try),
                 (eq, ":other_player_id", ":target_player_id"),
               (else_try),
                 (assign, ":server_event", -1),
