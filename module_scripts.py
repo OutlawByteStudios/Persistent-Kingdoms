@@ -721,7 +721,20 @@ scripts.extend([
     (call_script, "script_initialize_animation_menu_strings"),
     (call_script, "script_initialize_animation_durations"),
     (call_script, "script_store_profile_troop_equipment"),
+    (call_script, "script_initialize_open_close_helmets"),
     ]),
+
+  ("initialize_open_close_helmets",
+   [
+   #HELMETS        # open                                           # closed
+   (item_set_slot, "itm_great_helmet", slot_item_open_close_helmet, "itm_winged_great_helmet"),
+
+   (try_for_range, ":itm_1", 0, "itm_all_items_end"),
+     (item_get_slot, ":itm_2", ":itm_1", slot_item_open_close_helmet),
+	 (gt, ":itm_2", 0),
+	 (item_set_slot, ":itm_2", slot_item_open_close_helmet, ":itm_1"),
+   (try_end),
+   ]),
 
   ("game_set_multiplayer_mission_end", # called when the mission ends
    [
@@ -1722,6 +1735,19 @@ scripts.extend([
           (str_store_player_username, s0, ":sender_player_id"),
           (player_get_unique_id, reg0, ":sender_player_id"),
           (server_add_message_to_log, "str_log_admin_target_self"),
+        (try_end),
+      (else_try), # handle players toggling visor
+        (eq, ":event_type", client_event_open_close_helmet),
+        (player_get_agent_id, ":agent_id", ":sender_player_id"),
+        (agent_is_active, ":agent_id"),
+        (agent_is_alive, ":agent_id"),
+		(agent_get_item_slot, ":helmet_1", ":agent_id", ek_head),
+		(item_get_slot, ":helmet_2", ":helmet_1", slot_item_open_close_helmet),
+        (try_begin),
+            (gt, ":helmet_2", 0),
+            (call_script, "script_change_armor", ":agent_id", ":helmet_2"),
+        (else_try),
+            (multiplayer_send_2_int_to_player, ":sender_player_id", server_event_preset_message, "str_open_close_helmet_error", preset_message_error),
         (try_end),
       (else_try), # handle players requesting to drop or toggle armor items
         (eq, ":event_type", client_event_toggle_drop_armor),
@@ -5980,7 +6006,17 @@ scripts.extend([
     (try_begin),
       (is_between, ":item_type", itp_type_head_armor, itp_type_hand_armor + 1),
       (try_begin), # use a dummy "no_" item id when removing armor
-        (agent_has_item_equipped, ":agent_id", ":item_id"),
+        (assign, ":has_item", 0),
+        (try_begin),
+            (agent_has_item_equipped, ":agent_id", ":item_id"),
+            (assign, ":has_item", 1),
+        (else_try),
+            (item_get_slot, ":item_id", ":item_id", slot_item_open_close_helmet),
+            (gt, ":item_id", 0),
+            (agent_has_item_equipped, ":agent_id", ":item_id"),
+            (assign, ":has_item", 1),
+        (try_end),
+        (eq, ":has_item", 1),
         (store_sub, ":no_item_id", ":item_type", itp_type_head_armor),
         (val_add, ":no_item_id", "itm_no_head"),
         (store_sub, ":player_slot", ":item_type", itp_type_head_armor),
