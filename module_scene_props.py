@@ -3051,6 +3051,9 @@ scene_props = [
   ("pw_back_box",sokf_static_movement|spr_use_time(3),"pw_back_box","bo_pw_back_box", spr_cart_triggers(detach_offset=-13, inventory_count=10, max_item_length=80, access_distance=-80)),
   ("pw_horse_pack",sokf_static_movement|spr_use_time(2),"pw_horse_pack","bo_pw_horse_pack", spr_cart_triggers(horse=1, detach_offset=49, inventory_count=20, max_item_length=100, access_distance=90)),
 
+  ("cm_civ_cart",sokf_static_movement|spr_use_time(1),"cm_civ_cart","bo_cm_civ_cart", spr_cart_triggers(horse="itm_cart_horse", detach_offset=60, detach_rotation=-20, inventory_count=48, max_item_length=250, access_distance=-180)),
+  ("cm_war_cart",sokf_static_movement|spr_use_time(1),"cm_war_cart","bo_cm_war_cart", spr_cart_triggers(horse="itm_cart_horse", detach_offset=60, detach_rotation=-20, inventory_count=48, max_item_length=250, access_distance=-180)),
+  
   ("pw_ship_a",sokf_moveable|sokf_destructible|sokf_show_hit_point_bar,"pw_ship_a","bo_pw_ship_a", spr_ship_triggers(hit_points=5000, length=800, width=150, height=-20, speed=6, sail="pw_ship_a_sail", sail_off="pw_ship_a_sail_off", collision="pw_ship_a_cd")),
   ("pw_ship_a_sail",sokf_moveable,"pw_ship_a_sail","bo_pw_ship_a_sail", []),
   ("pw_ship_a_sail_off",sokf_moveable,"pw_ship_a_sail_off","bo_pw_ship_a_sail_off", []),
