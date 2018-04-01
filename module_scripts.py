@@ -726,8 +726,8 @@ scripts.extend([
 
   ("initialize_open_close_helmets",
    [
-   #HELMETS        # open                                           # closed
-   (item_set_slot, "itm_great_helmet", slot_item_open_close_helmet, "itm_winged_great_helmet"),
+   #HELMETS        # open                                               # closed
+   (item_set_slot, "itm_klappvisier_open", slot_item_open_close_helmet, "itm_klappvisier"),
 
    (try_for_range, ":itm_1", 0, "itm_all_items_end"),
      (item_get_slot, ":itm_2", ":itm_1", slot_item_open_close_helmet),
