@@ -1658,6 +1658,7 @@ presentations.extend([
           (eq, "$g_list_players_keep_open", 0), # target the selected player for other use by other functions
           (assign, "$g_target_player_id", ":player_id"),
           (try_begin), # set reply target on start of new conversation
+            (eq,"$g_list_players_return_presentation", "prsnt_chat_box"),
             (eq,"$g_chat_box_event_type", chat_event_type_private_message),
             (assign, "$g_private_message_player_id", ":player_id"),
           (try_end),
