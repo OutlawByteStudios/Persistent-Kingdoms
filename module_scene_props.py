@@ -3050,7 +3050,6 @@ scene_props = [
   ("cm_buy_english_longsword",spr_buy_item_flags(15),"english_longsword","bo_pw_weapon", spr_buy_item_triggers("itm_english_longsword", resources=["itm_iron_bar_long"], engineer=7)),
   ("cm_buy_german_greatsword",spr_buy_item_flags(15),"faradon_twohanded1","bo_pw_weapon", spr_buy_item_triggers("itm_faradon_twohanded1", resources=["itm_iron_bar_long"], engineer=7)),
   ("cm_buy_danish_greatsword",spr_buy_item_flags(15),"danish_greatsword","bo_pw_weapon", spr_buy_item_triggers("itm_danish_greatsword", resources=["itm_iron_bar_long"], engineer=7)),
-  ("cm_buy_scottish_claymore",spr_buy_item_flags(15),"2h_claymore","bo_pw_weapon", spr_buy_item_triggers("itm_2h_claymore", resources=["itm_iron_bar_long"], engineer=7)),
   ("cm_buy_claymore",spr_buy_item_flags(15),"claymore","bo_pw_weapon", spr_buy_item_triggers("itm_claymore", resources=["itm_iron_bar_long"], engineer=7)),
   
   ("cm_buy_battle_fork",spr_buy_item_flags(2),"battle_fork","bo_pw_weapon_small", spr_buy_item_triggers("itm_battle_fork", resources=["itm_iron_bar"], engineer=2)),
