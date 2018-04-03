@@ -99,7 +99,7 @@ troops = [
    str_15|agi_15|pw_attr,wpex(100,120,110,20,50,30),knows_pw|knows_ironflesh_4|knows_power_strike_5|knows_shield_1|knows_athletics_2|knows_riding_4,default_face_1,default_face_2],
   ["mounted_knight","Mounted Knight","a mounted knight",tf_mounted|tf_guarantee_all,0,0,"fac_commoners",
    [],
-   str_16|agi_14|pw_attr,wpex(100,120,110,20,50,30),knows_pw|knows_ironflesh_5|knows_power_strike_4|knows_shield_1|knows_athletics_2|knows_riding_4,default_face_1,default_face_2],
+   str_16|agi_14|pw_attr,wpex(100,120,110,20,50,30),knows_pw|knows_ironflesh_5|knows_power_strike_4|knows_shield_1|knows_athletics_2|knows_riding_5,default_face_1,default_face_2],
   ["sergeant","Sergeant","a sergeant",tf_guarantee_all,0,0,"fac_commoners",
    [],
    str_15|agi_15|pw_attr,wpex(125,110,110,20,60,40),knows_pw|knows_ironflesh_5|knows_power_strike_5|knows_shield_2|knows_athletics_5|knows_riding_2,default_face_1,default_face_2],
