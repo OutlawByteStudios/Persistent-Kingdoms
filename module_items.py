@@ -1191,7 +1191,7 @@ items = [
 
 ["tourney_helm_yellow", "Tourney Helm Yellow", [("tourney_helmY",0)], itp_type_head_armor|itp_covers_head,0,
  620, weight(1.5)|head_armor(30)|difficulty(8), imodbits_plate],
-["helm_saracin_c", "Saracen Helmet with Leather", [("helm_saracin_c",0)], itp_type_head_armor, 0,
+["helm_saracin_c", "Saracen Helmet with Leather", [("helm_saracin_c",0)], itp_type_head_armor|itp_attach_armature, 0,
  840, weight(1.6)|head_armor(33)|difficulty(10), imodbits_plate],
 ["sar_infantry_helmet1", "Saracen Helmet with Mail", [("sar_infantry_helmet1",0)], itp_type_head_armor, 0,
  880, weight(1.7)|head_armor(34)|difficulty(10), imodbits_plate],
