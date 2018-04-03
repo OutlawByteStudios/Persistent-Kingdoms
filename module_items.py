@@ -1257,7 +1257,7 @@ items = [
  940, weight(1.75)|head_armor(35)|difficulty(10), imodbits_plate],
 ["pigface_klappvisor_open", "Open Pigface Helmet", [("pigface_klappvisor_open",0)], itp_type_head_armor, 0,
  6680, weight(2.8)|head_armor(52)|difficulty(15), imodbits_plate],
-["pigface_klappvisor", "Pigface Helmet", [("pigface_klappvisor",0)], itp_type_head_armor|itp_covers_head, 0,
+["pigface_klappvisor", "Pigface Helmet", [("pigface_klappvisor",0)], itp_type_head_armor|itp_covers_head|itp_attach_armature, 0,
  6680, weight(2.8)|head_armor(52)|difficulty(15), imodbits_plate],
 ["klappvisier_open", "Open Klappvisier", [("klappvisier_open",0)], itp_type_head_armor, 0,
  7040, weight(2.8)|head_armor(52)|difficulty(15), imodbits_plate],
