@@ -38,7 +38,7 @@ server_event_agent_stop_sound                   = 29
 server_event_agent_play_sound                   = 30
 
 server_event_private_message                    = 31
-server_event_preset_message_reply_setup         = 32
+server_event_private_message_reply_setup         = 32
 
 # Add new events here: above if sent from the server, below if from clients.
 

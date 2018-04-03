@@ -742,7 +742,6 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("admin_announcement_format", "*ANNOUNCEMENT* [{s1}] {s0}"),
   ("local_chat_log_format", "*LOCAL* {s0}"),
   ("faction_chat_log_format", "*FACTION* {s2} {s0}"),
-
   ("private_message_format", "*PM* [{s1}] > [{s2}] {s0}"),
 
   ("s1_has_left_the_game_with_id_reg0", "{s1} has left the game with ID: {reg0}"),
