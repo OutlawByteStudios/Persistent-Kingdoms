@@ -1286,35 +1286,14 @@ scripts.extend([
         (eq, ":event_type", server_event_agent_play_sound),
         (store_script_param, ":agent_id", 3),
         (store_script_param, ":sound", 4),
-        (store_script_param, ":max_distance", 5), # How far you want the sound to travel
+        #DEPRECATED (store_script_param, ":max_distance", 5), # How far you want the sound to travel
         (try_begin),
-          (display_message, "@play"),
           (agent_is_active, ":agent_id"),
           (agent_is_alive,":agent_id"),
           (multiplayer_get_my_player, ":my_player_no"),
           (player_get_agent_id,":my_agent", ":my_player_no"),
           (agent_is_active, ":my_agent"),
-
-          (agent_get_position,pos1,":agent_id"),
-          (agent_get_position,pos2,":my_agent"),
-          (get_distance_between_positions_in_meters,":distance",pos1,pos2),
-
           (agent_play_sound, ":agent_id", ":sound"),# Play the normal sound position
-          
-          (assign, reg31, "snd_lute_1"),
-          (display_message, "@1 {reg31}"),
-          (assign, reg31, "snd_lute_2"),
-          (display_message, "@2 {reg31}"),
-          
-          #(neq,":max_distance",0),
-          #Work out how far the distance is being traveled
-          #(gt,":distance",200),
-          #(store_sub, ":dis_sound", ":distance", 200),
-          #(val_clamp, ":dis_sound", 0, 800),#Keep to a 1k range
-          #(neg|gt,":dis_sound",":max_distance"),#Ensure it doesnt travel over the max range
-          #(val_div, ":dis_sound", 100),#Divide by 100 to get a single digit value
-          #(val_add, ":dis_sound", ":sound"),
-          #(play_sound, ":sound"),
         (try_end),
       (try_end),
 
@@ -13931,9 +13910,9 @@ scripts.extend([
         animation_menu_entry("str_anim_lyre_2", animation="anim_play_lyre", man_sound="snd_lyre_2", woman_sound="snd_lyre_2", music=3, instrument="itm_lyre"),
         animation_menu_entry("str_anim_lyre_3", animation="anim_play_lyre", man_sound="snd_lyre_3", woman_sound="snd_lyre_3", music=3, instrument="itm_lyre"),
         animation_menu_entry("str_anim_lyre_4", animation="anim_play_lyre", man_sound="snd_lyre_4", woman_sound="snd_lyre_4", music=3, instrument="itm_lyre"),
-        animation_menu_entry("str_anim_horn_charge", animation="anim_play_horn", man_sound="snd_horncharge", woman_sound="snd_horncharge", instrument="itm_warhorn", music=0, max_distance=700),
-        animation_menu_entry("str_anim_horn_regroup", animation="anim_play_horn", man_sound="snd_hornregroup", woman_sound="snd_hornregroup", instrument="itm_warhorn", music=0, max_distance=700),
-        animation_menu_entry("str_anim_horn_retreat", animation="anim_play_horn", man_sound="snd_hornretreat", woman_sound="snd_hornretreat", instrument="itm_warhorn", music=0, max_distance=700),
+        animation_menu_entry("str_anim_horn_charge", animation="anim_play_horn", man_sound="snd_horncharge", woman_sound="snd_horncharge", instrument="itm_warhorn", music=4),
+        animation_menu_entry("str_anim_horn_regroup", animation="anim_play_horn", man_sound="snd_hornregroup", woman_sound="snd_hornregroup", instrument="itm_warhorn", music=4),
+        animation_menu_entry("str_anim_horn_retreat", animation="anim_play_horn", man_sound="snd_hornretreat", woman_sound="snd_hornretreat", instrument="itm_warhorn", music=4),
       (else_try),
         (assign, ":string_id", -1),
       (try_end),
@@ -14035,13 +14014,10 @@ scripts.extend([
         (try_begin),
           (gt, ":sound", -1),
           (try_begin),
-            (eq,":music",1),#Ensure all players know the agent is playing a sound
+            (ge, ":music", 1),#Ensure all players know the agent is playing a sound
             (call_script, "script_cf_play_global_agent_sound", ":agent_id", ":sound", ":max_distance"),
-            (display_message, "@music 1"),
           (else_try),
-            #(agent_play_sound, ":agent_id", ":sound"),
-            (call_script, "script_cf_play_global_agent_sound", ":agent_id", ":sound", ":max_distance"),
-            (display_message, "@music 2"),
+            (agent_play_sound, ":agent_id", ":sound"),
           (try_end),
         (try_end),
       (try_end),
@@ -14089,8 +14065,8 @@ scripts.extend([
         (store_script_param, ":agent_id", 1), # must be valid
         (agent_is_active,":agent_id"),
         (agent_is_human,":agent_id"),
-        (agent_get_slot,":playingmusic",":agent_id",slot_agent_playing_music),
-        (gt,":playingmusic",0),
+        (agent_get_slot,":playing_music",":agent_id",slot_agent_playing_music),
+        (gt,":playing_music",0),
         (assign,reg20,1),
         (agent_set_slot,":agent_id",slot_agent_playing_music,0),
         (get_max_players, ":max_players"),
@@ -14207,10 +14183,23 @@ scripts.extend([
         (get_max_players, ":max_players"),
         (try_for_range, ":player_id", 1, ":max_players"),
           (player_is_active, ":player_id"),
-          (multiplayer_send_3_int_to_player, ":player_id", server_event_agent_play_sound, ":agent_id", ":sound", ":distance"),
+          (multiplayer_send_2_int_to_player, ":player_id", server_event_agent_play_sound, ":agent_id", ":sound"),
         (try_end),
     ]),
 
+    ("cf_setup_singings", [
+      (multiplayer_is_server),
+      (store_script_param_1, ":player_id"),
+      
+      (try_for_players, ":other_player_id"),
+        (player_is_active, ":other_player_id"),
+        (player_get_agent_id, ":agent_id", ":other_player_id"),
+        (gt, ":agent_id", -1),
+        (agent_get_slot, ":sound", ":agent_id", slot_agent_playing_music),
+        (gt, ":sound", 0),
+        (multiplayer_send_2_int_to_player, ":player_id", server_event_agent_play_sound, ":agent_id", ":sound"),
+      (try_end),
+    ]),
 ])
 
 # Fill a chest's inventory slot with a set load out of items at mission start.
