@@ -1288,9 +1288,9 @@ scripts.extend([
         (store_script_param, ":sound", 4),
         (store_script_param, ":max_distance", 5), # How far you want the sound to travel
         (try_begin),
+          (display_message, "@play"),
           (agent_is_active, ":agent_id"),
           (agent_is_alive,":agent_id"),
-
           (multiplayer_get_my_player, ":my_player_no"),
           (player_get_agent_id,":my_agent", ":my_player_no"),
           (agent_is_active, ":my_agent"),
@@ -1300,15 +1300,21 @@ scripts.extend([
           (get_distance_between_positions_in_meters,":distance",pos1,pos2),
 
           (agent_play_sound, ":agent_id", ":sound"),# Play the normal sound position
-          (neq,":max_distance",0),
+          
+          (assign, reg31, "snd_lute_1"),
+          (display_message, "@1 {reg31}"),
+          (assign, reg31, "snd_lute_2"),
+          (display_message, "@2 {reg31}"),
+          
+          #(neq,":max_distance",0),
           #Work out how far the distance is being traveled
-          (gt,":distance",200),
-          (store_sub, ":dis_sound", ":distance", 200),
-          (val_clamp, ":dis_sound", 0, 800),#Keep to a 1k range
-          (neg|gt,":dis_sound",":max_distance"),#Ensure it doesnt travel over the max range
-          (val_div, ":dis_sound", 100),#Divide by 100 to get a single digit value
-          (val_add, ":dis_sound", ":sound"),
-          (play_sound, ":dis_sound"),
+          #(gt,":distance",200),
+          #(store_sub, ":dis_sound", ":distance", 200),
+          #(val_clamp, ":dis_sound", 0, 800),#Keep to a 1k range
+          #(neg|gt,":dis_sound",":max_distance"),#Ensure it doesnt travel over the max range
+          #(val_div, ":dis_sound", 100),#Divide by 100 to get a single digit value
+          #(val_add, ":dis_sound", ":sound"),
+          #(play_sound, ":sound"),
         (try_end),
       (try_end),
 
@@ -14031,8 +14037,11 @@ scripts.extend([
           (try_begin),
             (eq,":music",1),#Ensure all players know the agent is playing a sound
             (call_script, "script_cf_play_global_agent_sound", ":agent_id", ":sound", ":max_distance"),
+            (display_message, "@music 1"),
           (else_try),
-            (agent_play_sound, ":agent_id", ":sound"),
+            #(agent_play_sound, ":agent_id", ":sound"),
+            (call_script, "script_cf_play_global_agent_sound", ":agent_id", ":sound", ":max_distance"),
+            (display_message, "@music 2"),
           (try_end),
         (try_end),
       (try_end),
