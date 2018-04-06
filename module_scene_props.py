@@ -3021,6 +3021,7 @@ scene_props = [
   ("cm_buy_litchina_helmet",spr_buy_item_flags(10),"litchina_helm","bo_pw_armor_head", spr_buy_item_triggers("itm_litchina_helm", resources=["itm_iron_bar_short","itm_iron_piece"], engineer=4)),
   ("cm_buy_decorated_gulam_helm",spr_buy_item_flags(10),"gulam_helm_f_market","bo_pw_armor_head", spr_buy_item_triggers("itm_gulam_helm_f_market", resources=["itm_iron_bar_short","itm_iron_piece"], engineer=4)),
   ("cm_buy_hounskull_helmet",spr_buy_item_flags(10),"hounskull","bo_pw_armor_head", spr_buy_item_triggers("itm_hounskull", resources=["itm_iron_bar_short","itm_iron_piece"], engineer=4)),
+  ("cm_buy_open_zitta_bascinet",spr_buy_item_flags(10),"zitta_bascinet_open","bo_pw_armor_head", spr_buy_item_triggers("itm_zitta_bascinet_open", resources=["itm_iron_bar_short","itm_iron_piece"], engineer=4)),
   ("cm_buy_zitta_bascinet",spr_buy_item_flags(10),"zitta_bascinet","bo_pw_armor_head", spr_buy_item_triggers("itm_zitta_bascinet", resources=["itm_iron_bar_short","itm_iron_piece"], engineer=4)),
   ("cm_buy_open_pigface_helmet",spr_buy_item_flags(10),"pigface_klappvisor_open","bo_pw_armor_head", spr_buy_item_triggers("itm_pigface_klappvisor_open", resources=["itm_iron_bar_short","itm_iron_piece"], engineer=4)),
   ("cm_buy_pigface_helmet",spr_buy_item_flags(10),"pigface_klappvisor","bo_pw_armor_head", spr_buy_item_triggers("itm_pigface_klappvisor", resources=["itm_iron_bar_short","itm_iron_piece"], engineer=4)),
