@@ -727,6 +727,10 @@ scripts.extend([
   ("initialize_open_close_helmets",
    [
    #HELMETS        # open                                               # closed
+   (item_set_slot, "itm_north_aventail", slot_item_open_close_helmet, "itm_north_bascinet"),
+   (item_set_slot, "itm_north_sallet", slot_item_open_close_helmet, "itm_north_neckguard"),
+   (item_set_slot, "itm_zitta_bascinet_open", slot_item_open_close_helmet, "itm_zitta_bascinet"),
+   (item_set_slot, "itm_pigface_klappvisor_open", slot_item_open_close_helmet, "itm_pigface_klappvisor"),
    (item_set_slot, "itm_klappvisier_open", slot_item_open_close_helmet, "itm_klappvisier"),
 
    (try_for_range, ":itm_1", 0, "itm_all_items_end"),
