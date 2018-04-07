@@ -192,7 +192,6 @@ player_joined = (ti_server_player_joined, 0, 0, [], # server: handle connecting 
     (call_script, "script_setup_player_joined", ":player_id"),
     (call_script, "script_player_check_name", ":player_id"),
     (call_script, "script_update_ghost_mode_rule", ":player_id"),
-    (call_script, "script_cf_setup_singings", ":player_id"),
     ])
 
 player_exit = (ti_on_player_exit, 0, 0, [], # server: save player values on exit
@@ -220,25 +219,29 @@ agent_spawn = (ti_on_agent_spawn, 0, 0, [], # server and clients: set up new age
    [(store_trigger_param_1, ":agent_id"),
     (call_script, "script_on_agent_spawned", ":agent_id"),
 	
-	#Log the player's equipment on log ins. Due to player actually not having items when they "joined", it needs to log when
-	#they are spawned for the first time
-	#CRUCIAL: Updates on the player's equipment should be done before this code block so the server logs properly
-	(neg|agent_is_non_player, ":agent_id"),
-	(agent_get_player_id, ":player_id", ":agent_id"),
-	(player_get_slot, ":first_spawn_occured", ":player_id", slot_player_first_spawn_occured),
-	(neq, ":first_spawn_occured", 1),
-	(player_set_slot, ":player_id", slot_player_first_spawn_occured, 1),
-	(call_script, "script_cf_log_equipment", ":player_id"),
-	#End
+	(try_begin),
+    #Log the player's equipment on log ins. Due to player actually not having items when they "joined", it needs to log when
+    #they are spawned for the first time
+    #CRUCIAL: Updates on the player's equipment should be done before this code block so the server logs properly
+    (multiplayer_is_server),
+    (neg|agent_is_non_player, ":agent_id"),
+    (agent_get_player_id, ":player_id", ":agent_id"),
+    (player_get_slot, ":first_spawn_occured", ":player_id", slot_player_first_spawn_occured),
+    (neq, ":first_spawn_occured", 1),
+    (player_set_slot, ":player_id", slot_player_first_spawn_occured, 1),
+    (call_script, "script_cf_log_equipment", ":player_id"),
+    (call_script, "script_cf_setup_singings", ":player_id"),
+    #End
+  (try_end),
 
-    (try_begin),
-        (player_get_slot, ":faction_id", ":player_id", slot_player_faction_id),
-        (faction_slot_eq, ":faction_id", slot_faction_is_active, 0),
-        (call_script, "script_change_faction", ":player_id", "fac_commoners", change_faction_type_no_respawn),
-        (call_script, "script_player_set_worse_respawn_troop", ":player_id", "trp_peasant"),
-        (multiplayer_send_3_int_to_player, ":player_id", server_event_preset_message, "str_inactive_faction_change", preset_message_chat_log|preset_message_red, ":faction_id"),
-    (try_end),
-    ])
+  (try_begin),
+    (player_get_slot, ":faction_id", ":player_id", slot_player_faction_id),
+    (faction_slot_eq, ":faction_id", slot_faction_is_active, 0),
+    (call_script, "script_change_faction", ":player_id", "fac_commoners", change_faction_type_no_respawn),
+    (call_script, "script_player_set_worse_respawn_troop", ":player_id", "trp_peasant"),
+    (multiplayer_send_3_int_to_player, ":player_id", server_event_preset_message, "str_inactive_faction_change", preset_message_chat_log|preset_message_red, ":faction_id"),
+  (try_end),
+ ])
 
 agent_killed = (ti_on_agent_killed_or_wounded, 0, 0, [], # server and clients: handle messages, score, loot, and more after agents die
    [(store_trigger_param_1, ":dead_agent_id"),

@@ -1290,9 +1290,6 @@ scripts.extend([
         (try_begin),
           (agent_is_active, ":agent_id"),
           (agent_is_alive,":agent_id"),
-          (multiplayer_get_my_player, ":my_player_no"),
-          (player_get_agent_id,":my_agent", ":my_player_no"),
-          (agent_is_active, ":my_agent"),
           (agent_stop_sound, ":agent_id"),
           (agent_play_sound, ":agent_id", ":sound"),# Play the normal sound position
         (try_end),
