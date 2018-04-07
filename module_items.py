@@ -1221,7 +1221,7 @@ items = [
  1590, weight(2.2)|head_armor(44)|difficulty(14), imodbits_plate],
 ["prato_chapel_de_fer", "Prato Chapel De Fer", [("prato_chapel_de_fer",0)], itp_type_head_armor, 0,
  1650, weight(2.2)|head_armor(45)|difficulty(14), imodbits_plate],
-["gulam_helm_c_market", "Gulam Helmet with Blue Cloth", [("gulam_helm_c_market",0)], itp_type_head_armor, 0,
+["gulam_helm_c_market", "Gulam Helmet with Blue Cloth", [("gulam_helm_c_market",0),("inv_gulam_helm_c_market", ixmesh_inventory)], itp_type_head_armor|itp_attach_armature, 0,
  1740, weight(2.2)|head_armor(45)|difficulty(14), imodbits_plate],
 ["gulam_helm_b_market", "Gulam Helmet with Red Cloth", [("gulam_helm_b_market",0)], itp_type_head_armor, 0,
  1750, weight(2.2)|head_armor(45)|difficulty(14), imodbits_plate],
