@@ -1288,6 +1288,7 @@ scripts.extend([
         (store_script_param, ":sound", 4),
         #DEPRECATED (store_script_param, ":max_distance", 5), # How far you want the sound to travel
         (try_begin),
+          (neq, "$g_mute_music", 1),
           (agent_is_active, ":agent_id"),
           (agent_is_alive,":agent_id"),
           (agent_stop_sound, ":agent_id"),
