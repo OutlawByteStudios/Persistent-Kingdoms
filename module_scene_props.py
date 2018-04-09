@@ -3037,6 +3037,7 @@ scene_props = [
  
   ("cm_buy_early_transitional_armor",spr_buy_item_flags(14),"early_transitional_heraldic","bo_pw_armor_body", spr_buy_item_triggers("itm_early_transitional_heraldic", resources=[("itm_iron_bar_short",2),"itm_linen_cloth"], engineer=5)),
  
+  ("cm_buy_practice_dagger",spr_buy_item_flags(2),"practice_dagger","bo_pw_weapon_small", spr_buy_item_triggers("itm_practice_dagger", resources=["itm_iron_bar"], engineer=2)),
   ("cm_buy_iberian_mace",spr_buy_item_flags(2),"faradon_iberianmace","bo_pw_weapon_small", spr_buy_item_triggers("itm_faradon_iberianmace", resources=["itm_iron_bar"], engineer=2)),
   ("cm_buy_warhammer",spr_buy_item_flags(4),"faradon_warhammer","bo_pw_weapon_small", spr_buy_item_triggers("itm_faradon_warhammer", resources=["itm_iron_bar_short", "itm_stick"], engineer=3)),
   ("cm_buy_grosse_messer",spr_buy_item_flags(4),"grosse_messer","bo_pw_weapon_small", spr_buy_item_triggers("itm_grosse_messer", resources=["itm_iron_bar"], engineer=2)),

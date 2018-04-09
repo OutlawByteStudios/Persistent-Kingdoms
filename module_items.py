@@ -1326,6 +1326,9 @@ items = [
 ["steel_greaves", "Steel Boots", [("steel_greaves", 0)], itp_type_foot_armor|itp_attach_armature, 0,
  2950, weight(3.5)|leg_armor(34)|difficulty(15), imodbits_plate],
 
+
+["practice_dagger", "Practice Dagger", [("practice_dagger",0)], itp_type_one_handed_wpn|itp_primary|itp_no_parry, itc_dagger|itcf_carry_dagger_front_left,
+ 380, weight(2.8)|difficulty(12)|spd_rtng(98)|weapon_length(71)|swing_damage(30, blunt)|thrust_damage(0, pierce), imodbits_pick],
 ["faradon_iberianmace", "Iberian Mace", [("faradon_iberianmace",0)], itp_type_one_handed_wpn|itp_can_knock_down|itp_primary|itp_wooden_parry, itc_scimitar|itcf_carry_mace_left_hip,
  380, weight(2.8)|difficulty(12)|spd_rtng(98)|weapon_length(71)|swing_damage(30, blunt)|thrust_damage(0, pierce), imodbits_pick],
 ["faradon_warhammer", "Warhammer", [("faradon_warhammer",0)], itp_type_one_handed_wpn|itp_can_knock_down|itp_primary|itp_wooden_parry, itc_scimitar|itcf_carry_axe_left_hip,
