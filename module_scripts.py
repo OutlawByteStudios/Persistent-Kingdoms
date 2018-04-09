@@ -13870,7 +13870,6 @@ scripts.extend([
       (assign, ":add_to_chat", 0), # display the animation string in the local chat for near the player
       (assign, ":music", -1), # ensure that music is handled correctly
       (assign, ":instrument", -1), # required wielded item
-      (assign, ":max_distance", 0), # distance in which the sound can reach in meters
       (try_begin), # the first script parameter is the name string id, which must be in the appropriate section of module_strings.py
         animation_menu_entry("str_anim_cheer", animation="anim_cheer", man_sound="snd_man_victory"),
         animation_menu_entry("str_anim_clap", animation="anim_man_clap", woman_alt_animation="anim_woman_clap", prevent_if_wielding=1),
@@ -14015,7 +14014,7 @@ scripts.extend([
           (try_begin),
             (this_or_next|ge, ":music", 1),#Ensure all players know the agent is playing a sound
             (ge, ":horn", 1),
-            (call_script, "script_cf_play_global_agent_sound", ":agent_id", ":sound", ":max_distance"),
+            (call_script, "script_cf_play_global_agent_sound", ":agent_id", ":sound"),
           (else_try),
             (agent_play_sound, ":agent_id", ":sound"),
           (try_end),
@@ -14178,7 +14177,6 @@ scripts.extend([
        [(multiplayer_is_server),
         (store_script_param, ":agent_id", 1), # must be valid
         (store_script_param, ":sound", 2), # sound to be played must be valid
-        (store_script_param, ":distance", 3), # Meters
         (agent_is_active,":agent_id"),
         (get_max_players, ":max_players"),
         (try_for_range, ":player_id", 1, ":max_players"),
