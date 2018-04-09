@@ -520,9 +520,11 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("commit_suicide", "Commit suicide"),
   ("toggle_clickable_animation_menu", "Toggle clickable animation menu"),
   ("toggle_muting_global_chat", "Toggle muting global chat"),
+  ("mute_music", "Mute instruments"),
   ("action_menu_end", "action_menu_end"),
   ("s0_are_you_sure", "{s0} - are you sure?"),
   ("confirmation", "confirmation"),
+  ("unmute_music", "Unmute instruments"),
 
   ("suicide_in_reg1", "You will commit suicide in {reg1} seconds!"),
   ("log_s1_committed_suicide", "{s1} committed suicide."),
