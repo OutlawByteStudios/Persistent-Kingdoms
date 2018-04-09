@@ -922,6 +922,25 @@ admin_chat_pressed = (0, 0.05, 0, [(game_key_clicked, gk_admin_chat),(call_scrip
     (start_presentation, "prsnt_chat_box"),
     ])
 
+private_message_chat_pressed = (0, 0.05, 0, [(game_key_clicked, key_o),(call_script, "script_cf_no_input_presentation_active")], # clients: pm chat entry box
+   [(try_begin), # for admins, allow sending only to a targeted player
+        (neq, "$g_private_message_player_id", 0),
+        (player_is_active, "$g_private_message_player_id"),
+        (assign, "$g_chat_box_event_type", chat_event_type_private_message),
+        (assign, "$g_chat_box_player_string_id", "str_send_private_message_to_s1"),
+        (assign, "$g_target_player_id", "$g_private_message_player_id"),
+        (start_presentation, "prsnt_chat_box"),
+    (else_try),
+        (assign, "$g_list_players_event", -1),
+        (assign, "$g_list_players_action_string_id", "str_send_message_to"),
+        (assign, "$g_list_players_return_presentation", "prsnt_chat_box"),
+        (assign, "$g_list_players_return_presentation_on_escape", 0),
+        (start_presentation, "prsnt_list_players"),
+        (assign, "$g_chat_box_event_type", chat_event_type_private_message),
+        (assign, "$g_chat_box_player_string_id", "str_send_private_message_to_s1"),
+    (try_end),
+    ])
+
 ship_control_pressed = (0, 0, 0, [], # clients: check if the player agent is at a valid position on a ship, then send control requests the server
    [(this_or_next|key_clicked, key_up),
     (this_or_next|key_clicked, key_down),
@@ -1062,6 +1081,7 @@ def common_triggers(self):
     local_chat_pressed,
     faction_chat_pressed,
     admin_chat_pressed,
+    private_message_chat_pressed,
     ship_control_pressed,
     animation_menu_pressed,
 
