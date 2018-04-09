@@ -13909,9 +13909,9 @@ scripts.extend([
         animation_menu_entry("str_anim_lyre_2", animation="anim_play_lyre", man_sound="snd_lyre_2", woman_sound="snd_lyre_2", music=3, instrument="itm_lyre"),
         animation_menu_entry("str_anim_lyre_3", animation="anim_play_lyre", man_sound="snd_lyre_3", woman_sound="snd_lyre_3", music=3, instrument="itm_lyre"),
         animation_menu_entry("str_anim_lyre_4", animation="anim_play_lyre", man_sound="snd_lyre_4", woman_sound="snd_lyre_4", music=3, instrument="itm_lyre"),
-        animation_menu_entry("str_anim_horn_charge", animation="anim_play_horn", man_sound="snd_horncharge", woman_sound="snd_horncharge", instrument="itm_warhorn", music=4),
-        animation_menu_entry("str_anim_horn_regroup", animation="anim_play_horn", man_sound="snd_hornregroup", woman_sound="snd_hornregroup", instrument="itm_warhorn", music=4),
-        animation_menu_entry("str_anim_horn_retreat", animation="anim_play_horn", man_sound="snd_hornretreat", woman_sound="snd_hornretreat", instrument="itm_warhorn", music=4),
+        animation_menu_entry("str_anim_horn_charge", animation="anim_play_horn", man_sound="snd_horncharge", woman_sound="snd_horncharge", instrument="itm_warhorn", horn=1),
+        animation_menu_entry("str_anim_horn_regroup", animation="anim_play_horn", man_sound="snd_hornregroup", woman_sound="snd_hornregroup", instrument="itm_warhorn", horn=1),
+        animation_menu_entry("str_anim_horn_retreat", animation="anim_play_horn", man_sound="snd_hornretreat", woman_sound="snd_hornretreat", instrument="itm_warhorn", horn=1),
       (else_try),
         (assign, ":string_id", -1),
       (try_end),
@@ -14013,7 +14013,8 @@ scripts.extend([
         (try_begin),
           (gt, ":sound", -1),
           (try_begin),
-            (ge, ":music", 1),#Ensure all players know the agent is playing a sound
+            (this_or_next|ge, ":music", 1),#Ensure all players know the agent is playing a sound
+            (ge, ":horn", 1),
             (call_script, "script_cf_play_global_agent_sound", ":agent_id", ":sound", ":max_distance"),
           (else_try),
             (agent_play_sound, ":agent_id", ":sound"),
