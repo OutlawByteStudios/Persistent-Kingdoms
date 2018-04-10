@@ -595,6 +595,8 @@ max_hit_points_percent                = 200
 
 admin_restock_amount                  = 5 # amount admin restocks pile by for each use
 
+random_gear_in_chests                 = 0
+
 all_items_begin = "itm_tattered_headcloth"
 all_items_end = "itm_all_items_end"
 
