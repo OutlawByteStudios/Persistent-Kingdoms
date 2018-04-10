@@ -13838,6 +13838,10 @@ scripts.extend([
 
     (assign, ":test_passed", 0),
     (try_begin),
+      (player_get_is_muted, ":is_muted", ":player_id"),
+      (this_or_next|eq, ":is_muted", 0),
+      (this_or_next|neg|multiplayer_is_server),
+      (eq, animations_while_muted, 1),
       (player_get_agent_id, ":agent_id", ":player_id"),
       (agent_is_active, ":agent_id"),
       (agent_is_alive, ":agent_id"),
