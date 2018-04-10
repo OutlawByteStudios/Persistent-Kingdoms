@@ -643,6 +643,7 @@ draw_initial_banners = (0, 0, ti_once, [], # server: calculate and draw all cast
 
 fill_chests_starting_inventory = (8, 0, ti_once, [], # server: wait so the pseudo random number generator can get some entropy
    [(multiplayer_is_server),
+    (eq, random_gear_in_chests, 1),
     (call_script, "script_scene_fill_chests_starting_inventory"),
     ])
 
