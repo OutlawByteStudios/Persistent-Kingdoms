@@ -13838,7 +13838,6 @@ scripts.extend([
 
     (assign, ":test_passed", 0),
     (try_begin),
-      (neg|multiplayer_is_server),
       (player_get_agent_id, ":agent_id", ":player_id"),
       (agent_is_active, ":agent_id"),
       (agent_is_alive, ":agent_id"),
