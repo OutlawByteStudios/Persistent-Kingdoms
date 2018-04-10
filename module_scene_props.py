@@ -3067,6 +3067,9 @@ scene_props = [
   ("cm_buy_barded_horse",spr_buy_item_flags(17),"cwe_knight_horse_2","bo_pw_horse", spr_buy_item_triggers("itm_cwe_knight_horse_2", resources=["itm_saddle", "itm_horse_armor", ("itm_wheat_sheaf", 2)], herding=3)),
   ("cm_buy_barded_horse_with_mask",spr_buy_item_flags(17),"cwe_knight_horse_1_mask","bo_pw_horse", spr_buy_item_triggers("itm_cwe_knight_horse_1_mask", resources=["itm_saddle", "itm_horse_armor", ("itm_wheat_sheaf", 2)], herding=3)),
   
+  ("cm_buy_katana",spr_buy_item_flags(4),"katana","bo_pw_weapon", spr_buy_item_triggers("itm_katana", resources=["itm_iron_bar"], engineer=2)),
+  ("cm_buy_wakizashi",spr_buy_item_flags(4),"wakizashi","bo_pw_weapon", spr_buy_item_triggers("itm_wakizashi", resources=["itm_iron_bar"], engineer=2)),
+  
   ("pw_destroy_heap",spr_use_time(2),"destroy_heap","bo_destroy_heap", spr_destroy_heap_triggers()),
 
   ("pw_rest_bed_a",spr_use_time(30),"bed_a","bo_bed_a", spr_rest_triggers(40, min_health_pct=35)),
