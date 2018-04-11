@@ -521,6 +521,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("toggle_clickable_animation_menu", "Toggle clickable animation menu"),
   ("toggle_muting_global_chat", "Toggle muting global chat"),
   ("mute_music", "Mute instruments"),
+  ("clear_projectiles", "Clear projectiles on chests and doors"),
   ("action_menu_end", "action_menu_end"),
   ("s0_are_you_sure", "{s0} - are you sure?"),
   ("confirmation", "confirmation"),
