@@ -653,6 +653,13 @@ animation_strings_end = "str_log_animation"
 
 profile_option_strings_begin = "str_display_name_labels" # range of strings for options stored in a player profile
 
+lute_sounds_begin = "snd_lute_1"
+lute_sounds_end = "snd_lute_4"
+lyre_sounds_begin = "snd_lyre_1"
+lyre_sounds_end = "snd_lyre_4"
+horn_sounds_begin = "snd_horncharge"
+horn_sounds_end = "snd_hornretreat"
+
 from header_common import *
 
 profile_options = [ # global flag variables for options stored in a player profile
