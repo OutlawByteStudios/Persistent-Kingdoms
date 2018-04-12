@@ -1117,6 +1117,7 @@ presentations.extend([
 
       (assign, "$g_presentation_obj_escape_menu_private_message_start", -1),
       (try_begin),
+          (neq, "$g_disable_pm_system", 1),
           (create_button_overlay, reg0, "str_private_message_start", 0),
           (assign, "$g_presentation_obj_escape_menu_private_message_start", reg0),
           (overlay_set_color, reg0, 0xFFFFFF),

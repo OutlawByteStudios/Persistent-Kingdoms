@@ -1578,6 +1578,7 @@ scripts.extend([
             (try_end),
           (else_try),
             (eq, ":chat_event_type", chat_event_type_private_message),
+            (neq, "$g_disable_pm_system", 1),
             (player_get_is_muted, ":is_muted", ":sender_player_id"),
             (eq, ":is_muted", 0),
             (assign, ":target_player_id", ":chat_event_param_1"),
@@ -2537,6 +2538,9 @@ scripts.extend([
       (val_clamp, ":value", 0, 2),
       (assign, "$g_full_respawn_health", ":value"),
     (else_try),
+      (eq, ":command", command_limit_general),
+      (assign, "$g_disable_pm_system", ":value"),
+    (else_try),
       (eq, ":command", command_get_max_players),
       (server_get_max_num_players, ":value"),
     (else_try),
@@ -2729,6 +2733,7 @@ scripts.extend([
     (assign, "$g_full_respawn_health", 0),
     (assign, "$g_max_herd_animal_count", 20),
     (assign, "$g_initial_stockpile_multiplier", 50),
+    (assign, "$g_disable_pm_system", 0),
     (troop_set_slot, "trp_serf", slot_troop_ranking, 0),
     (troop_set_slot, "trp_peasant", slot_troop_ranking, 1),
     (troop_set_slot, "trp_militia", slot_troop_ranking, 2),
@@ -4232,6 +4237,7 @@ scripts.extend([
     (multiplayer_send_2_int_to_player, ":player_id", server_event_return_game_rules, command_set_disallow_ranged_weapons, "$g_full_respawn_health"),
     (store_mission_timer_a, ":mission_timer"),
     (multiplayer_send_2_int_to_player, ":player_id", server_event_return_game_rules, command_set_server_mission_timer, ":mission_timer"),
+    (multiplayer_send_2_int_to_player, ":player_id", server_event_return_game_rules, command_limit_general, "$g_disable_pm_system"),
     ]),
 
   ("after_client_is_setup", # clients: called after the server has finished sending the initial module data updates

@@ -922,7 +922,7 @@ admin_chat_pressed = (0, 0.05, 0, [(game_key_clicked, gk_admin_chat),(call_scrip
     (start_presentation, "prsnt_chat_box"),
     ])
 
-private_message_chat_pressed = (0, 0.05, 0, [(key_clicked, key_o),(call_script, "script_cf_no_input_presentation_active")], # clients: pm chat entry box
+private_message_chat_pressed = (0, 0.05, 0, [(key_clicked, key_o),(call_script, "script_cf_no_input_presentation_active"),(neq, "$g_disable_pm_system", 1)], # clients: pm chat entry box
    [(try_begin), # for admins, allow sending only to a targeted player
         (neq, "$g_private_message_player_id", 0),
         (player_is_active, "$g_private_message_player_id"),
