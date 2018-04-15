@@ -224,17 +224,28 @@ agent_spawn = (ti_on_agent_spawn, 0, 0, [], # server and clients: set up new age
     #they are spawned for the first time
     #CRUCIAL: Updates on the player's equipment should be done before this code block so the server logs properly
     (multiplayer_is_server),
+    
     (neg|agent_is_non_player, ":agent_id"),
     (agent_get_player_id, ":player_id", ":agent_id"),
+    
     (player_get_slot, ":first_spawn_occured", ":player_id", slot_player_first_spawn_occured),
     (neq, ":first_spawn_occured", 1),
     (player_set_slot, ":player_id", slot_player_first_spawn_occured, 1),
+    
     (call_script, "script_cf_log_equipment", ":player_id"),
     (call_script, "script_cf_setup_singings", ":player_id"),
+    
+    (try_begin),
+      (this_or_next|player_slot_eq, ":player_id", slot_player_is_lord, 1),
+      (player_slot_eq, ":player_id", slot_player_is_marshal, 1),
+      (call_script, "script_synchronize_lord_or_marshal", ":player_id"),
+    (try_end),
     #End
   (try_end),
 
   (try_begin),
+    (neg|agent_is_non_player, ":agent_id"),
+    (agent_get_player_id, ":player_id", ":agent_id"),
     (player_get_slot, ":faction_id", ":player_id", slot_player_faction_id),
     (faction_slot_eq, ":faction_id", slot_faction_is_active, 0),
     (call_script, "script_change_faction", ":player_id", "fac_commoners", change_faction_type_no_respawn),

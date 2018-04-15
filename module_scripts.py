@@ -26,7 +26,8 @@ scripts.extend([
 
   ("synchronize_lord_or_marshal", [
     (store_script_param_1, ":player_id"),#lord or marshal
-    (store_script_param_2, ":faction_id"),
+    
+    (player_get_slot, ":faction_id", ":player_id", slot_player_faction_id),
     
     (try_for_players, ":other_player_id"),
       (player_is_active, ":other_player_id"),
