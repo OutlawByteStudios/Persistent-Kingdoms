@@ -210,7 +210,7 @@ player_exit = (ti_on_player_exit, 0, 0, [], # server: save player values on exit
     (player_set_slot, ":player_id", slot_player_freeze_instance_id, -1),
 
     #Log equipment on log out
-    (call_script, "script_cf_log_equipment", ":player_id"),
+    (call_script, "script_log_equipment", ":player_id"),
     #End
   ])
 
@@ -229,8 +229,8 @@ agent_spawn = (ti_on_agent_spawn, 0, 0, [], # server and clients: set up new age
     (player_get_slot, ":first_spawn_occured", ":player_id", slot_player_first_spawn_occured),
     (neq, ":first_spawn_occured", 1),
     (player_set_slot, ":player_id", slot_player_first_spawn_occured, 1),
-    (call_script, "script_cf_log_equipment", ":player_id"),
-    (call_script, "script_cf_setup_singings", ":player_id"),
+    (call_script, "script_log_equipment", ":player_id"),
+    (call_script, "script_setup_singings", ":player_id"),
     #End
   (try_end),
 
@@ -287,8 +287,8 @@ agent_hit = (ti_on_agent_hit, 0, 0, [], # server: apply extra scripted effects f
       (is_between, reg0, scripted_items_begin, scripted_items_end),
       (call_script, "script_agent_hit_with_scripted_item", ":attacked_agent_id", ":attacker_agent_id", ":damage_dealt", reg0),
     (try_end),
-	#Log hits
-	(call_script, "script_cf_log_hit", ":attacked_agent_id", ":attacker_agent_id", ":damage_dealt", reg0, 0),
+    #Log hits
+    (call_script, "script_log_hit", ":attacked_agent_id", ":attacker_agent_id", ":damage_dealt", reg0, 0),
     ])
 
 item_picked_up = (ti_on_item_picked_up, 0, 0, [], # handle agents picking up an item

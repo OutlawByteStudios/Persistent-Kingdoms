@@ -1405,7 +1405,7 @@ shield_trigger = (ti_on_shield_hit, [
   (store_trigger_param_1, ":defender_agent_id"),
 	(store_trigger_param_2, ":attacker_agent_id"),
 	(store_trigger_param_3, ":damage"),
-	(call_script, "script_cf_shield_hit", ":defender_agent_id", ":attacker_agent_id", ":damage"),
+	(call_script, "script_log_shield_hit", ":defender_agent_id", ":attacker_agent_id", ":damage"),
 ])
 
 def add_shield_triggers(items, shield_trigger):

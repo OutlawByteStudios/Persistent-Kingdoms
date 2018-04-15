@@ -46,7 +46,7 @@ scripts.extend([
 
   #Shield Log Script
   #TODO: log when someone hits someone else's shield
-  ("cf_shield_hit", [
+  ("log_shield_hit", [
     (try_begin),
       (multiplayer_is_server),
       (store_script_param, ":defender_agent_id", 1),
@@ -66,7 +66,7 @@ scripts.extend([
   #End
   
   #Log looting corpse
-  ("cf_log_loot_corpse", [
+  ("log_loot_corpse", [
     (try_begin),
       (multiplayer_is_server),
       (store_script_param_1, ":corpse_instance_id"),
@@ -89,7 +89,7 @@ scripts.extend([
   ]),
   
   #Log hits by/to animals or players
-  ("cf_log_hit", [
+  ("log_hit", [
     (try_begin),
       (multiplayer_is_server),
       (store_script_param, ":attacked_agent_id", 1),
@@ -160,7 +160,7 @@ scripts.extend([
   ]),
   
   #Log healing
-  ("cf_log_heal", [
+  ("log_heal", [
     (try_begin),
       (multiplayer_is_server),
       (store_script_param, ":healed_agent_id", 1),
@@ -201,7 +201,7 @@ scripts.extend([
   ]),
   
   #Cart Attach Log
-  ("cf_log_attach_cart", [
+  ("log_attach_cart", [
     (try_begin),
       (multiplayer_is_server),
       (store_script_param, ":attach_agent_id", 1),
@@ -222,7 +222,7 @@ scripts.extend([
   ]),
   
   #Cart Dettach Log
-  ("cf_log_detach_cart", [
+  ("log_detach_cart", [
     (try_begin),
       (multiplayer_is_server),
       (store_script_param, ":attach_agent_id", 1),
@@ -242,7 +242,7 @@ scripts.extend([
     (try_end),
   ]),
   #Log withdrawals from money chests
-  ("cf_log_money_chest_withdraw", [
+  ("log_money_chest_withdraw", [
     (try_begin),
       (multiplayer_is_server),
       (store_script_param, ":player_id", 1),
@@ -260,7 +260,7 @@ scripts.extend([
   ]),
   
   #Log deposits to money chests
-  ("cf_log_money_chest_deposit", [
+  ("log_money_chest_deposit", [
     (try_begin),
       (multiplayer_is_server),
       (store_script_param, ":player_id", 1),
@@ -277,7 +277,7 @@ scripts.extend([
   ]),
   
   #Log door hits
-  ("cf_log_hit_door", [
+  ("log_hit_door", [
     (try_begin),
       (multiplayer_is_server),
       (store_script_param, ":instance_id", 1),
@@ -317,7 +317,7 @@ scripts.extend([
   ]),
   
   #Log door hits
-  ("cf_log_hit_chest", [
+  ("log_hit_chest", [
     (try_begin),
       (multiplayer_is_server),
       (store_script_param, ":instance_id", 1),
@@ -358,7 +358,7 @@ scripts.extend([
   #End  
   
   #Phoenix
-  ("cf_log_equipment", [
+  ("log_equipment", [
     (try_begin),
       (multiplayer_is_server),
       (store_script_param_1, ":player_id"),
@@ -388,7 +388,7 @@ scripts.extend([
     (try_end),
   ]),
 
-  ("cf_handle_fast_equip_request", [
+  ("handle_fast_equip_request", [
 		(try_begin),
       (store_script_param_1, ":from_slot"),
       (store_script_param_2, ":sender_player_id"),
@@ -446,7 +446,7 @@ scripts.extend([
     (try_end),
   ]),
   
-  ("cf_handle_fast_unequip_request", [
+  ("handle_fast_unequip_request", [
 	  (store_script_param_1, ":slot"),
 	  (store_script_param_2, ":sender_player_id"),
   
@@ -465,7 +465,7 @@ scripts.extend([
   ]),
   
   #Log and show that player is kicked
-  ("cf_log_and_show_kicked", [
+  ("log_and_show_kicked", [
     (store_script_param, ":kicker", 1),
     (store_script_param, ":kicked", 2),
     (store_script_param, ":faction_id", 3),
@@ -480,7 +480,7 @@ scripts.extend([
   ]),
   
   #Log and show that player is kicked
-  ("cf_log_and_show_outlawed", [
+  ("log_and_show_outlawed", [
     (store_script_param, ":kicker", 1),
     (store_script_param, ":kicked", 2),
     (store_script_param, ":faction_id", 3),
@@ -1345,12 +1345,12 @@ scripts.extend([
 		#Fast inventory transfer
 	    (eq, ":event_type", client_event_fast_equip),#saptor
 		(store_script_param, ":from_slot", 3),
-		(call_script, "script_cf_handle_fast_equip_request", ":from_slot", ":sender_player_id"),
+		(call_script, "script_handle_fast_equip_request", ":from_slot", ":sender_player_id"),
 	  (else_try),
 		#Fast inventory transfer
 	    (eq, ":event_type", client_event_fast_unequip),#saptor
 		(store_script_param, ":slot", 3),
-		(call_script, "script_cf_handle_fast_unequip_request", ":slot", ":sender_player_id"),
+		(call_script, "script_handle_fast_unequip_request", ":slot", ":sender_player_id"),
 	  (else_try),
         (eq, ":event_type", client_event_attach_scene_prop),
         (store_script_param, ":instance_id", 3),
@@ -1837,7 +1837,7 @@ scripts.extend([
           (le, ":sq_distance", sq(max_distance_to_loot)),
           (call_script, "script_cf_use_inventory", ":agent_id", ":corpse_instance_id", 0),
           #Log looting corpses
-          (call_script, "script_cf_log_loot_corpse", ":corpse_instance_id", ":agent_id"),
+          (call_script, "script_log_loot_corpse", ":corpse_instance_id", ":agent_id"),
           #End
         (try_end),
       (else_try), # handle player requests to reveal their money pouch to another player
@@ -6315,7 +6315,7 @@ scripts.extend([
           (val_sub, ":chest_gold", ":gold_requested"),
           (call_script, "script_player_adjust_gold", ":player_id", ":gold_requested", 1),
 		  #Log with from money chest
-		  (call_script, "script_cf_log_money_chest_withdraw", ":player_id", ":instance_id", ":gold_value"),
+		  (call_script, "script_log_money_chest_withdraw", ":player_id", ":instance_id", ":gold_value"),
 		  #End
         (try_end),
         (assign, ":fail_message", 0),
@@ -8742,7 +8742,7 @@ scripts.extend([
       (agent_play_sound, ":agent_id", "snd_man_grunt"),
     (try_end),
     #Log door hits
-    (call_script, "script_cf_log_hit_door", ":instance_id", ":agent_id", ":hit_damage", ":result"), 
+    (call_script, "script_log_hit_door", ":instance_id", ":agent_id", ":hit_damage", ":result"), 
     #End
     ]),
 
@@ -8916,7 +8916,7 @@ scripts.extend([
       (agent_play_sound, ":agent_id", "snd_repair_wood"),
     (try_end),
     #Log door hits
-    (call_script, "script_cf_log_hit_chest", ":instance_id", ":agent_id", ":hit_damage", ":result"), 
+    (call_script, "script_log_hit_chest", ":instance_id", ":agent_id", ":hit_damage", ":result"), 
     #End
     ]),
 
@@ -9848,7 +9848,7 @@ scripts.extend([
         (assign, ":new_attached_scene_prop", ":instance_id"),
         (agent_set_attached_scene_prop, ":attach_agent_id", ":new_attached_scene_prop"),
         #Phoenix
-        (call_script, "script_cf_log_attach_cart", ":attach_agent_id", ":instance_id", ":agent_id"),
+        (call_script, "script_log_attach_cart", ":attach_agent_id", ":instance_id", ":agent_id"),
         #End
       (try_end),
     (else_try),
@@ -9863,7 +9863,7 @@ scripts.extend([
       (agent_set_attached_scene_prop, ":attach_agent_id", ":new_attached_scene_prop"),
       (call_script, "script_cart_set_detached_position", ":instance_id"),
       #Phoenix
-      (call_script, "script_cf_log_detach_cart", ":attach_agent_id", ":instance_id", ":agent_id"),
+      (call_script, "script_log_detach_cart", ":attach_agent_id", ":instance_id", ":agent_id"),
       #End
     (else_try),
       (assign, ":fail", 1),
@@ -10017,7 +10017,7 @@ scripts.extend([
           (store_mul, ":healing", ":skill_level", 2),
           (val_add, ":healing", 2),
           #Log healing
-          (call_script, "script_cf_log_heal", ":attacked_agent_id", ":attacker_agent_id", ":healing", ":health_percent", ":healing_limit"),
+          (call_script, "script_log_heal", ":attacked_agent_id", ":attacker_agent_id", ":healing", ":health_percent", ":healing_limit"),
           #End
           (val_add, ":health_percent", ":healing"),
           (val_min, ":health_percent", ":healing_limit"),
@@ -10026,7 +10026,7 @@ scripts.extend([
         (assign, ":damage_result", 0),
 	  (else_try),
         #Log it as a normal hit because attacker's class can't heal
-        (call_script, "script_cf_log_hit", ":attacked_agent_id", ":attacker_agent_id", ":damage_dealt", reg0, 1),
+        (call_script, "script_log_hit", ":attacked_agent_id", ":attacker_agent_id", ":damage_dealt", reg0, 1),
         #End
       (try_end),
     (else_try),
@@ -13658,11 +13658,11 @@ scripts.extend([
         (eq, ":action", faction_admin_action_kick_player),
         (call_script, "script_change_faction", ":value_1", "fac_commoners", change_faction_type_no_respawn),
         #Log and show that player was kicked
-        (call_script, "script_cf_log_and_show_kicked", ":sender_player_id", ":value_1", ":faction_id"),
+        (call_script, "script_log_and_show_kicked", ":sender_player_id", ":value_1", ":faction_id"),
       (else_try),
         (call_script, "script_player_change_check_outlaw_rating", ":value_1", outlaw_rating_for_lord_outlawed, 1),
         #Log and show that player was outlawed
-        (call_script, "script_cf_log_and_show_outlawed", ":sender_player_id", ":value_1", ":faction_id"),
+        (call_script, "script_log_and_show_outlawed", ":sender_player_id", ":value_1", ":faction_id"),
       (try_end),
       (player_set_slot, ":value_1", slot_player_last_faction_kicked_from, ":faction_id"),
     (else_try),
@@ -14242,17 +14242,19 @@ scripts.extend([
         (try_end),
     ]),
 
-    ("cf_setup_singings", [
-      (multiplayer_is_server),
-      (store_script_param_1, ":player_id"),
-      
-      (try_for_players, ":other_player_id"),
-        (player_is_active, ":other_player_id"),
-        (player_get_agent_id, ":agent_id", ":other_player_id"),
-        (gt, ":agent_id", -1),
-        (agent_get_slot, ":sound", ":agent_id", slot_agent_playing_music),
-        (gt, ":sound", 0),
-        (multiplayer_send_2_int_to_player, ":player_id", server_event_agent_play_sound, ":agent_id", ":sound"),
+    ("setup_singings", [
+      (try_begin),
+        (multiplayer_is_server),
+        (store_script_param_1, ":player_id"),
+        
+        (try_for_players, ":other_player_id"),
+          (player_is_active, ":other_player_id"),
+          (player_get_agent_id, ":agent_id", ":other_player_id"),
+          (gt, ":agent_id", -1),
+          (agent_get_slot, ":sound", ":agent_id", slot_agent_playing_music),
+          (gt, ":sound", 0),
+          (multiplayer_send_2_int_to_player, ":player_id", server_event_agent_play_sound, ":agent_id", ":sound"),
+        (try_end),
       (try_end),
     ]),
 ])
