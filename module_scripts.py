@@ -24,6 +24,29 @@ import math
 scripts = []
 scripts.extend([
 
+  ("synchronize_lord_or_marshal", [
+    (store_script_param_1, ":player_id"),#lord or marshal
+    (store_script_param_2, ":faction_id"),
+    
+    (try_for_players, ":other_player_id"),
+      (player_is_active, ":other_player_id"),
+      (player_slot_eq, ":other_player_id", slot_player_faction_id, ":faction_id"),
+      
+      (player_get_slot, ":has_door_key", ":other_player_id", slot_player_has_faction_door_key),
+      (multiplayer_send_3_int_to_player, ":player_id", server_event_player_set_slot, ":other_player_id", slot_player_has_faction_door_key, ":has_door_key"),
+      (player_get_slot, ":has_money_key", ":other_player_id", slot_player_has_faction_money_key),
+      (multiplayer_send_3_int_to_player, ":player_id", server_event_player_set_slot, ":other_player_id", slot_player_has_faction_money_key, ":has_money_key"),
+      (player_get_slot, ":has_item_key", ":other_player_id", slot_player_has_faction_item_key),
+      (multiplayer_send_3_int_to_player, ":player_id", server_event_player_set_slot, ":other_player_id", slot_player_has_faction_item_key, ":has_item_key"),
+      (player_get_slot, ":can_announce", ":other_player_id", slot_player_can_faction_announce),
+      (multiplayer_send_3_int_to_player, ":player_id", server_event_player_set_slot, ":other_player_id", slot_player_can_faction_announce, ":can_announce"),
+      (player_get_slot, ":is_muted", ":other_player_id", slot_player_faction_chat_muted),
+      (multiplayer_send_3_int_to_player, ":player_id", server_event_player_set_slot, ":other_player_id", slot_player_faction_chat_muted, ":is_muted"),
+      (player_get_slot, ":is_marshal", ":other_player_id", slot_player_is_marshal),
+      (multiplayer_send_3_int_to_player, ":player_id", server_event_player_set_slot, ":other_player_id",slot_player_is_marshal, ":is_marshal"),
+    (try_end),
+  ]),
+
   ("clear_projectiles", [
     (store_add, ":tp_doors_end", teleport_doors_end, 1),
     (try_for_range, ":tp_door_id", teleport_doors_begin, ":tp_doors_end"),
@@ -5562,8 +5585,6 @@ scripts.extend([
   ("player_set_lord", # server: set a player as lord of a faction, changing all the appropriate slots
    [(store_script_param, ":player_id", 1), # must be valid
     (store_script_param, ":faction_id", 2),
-    #test
-	(display_message, "@test"),
     (get_max_players, ":max_players"),
     (try_for_range, ":other_player_id", 1, ":max_players"),
       (player_is_active, ":other_player_id"),
