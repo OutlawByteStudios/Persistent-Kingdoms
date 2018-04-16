@@ -4131,10 +4131,21 @@ presentations.extend([
         (presentation_set_duration, 0),
       (else_try),
         (gt, "$g_chat_box_player_string_id", 0),
-        (key_clicked, key_f11), # select player to target from a list
+        (key_clicked, key_f11), # select player to target from a list - admin chat
+        (eq, "$g_chat_box_event_type", chat_event_type_admin),
         (assign, "$g_list_players_event", -1),
         (assign, "$g_list_players_action_string_id", "str_send_message_to"),
         (assign, "$g_list_players_return_presentation", "prsnt_chat_box"),
+        (start_presentation, "prsnt_list_players"),
+        (presentation_set_duration, 0),
+      (else_try),
+        (gt, "$g_chat_box_player_string_id", 0),
+        (key_clicked, key_f11), # select player to target from a list - admin chat
+        (eq, "$g_chat_box_event_type", chat_event_type_private_message),
+        (assign, "$g_list_players_event", -1),
+        (assign, "$g_list_players_action_string_id", "str_send_message_to"),
+        (assign, "$g_list_players_return_presentation", "prsnt_chat_box"),
+        (assign, "$g_list_players_return_presentation_on_escape", 0),
         (start_presentation, "prsnt_list_players"),
         (presentation_set_duration, 0),
       (try_end),
