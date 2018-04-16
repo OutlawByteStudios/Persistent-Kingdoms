@@ -873,6 +873,9 @@ items = [
 ["calf", "Calf", [("pw_cow",0)], itp_type_horse, 0,
  723, hit_points(45)|body_armor(8)|difficulty(11)|horse_speed(37)|horse_maneuver(60)|horse_charge(30)|horse_scale(60), imodbits_none],
 
+["dog", "Dog", [("pk_dog",0)], itp_type_horse, 0,
+ 859, hit_points(70)|body_armor(20)|difficulty(11)|horse_speed(60)|horse_maneuver(70)|horse_scale(50), imodbits_none],
+
 ["stick", "Stick", [("wooden_stick",0),("pw_stick_carry",ixmesh_carry)], itp_type_one_handed_wpn|itp_primary, itc_scimitar|itcf_carry_quiver_back,
  53, weight(3)|spd_rtng(90)|swing_damage(5,blunt)|weapon_length(63), imodbits_none, [itm_class(item_class_wood, 200)]],
 ["stick_melee", "Stick", [("wooden_stick",0),("pw_stick_carry",ixmesh_carry)], itp_type_one_handed_wpn|itp_primary, itc_scimitar|itcf_carry_quiver_back,
@@ -1405,7 +1408,7 @@ shield_trigger = (ti_on_shield_hit, [
   (store_trigger_param_1, ":defender_agent_id"),
 	(store_trigger_param_2, ":attacker_agent_id"),
 	(store_trigger_param_3, ":damage"),
-	(call_script, "script_cf_shield_hit", ":defender_agent_id", ":attacker_agent_id", ":damage"),
+	(call_script, "script_log_shield_hit", ":defender_agent_id", ":attacker_agent_id", ":damage"),
 ])
 
 def add_shield_triggers(items, shield_trigger):
