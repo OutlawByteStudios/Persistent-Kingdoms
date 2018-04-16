@@ -874,7 +874,7 @@ items = [
  723, hit_points(45)|body_armor(8)|difficulty(11)|horse_speed(37)|horse_maneuver(60)|horse_charge(30)|horse_scale(60), imodbits_none],
 
 ["dog", "Dog", [("tr_animal_wolf",0)], itp_type_horse, 0,
- 859, hit_points(70)|body_armor(20)|difficulty(11)|horse_speed(60)|horse_maneuver(70)|horse_charge(20)|horse_scale(50), imodbits_none,
+ 859, hit_points(70)|body_armor(20)|difficulty(11)|horse_speed(60)|horse_maneuver(70)|horse_charge(20)|horse_scale(50), imodbits_none],
 
 ["stick", "Stick", [("wooden_stick",0),("pw_stick_carry",ixmesh_carry)], itp_type_one_handed_wpn|itp_primary, itc_scimitar|itcf_carry_quiver_back,
  53, weight(3)|spd_rtng(90)|swing_damage(5,blunt)|weapon_length(63), imodbits_none, [itm_class(item_class_wood, 200)]],
