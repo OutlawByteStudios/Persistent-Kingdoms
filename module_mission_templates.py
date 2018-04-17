@@ -960,6 +960,15 @@ animation_menu_pressed = (0, 0.05, 0, [(game_key_clicked, gk_animation_menu),(ca
       (start_presentation, "prsnt_animation_menu"),
     (try_end),
     ])
+    
+chat_break_pressed = (0, 0, 0, [],
+   [(key_clicked, key_3),
+    (this_or_next|key_is_down, key_right_shift),
+    (key_is_down, key_left_shift),
+    (is_presentation_active, "prsnt_chat_box"),
+    (overlay_set_text, "$g_presentation_obj_chat_box", "@3"),
+    (presentation_set_duration, 0),
+    ])
 
 commit_suicide_loop = (0, 0, 0.5, # client: suicide countdown
    [(neg|multiplayer_is_server),
@@ -1095,25 +1104,30 @@ mission_templates = [
   ("conquest", mtf_battle_mode, -1, "Conquest.", spawn_points_0_99,
     common_triggers("conquest") + [
     money_bag_pressed,
+    chat_break_pressed,
     ]),
 
   ("quick_battle", mtf_battle_mode, -1, "Quick battle.", spawn_points_0_99,
     common_triggers("quick_battle") + [
     money_bag_pressed,
+    chat_break_pressed,
     ]),
 
   ("no_money", mtf_battle_mode, -1, "No money.", spawn_points_0_99,
-    common_triggers("no_money")
+    common_triggers("no_money"),
+    chat_break_pressed,
     ),
 
   ("feudalism", mtf_battle_mode, -1, "Feudalism.", spawn_points_0_99,
     common_triggers("feudalism") + [
     money_bag_pressed,
+    chat_break_pressed,
     ]),
 
   ("permanent_death", mtf_battle_mode, -1, "Permanent death.", spawn_points_0_99,
     common_triggers("permanent_death") + [
     money_bag_pressed,
+    chat_break_pressed,
     ]),
 
   ("edit_scene", 0, -1, "edit_scene", [(0,mtef_visitor_source,0,aif_start_alarmed,1,[])],
