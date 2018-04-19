@@ -24,6 +24,36 @@ import math
 scripts = []
 scripts.extend([
 
+  ("mute_all_players", [
+    (store_script_param, ":force_on", 1),
+
+    (try_begin),
+      (this_or_next|eq, ":force_on", 1),
+      (eq, "$g_mute_all_players", 0),
+      (assign, "$g_mute_all_players", 1),
+    (else_try),
+      (assign, "$g_mute_all_players", 0),
+    (try_end),
+
+    (get_max_players, ":max_players"),
+    (try_for_range, ":player_id", 1, ":max_players"),
+      (player_is_active, ":player_id"),
+      (neg|player_is_admin, ":player_id"),
+      (player_set_is_muted, ":player_id", "$g_mute_all_players", 1),
+    (try_end),
+  ]),
+
+  ("apply_mute", [
+    (store_script_param, ":player_id", 1),
+    (store_script_param, ":on_or_off", 2),
+
+    (try_begin),
+      (player_is_active, ":player_id"),
+      (neg|player_is_admin, ":player_id"),
+      (player_set_is_muted, ":player_id", ":on_or_off", 1),
+    (try_end),
+  ]),
+
   ("synchronize_lord_or_marshal", [
     (store_script_param_1, ":player_id"),#lord or marshal
     
@@ -2574,6 +2604,9 @@ scripts.extend([
       (val_clamp, ":value", 0, 2),
       (assign, "$g_full_respawn_health", ":value"),
     (else_try),
+      (eq, ":command", command_limit_officer),
+      (call_script, "script_mute_all_players", ":value"),
+    (else_try),
       (eq, ":command", command_get_max_players),
       (server_get_max_num_players, ":value"),
     (else_try),
@@ -2757,7 +2790,8 @@ scripts.extend([
     (assign, "$g_ban_voteable", 1),
     (assign, "$g_valid_vote_ratio", 51),
     (assign, "$g_starting_gold_multiplier", 100),
-    (assign, "$g_combat_gold_multiplier", 100),
+    (assign, "$g_combat_gold_multiplier", 5),
+    (assign, "$g_round_gold_bonus", 10),
     (assign, "$g_force_weather", 2),
     (assign, "$g_game_time_limit", 1440),
     (assign, "$g_victory_condition", 0),
@@ -2766,6 +2800,7 @@ scripts.extend([
     (assign, "$g_full_respawn_health", 0),
     (assign, "$g_max_herd_animal_count", 20),
     (assign, "$g_initial_stockpile_multiplier", 50),
+    (assign, "$g_mute_all_players", 0),
     (troop_set_slot, "trp_serf", slot_troop_ranking, 0),
     (troop_set_slot, "trp_peasant", slot_troop_ranking, 1),
     (troop_set_slot, "trp_militia", slot_troop_ranking, 2),
@@ -13252,7 +13287,11 @@ scripts.extend([
       (else_try),
         (assign, ":is_muted", 0),
       (try_end),
-      (player_set_is_muted, ":target_player_id", ":is_muted", 1),
+      (call_script, "script_apply_mute", ":target_player_id", ":is_muted"),
+    (else_try),
+      (eq, ":admin_action", admin_action_mute_players),
+      (player_slot_eq, ":admin_player_id", slot_player_admin_no_mute, 0),
+      (call_script, "script_mute_all_players", 0),
     (else_try),
       (eq, ":target_is_player", 1),
       (player_get_agent_id, ":admin_agent_id", ":admin_player_id"),
