@@ -1115,6 +1115,16 @@ presentations.extend([
       (overlay_set_size, reg0, pos2),
       (val_add, ":cur_y", escape_menu_item_height),
 
+      (assign, "$g_presentation_obj_escape_menu_write_private_message", -1),
+      (try_begin),
+        (neq, "$g_disable_pm_system", 1),
+        (create_button_overlay, reg0, "str_write_private_message", 0),
+        (assign, "$g_presentation_obj_escape_menu_write_private_message", reg0),
+        (overlay_set_color, reg0, 0xFFFFFF),
+        (overlay_set_size, reg0, pos2),
+        (val_add, ":cur_y", escape_menu_item_height),
+      (try_end),
+
       (assign, "$g_presentation_obj_escape_menu_admin_panel", -1),
       (assign, "$g_presentation_obj_escape_menu_admin_tools", -1),
       (assign, "$g_presentation_obj_escape_menu_admin_items", -1),
@@ -1146,6 +1156,7 @@ presentations.extend([
         (try_end),
       (try_end),
 
+      (assign, "$g_presentation_obj_escape_menu_faction_admin", -1),
       (try_begin),
         (this_or_next|player_slot_eq, ":my_player_id", slot_player_is_lord, 1),
         (player_slot_eq, ":my_player_id", slot_player_is_marshal, 1),
@@ -1154,8 +1165,6 @@ presentations.extend([
         (overlay_set_color, reg0, 0xFFFFFF),
         (overlay_set_size, reg0, pos2),
         (val_add, ":cur_y", escape_menu_item_height),
-      (else_try),
-        (assign, "$g_presentation_obj_escape_menu_faction_admin", -1),
       (try_end),
 
       (create_button_overlay, reg0, "str_quit", 0),
@@ -1202,6 +1211,13 @@ presentations.extend([
       (val_sub, ":cur_y", escape_menu_item_height),
       (position_set_y, pos1, ":cur_y"),
       (overlay_set_position, "$g_presentation_obj_escape_menu_request_poll", pos1),
+
+      (try_begin),
+        (gt, "$g_presentation_obj_escape_menu_write_private_message", -1),
+        (val_sub, ":cur_y", escape_menu_item_height),
+        (position_set_y, pos1, ":cur_y"),
+        (overlay_set_position, "$g_presentation_obj_escape_menu_write_private_message", pos1),
+      (try_end),
 
       (try_begin),
         (gt, "$g_presentation_obj_escape_menu_admin_panel", -1),
@@ -1264,6 +1280,10 @@ presentations.extend([
         (eq, ":object", "$g_presentation_obj_escape_menu_request_poll"),
         (presentation_set_duration, 0),
         (start_presentation, "prsnt_poll_menu"),
+     (else_try),
+        (eq, ":object", "$g_presentation_obj_escape_menu_write_private_message"),
+        (presentation_set_duration, 0),
+        (call_script, "script_private_message_setup", 1),
       (else_try),
         (eq, ":object", "$g_presentation_obj_escape_menu_admin_panel"),
         (presentation_set_duration, 0),
@@ -1526,6 +1546,8 @@ presentations.extend([
         (assign, ":my_player_id", 0), # only add the requesting player to the list for fade out and freeze tools
       (try_end),
 
+      (assign, ":my_player_id", 0), # DEBUG
+
       (val_max, "$g_list_players_action_string_id", 0),
       (str_store_string, s0, "$g_list_players_action_string_id"),
       (create_text_overlay, ":prompt_overlay_id", "str_choose_a_player_to_s0", 0),
@@ -1630,9 +1652,11 @@ presentations.extend([
         (try_begin),
           (gt, "$g_list_players_return_presentation", 0),
           (neg|is_presentation_active, "$g_list_players_return_presentation"),
+          (neq, "$g_list_players_return_presentation_on_escape", 0),
           (start_presentation, "$g_list_players_return_presentation"),
         (try_end),
         (assign, "$g_list_players_return_presentation", 0),
+        (assign, "$g_list_players_return_presentation_on_escape", 1),
         (assign, "$g_list_players_keep_open", 0),
         (presentation_set_duration, 0),
       (else_try), # continuously update list entry colors
@@ -4014,7 +4038,8 @@ presentations.extend([
         (gt, "$g_target_player_id", 0),
         (try_begin),
           (player_is_active, "$g_target_player_id"),
-          (player_slot_eq, "$g_target_player_id", slot_player_list_button_id, "$g_target_player_overlay_id"),
+          (this_or_next|player_slot_eq, "$g_target_player_id", slot_player_list_button_id, "$g_target_player_overlay_id"),
+          (player_slot_eq, "$g_target_player_id", slot_player_list_button_id, -1),
         (else_try),
           (assign, "$g_target_player_id", 0),
         (try_end),

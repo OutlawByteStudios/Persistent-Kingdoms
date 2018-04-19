@@ -924,6 +924,8 @@ faction_chat_pressed = (0, 0.05, 0, [(game_key_clicked, gk_faction_chat),(call_s
     (start_presentation, "prsnt_chat_box"),
     ])
 
+private_message_pressed = (0, 0.05, 0, [(key_clicked, key_o),(call_script, "script_cf_no_input_presentation_active"),(neq, "$g_disable_pm_system", 1)],[(call_script, "script_private_message_setup", 0)]) # clients: pm entry box
+
 admin_chat_pressed = (0, 0.05, 0, [(game_key_clicked, gk_admin_chat),(call_script, "script_cf_no_input_presentation_active")], # clients: admin chat entry box
    [(try_begin), # for admins, allow sending only to a targeted player
       (multiplayer_get_my_player, ":player_id"),
@@ -1076,6 +1078,7 @@ def common_triggers(self):
     chat_resend_check,
     local_chat_pressed,
     faction_chat_pressed,
+    private_message_pressed,
     admin_chat_pressed,
     ship_control_pressed,
     animation_menu_pressed,

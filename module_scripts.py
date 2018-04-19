@@ -24,6 +24,34 @@ import math
 scripts = []
 scripts.extend([
 
+  ("private_message_setup", [
+    (store_script_param, ":force_new_target", 1),
+
+    (try_begin), # use current target
+      (neq, ":force_new_target", 1),
+
+      (gt, "$g_private_message_player_id", 0),
+      (player_is_active, "$g_private_message_player_id"),
+
+      (assign, "$g_target_player_id", "$g_private_message_player_id"),
+
+      (assign, "$g_chat_box_event_type", chat_event_type_private_message),
+      (assign, "$g_chat_box_player_string_id", "str_send_private_message_to_s1"),
+      (start_presentation, "prsnt_chat_box"),
+
+    (else_try), # get new target
+
+      (assign, "$g_list_players_event", -1),
+      (assign, "$g_list_players_action_string_id", "str_send_message_to"),
+      (assign, "$g_list_players_return_presentation", "prsnt_chat_box"),
+      (assign, "$g_list_players_return_presentation_on_escape", 0),
+      (start_presentation, "prsnt_list_players"),
+
+      (assign, "$g_chat_box_event_type", chat_event_type_private_message),
+      (assign, "$g_chat_box_player_string_id", "str_send_private_message_to_s1"),
+    (try_end),
+  ]),
+
   ("synchronize_lord_or_marshal", [
     (store_script_param_1, ":player_id"),#lord or marshal
     
@@ -69,7 +97,6 @@ scripts.extend([
   ]),
 
   #Shield Log Script
-  #TODO: log when someone hits someone else's shield
   ("log_shield_hit", [
     (try_begin),
       (multiplayer_is_server),
@@ -1297,6 +1324,17 @@ scripts.extend([
           (troop_set_plural_name, "$g_chat_overlay_faction_buffer_stored", s0),
           (troop_set_slot, "$g_chat_overlay_faction_buffer_stored", slot_chat_overlay_faction_color, ":color"),
         (try_end),
+      (else_try), # display private messages
+        (is_between, ":event_type", server_event_private_message, server_event_private_message_reply_setup + 1),
+        (try_begin),
+          (eq, ":event_type", server_event_private_message),
+          (neg|str_is_empty, s0),
+          (display_message, s0, private_message_chat_color),
+        (else_try),
+          (eq, ":event_type", server_event_private_message_reply_setup),
+          (store_script_param, ":player_id", 3),
+          (assign, "$g_private_message_player_id", ":player_id"),
+        (try_end),
       (else_try), # display admin chat and announcemnts
         (is_between, ":event_type", server_event_admin_chat, server_event_admin_chat_announce + 1),
         (neg|str_is_empty, s0),
@@ -1627,6 +1665,21 @@ scripts.extend([
                 (try_end),
               (try_end),
             (try_end),
+          (else_try),
+            (eq, ":chat_event_type", chat_event_type_private_message),
+            (neq, "$g_disable_pm_system", 1),
+            (player_get_is_muted, ":is_muted", ":sender_player_id"),
+            (eq, ":is_muted", 0),
+            (assign, ":target_player_id", ":chat_event_param_1"),
+            (str_store_player_username, s2, ":target_player_id"),
+            (assign, ":chat_string_id", "str_private_message_format"),
+            (str_store_player_username, s1, ":sender_player_id"),
+            (str_store_string, s10, ":chat_string_id"),
+            (server_add_message_to_log, s10),
+            (multiplayer_send_int_to_player, ":sender_player_id", server_event_private_message_reply_setup, ":target_player_id"),
+            (multiplayer_send_int_to_player, ":target_player_id", server_event_private_message_reply_setup, ":sender_player_id"),
+            (multiplayer_send_string_to_player, ":sender_player_id", server_event_private_message, s10),
+            (multiplayer_send_string_to_player, ":target_player_id", server_event_private_message, s10),
           (try_end),
         (try_end),
       (else_try), # faction administration actions by the lord
@@ -2574,6 +2627,9 @@ scripts.extend([
       (val_clamp, ":value", 0, 2),
       (assign, "$g_full_respawn_health", ":value"),
     (else_try),
+      (eq, ":command", command_limit_general),
+      (assign, "$g_disable_pm_system", ":value"),
+    (else_try),
       (eq, ":command", command_get_max_players),
       (server_get_max_num_players, ":value"),
     (else_try),
@@ -2766,6 +2822,7 @@ scripts.extend([
     (assign, "$g_full_respawn_health", 0),
     (assign, "$g_max_herd_animal_count", 20),
     (assign, "$g_initial_stockpile_multiplier", 50),
+    (assign, "$g_disable_pm_system", 0),
     (troop_set_slot, "trp_serf", slot_troop_ranking, 0),
     (troop_set_slot, "trp_peasant", slot_troop_ranking, 1),
     (troop_set_slot, "trp_militia", slot_troop_ranking, 2),
@@ -4269,6 +4326,7 @@ scripts.extend([
     (multiplayer_send_2_int_to_player, ":player_id", server_event_return_game_rules, command_set_disallow_ranged_weapons, "$g_full_respawn_health"),
     (store_mission_timer_a, ":mission_timer"),
     (multiplayer_send_2_int_to_player, ":player_id", server_event_return_game_rules, command_set_server_mission_timer, ":mission_timer"),
+    (multiplayer_send_2_int_to_player, ":player_id", server_event_return_game_rules, command_limit_general, "$g_disable_pm_system"),
     ]),
 
   ("after_client_is_setup", # clients: called after the server has finished sending the initial module data updates
