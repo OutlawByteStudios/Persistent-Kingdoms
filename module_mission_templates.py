@@ -192,6 +192,7 @@ player_joined = (ti_server_player_joined, 0, 0, [], # server: handle connecting 
     (call_script, "script_setup_player_joined", ":player_id"),
     (call_script, "script_player_check_name", ":player_id"),
     (call_script, "script_update_ghost_mode_rule", ":player_id"),
+    (call_script, "script_apply_mute", ":player_id", "$g_mute_all_players"),
     ])
 
 player_exit = (ti_on_player_exit, 0, 0, [], # server: save player values on exit
