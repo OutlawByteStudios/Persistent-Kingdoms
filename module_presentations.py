@@ -1548,6 +1548,8 @@ presentations.extend([
         (assign, ":my_player_id", 0), # only add the requesting player to the list for fade out and freeze tools
       (try_end),
 
+(assign, ":my_player_id", 0), # DEBUG
+
       (val_max, "$g_list_players_action_string_id", 0),
       (str_store_string, s0, "$g_list_players_action_string_id"),
       (create_text_overlay, ":prompt_overlay_id", "str_choose_a_player_to_s0", 0),
@@ -4043,6 +4045,8 @@ presentations.extend([
         (else_try),
           (assign, "$g_target_player_id", 0),
         (try_end),
+      (assign, reg0, "$g_target_player_id"),
+      (display_message, "@{reg0}"),
         (gt, "$g_target_player_id", 0),
         (str_store_player_username, s1, "$g_target_player_id"),
         (assign, ":title_string_id", "$g_chat_box_player_string_id"),
