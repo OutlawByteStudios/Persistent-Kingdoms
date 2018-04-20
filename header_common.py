@@ -37,6 +37,8 @@ server_event_update_scene_prop_hit_points       = 28
 server_event_agent_stop_sound                   = 29
 server_event_agent_play_sound                   = 30
 
+server_event_agent_animation                    = 31
+
 # Add new events here: above if sent from the server, below if from clients.
 
 client_event_fast_equip                         = 91 #Mouse Right Click Fast Inventory transfer
@@ -249,24 +251,25 @@ admin_action_kick_player                        = 0
 admin_action_ban_player_temp                    = 1
 admin_action_ban_player_perm                    = 2
 admin_action_mute_player                        = 3
-admin_action_kill_player                        = 4
-admin_action_fade_player_out                    = 5
-admin_action_freeze_player                      = 6
-admin_action_teleport_to_player                 = 7
-admin_action_teleport_behind_player             = 8
-admin_action_teleport_player                    = 9
-admin_action_teleport_forwards                  = 10
-admin_action_refill_health                      = 11
-admin_action_become_godlike                     = 12
-admin_action_get_armor                          = 13
-admin_action_get_invisible                      = 14
-admin_action_get_horse                          = 15
-admin_action_remove_horses                      = 16
-admin_action_remove_stray_horses                = 17
-admin_action_teleport_to_ships                  = 18
-admin_action_reset_ships                        = 19
-admin_action_join_faction                       = 20
-admin_action_lock_faction                       = 21
+admin_action_mute_players                       = 4
+admin_action_kill_player                        = 5
+admin_action_fade_player_out                    = 6
+admin_action_freeze_player                      = 7
+admin_action_teleport_to_player                 = 8
+admin_action_teleport_behind_player             = 9
+admin_action_teleport_player                    = 10
+admin_action_teleport_forwards                  = 11
+admin_action_refill_health                      = 12
+admin_action_become_godlike                     = 13
+admin_action_get_armor                          = 14
+admin_action_get_invisible                      = 15
+admin_action_get_horse                          = 16
+admin_action_remove_horses                      = 17
+admin_action_remove_stray_horses                = 18
+admin_action_teleport_to_ships                  = 19
+admin_action_reset_ships                        = 20
+admin_action_join_faction                       = 21
+admin_action_lock_faction                       = 22
 
 faction_admin_action_change_banner              = 0
 faction_admin_action_kick_player                = 1

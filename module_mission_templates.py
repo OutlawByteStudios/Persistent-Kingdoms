@@ -192,6 +192,7 @@ player_joined = (ti_server_player_joined, 0, 0, [], # server: handle connecting 
     (call_script, "script_setup_player_joined", ":player_id"),
     (call_script, "script_player_check_name", ":player_id"),
     (call_script, "script_update_ghost_mode_rule", ":player_id"),
+    (call_script, "script_apply_mute", ":player_id", "$g_mute_all_players"),
     ])
 
 player_exit = (ti_on_player_exit, 0, 0, [], # server: save player values on exit
@@ -210,7 +211,7 @@ player_exit = (ti_on_player_exit, 0, 0, [], # server: save player values on exit
     (player_set_slot, ":player_id", slot_player_freeze_instance_id, -1),
 
     #Log equipment on log out
-    (call_script, "script_cf_log_equipment", ":player_id"),
+    (call_script, "script_log_equipment", ":player_id"),
     #End
   ])
 
@@ -219,25 +220,39 @@ agent_spawn = (ti_on_agent_spawn, 0, 0, [], # server and clients: set up new age
    [(store_trigger_param_1, ":agent_id"),
     (call_script, "script_on_agent_spawned", ":agent_id"),
 	
-	#Log the player's equipment on log ins. Due to player actually not having items when they "joined", it needs to log when
-	#they are spawned for the first time
-	#CRUCIAL: Updates on the player's equipment should be done before this code block so the server logs properly
-	(neg|agent_is_non_player, ":agent_id"),
-	(agent_get_player_id, ":player_id", ":agent_id"),
-	(player_get_slot, ":first_spawn_occured", ":player_id", slot_player_first_spawn_occured),
-	(neq, ":first_spawn_occured", 1),
-	(player_set_slot, ":player_id", slot_player_first_spawn_occured, 1),
-	(call_script, "script_cf_log_equipment", ":player_id"),
-	#End
-
+	(try_begin),
+    #Log the player's equipment on log ins. Due to player actually not having items when they "joined", it needs to log when
+    #they are spawned for the first time
+    #CRUCIAL: Updates on the player's equipment should be done before this code block so the server logs properly
+    (multiplayer_is_server),
+    
+    (neg|agent_is_non_player, ":agent_id"),
+    (agent_get_player_id, ":player_id", ":agent_id"),
+    
+    (player_get_slot, ":first_spawn_occured", ":player_id", slot_player_first_spawn_occured),
+    (neq, ":first_spawn_occured", 1),
+    (player_set_slot, ":player_id", slot_player_first_spawn_occured, 1),
+    
     (try_begin),
-        (player_get_slot, ":faction_id", ":player_id", slot_player_faction_id),
-        (faction_slot_eq, ":faction_id", slot_faction_is_active, 0),
-        (call_script, "script_change_faction", ":player_id", "fac_commoners", change_faction_type_no_respawn),
-        (call_script, "script_player_set_worse_respawn_troop", ":player_id", "trp_peasant"),
-        (multiplayer_send_3_int_to_player, ":player_id", server_event_preset_message, "str_inactive_faction_change", preset_message_chat_log|preset_message_red, ":faction_id"),
+      (this_or_next|player_slot_eq, ":player_id", slot_player_is_lord, 1),
+      (player_slot_eq, ":player_id", slot_player_is_marshal, 1),
+      (call_script, "script_synchronize_lord_or_marshal", ":player_id"),
     (try_end),
-    ])
+
+    (call_script, "script_log_equipment", ":player_id"),
+    (call_script, "script_setup_singings", ":player_id"),
+  (try_end),
+
+  (try_begin),
+    (neg|agent_is_non_player, ":agent_id"),
+    (agent_get_player_id, ":player_id", ":agent_id"),
+    (player_get_slot, ":faction_id", ":player_id", slot_player_faction_id),
+    (faction_slot_eq, ":faction_id", slot_faction_is_active, 0),
+    (call_script, "script_change_faction", ":player_id", "fac_commoners", change_faction_type_no_respawn),
+    (call_script, "script_player_set_worse_respawn_troop", ":player_id", "trp_peasant"),
+    (multiplayer_send_3_int_to_player, ":player_id", server_event_preset_message, "str_inactive_faction_change", preset_message_chat_log|preset_message_red, ":faction_id"),
+  (try_end),
+ ])
 
 agent_killed = (ti_on_agent_killed_or_wounded, 0, 0, [], # server and clients: handle messages, score, loot, and more after agents die
    [(store_trigger_param_1, ":dead_agent_id"),
@@ -283,8 +298,8 @@ agent_hit = (ti_on_agent_hit, 0, 0, [], # server: apply extra scripted effects f
       (is_between, reg0, scripted_items_begin, scripted_items_end),
       (call_script, "script_agent_hit_with_scripted_item", ":attacked_agent_id", ":attacker_agent_id", ":damage_dealt", reg0),
     (try_end),
-	#Log hits
-	(call_script, "script_cf_log_hit", ":attacked_agent_id", ":attacker_agent_id", ":damage_dealt", reg0, 0),
+    #Log hits
+    (call_script, "script_log_hit", ":attacked_agent_id", ":attacker_agent_id", ":damage_dealt", reg0, 0),
     ])
 
 item_picked_up = (ti_on_item_picked_up, 0, 0, [], # handle agents picking up an item
@@ -639,6 +654,7 @@ draw_initial_banners = (0, 0, ti_once, [], # server: calculate and draw all cast
 
 fill_chests_starting_inventory = (8, 0, ti_once, [], # server: wait so the pseudo random number generator can get some entropy
    [(multiplayer_is_server),
+    (eq, random_gear_in_chests, 1),
     (call_script, "script_scene_fill_chests_starting_inventory"),
     ])
 

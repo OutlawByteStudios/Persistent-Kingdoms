@@ -595,6 +595,9 @@ max_hit_points_percent                = 200
 
 admin_restock_amount                  = 5 # amount admin restocks pile by for each use
 
+animations_while_muted                = 1 # can players use animations while muted?
+random_gear_in_chests                 = 0
+
 all_items_begin = "itm_tattered_headcloth"
 all_items_end = "itm_all_items_end"
 
@@ -652,6 +655,19 @@ animation_strings_begin = "str_anim_cheer" # range of strings associated with th
 animation_strings_end = "str_log_animation"
 
 profile_option_strings_begin = "str_display_name_labels" # range of strings for options stored in a player profile
+
+lute_sounds_begin = "snd_lute_1"
+lute_sounds_end = "snd_lute_4"
+lyre_sounds_begin = "snd_lyre_1"
+lyre_sounds_end = "snd_lyre_4"
+horn_sounds_begin = "snd_horncharge"
+horn_sounds_end = "snd_hornretreat"
+
+teleport_doors_begin = "spr_pw_door_teleport_small_arch_a"
+teleport_doors_end = "spr_pw_door_teleport_invisible_not_pickable_horse"
+
+item_chests_begin = "spr_pw_castle_money_chest"
+item_chests_end = "spr_pk_arrow_holder_bucket"
 
 from header_common import *
 
