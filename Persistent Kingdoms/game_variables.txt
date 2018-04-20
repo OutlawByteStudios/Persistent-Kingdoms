@@ -1458,8 +1458,8 @@ initial_version_info_text_size_y = 0.016
 initial_version_info_text_flags = 0x200
 initial_version_info_text_color = 0xFF110000
 
-initial_module_version_info_position_x = 0.029
-initial_module_version_info_position_y = 0.475
+initial_module_version_info_position_x = 0.06
+initial_module_version_info_position_y = 0.5
 initial_module_version_info_size_x = 0.15
 initial_module_version_info_size_y = 0.03
 initial_module_version_info_text_size_x = 0.014
