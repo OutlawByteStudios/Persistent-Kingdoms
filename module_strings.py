@@ -513,6 +513,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("toggle_local_faction_chat", "Toggle local or faction chat"),
   ("attach_cart_pack", "Attach nearby cart / pack"),
   ("detach_cart_pack", "Detach cart / pack"),
+  ("open_close_helmet", "Open / Close Helmet"),
   ("toggle_head", "Toggle head armor"),
   ("discard_body", "Discard body armor"),
   ("discard_foot", "Discard foot armor"),
@@ -528,6 +529,8 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("s0_are_you_sure", "{s0} - are you sure?"),
   ("confirmation", "confirmation"),
   ("unmute_music", "Unmute instruments"),
+
+  ("open_close_helmet_error", "This helmet has no toggleable visor!"),
 
   ("suicide_in_reg1", "You will commit suicide in {reg1} seconds!"),
   ("log_s1_committed_suicide", "{s1} committed suicide."),

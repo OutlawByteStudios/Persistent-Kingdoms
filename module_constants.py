@@ -283,6 +283,7 @@ slot_item_bonus_against_wood          = 6
 slot_item_couchable                   = 7
 slot_item_has_attack_requirements     = 8
 slot_item_max_raw_damage              = 9 # maximum out of swing and thrust damage
+slot_item_open_close_helmet           = 10
 
 item_class_none                       = 0
 item_class_repair                     = 1
