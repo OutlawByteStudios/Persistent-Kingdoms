@@ -668,7 +668,7 @@ teleport_doors_begin = "spr_pw_door_teleport_small_arch_a"
 teleport_doors_end = "spr_pw_door_teleport_invisible_not_pickable_horse"
 
 item_chests_begin = "spr_pw_castle_money_chest"
-item_chests_end = "spr_pk_arrow_holder_bucket"
+item_chests_end = "spr_cm_arrow_holder_bucket"
 
 from header_common import *
 
