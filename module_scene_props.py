@@ -3331,7 +3331,7 @@ scene_props = [
   ("pw_item_chest_b",spr_chest_flags(use_time=1),"pw_chest_b","bo_pw_chest_b", spr_item_chest_triggers(hit_points=5000, inventory_count=32, max_item_length=100)),
   ("pw_item_chest_invisible",sokf_invisible|spr_chest_flags(1),"pw_invisible_chest","bo_pw_invisible_chest", spr_item_chest_triggers(hit_points=2000, inventory_count=12, max_item_length=120)),
 
-  ("pk_arrow_holder_bucket",spr_chest_flags(use_time=1, destructible=False),"pk_arrow_holder_bucket","bo_pk_arrow_holder_bucket", spr_item_chest_triggers(inventory_count=12, store_ammo=1, store_only_ammo=1, destructible=False)),
+  ("cm_arrow_holder_bucket",spr_chest_flags(use_time=1, destructible=False),"pk_arrow_holder_bucket","bo_pk_arrow_holder_bucket", spr_item_chest_triggers(inventory_count=12, store_ammo=1, store_only_ammo=1, destructible=False)),
 
   ("pw_signpost_castle",0,"pw_signpost_castle","bo_pw_signpost", []),
   ("pw_signpost_docks",0,"pw_signpost_docks","bo_pw_signpost", []),
