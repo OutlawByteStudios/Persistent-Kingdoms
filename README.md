@@ -38,4 +38,4 @@ At this stage of development we are still looking for contributions to be made. 
 
 Please message a [Steam group](https://steamcommunity.com/groups/persistent-kingdoms) moderator if you wish to donate assests or help with the mod's development.
 
-**For existing PK mod developers, please see our [contribution guide](https://github.com/SmartPhoenix/Persistent-Kingdoms/wiki/How-to-contribute%3F)**
+**For existing PK mod developers, please see our [contribution guide](https://github.com/SmartPhoenix/Persistent-Kingdoms/wiki/How-to-contribute%3F).**
