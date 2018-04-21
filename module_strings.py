@@ -614,6 +614,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("harvest", "Harvest"),
   ("prune", "Prune"),
   ("burn", "Burn"),
+  ("take_a_seat", "Take a Seat"),
   ("destroy_s1", "Destroy {s1}"),
   ("destroy_all_items_cart", "Destroy all items in cart"),
   ("process_wood", "Process wood"),

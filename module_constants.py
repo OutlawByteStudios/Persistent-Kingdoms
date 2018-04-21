@@ -155,6 +155,7 @@ slot_agent_armor_damage_through       = 65 # factor of letting damage received b
 slot_agent_last_apply_factors_item_id = 66 # last item id that modifier factors were last checked for, to avoid duplicating calculations due to trigger activation quirks
 
 slot_agent_playing_music              = 67
+slot_agent_scene_prop_in_use          = 68
 
 
 ########################################################
