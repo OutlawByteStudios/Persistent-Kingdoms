@@ -407,7 +407,14 @@ sitting_check = (1, 0, 0, [], # server: handle agents sitting
         (agent_slot_eq, ":agent_id", slot_agent_scene_prop_in_use, -1),
 
         (agent_get_position, pos0, ":agent_id"),
-        (agent_get_slot, pos1, ":agent_id", slot_agent_animation_position),
+
+        (agent_get_slot, ":x", ":agent_id", slot_agent_animation_position_x),
+        (agent_get_slot, ":y", ":agent_id", slot_agent_animation_position_y),
+        (agent_get_slot, ":z", ":agent_id", slot_agent_animation_position_z),
+        (position_set_x, pos1, ":x"),
+        (position_set_y, pos1, ":y"),
+        (position_set_z, pos1, ":z"),
+    
         (get_distance_between_positions, ":dist", pos0, pos1),
         (gt, ":dist", 45),##If moved away from the chair stop the animation
 

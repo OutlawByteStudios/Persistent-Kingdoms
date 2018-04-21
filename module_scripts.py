@@ -14175,8 +14175,20 @@ scripts.extend([
         (try_begin),
           (gt, ":animation", -1),
           (agent_set_animation, ":agent_id", ":animation", ":upper_body_only"),
-          (agent_get_position, pos0, ":agent_id"),
-          (agent_set_slot, ":agent_id", slot_agent_animation_position, pos0),
+
+          (try_begin),
+            (this_or_next | eq, ":animation", "anim_sitting_pillow_male"),
+            (eq, ":animation", "anim_sitting_pillow_female"),
+            (agent_get_position, pos0, ":agent_id"),
+            (position_get_x, ":x", pos0),
+            (position_get_y, ":y", pos0),
+            (position_get_z, ":z", pos0),
+            (agent_set_slot, ":agent_id", slot_agent_animation_position_x, ":x"),
+            (agent_set_slot, ":agent_id", slot_agent_animation_position_y, ":y"),
+            (agent_set_slot, ":agent_id", slot_agent_animation_position_z, ":z"),
+          (try_end),
+
+
           #(try_for_players, ":other_player_id"),
           #  (player_is_active, ":other_player_id"),
           #  (multiplayer_send_3_int_to_player, ":other_player_id", server_event_agent_animation, ":agent_id", ":animation", ":upper_body_only"),

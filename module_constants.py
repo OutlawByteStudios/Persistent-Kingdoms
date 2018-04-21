@@ -157,7 +157,9 @@ slot_agent_last_apply_factors_item_id = 66 # last item id that modifier factors 
 slot_agent_playing_music              = 67
 slot_agent_scene_prop_in_use          = 68
 
-slot_agent_animation_position         = 69
+slot_agent_animation_position_x       = 69
+slot_agent_animation_position_y       = 70
+slot_agent_animation_position_z       = 71
 
 
 ########################################################
