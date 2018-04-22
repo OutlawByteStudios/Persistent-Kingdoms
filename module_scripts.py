@@ -24,6 +24,58 @@ import math
 scripts = []
 scripts.extend([
 
+  ("spawn_or_use_inventory_corpse", [
+    (store_script_param_1, ":player_id"),
+    (try_begin),
+      (player_get_agent_id, ":agent_id", ":player_id"),
+      (agent_is_active, ":agent_id"),
+      (agent_is_alive, ":agent_id"),
+      (agent_get_position, pos1, ":agent_id"),
+      (try_begin), # try find a previously used corpse item close enough to put the item in
+        (agent_get_slot, ":corpse_instance_id", ":agent_id", slot_agent_storage_corpse_instance_id),
+        (prop_instance_is_valid, ":corpse_instance_id"),
+        (neg|scene_prop_slot_eq, ":corpse_instance_id", slot_scene_prop_inventory_unique_id, 0),
+        (prop_instance_get_scene_prop_kind, ":scene_prop_id", ":corpse_instance_id"),
+        (eq, ":scene_prop_id", "itm_agent_corpse"),
+        (prop_instance_get_position, pos2, ":corpse_instance_id"),
+        (get_sq_distance_between_positions, ":sq_distance", pos1, pos2),
+        (le, ":sq_distance", sq(max_distance_to_use)),
+        (display_message, "@exists"),
+        (call_script, "script_cf_use_inventory", ":agent_id", ":corpse_instance_id", 0),
+        #(multiplayer_send_2_int_to_player, ":player_id", server_event_inventory_ready, ":corpse_instance_id"),
+        (assign, reg31, ":corpse_instance_id"),
+        (display_message, "@{reg31}"),
+      (else_try), # otherwise spawn a new corpse item
+        (set_spawn_position, pos1),
+        (spawn_item, "itm_agent_corpse", imod_rusty, "$g_spawn_item_prune_time"),
+        (assign, ":corpse_instance_id", reg0),
+        #Phoenix, to understand, check the spawning of corpses when people die lol
+        (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_corpse_owner, ":agent_id"),
+        (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_is_mercenary, 1),
+        #End
+        (agent_set_slot, ":agent_id", slot_agent_storage_corpse_instance_id, ":corpse_instance_id"),
+        (prop_instance_set_position, ":corpse_instance_id", pos1),
+        (store_mission_timer_a, ":prune_time"),
+        (val_add, ":prune_time", "$g_spawn_item_prune_time"),
+        (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_prune_time, ":prune_time"),
+        (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_inventory_count, corpse_inventory_slots),
+        (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_inventory_max_length, corpse_inventory_max_length),      
+        (val_add, "$g_last_inventory_unique_id", 1),
+        (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_inventory_unique_id, "$g_last_inventory_unique_id"),
+        (display_message, "@spawned"),
+        
+        (try_for_range, ":slot", slot_scene_prop_inventory_begin, slot_scene_prop_inventory_begin + corpse_inventory_slots + 1),
+          (scene_prop_set_slot, ":corpse_instance_id", ":slot", ":slot"),
+        (try_end),
+        
+        (call_script, "script_cf_use_inventory", ":agent_id", ":corpse_instance_id", 0),
+        #(multiplayer_send_2_int_to_player, ":player_id", server_event_inventory_ready, ":corpse_instance_id"),
+        (assign, reg31, ":corpse_instance_id"),
+        (display_message, "@{reg31}"),
+      (try_end),
+    (try_end),
+  ]),
+
   ("mute_all_players", [
     (store_script_param, ":force_on", 1),
 
@@ -1158,6 +1210,9 @@ scripts.extend([
         (store_script_param, ":slot_no", 4),
         (store_script_param, ":value", 5),
         (store_script_param, ":slot_range_end", 6),
+        (assign, reg31, ":slot_no"),
+        (assign, reg32, ":value"),
+        (display_message, "@slot {reg31} = {reg32}"),
         (try_begin),
           (prop_instance_is_valid, ":instance_id"),
           (try_begin),
@@ -2053,6 +2108,10 @@ scripts.extend([
         (store_mission_timer_a, ":time"),
         (val_add, ":time", suicide_delay),
         (player_set_slot, ":sender_player_id", slot_player_commit_suicide_time, ":time"),
+      (else_try),
+        (eq, ":event_type", client_event_open_inventory),
+        (player_is_active, ":sender_player_id"),
+        (call_script, "script_spawn_or_use_inventory_corpse", ":sender_player_id"),
       (try_end),
     (try_end),
     ]),
@@ -9607,6 +9666,9 @@ scripts.extend([
           (assign, ":slot_range_begin", -1),
         (else_try), # else just send the single slot
           (multiplayer_send_3_int_to_player, ":player_id", server_event_scene_prop_set_slot, ":instance_id", ":inventory_slot", ":item_id"),
+          (assign, reg31, ":inventory_slot"),
+          (assign, reg32, ":item_id"),
+          (display_message, "@slot {reg31} = {reg32}"),
         (try_end),
       (try_end),
       (assign, ":item_id", ":next_item_id"),

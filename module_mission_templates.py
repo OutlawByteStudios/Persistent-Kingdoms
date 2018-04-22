@@ -961,6 +961,11 @@ animation_menu_pressed = (0, 0.05, 0, [(game_key_clicked, gk_animation_menu),(ca
       (start_presentation, "prsnt_animation_menu"),
     (try_end),
     ])
+    
+open_inventory_pressed = (0, 0, 0, [], # clients: show presentation to drop money bags or interact with money chests
+   [(key_clicked, key_n),
+    (multiplayer_send_message_to_server, client_event_open_inventory),
+    ])
 
 commit_suicide_loop = (0, 0, 0.5, # client: suicide countdown
    [(neg|multiplayer_is_server),
@@ -1080,6 +1085,7 @@ def common_triggers(self):
     admin_chat_pressed,
     ship_control_pressed,
     animation_menu_pressed,
+    open_inventory_pressed,
 
     commit_suicide_loop,
 
