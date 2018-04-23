@@ -858,8 +858,6 @@ def spr_chairs(anim, female_anim=0):
 
       (neg|agent_slot_ge, ":agent_id", slot_agent_scene_prop_in_use, 0),
 
-      (server_add_message_to_log, "@sit"),
-
       (assign,":in_use",0),
       (try_for_agents, ":cur_agent"),
         (agent_is_active,":cur_agent"),
@@ -873,22 +871,16 @@ def spr_chairs(anim, female_anim=0):
       (try_begin),
         (eq,":in_use",0),
 
-        (server_add_message_to_log, "@sit"),
-
         # not on horseback
         (try_begin),
           (agent_get_horse, ":player_horse", ":agent_id"),
           (le, ":player_horse", 0),
-
-          (server_add_message_to_log, "@sit"),
 
           (try_begin),
             (set_fixed_point_multiplier, 100),
             (prop_instance_get_position, pos40, ":instance_id"),
             (agent_set_position,":agent_id",pos40),
             (agent_set_slot,":agent_id",slot_agent_scene_prop_in_use,":instance_id"),
-
-            (server_add_message_to_log, "@sit"),
 
             (try_begin),
               (neq, female_anim, 0),
@@ -1487,9 +1479,9 @@ scene_props = [
   ("mat_d",0,"mat_d","0", []),
 
   ("cm_sitable_gothic_chair",spr_use_time(1),"sitable_gothic_chair","bo_sitable_gothic_chair", spr_chairs("anim_sitting")),
+  ("cm_sitable_tavern_chair_a", spr_use_time(1), "tavern_chair_a", "bo_tavern_chair_a", spr_chairs("anim_sitting")),
   ("cm_sitable_tavern_chair_b",spr_use_time(1),"tavern_chair_b","bo_tavern_chair_b", spr_chairs("anim_sitting")),
   ("cm_sitable_tavern_chair_c",spr_use_time(1),"tavern_chair_c","bo_tavern_chair_c", spr_chairs("anim_sitting")),
-  ("cm_sitable_tavern_chair_a",spr_use_time(1),"tavern_chair_a","bo_tavern_chair_a", spr_chairs("anim_sitting")),
   ("cm_sitable_pillow_blue",spr_use_time(1),"pillow_blue","bo_pillow_blue", spr_chairs("anim_sitting_pillow_male","anim_sitting_pillow_female")),
   ("cm_sitable_pillow_red",spr_use_time(1),"pillow_red","bo_pillow_red", spr_chairs("anim_sitting_pillow_male","anim_sitting_pillow_female")),
   ("cm_sitable_pillow_red_small",spr_use_time(1),"pillow_red_small","bo_pillow_red_small", spr_chairs("anim_sitting")),
