@@ -507,8 +507,6 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("un", "un"),
 
   ("open_inventory", "Open inventory"),
-  ("display_name_labels", "Display name labels"),
-  ("display_basic_name_labels", "Display basic name labels"),
   ("display_faction_in_name_labels", "Display faction in name labels"),
   ("display_chat_overlay", "Display chat overlay"),
   ("display_faction_chat_on_overlay", "Display faction chat on overlay"),
@@ -529,11 +527,11 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("s0_are_you_sure", "{s0} - are you sure?"),
   ("confirmation", "confirmation"),
   ("unmute_music", "Unmute instruments"),
+  ("display_name_labels", "Display name labels"),
+  ("display_basic_name_labels", "Display basic name labels"),
   ("hide_name_labels", "Hide name labels"),
-  ("hide_basic_name_labels", "Hide basic name labels"),
-  ("hide_faction_in_name_labels", "Hide faction in name labels"),
   ("hide_chat_overlay", "Hide chat overlay"),
-  ("display_local_chat_on_overlay", "Show local chat on overlay"),
+  ("display_local_chat_on_overlay", "Display local chat on overlay"),
   ("deactivate_clickable_animation_menu", "Dectivate clickable animation menu"),
   ("unmute_global_chat", "Unmute global chat"),
 

@@ -670,6 +670,11 @@ teleport_doors_end = "spr_pw_door_teleport_invisible_not_pickable_horse"
 item_chests_begin = "spr_pw_castle_money_chest"
 item_chests_end = "spr_cm_arrow_holder_bucket"
 
+display_no_name_labels = 0
+display_name_labels_with_faction = 1
+display_name_labels = 2
+display_basic_name_labels = 3
+
 from header_common import *
 
 profile_options = [ # global flag variables for options stored in a player profile
