@@ -649,7 +649,7 @@ admin_action_log_strings_begin = "str_log_admin_kick" # range of strings associa
 ambient_sounds_begin = "snd_fire_loop" # for ambient sound emitter scene props
 ambient_sounds_end = "snd_sounds_end"
 
-action_menu_strings_begin = "str_toggle_name_labels" # range of strings associated with the action menu
+action_menu_strings_begin = "str_open_inventory" # range of strings associated with the action menu
 action_menu_strings_end = "str_action_menu_end"
 
 animation_strings_begin = "str_anim_cheer" # range of strings associated with the animation menu
