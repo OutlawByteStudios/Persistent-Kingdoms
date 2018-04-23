@@ -515,7 +515,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("detach_cart_pack", "Detach cart / pack"),
   ("open_close_helmet", "Open / Close Helmet"),
   ("toggle_head", "Toggle head armor"),
-  ("open_inventory", "Open inventory :)"),
+  ("open_inventory", "Open inventory"),
   #("discard_body", "Discard body armor"),
   #("discard_foot", "Discard foot armor"),
   ("toggle_hand", "Toggle hand armor"),

@@ -39,7 +39,7 @@ scripts.extend([
         (eq, ":scene_prop_id", "itm_agent_corpse"),
         (prop_instance_get_position, pos2, ":corpse_instance_id"),
         (get_sq_distance_between_positions, ":sq_distance", pos1, pos2),
-        (le, ":sq_distance", sq(max_distance_to_use)),
+        (le, ":sq_distance", sq(max_distance_to_loot)),
         #(call_script, "script_cf_use_inventory", ":agent_id", ":corpse_instance_id", 0),
         (multiplayer_send_int_to_player, ":player_id", server_event_inventory_ready, ":corpse_instance_id"),
       (else_try), # otherwise spawn a new corpse item
@@ -59,11 +59,6 @@ scripts.extend([
         (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_inventory_max_length, corpse_inventory_max_length),      
         (val_add, "$g_last_inventory_unique_id", 1),
         (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_inventory_unique_id, "$g_last_inventory_unique_id"),
-        
-        #(try_for_range, ":slot", slot_scene_prop_inventory_begin, slot_scene_prop_inventory_begin + corpse_inventory_slots + 1),
-        #  (scene_prop_set_slot, ":corpse_instance_id", ":slot", ":slot"),
-        #(try_end),
-        
         #(call_script, "script_cf_use_inventory", ":agent_id", ":corpse_instance_id", 0),
         (multiplayer_send_int_to_player, ":player_id", server_event_inventory_ready, ":corpse_instance_id"),
       (try_end),
