@@ -1486,7 +1486,7 @@ scene_props = [
   ("cm_sitable_chair_trunk_b", spr_use_time(1), "chair_trunk_b", "bo_chair_trunk_b", spr_chairs("anim_sitting")),
   ("cm_sitable_chair_trunk_c", spr_use_time(1), "chair_trunk_c", "bo_chair_trunk_c", spr_chairs("anim_sitting")),
   ("cm_sitable_chair_trestle",spr_use_time(1),"chair_trestle","bo_chair_trestle", spr_chairs("anim_sitting")),
-  ("cm_sitable_bench_tavern", spr_use_time(1), "bench_tavern", "bobench_tavern", spr_chairs("anim_sitting")),
+  ("cm_sitable_bench_tavern", spr_use_time(1), "bench_tavern", "bo_bench_tavern", spr_chairs("anim_sitting")),
   ("cm_sitable_bench_tavern_b", spr_use_time(1), "bench_tavern_b", "bo_bench_tavern_b", spr_chairs("anim_sitting")),
   ("cm_sitable_chair_castle_a", spr_use_time(1), "cm_chair_castle_a", "bo_cm_chair_castle_a", spr_chairs("anim_sitting")),
   ("cm_sitable_pillow_blue",spr_use_time(1),"pillow_blue","bo_pillow_blue", spr_chairs("anim_sitting_pillow_male","anim_sitting_pillow_female")),
