@@ -39,7 +39,10 @@ server_event_agent_play_sound                   = 30
 
 server_event_agent_animation                    = 31
 
+server_event_inventory_ready                    = 32
+
 # Add new events here: above if sent from the server, below if from clients.
+client_event_open_inventory                     = 89
 client_event_open_close_helmet                  = 90
 client_event_fast_equip                         = 91 #Mouse Right Click Fast Inventory transfer
 client_event_fast_unequip                       = 92 #Mouse Right Click Fast Inventory transfer
