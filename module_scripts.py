@@ -4029,6 +4029,7 @@ scripts.extend([
     (agent_set_slot, ":agent_id", slot_agent_hunting_last_carcass, -1),
     (agent_set_slot, ":agent_id", slot_agent_animal_herd_manager, -1),
     (agent_set_slot, ":agent_id", slot_agent_animal_carcass_instance_id, -1),
+    (agent_slot_eq, ":agent_id", slot_agent_scene_prop_in_use, -1),
     (try_begin),
       (eq, "$g_full_respawn_health", 0),
       (agent_is_human, ":agent_id"),
