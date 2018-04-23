@@ -416,7 +416,7 @@ sitting_check = (1, 0, 0, [], # server: handle agents sitting
         (position_set_z, pos1, ":z"),
     
         (get_distance_between_positions, ":dist", pos0, pos1),
-        (gt, ":dist", 45),##If moved away from the chair stop the animation
+        (gt, ":dist", 40),##If moved away from the chair stop the animation
 
         (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_sitting_finish",0),
         (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_sitting_finish",1),
@@ -441,7 +441,7 @@ sitting_check_chair = (1, 0, 0, [], # server: handle agents sitting
             (agent_get_position,pos0,":agent_id"),
             (prop_instance_get_position, pos1, ":instance"),
             (get_distance_between_positions,":dist",pos0,pos1),
-            (gt, ":dist", 45),##If moved away from the chair stop the animation
+            (gt, ":dist", 60),##If moved away from the chair stop the animation
             (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_sitting_finish",0),
             (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_sitting_finish",1),
             (agent_set_slot,":agent_id",slot_agent_scene_prop_in_use,-1),
