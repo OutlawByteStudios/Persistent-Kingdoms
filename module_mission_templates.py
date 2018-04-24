@@ -411,6 +411,16 @@ sitting_check = (1, 0, 0, [], # server: handle agents sitting
         (agent_get_slot, ":x", ":agent_id", slot_agent_animation_position_x),
         (agent_get_slot, ":y", ":agent_id", slot_agent_animation_position_y),
         (agent_get_slot, ":z", ":agent_id", slot_agent_animation_position_z),
+
+        (assign, ":valid_pos", 1),
+        (try_begin),
+            (this_or_next|eq, ":x", -1),
+            (this_or_next|eq, ":y", -1),
+            (eq, ":z", -1),
+            (assign, ":valid_pos", 0),
+        (try_end),
+        (eq, ":valid_pos", 1),
+
         (position_set_x, pos1, ":x"),
         (position_set_y, pos1, ":y"),
         (position_set_z, pos1, ":z"),
