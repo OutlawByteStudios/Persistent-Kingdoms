@@ -649,7 +649,7 @@ admin_action_log_strings_begin = "str_log_admin_kick" # range of strings associa
 ambient_sounds_begin = "snd_fire_loop" # for ambient sound emitter scene props
 ambient_sounds_end = "snd_sounds_end"
 
-action_menu_strings_begin = "str_toggle_name_labels" # range of strings associated with the action menu
+action_menu_strings_begin = "str_open_inventory" # range of strings associated with the action menu
 action_menu_strings_end = "str_action_menu_end"
 
 animation_strings_begin = "str_anim_cheer" # range of strings associated with the animation menu
@@ -669,6 +669,11 @@ teleport_doors_end = "spr_pw_door_teleport_invisible_not_pickable_horse"
 
 item_chests_begin = "spr_pw_castle_money_chest"
 item_chests_end = "spr_cm_arrow_holder_bucket"
+
+display_no_name_labels = 0
+display_name_labels_with_faction = 1
+display_name_labels = 2
+display_basic_name_labels = 3
 
 from header_common import *
 
