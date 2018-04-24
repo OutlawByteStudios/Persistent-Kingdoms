@@ -507,7 +507,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("un", "un"),
 
   ("open_inventory", "Open inventory"),
-  ("display_faction_in_name_labels", "Display faction in name labels"),
+  ("display_faction_in_name_labels", "Display name and faction labels"),
   ("display_chat_overlay", "Display chat overlay"),
   ("display_faction_chat_on_overlay", "Display faction chat on overlay"),
   ("activate_clickable_animation_menu", "Activate clickable animation menu"),
