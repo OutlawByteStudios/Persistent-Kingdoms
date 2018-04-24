@@ -525,7 +525,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("action_menu_end", "action_menu_end"),
   
   ("s0_are_you_sure", "{s0} - are you sure?"),
-  ("confirmation", "confirmation"),
+  #("confirmation", "confirmation"),
   ("unmute_music", "Unmute instruments"),
   ("display_name_labels", "Display name labels"),
   ("display_basic_name_labels", "Display basic name labels"),
