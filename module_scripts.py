@@ -2098,6 +2098,8 @@ scripts.extend([
         (try_end),
       (else_try),
         (eq, ":event_type", client_event_commit_suicide),
+        (player_get_slot, ":time", ":sender_player_id", slot_player_commit_suicide_time),
+        (eq, ":time", 0),
         (store_mission_timer_a, ":time"),
         (val_add, ":time", suicide_delay),
         (player_set_slot, ":sender_player_id", slot_player_commit_suicide_time, ":time"),
