@@ -1,4 +1,4 @@
-106
+104
 grass 6442469688324 5
  grass_a  0
  grass_b  0
@@ -358,19 +358,12 @@ valleyRock_flatRounded_small 2097152 3
 valleyRock_flatRounded_big 2097152 2
  valleyRock_flatRounded_big_1  bo_valleyRock_flatRounded_big_1
  valleyRock_flatRounded_big_2  bo_valleyRock_flatRounded_big_2
-pk_small_bushes 4197388 3
- pk_small_bush_1  
- 0 0
- pk_small_bush_2  
- 0 0
- pk_small_bush_3  
- 0 0
 pk_bushes 4197388 3
- pk_bush_1  
+ pk_bush_1  0
  0 0
- pk_bush_2  
+ pk_bush_2  0
  0 0
- pk_bush_3  
+ pk_bush_3  0
  0 0
 pk_small_pines 4197388 3
  pk_small_pine_1  bo_pk_small_pine_1
@@ -431,13 +424,6 @@ pk_snowy_pine_3 4199444 1
  0 0
 pk_snowy_pine_4 4199444 1
  pk_snowy_pine_4  bo_pk_snowy_pine_4
- 0 0
-pk_beech 4199444 3
- pk_beech_1  bo_pk_beech_1
- 0 0
- pk_beech_2  bo_pk_beech_2
- 0 0
- pk_beech_3  bo_pk_beech_3
  0 0
 pk_tree_1 4197388 1
  pk_tree_1  bo_pk_tree_1
