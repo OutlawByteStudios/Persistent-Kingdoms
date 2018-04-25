@@ -69,6 +69,8 @@ meshes = [
   ("tableau_mesh_heraldic_armor_c", 0, "fixed_tableau_mesh_heraldic_armor_c",  0, 0, 0, 0, 0, 0, 1, 1, 1),
   ("tableau_mesh_heraldic_armor_d", 0, "fixed_tableau_mesh_heraldic_armor_d",  0, 0, 0, 0, 0, 0, 1, 1, 1),
 
+  ("tableau_mesh_heraldic_charger", 0, "tableau_mesh_heraldic_charger", 0, 0, 0, 0, 0, 0, 1, 1, 1),
+
   ("banner_a01", 0, "pw_banner_a01", 0, 0, 0, -90, 0, 0, 1, 1, 1),
   ("banner_a02", 0, "pw_banner_a02", 0, 0, 0, -90, 0, 0, 1, 1, 1),
   ("banner_a03", 0, "pw_banner_a03", 0, 0, 0, -90, 0, 0, 1, 1, 1),

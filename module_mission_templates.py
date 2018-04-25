@@ -219,39 +219,47 @@ player_exit = (ti_on_player_exit, 0, 0, [], # server: save player values on exit
 agent_spawn = (ti_on_agent_spawn, 0, 0, [], # server and clients: set up new agents after they spawn
    [(store_trigger_param_1, ":agent_id"),
     (call_script, "script_on_agent_spawned", ":agent_id"),
+
+    (try_begin),
+      (neg | agent_is_human, ":agent_id"),
+      # (agent_get_slot, ":mesh_id", ":agent_id", slot_agent_heraldic),
+      # (gt, ":mesh_id", 0),
+      (cur_agent_set_banner_tableau_material, "tableau_heraldic_charger"),
+      (display_message, "@run"),
+    (try_end),
 	
 	(try_begin),
-    #Log the player's equipment on log ins. Due to player actually not having items when they "joined", it needs to log when
-    #they are spawned for the first time
-    #CRUCIAL: Updates on the player's equipment should be done before this code block so the server logs properly
-    (multiplayer_is_server),
-    
-    (neg|agent_is_non_player, ":agent_id"),
-    (agent_get_player_id, ":player_id", ":agent_id"),
-    
-    (player_get_slot, ":first_spawn_occured", ":player_id", slot_player_first_spawn_occured),
-    (neq, ":first_spawn_occured", 1),
-    (player_set_slot, ":player_id", slot_player_first_spawn_occured, 1),
-    
-    (try_begin),
-      (this_or_next|player_slot_eq, ":player_id", slot_player_is_lord, 1),
-      (player_slot_eq, ":player_id", slot_player_is_marshal, 1),
-      (call_script, "script_synchronize_lord_or_marshal", ":player_id"),
+      #Log the player's equipment on log ins. Due to player actually not having items when they "joined", it needs to log when
+      #they are spawned for the first time
+      #CRUCIAL: Updates on the player's equipment should be done before this code block so the server logs properly
+      (multiplayer_is_server),
+
+      (neg|agent_is_non_player, ":agent_id"),
+      (agent_get_player_id, ":player_id", ":agent_id"),
+
+      (player_get_slot, ":first_spawn_occured", ":player_id", slot_player_first_spawn_occured),
+      (neq, ":first_spawn_occured", 1),
+      (player_set_slot, ":player_id", slot_player_first_spawn_occured, 1),
+
+      (try_begin),
+        (this_or_next|player_slot_eq, ":player_id", slot_player_is_lord, 1),
+        (player_slot_eq, ":player_id", slot_player_is_marshal, 1),
+        (call_script, "script_synchronize_lord_or_marshal", ":player_id"),
+      (try_end),
+
+      (call_script, "script_log_equipment", ":player_id"),
+      (call_script, "script_setup_singings", ":player_id"),
     (try_end),
 
-    (call_script, "script_log_equipment", ":player_id"),
-    (call_script, "script_setup_singings", ":player_id"),
-  (try_end),
-
-  (try_begin),
-    (neg|agent_is_non_player, ":agent_id"),
-    (agent_get_player_id, ":player_id", ":agent_id"),
-    (player_get_slot, ":faction_id", ":player_id", slot_player_faction_id),
-    (faction_slot_eq, ":faction_id", slot_faction_is_active, 0),
-    (call_script, "script_change_faction", ":player_id", "fac_commoners", change_faction_type_no_respawn),
-    (call_script, "script_player_set_worse_respawn_troop", ":player_id", "trp_peasant"),
-    (multiplayer_send_3_int_to_player, ":player_id", server_event_preset_message, "str_inactive_faction_change", preset_message_chat_log|preset_message_red, ":faction_id"),
-  (try_end),
+    (try_begin),
+      (neg|agent_is_non_player, ":agent_id"),
+      (agent_get_player_id, ":player_id", ":agent_id"),
+      (player_get_slot, ":faction_id", ":player_id", slot_player_faction_id),
+      (faction_slot_eq, ":faction_id", slot_faction_is_active, 0),
+      (call_script, "script_change_faction", ":player_id", "fac_commoners", change_faction_type_no_respawn),
+      (call_script, "script_player_set_worse_respawn_troop", ":player_id", "trp_peasant"),
+      (multiplayer_send_3_int_to_player, ":player_id", server_event_preset_message, "str_inactive_faction_change", preset_message_chat_log|preset_message_red, ":faction_id"),
+    (try_end),
  ])
 
 agent_killed = (ti_on_agent_killed_or_wounded, 0, 0, [], # server and clients: handle messages, score, loot, and more after agents die

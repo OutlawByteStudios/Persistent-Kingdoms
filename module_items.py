@@ -854,6 +854,13 @@ items = [
  15190, hit_points(165)|body_armor(58)|difficulty(3)|horse_speed(43)|horse_maneuver(44)|horse_charge(32)|horse_scale(112), imodbits_none],
 ["charger", "Charger", [("charger_new",0)], itp_type_horse, 0,
  15210, hit_points(165)|body_armor(58)|difficulty(3)|horse_speed(43)|horse_maneuver(44)|horse_charge(32)|horse_scale(112), imodbits_none],
+["heraldic_charger", "Heraldic Charger", [("heraldic_charger", 0)], itp_type_horse, 0,
+ 240, weight(0)|abundance(90)|body_armor(8)|difficulty(1)|hit_points(100)|horse_maneuver(44)|horse_speed(45)|weapon_length(104)|horse_charge(10), imodbits_horse_basic, [
+   (ti_on_init_item, [
+    (store_trigger_param_1, ":agent_id"),
+    (agent_set_slot, ":agent_id", slot_agent_heraldic, "mesh_tableau_mesh_heraldic_charger"),
+   ]),
+]],
 ["plated_charger", "Plated Charger", [("plated_charger",0)], itp_type_horse, 0,
  21400, hit_points(180)|body_armor(65)|difficulty(3)|horse_speed(40)|horse_maneuver(45)|horse_charge(40)|horse_scale(112), imodbits_none],
 
