@@ -365,17 +365,17 @@ soundsfile version 3
  horse_exterior_whinny_04.ogg 2688
  horse_exterior_whinny_05.ogg 2688
  horse_whinny.ogg 2688
- lute_1.mp3 1096
- lute_2.mp3 1096
- lute_3.mp3 1096
- lute_4.mp3 1096
- lyre_1.mp3 1096
- lyre_2.mp3 1096
- lyre_3.mp3 1096
- lyre_4.mp3 1096
- horncharge.ogg 2808
- hornregroup.ogg 2808
- hornretreat.ogg 2808
+ lute_1.mp3 1352
+ lute_2.mp3 1352
+ lute_3.mp3 1352
+ lute_4.mp3 1352
+ lyre_1.mp3 1352
+ lyre_2.mp3 1352
+ lyre_3.mp3 1352
+ lyre_4.mp3 1352
+ horncharge.ogg 3320
+ hornregroup.ogg 3320
+ hornretreat.ogg 3320
 236
 snd_click 913 1 0 0 
 snd_tutorial_1 1937 1 1 0 
@@ -601,15 +601,15 @@ snd_word_about_purse_belongings 2728 1 265 0
 snd_easy_way_or_hard_way 2728 1 266 0 
 snd_everything_has_a_price 2728 1 267 0 
 snd_slit_your_throat 2728 1 263 0 
-snd_lute_1 1096 1 365 0 
-snd_lute_2 1096 1 366 0 
-snd_lute_3 1096 1 367 0 
-snd_lute_4 1096 1 368 0 
-snd_lyre_1 1096 1 369 0 
-snd_lyre_2 1096 1 370 0 
-snd_lyre_3 1096 1 371 0 
-snd_lyre_4 1096 1 372 0 
-snd_horncharge 2808 1 373 0 
-snd_hornregroup 2808 1 374 0 
-snd_hornretreat 2808 1 375 0 
+snd_lute_1 1352 1 365 0 
+snd_lute_2 1352 1 366 0 
+snd_lute_3 1352 1 367 0 
+snd_lute_4 1352 1 368 0 
+snd_lyre_1 1352 1 369 0 
+snd_lyre_2 1352 1 370 0 
+snd_lyre_3 1352 1 371 0 
+snd_lyre_4 1352 1 372 0 
+snd_horncharge 3320 1 373 0 
+snd_hornregroup 3320 1 374 0 
+snd_hornretreat 3320 1 375 0 
 snd_sounds_end 0 0 
