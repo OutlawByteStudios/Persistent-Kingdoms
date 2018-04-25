@@ -5874,6 +5874,7 @@ scripts.extend([
         (server_add_message_to_log, "str_s0_has_been_outlawed"),
       (else_try),
         (str_store_faction_name, s1, ":faction_id"),
+        (assign, reg11, ":faction_id"),
         (server_add_message_to_log, "str_s0_joined_the_s1"),
       (try_end),
     (try_end),

@@ -675,7 +675,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("damage_reg1_speed_reg2", "Damage: {reg1}% Speed {reg2}%"),
   ("accuracy_reg1_reload_reg2", "Accuracy: {reg1}% Reload: {reg2}%"),
   ("joined_the_s1", "You have joined {s1}."),
-  ("s0_joined_the_s1", "{s0} joined {s1}."),
+  ("s0_joined_the_s1", "{s0} joined {s1} ({reg11})."),
   ("must_leave_s1_first", "You must leave {s1} first."),
   ("not_a_member_of_s1", "You are not a member of {s1}."),
   ("inactive_faction_change", "The faction you were in no longer exists, so you have been moved to commoner. Join another faction to avoid losing your class!"),
