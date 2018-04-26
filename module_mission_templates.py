@@ -393,6 +393,76 @@ instrument_dropped = (ti_on_item_dropped, 0, 0, [], # handle instruments
     (call_script, "script_client_stop_playing_musical_instrument", ":agent_id"),
     ])
 
+sitting_check = (1, 0, 0, [], # server: handle agents sitting
+   [(multiplayer_is_server),
+    (try_for_agents, ":agent_id"),
+      (agent_is_active,":agent_id"),
+      (agent_is_alive,":agent_id"),
+      (agent_is_human,":agent_id"),
+      (agent_get_animation, ":anim", ":agent_id", 0),
+      (try_begin),
+        (this_or_next|eq,":anim","anim_sitting_pillow_male"),
+        (eq,":anim","anim_sitting_pillow_female"),
+        (agent_slot_eq, ":agent_id", slot_agent_scene_prop_in_use, -1),
+
+        (agent_get_position, pos0, ":agent_id"),
+
+        (agent_get_slot, ":x", ":agent_id", slot_agent_animation_position_x),
+        (agent_get_slot, ":y", ":agent_id", slot_agent_animation_position_y),
+        (agent_get_slot, ":z", ":agent_id", slot_agent_animation_position_z),
+
+        (assign, ":valid_pos", 1),
+        (try_begin),
+            (this_or_next|eq, ":x", -1),
+            (this_or_next|eq, ":y", -1),
+            (eq, ":z", -1),
+            (assign, ":valid_pos", 0),
+        (try_end),
+        (eq, ":valid_pos", 1),
+
+        (position_set_x, pos1, ":x"),
+        (position_set_y, pos1, ":y"),
+        (position_set_z, pos1, ":z"),
+    
+        (get_distance_between_positions, ":dist", pos0, pos1),
+        (gt, ":dist", 30),##If moved away from the chair stop the animation
+
+        (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_sitting_finish",0),
+        (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_sitting_finish",1),
+      (try_end),
+    (try_end),
+    ])
+
+sitting_check_chair = (1, 0, 0, [], # server: handle agents sitting
+   [(multiplayer_is_server),
+    (try_for_agents, ":agent_id"),
+      (agent_is_active,":agent_id"),
+      (agent_is_alive,":agent_id"),
+      (agent_is_human,":agent_id"),
+      (agent_get_slot,":instance",":agent_id",slot_agent_scene_prop_in_use),
+      (ge,":instance",0),
+      (agent_get_animation, ":anim", ":agent_id", 0),
+      (try_begin),
+        (this_or_next|eq,":anim","anim_sitting"),
+        (this_or_next|eq,":anim","anim_sitting_pillow_male"),
+        (eq,":anim","anim_sitting_pillow_female"),
+          (try_begin),
+            (agent_get_position,pos0,":agent_id"),
+            (prop_instance_get_position, pos1, ":instance"),
+            (get_distance_between_positions,":dist",pos0,pos1),
+            (gt, ":dist", 60),##If moved away from the chair stop the animation
+            (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_sitting_finish",0),
+            (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_sitting_finish",1),
+            (agent_set_slot,":agent_id",slot_agent_scene_prop_in_use,-1),
+          (try_end),
+      (else_try),##Agent isnt sitting anymore
+        (agent_set_slot,":agent_id",slot_agent_scene_prop_in_use,-1),
+        (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_pose_finish",0),
+        (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_pose_finish",1),
+      (try_end),
+    (try_end),
+    ])
+
 player_check_loop = (0, 0, 0.5, # server: check all players to see if any need agents spawned, also periodically lowering outlaw ratings
    [(multiplayer_is_server),
     (store_mission_timer_a, ":time"),
@@ -1048,6 +1118,8 @@ def common_triggers(self):
     instrument_killed,
     instrument_unwielded,
     instrument_dropped,
+    sitting_check,
+    sitting_check_chair,
 
     player_check_loop,
     agent_check_loop,
