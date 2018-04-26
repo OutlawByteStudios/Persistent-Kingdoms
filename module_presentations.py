@@ -3879,6 +3879,11 @@ presentations.extend([
         (gt, ":cur_time", 200),
         (assign, "$g_show_inventory_instance_id", 0),
         (multiplayer_send_message_to_server, client_event_transfer_inventory), # tell the server not to send any more updates for this inventory
+        (try_begin),
+          (gt, "$g_target_corpse_instance_id", -1),
+          (multiplayer_send_int_to_server, client_event_close_inventory, "$g_target_corpse_instance_id"),
+          (assign, "$g_target_corpse_instance_id", -1),
+        (try_end),
         (presentation_set_duration, 0),
       (else_try), # end if the server signals or the item prop instance has been removed
         (this_or_next|eq, "$g_show_inventory_update_needed", -1),
