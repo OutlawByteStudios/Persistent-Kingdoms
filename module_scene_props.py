@@ -2465,6 +2465,9 @@ scene_props = [
   ("cm_tree_pine_12",spr_tree_flags(),"pk_pine_12","bo_pk_pine_12", spr_tree_triggers(full_hp=5000, fell_hp=2000)),
   ("cm_tree_pine_13",spr_tree_flags(),"pk_pine_13","bo_pk_pine_13", spr_tree_triggers(full_hp=5000, fell_hp=2000)),
   ("cm_tree_snowy_pine_2",spr_tree_flags(),"pk_snowy_pine_2","bo_pk_snowy_pine_2", spr_tree_triggers(full_hp=3700, fell_hp=1700)),
+  ("cm_tree_beech_1",spr_tree_flags(),"pk_beech_1","bo_pk_beech_1", spr_tree_triggers(full_hp=3500, fell_hp=1500, resource_imod=imod_battered)),
+  ("cm_tree_beech_2",spr_tree_flags(),"pk_beech_2","bo_pk_beech_2", spr_tree_triggers(full_hp=3500, fell_hp=1500, resource_imod=imod_battered)),
+  ("cm_tree_beech_3",spr_tree_flags(),"pk_beech_3","bo_pk_beech_3", spr_tree_triggers(full_hp=3500, fell_hp=1500, resource_imod=imod_battered)),
   ("cm_tree_1",spr_tree_flags(),"pk_tree_1","bo_pk_tree_1", spr_tree_triggers(full_hp=2500, fell_hp=1100)),
   ("cm_tree_2",spr_tree_flags(),"pk_tree_2","bo_pk_tree_2", spr_tree_triggers(full_hp=2500, fell_hp=1100)),
   ("cm_tree_3",spr_tree_flags(),"pk_tree_3","bo_pk_tree_3", spr_tree_triggers(full_hp=2500, fell_hp=1100)),
@@ -2472,6 +2475,9 @@ scene_props = [
   ("cm_tree_5",spr_tree_flags(),"pk_tree_5","bo_pk_tree_5", spr_tree_triggers(full_hp=2500, fell_hp=1100)),
   ("cm_tree_6",spr_tree_flags(),"pk_tree_6","bo_pk_tree_6", spr_tree_triggers(full_hp=2500, fell_hp=1100)),
   ("cm_tree_7",spr_tree_flags(),"pk_tree_7","bo_pk_tree_7", spr_tree_triggers(full_hp=2500, fell_hp=1100)),
+
+  ("cm_tree_apple_1",spr_tree_flags(),"pk_apple_tree_1","bo_pk_apple_tree_1", spr_fruit_tree_triggers(fruit="itm_red_apple", count=10, height=350, width=150, fruiting_interval=1200, full_hp=600, fell_hp=100, regrow_interval=1800)),
+  ("cm_tree_apple_2",spr_tree_flags(),"pk_apple_tree_2","bo_pk_apple_tree_2", spr_fruit_tree_triggers(fruit="itm_red_apple", count=10, height=350, width=150, fruiting_interval=1200, full_hp=600, fell_hp=100, regrow_interval=1800)),
 
 
   ("pw_stick_bush_2a",spr_resource_flags(),"bushes02_a","bo_bushes02_a_fixed", spr_hit_plant_triggers("itm_stick", full_hp=1000, resource_hp=50, regrow_interval=70, effect_script="script_hit_bush_effect")),
