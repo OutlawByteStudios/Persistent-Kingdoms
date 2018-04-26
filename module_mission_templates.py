@@ -308,10 +308,8 @@ agent_hit = (ti_on_agent_hit, 0, 0, [], # server: apply extra scripted effects f
       (try_begin),
         (gt, ":gender", 0),#woman
         (agent_play_sound, ":attacked_agent_id", "snd_woman_hit"),
-        (display_message, "@{reg11}"),
       (else_try),
         (agent_play_sound, ":attacked_agent_id", "snd_man_hit"),
-        (display_message, "@{reg11}"),
       (try_end),
     (try_end),
     #Log hits
