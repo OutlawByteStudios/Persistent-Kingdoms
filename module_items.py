@@ -1713,7 +1713,7 @@ itm_wall_banner("fac_8", "b"),
 ["riotshield", "Admin Shield", [("riotshield", 0)], itp_type_shield|itp_wooden_parry, itcf_carry_board_shield,
  0, weight(1)|hit_points(5000)|body_armor(100)|spd_rtng(100)|shield_width(45)|shield_height(100), imodbits_shield],
 ["baton","Baton", [("baton", 0)], itp_type_one_handed_wpn|itp_primary|itp_crush_through|itp_wooden_parry|itp_unbalanced|itp_can_knock_down, itc_scimitar|itcf_carry_sword_left_hip,
- 0, weight(1)|difficulty(30)|spd_rtng(100)|weapon_length(70)|swing_damage(30, blunt)|thrust_damage(0, pierce), imodbits_pick],
+ 0, weight(1)|difficulty(30)|spd_rtng(100)|weapon_length(70)|swing_damage(255, blunt)|thrust_damage(0, pierce), imodbits_pick],
  
 ["all_items_end", "all_items_end", [("invisible",0)], itp_no_pick_up_from_ground, 0, 0, 0, 0],
 ["pointer_arrow", "pointer_arrow", [("pointer_arrow",0)], itp_no_pick_up_from_ground, 0, 0, 0, 0],
