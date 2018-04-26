@@ -81,7 +81,7 @@ troops = [
    str_8|agi_8|pw_attr,wpex(50,30,30,20,20,20),knows_pw|knows_musician_3|knows_power_strike_1|knows_athletics_1|knows_riding_1|knows_engineer_2|knows_labouring_1|knows_tailoring_3,default_face_1,default_face_2],
   ["healer","Healer","a healer",tf_guarantee_all,0,0,"fac_commoners",
    [],
-   str_8|agi_8|pw_attr,wpex(40,10,20,0,0,5),knows_pw|knows_musician_3|knows_riding_2|knows_ironflesh_1|knows_athletics_1|knows_wound_treatment_7|knows_tailoring_2|knows_herding_1,default_face_1,default_face_2],
+   str_10|agi_10|pw_attr,wpex(55,30,35,10,20,30),knows_pw|knows_musician_3|knows_riding_2|knows_ironflesh_1|knows_power_strike_1|knows_athletics_1|knows_wound_treatment_7|knows_tailoring_2|knows_herding_1,default_face_1,default_face_2],
   ["footman","Footman","a footman",tf_guarantee_all,0,0,"fac_commoners",
    [],
    str_14|agi_15|pw_attr,wpex(110,110,110,10,45,80),knows_pw|knows_ironflesh_5|knows_power_strike_4|knows_power_throw_2|knows_shield_1|knows_athletics_5|knows_riding_2|knows_sailing_3,default_face_1,default_face_2],
