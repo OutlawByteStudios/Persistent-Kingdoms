@@ -1,4 +1,4 @@
-17
+18
 qstr_fist fist
 qstr_{s0}^Ironflesh:_{reg {s0}^Ironflesh:_{reg10}
 qstr_{s0}^Power_strike:_{ {s0}^Power_strike:_{reg10}
@@ -16,3 +16,4 @@ qstr_{s0}^Sailing:_{reg10 {s0}^Sailing:_{reg10}
 qstr_{s0}^Tailoring:_{reg {s0}^Tailoring:_{reg10}
 qstr_{s0}^Herding:_{reg10 {s0}^Herding:_{reg10}
 qstr_{s0}^Musician:_{reg1 {s0}^Musician:_{reg10}
+qstr_test test

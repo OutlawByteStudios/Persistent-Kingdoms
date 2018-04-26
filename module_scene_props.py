@@ -6,7 +6,6 @@ from header_sounds import *
 from module_constants import *
 import header_debug as dbg
 import header_lazy_evaluation as lazy
-from header_troops import *
 
 ####################################################################################################################
 #  Each scene prop record contains the following fields:
@@ -841,61 +840,6 @@ def spr_destroy_heap_triggers():
       ]),
     spr_call_script_use_trigger("script_cf_use_destroy_heap")]
 
-# Chairs/Sitting - Based off NW Piano Script
-def spr_chairs(anim, female_anim=0):
-  return [(ti_on_scene_prop_init,
-     [(store_trigger_param_1, ":instance_id"),
-      (scene_prop_set_slot, ":instance_id", slot_scene_prop_use_string, "str_take_a_seat"),
-      ]),
-    (ti_on_scene_prop_use,
-     [(store_trigger_param_1, ":agent_id"),
-      (store_trigger_param_2, ":instance_id"),
-      (agent_is_active,":agent_id"),
-      (agent_is_alive,":agent_id"),
-      (agent_get_player_id,":player_id",":agent_id"),
-      (player_is_active,":player_id"),
-      (prop_instance_is_valid,":instance_id"),
-
-      (neg|agent_slot_ge, ":agent_id", slot_agent_scene_prop_in_use, 0),
-
-      (assign,":in_use",0),
-      (try_for_agents, ":cur_agent"),
-        (agent_is_active,":cur_agent"),
-        (agent_is_alive,":cur_agent"),
-        (agent_get_slot,":cur_inst",":cur_agent",slot_agent_scene_prop_in_use),
-        (eq,":cur_inst",":instance_id"),
-        (neq,":cur_agent",":agent_id"),
-        (assign,":in_use",1),
-      (try_end),
-
-      (try_begin),
-        (eq,":in_use",0),
-
-        # not on horseback
-        (try_begin),
-          (agent_get_horse, ":player_horse", ":agent_id"),
-          (le, ":player_horse", 0),
-
-          (try_begin),
-            (set_fixed_point_multiplier, 100),
-            (prop_instance_get_position, pos40, ":instance_id"),
-            (agent_set_position,":agent_id",pos40),
-            (agent_set_slot,":agent_id",slot_agent_scene_prop_in_use,":instance_id"),
-
-            (try_begin),
-              (neq, female_anim, 0),
-              (player_get_gender, ":gender", ":player_id"),
-              (eq, ":gender", tf_female),
-              (call_script, "script_cf_do_custom_anims", ":agent_id", female_anim,0),
-            (else_try),
-              (call_script, "script_cf_do_custom_anims", ":agent_id", anim,0),
-            (try_end),
-          (try_end),
-        (try_end),
-      (try_end),
-      ]),
-    ]
-
 scene_props = [
   ("invalid_object",0,"question_mark","0", []),
   ("inventory",sokf_type_container|sokf_place_at_origin,"package","bobaggage", []),
@@ -1477,22 +1421,6 @@ scene_props = [
   ("mat_b",0,"mat_b","0", []),
   ("mat_c",0,"mat_c","0", []),
   ("mat_d",0,"mat_d","0", []),
-
-  ("cm_sitable_gothic_chair",spr_use_time(1),"sitable_gothic_chair","bo_sitable_gothic_chair", spr_chairs("anim_sitting")),
-  ("cm_sitable_tavern_chair_a", spr_use_time(1), "tavern_chair_a", "bo_tavern_chair_a", spr_chairs("anim_sitting")),
-  ("cm_sitable_tavern_chair_b",spr_use_time(1),"tavern_chair_b","bo_tavern_chair_b", spr_chairs("anim_sitting")),
-  ("cm_sitable_tavern_chair_c",spr_use_time(1), "tavern_chair_c","bo_tavern_chair_c", spr_chairs("anim_sitting")),
-  ("cm_sitable_chair_trunk_b", spr_use_time(1), "chair_trunk_b", "bo_chair_trunk_b", spr_chairs("anim_sitting")),
-  ("cm_sitable_chair_trunk_c", spr_use_time(1), "chair_trunk_c", "bo_chair_trunk_c", spr_chairs("anim_sitting")),
-  ("cm_sitable_chair_trestle",spr_use_time(1),"chair_trestle","bo_chair_trestle", spr_chairs("anim_sitting")),
-  ("cm_sitable_bench_tavern", spr_use_time(1), "bench_tavern", "bo_bench_tavern", spr_chairs("anim_sitting")),
-  ("cm_sitable_bench_tavern_b", spr_use_time(1), "bench_tavern_b", "bo_bench_tavern_b", spr_chairs("anim_sitting")),
-  ("cm_sitable_chair_castle_a", spr_use_time(1), "cm_chair_castle_a", "bo_cm_chair_castle_a", spr_chairs("anim_sitting")),
-  ("cm_sitable_pillow_blue",spr_use_time(1),"pillow_blue","bo_pillow_blue", spr_chairs("anim_sitting_pillow_male","anim_sitting_pillow_female")),
-  ("cm_sitable_pillow_red",spr_use_time(1),"pillow_red","bo_pillow_red", spr_chairs("anim_sitting_pillow_male","anim_sitting_pillow_female")),
-  ("cm_sitable_pillow_red_small",spr_use_time(1),"pillow_red_small","bo_pillow_red_small", spr_chairs("anim_sitting")),
-  ("cm_sitable_pillow_blue_small",spr_use_time(1),"pillow_blue_small","bo_pillow_blue_small", spr_chairs("anim_sitting")),
-  ("cm_sitable_invisable",spr_use_time(1),"invisable","bo_invisable_chair", spr_chairs("anim_sitting")),
 
   ("wood_a",0,"wood_a","bo_wood_a", []),
   ("wood_b",0,"wood_b","bo_wood_b", []),
@@ -3245,10 +3173,10 @@ scene_props = [
   ("pw_change_troop_militia",spr_use_time(30),"practice_sword","bo_pw_weapon", spr_change_troop_triggers("trp_militia", cost=500)),
   ("pw_change_troop_huntsman",spr_use_time(30),"short_bow","bo_pw_weapon", spr_change_troop_triggers("trp_huntsman", cost=500)),
   ("pw_change_troop_craftsman",spr_use_time(50),"pw_repair_hammer","bo_pw_weapon_small", spr_change_troop_triggers("trp_craftsman", cost=800)),
-  ("pw_change_troop_healer",spr_use_time(60),"package","bobaggage", spr_change_troop_triggers("trp_healer", cost=3000)),
+  ("pw_change_troop_healer",spr_use_time(60),"package","bobaggage", spr_change_troop_triggers("trp_healer", cost=3500)),
   ("pw_change_troop_footman",spr_use_time(60),"shield_kite_i","bo_pw_shield_kite_small", spr_change_troop_triggers("trp_footman", cost=3000)),
-  ("pw_change_troop_archer",spr_use_time(60),"hunting_bow","bo_pw_weapon", spr_change_troop_triggers("trp_archer", cost=3500)),
-  ("pw_change_troop_crossbowman",spr_use_time(60),"crossbow_a","bo_pw_weapon", spr_change_troop_triggers("trp_crossbowman", cost=3500)),
+  ("pw_change_troop_archer",spr_use_time(60),"hunting_bow","bo_pw_weapon", spr_change_troop_triggers("trp_archer", cost=2000)),
+  ("pw_change_troop_crossbowman",spr_use_time(60),"crossbow_a","bo_pw_weapon", spr_change_troop_triggers("trp_crossbowman", cost=2000)),
   ("pw_change_troop_lancer",spr_use_time(70),"shield_heater_c","bo_pw_shield_kite_small", spr_change_troop_triggers("trp_lancer", cost=3000)),
   ("pw_change_troop_man_at_arms",spr_use_time(90),"shield_heater_c","bo_pw_shield_kite_small", spr_change_troop_triggers("trp_man_at_arms", cost=5000)),
   ("pw_change_troop_mounted_knight",spr_use_time(90),"shield_heater_c","bo_pw_shield_kite_small", spr_change_troop_triggers("trp_mounted_knight", cost=5000)),
