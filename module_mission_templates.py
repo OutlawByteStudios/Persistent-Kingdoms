@@ -297,6 +297,11 @@ agent_hit = (ti_on_agent_hit, 0, 0, [], # server: apply extra scripted effects f
       (is_between, reg0, scripted_items_begin, scripted_items_end),
       (call_script, "script_agent_hit_with_scripted_item", ":attacked_agent_id", ":attacker_agent_id", ":damage_dealt", reg0),
     (try_end),
+    (try_begin),
+      (eq, reg0, "itm_baton"),
+      (agent_set_animation, ":attacked_agent_id", "anim_strike_fall_back_rise", 0),
+      (set_trigger_result, 0),
+    (try_end),
     #Log hits
     (call_script, "script_log_hit", ":attacked_agent_id", ":attacker_agent_id", ":damage_dealt", reg0, 0),
     ])
