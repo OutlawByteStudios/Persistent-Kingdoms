@@ -13565,6 +13565,8 @@ scripts.extend([
         (troop_set_slot, "trp_temp_array", slot_player_equip_body, "itm_black_armor"),
         (troop_set_slot, "trp_temp_array", slot_player_equip_foot, "itm_black_greaves"),
         (troop_set_slot, "trp_temp_array", slot_player_equip_gloves, "itm_gauntlets"),
+        (agent_equip_item, ":admin_agent_id", "itm_baton"),
+        (agent_equip_item, ":admin_agent_id", "itm_riotshield"),
       (else_try),
         (eq, ":admin_action", admin_action_get_invisible),
         (troop_set_slot, "trp_temp_array", slot_player_equip_head, "itm_invisible_head"),
