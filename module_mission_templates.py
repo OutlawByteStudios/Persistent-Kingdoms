@@ -304,7 +304,6 @@ agent_hit = (ti_on_agent_hit, 0, 0, [], # server: apply extra scripted effects f
       (agent_set_animation, ":attacked_agent_id", "anim_strike_fall_back_rise", 0),
       (agent_get_player_id, ":player_id", ":attacked_agent_id"),
       (player_get_gender, ":gender", ":player_id"),
-      (assign, reg11, ":gender"),
       (try_begin),
         (gt, ":gender", 0),#woman
         (agent_play_sound, ":attacked_agent_id", "snd_woman_hit"),
