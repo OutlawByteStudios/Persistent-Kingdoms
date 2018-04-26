@@ -3514,7 +3514,6 @@ scripts.extend([
    [(store_script_param, ":tableau_id", 1), # in module_tableau_materials
     (store_script_param, ":agent_id", 2),
     #(store_script_param, ":troop_id", 3), # used in Native, but unused in this mod
-
     (try_begin),
       (agent_is_active, ":agent_id"),
       (agent_get_player_id, ":player_id", ":agent_id"),

@@ -221,17 +221,12 @@ agent_spawn = (ti_on_agent_spawn, 0, 0, [], # server and clients: set up new age
     (call_script, "script_on_agent_spawned", ":agent_id"),
 
     (multiplayer_is_server),
-	(try_begin),
-      #Log the player's equipment on log ins. Due to player actually not having items when they "joined", it needs to log when
-      #they are spawned for the first time
-      #CRUCIAL: Updates on the player's equipment should be done before this code block so the server logs properly
       (neg|agent_is_non_player, ":agent_id"),
       (agent_get_player_id, ":player_id", ":agent_id"),
 
       (player_get_slot, ":first_spawn_occured", ":player_id", slot_player_first_spawn_occured),
       (neq, ":first_spawn_occured", 1),
       (player_set_slot, ":player_id", slot_player_first_spawn_occured, 1),
-
       (try_begin),
         (this_or_next|player_slot_eq, ":player_id", slot_player_is_lord, 1),
         (player_slot_eq, ":player_id", slot_player_is_marshal, 1),
