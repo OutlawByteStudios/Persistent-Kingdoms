@@ -4492,8 +4492,6 @@ scripts.extend([
         (player_is_active, ":killer_player_id"),
         (player_get_slot, ":dead_faction_id", ":dead_player_id", slot_player_faction_id),
         (player_get_slot, ":killer_faction_id", ":killer_player_id", slot_player_faction_id),
-
-
         (try_begin), # calculate score.
           (lt, ":dead_faction_id", castle_factions_begin),
           (lt, ":killer_faction_id", castle_factions_begin),
@@ -4567,7 +4565,7 @@ scripts.extend([
           (this_or_next|neq, ":dead_faction_id", ":killer_faction_id"),
           (this_or_next|eq, ":dead_faction_id", "fac_commoners"),
           (eq, ":dead_faction_id", "fac_outlaws"),
-
+          (player_is_active, ":dead_player_id"),
           (neq, "$g_game_type", "mt_no_money"),
           (try_begin),
             (eq, ":dead_faction_id", "fac_commoners"),

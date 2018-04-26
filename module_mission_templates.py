@@ -257,13 +257,15 @@ agent_killed = (ti_on_agent_killed_or_wounded, 0, 0, [], # server and clients: h
    [(store_trigger_param_1, ":dead_agent_id"),
     (store_trigger_param_2, ":killer_agent_id"),
 
-    (agent_get_player_id, ":player_id", ":dead_agent_id"),
-
-    (try_begin),
-        (server_get_ghost_mode, ":spectator_is_enabled"),
-        (ge, ":spectator_is_enabled", 2),
-        (neg | player_is_admin, ":player_id"),
-        (player_set_team_no, ":player_id", 3),
+    (try_begin), # put person in other team is spectator is disabled to prevent player click through
+        (agent_get_player_id, ":player_id", ":dead_agent_id"),
+        (player_is_active, ":player_id"),
+        (try_begin),
+            (server_get_ghost_mode, ":spectator_is_enabled"),
+            (ge, ":spectator_is_enabled", 2),
+            (neg | player_is_admin, ":player_id"),
+            (player_set_team_no, ":player_id", 3),
+        (try_end),
     (try_end),
 
     (call_script, "script_client_check_show_respawn_time_counter", ":dead_agent_id"),
