@@ -219,14 +219,6 @@ player_exit = (ti_on_player_exit, 0, 0, [], # server: save player values on exit
 agent_spawn = (ti_on_agent_spawn, 0, 0, [], # server and clients: set up new agents after they spawn
    [(store_trigger_param_1, ":agent_id"),
     (call_script, "script_on_agent_spawned", ":agent_id"),
-
-    (try_begin),
-      (neg | agent_is_human, ":agent_id"),
-      # (agent_get_slot, ":mesh_id", ":agent_id", slot_agent_heraldic),
-      # (gt, ":mesh_id", 0),
-      (cur_agent_set_banner_tableau_material, "tableau_heraldic_charger"),
-      (display_message, "@run"),
-    (try_end),
 	
 	(try_begin),
       #Log the player's equipment on log ins. Due to player actually not having items when they "joined", it needs to log when

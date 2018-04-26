@@ -241,9 +241,6 @@ tableaus = [
      [(store_script_param, ":banner_mesh", 1),
       (set_fixed_point_multiplier, 100),
 
-
-      (display_message, "@running tableu1"),
-
       (troop_get_slot, ":background_color", "trp_banner_background_color_array", ":banner_mesh"),
       (cur_tableau_set_background_color, ":background_color"),
 
@@ -258,8 +255,6 @@ tableaus = [
       (position_set_z, pos1, 100),
       (cur_tableau_add_mesh, "mesh_tableau_mesh_heraldic_charger", pos1, 0, 0),
       (cur_tableau_set_camera_parameters, 0, 200, 200, 0, 100000),
-
-      (display_message, "@running tableu2"),
   ]),
 
 ]
