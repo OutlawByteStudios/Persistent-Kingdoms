@@ -156,8 +156,6 @@ slot_agent_last_apply_factors_item_id = 66 # last item id that modifier factors 
 
 slot_agent_playing_music              = 67
 
-slot_agent_heraldic                   = 68
-
 
 ########################################################
 ##  SCENE PROP SLOTS       #############################
