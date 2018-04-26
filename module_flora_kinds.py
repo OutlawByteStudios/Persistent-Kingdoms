@@ -146,7 +146,7 @@ flora_kinds = [
   ("pk_snowy_pine_2",fkf_plain|fkf_plain_forest|fkf_snow|fkf_snow_forest|fkf_tree|density(0),[("pk_snowy_pine_2","bo_pk_snowy_pine_2",("0","0"))]),
   ("pk_snowy_pine_3",fkf_plain|fkf_plain_forest|fkf_snow|fkf_snow_forest|fkf_tree|density(0),[("pk_snowy_pine_3","bo_pk_snowy_pine_3",("0","0"))]),
   ("pk_snowy_pine_4",fkf_plain|fkf_plain_forest|fkf_snow|fkf_snow_forest|fkf_tree|density(0),[("pk_snowy_pine_4","bo_pk_snowy_pine_4",("0","0"))]),
-  ("pk_beech",fkf_plain|fkf_plain_forest|fkf_snow|fkf_snow_forest|fkf_tree|density(0),[("pk_beech_1","bo_pk_beech_1",("0","0")),("pk_beech_2","bo_pk_beech_2",("0","0")),("pk_beech_3","bo_pk_beech_3",("0","0"))]),
+  ("pk_beech",fkf_plain|fkf_plain_forest|fkf_tree|density(0),[("pk_beech_1","bo_pk_beech_1",("0","0")),("pk_beech_2","bo_pk_beech_2",("0","0")),("pk_beech_3","bo_pk_beech_3",("0","0"))]),
   ("pk_tree_1",fkf_plain|fkf_plain_forest|fkf_steppe|fkf_steppe_forest|fkf_tree|density(0),[("pk_tree_1","bo_pk_tree_1",("0","0"))]),
   ("pk_tree_2",fkf_plain|fkf_plain_forest|fkf_steppe|fkf_steppe_forest|fkf_tree|density(0),[("pk_tree_2","bo_pk_tree_2",("0","0")),("pk_tree_5","bo_pk_tree_5",("0","0"))]),
   ("pk_tree_3",fkf_plain|fkf_plain_forest|fkf_steppe|fkf_steppe_forest|fkf_tree|density(0),[("pk_tree_3","bo_pk_tree_3",("0","0"))]),
