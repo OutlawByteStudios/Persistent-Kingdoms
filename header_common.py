@@ -33,16 +33,13 @@ server_event_admin_set_permissions              = 25
 server_event_set_attached_scene_prop            = 26
 server_event_local_animation                    = 27
 server_event_update_scene_prop_hit_points       = 28
-
 server_event_agent_stop_sound                   = 29
 server_event_agent_play_sound                   = 30
-
 server_event_agent_animation                    = 31
-
 server_event_inventory_ready                    = 32
+server_event_toggle_walk                        = 33
 
 # Add new events here: above if sent from the server, below if from clients.
-
 client_event_toggle_walk                        = 87
 client_event_close_inventory                    = 88
 client_event_open_inventory                     = 89
