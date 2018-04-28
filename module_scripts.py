@@ -2133,7 +2133,7 @@ scripts.extend([
         (player_get_agent_id, ":agent_id", ":sender_player_id"),
         (try_begin),
           (eq, ":walk_on", 1),
-          (assign, ":speed", 50),
+          (assign, ":speed", walk_speed),
         (else_try),
           (assign, ":speed", 100),
         (try_end),
