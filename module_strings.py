@@ -535,7 +535,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("display_local_chat_on_overlay", "Display local chat on overlay"),
   ("deactivate_clickable_animation_menu", "Dectivate clickable animation menu"),
   ("unmute_global_chat", "Unmute global chat"),
-  ("walk_off", "Walking Mode On"),
+  ("walk_off", "Walking Mode Off"),
 
   ("open_close_helmet_error", "This helmet has no toggleable visor!"),
 
