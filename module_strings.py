@@ -513,7 +513,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("activate_clickable_animation_menu", "Activate clickable animation menu"),
   ("mute_global_chat", "Mute global chat"),
   ("mute_music", "Mute instruments"),
-  ("walk_on", "Walking Mode On"),
+  ("walk_on", "Walking mode on"),
   ("open_close_helmet", "Open / Close Helmet"),
   ("toggle_head", "Toggle head armor"),
   ("toggle_hand", "Toggle hand armor"),
@@ -535,7 +535,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("display_local_chat_on_overlay", "Display local chat on overlay"),
   ("deactivate_clickable_animation_menu", "Dectivate clickable animation menu"),
   ("unmute_global_chat", "Unmute global chat"),
-  ("walk_off", "Walking Mode Off"),
+  ("walk_off", "Walking mode off"),
 
   ("open_close_helmet_error", "This helmet has no toggleable visor!"),
 
