@@ -606,7 +606,7 @@ admin_restock_amount                  = 5 # amount admin restocks pile by for ea
 animations_while_muted                = 1 # can players use animations while muted?
 random_gear_in_chests                 = 0
 
-walk_speed_factor                     = 4
+walk_speed_factor                     = 2
 
 all_items_begin = "itm_tattered_headcloth"
 all_items_end = "itm_all_items_end"
