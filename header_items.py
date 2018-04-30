@@ -335,8 +335,6 @@ itcf_carry_bow_back                                  = 0x0000000160000000
 itcf_carry_spear                                     = 0x0000000170000000
 itcf_carry_board_shield                              = 0x0000000180000000
 
-itcf_carry_wakizashi                                 = 0x0000000220000000
-
 itcf_show_holster_when_drawn                         = 0x0000000800000000
 
 itcf_reload_pistol                                   = 0x0000007000000000

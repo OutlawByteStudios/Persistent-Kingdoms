@@ -1385,7 +1385,7 @@ items = [
  
 ["katana", "Katana", [("katana",0),("katana_scabbard",ixmesh_carry)], itp_type_two_handed_wpn|itp_two_handed|itp_primary, itc_greatsword|itcf_carry_sword_left_hip|itcf_show_holster_when_drawn,
  2000 , weight(2.0)|difficulty(15)|spd_rtng(97)|weapon_length(95)|swing_damage(38, cut)|thrust_damage(28, pierce),imodbits_sword],
-["wakizashi", "Wakizashi", [("wakizashi",0),("wakizashi_scabbard",ixmesh_carry)], itp_type_one_handed_wpn|itp_primary, itc_longsword|itcf_carry_wakizashi|itcf_show_holster_when_drawn,
+["wakizashi", "Wakizashi", [("wakizashi",0),("wakizashi_scabbard",ixmesh_carry)], itp_type_one_handed_wpn|itp_primary, itc_longsword|itcf_carry_sword_left_hip|itcf_show_holster_when_drawn,
  1200 , weight(1.25)|difficulty(12)|spd_rtng(105)|weapon_length(65)|swing_damage(28, cut)|thrust_damage(22, pierce),imodbits_sword],
  
 ["cwe_knight_horse_2", "Barded Horse", [("cwe_knight_horse_2",0)], itp_type_horse, 0,
