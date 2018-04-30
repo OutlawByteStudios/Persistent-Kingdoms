@@ -26,12 +26,20 @@ scripts.extend([
 
   ("toggle_walk", [
     (store_script_param, ":player_id", 1),
-    (store_script_param, ":force_off", 2),
+    (store_script_param, ":force_off_if_on", 2),
     (try_begin),
       (player_is_active, ":player_id"),
       (player_get_agent_id, ":agent_id", ":player_id"),
       (agent_get_slot, ":walk_mode", ":agent_id", slot_agent_walk_mode),
       (agent_get_speed_modifier, ":speed", ":agent_id"),
+
+      (assign, ":force_off", 0),
+      (try_begin),
+        (eq, ":walk_mode", 1),
+        (eq, ":force_off_if_on", 1),
+        (assign, ":force_off", 1),
+      (try_end),
+
       (try_begin),
         (this_or_next|eq, ":force_off", 1),
         (eq, ":walk_mode", 1),
