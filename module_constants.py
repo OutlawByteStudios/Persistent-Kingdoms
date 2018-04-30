@@ -676,6 +676,9 @@ horn_sounds_end = "snd_hornretreat"
 teleport_doors_begin = "spr_pw_door_teleport_small_arch_a"
 teleport_doors_end = "spr_pw_door_teleport_invisible_not_pickable_horse"
 
+rotating_doors_begin = "spr_pw_door_rotate_a"
+rotating_doors_end = "spr_cm_door_rotate_akra_right"
+
 item_chests_begin = "spr_pw_castle_money_chest"
 item_chests_end = "spr_cm_arrow_holder_bucket"
 

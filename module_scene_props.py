@@ -3210,8 +3210,6 @@ scene_props = [
   ("cm_akra_round_tower_b",0,"cm_akra_round_tower_b","bo_cm_akra_round_tower_b", []),
   ("cm_akra_round_tower_c",0,"cm_akra_round_tower_c","bo_cm_akra_round_tower_c", []),
   ("cm_akra_round_tower_d",0,"cm_akra_round_tower_d","bo_cm_akra_round_tower_d", []),
-  ("cm_door_rotate_akra_left",spr_rotate_door_flags(1),"cm_akra_vorota_b","bo_cm_akra_vorota_b", spr_rotate_door_triggers(hit_points=5000, left=1)),
-  ("cm_door_rotate_akra_right",spr_rotate_door_flags(1),"cm_akra_vorota_a","bo_cm_akra_vorota_a", spr_rotate_door_triggers(hit_points=5000)),
   ("cm_wall_sea_akr_a",0,"cm_wall_sea_Akr_a","bo_cm_wall_sea_Akr_a", []),
   ("cm_wall_sea_akr_b",0,"cm_wall_sea_Akr_b","bo_cm_wall_sea_Akr_b", []),
   ("cm_fort_akr_a",0,"cm_fort_Akr_a","bo_cm_fort_Akr_a", []),
@@ -3316,6 +3314,8 @@ scene_props = [
   ("pw_door_rotate_stable",spr_rotate_door_flags(1),"pw_full_stable_door_a","bo_pw_full_stable_door_a", spr_rotate_door_triggers(hit_points=1000, left=1)),
   ("pw_door_rotate_village_a",spr_rotate_door_flags(1),"pw_village_door_a","bo_pw_village_door_a", spr_rotate_door_triggers(hit_points=2000)),
   ("pw_door_rotate_village_b",spr_rotate_door_flags(1),"pw_village_door_b","bo_pw_village_door_a", spr_rotate_door_triggers(hit_points=2000)),
+  ("cm_door_rotate_akra_left",spr_rotate_door_flags(1),"cm_akra_vorota_b","bo_cm_akra_vorota_b", spr_rotate_door_triggers(hit_points=5000, left=1)),
+  ("cm_door_rotate_akra_right",spr_rotate_door_flags(1),"cm_akra_vorota_a","bo_cm_akra_vorota_a", spr_rotate_door_triggers(hit_points=5000)),
 
   ("pw_wooden_bridge_a",spr_structure_flags(),"bridge_wooden","bo_bridge_wooden_fixed", spr_bridge_triggers("pw_wooden_bridge_a_footing", hit_points=15000)),
   ("pw_wooden_bridge_a_footing",spr_build_flags(),"pw_build_bridge","bo_pw_build", spr_bridge_footing_triggers()),

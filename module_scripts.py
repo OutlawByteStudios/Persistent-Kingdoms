@@ -151,12 +151,21 @@ scripts.extend([
         (prop_instance_clear_attached_missiles, ":instance"),
       (try_end),
     (try_end),
-      
+
     (store_add, ":item_chests_end", item_chests_end, 1),
     (try_for_range, ":item_chest_id", item_chests_begin, ":item_chests_end"),
       (scene_prop_get_num_instances, ":item_chest_num_instances", ":item_chest_id"),
       (try_for_range, ":instance_index", 0, ":item_chest_num_instances"),
         (scene_prop_get_instance, ":instance", ":item_chest_id", ":instance_index"),
+        (prop_instance_clear_attached_missiles, ":instance"),
+      (try_end),
+    (try_end),
+
+    (store_add, ":doors_end", rotating_doors_end, 1),
+    (try_for_range, ":doors_id", rotating_doors_begin, ":doors_end"),
+      (scene_prop_get_num_instances, ":doors_num_instances", ":doors_id"),
+      (try_for_range, ":instance_index", 0, ":doors_num_instances"),
+        (scene_prop_get_instance, ":instance", ":doors_id", ":instance_index"),
         (prop_instance_clear_attached_missiles, ":instance"),
       (try_end),
     (try_end),
