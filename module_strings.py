@@ -533,7 +533,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("hide_name_labels", "Hide name labels"),
   ("hide_chat_overlay", "Hide chat overlay"),
   ("display_local_chat_on_overlay", "Display local chat on overlay"),
-  ("deactivate_clickable_animation_menu", "Dectivate clickable animation menu"),
+  ("deactivate_clickable_animation_menu", "Deactivate clickable animation menu"),
   ("unmute_global_chat", "Unmute global chat"),
   ("walk_off", "Walking mode off"),
 
