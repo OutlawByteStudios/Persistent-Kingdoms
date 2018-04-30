@@ -33,7 +33,7 @@ scripts.extend([
       (agent_get_slot, ":walk_mode", ":agent_id", slot_agent_walk_mode),
       (agent_get_speed_modifier, ":speed", ":agent_id"),
       (try_begin),
-        (neq, ":force_off", 1),
+        (this_or_next|eq, ":force_off", 1),
         (eq, ":walk_mode", 1),
         (assign, ":walk_mode", 0),
         (val_mul, ":speed", walk_speed_factor),
