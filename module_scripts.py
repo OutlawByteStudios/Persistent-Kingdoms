@@ -140,7 +140,6 @@ scripts.extend([
   ]),
 
   #Shield Log Script
-  #TODO: log when someone hits someone else's shield
   ("log_shield_hit", [
     (try_begin),
       (multiplayer_is_server),
