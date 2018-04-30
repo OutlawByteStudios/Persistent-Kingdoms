@@ -1383,7 +1383,7 @@ items = [
 ["bow_f_decorated_bow", "Decorated Longbow", [("bow_f_decorated_bow",0),("bow_f_decorated_bow_carry",ixmesh_carry)], itp_type_bow|itp_primary|itp_two_handed|itp_cant_use_on_horseback, itcf_shoot_bow|itcf_carry_bow_back,
  1328, weight(1.5)|difficulty(4)|weapon_length(205)|spd_rtng(85)|shoot_speed(59)|thrust_damage(25, pierce), imodbits_bow],
  
-["katana", "Katana", [("katana",0),("katana_scabbard",ixmesh_carry)], itp_type_two_handed_wpn|itp_two_handed|itp_primary, itc_greatsword|itcf_carry_katana|itcf_show_holster_when_drawn,
+["katana", "Katana", [("katana",0),("katana_scabbard",ixmesh_carry)], itp_type_two_handed_wpn|itp_two_handed|itp_primary, itc_greatsword|itcf_carry_sword_left_hip|itcf_show_holster_when_drawn,
  2000 , weight(2.0)|difficulty(15)|spd_rtng(97)|weapon_length(95)|swing_damage(38, cut)|thrust_damage(28, pierce),imodbits_sword],
 ["wakizashi", "Wakizashi", [("wakizashi",0),("wakizashi_scabbard",ixmesh_carry)], itp_type_one_handed_wpn|itp_primary, itc_longsword|itcf_carry_wakizashi|itcf_show_holster_when_drawn,
  1200 , weight(1.25)|difficulty(12)|spd_rtng(105)|weapon_length(65)|swing_damage(28, cut)|thrust_damage(22, pierce),imodbits_sword],
