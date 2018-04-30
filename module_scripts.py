@@ -24,6 +24,29 @@ import math
 scripts = []
 scripts.extend([
 
+  ("toggle_walk", [
+    (store_script_param, ":player_id", 1),
+    (store_script_param, ":force_off", 2),
+    (try_begin),
+      (player_is_active, ":player_id"),
+      (player_get_agent_id, ":agent_id", ":player_id"),
+      (agent_get_slot, ":walk_mode", ":agent_id", slot_agent_walk_mode),
+      (agent_get_speed_modifier, ":speed", ":agent_id"),
+      (try_begin),
+        (this_or_next|eq, ":force_off", 1),
+        (eq, ":walk_mode", 1),
+        (assign, ":walk_mode", 0),
+        (val_mul, ":speed", walk_speed_factor),
+      (else_try),
+        (assign, ":walk_mode", 1),
+        (val_div, ":speed", walk_speed_factor),
+      (try_end),
+      (agent_set_speed_modifier, ":agent_id", ":speed"),
+      (agent_set_slot, ":agent_id", slot_agent_walk_mode, ":walk_mode"),
+      (multiplayer_send_2_int_to_player, ":player_id", server_event_toggle_walk, ":walk_mode"),
+    (try_end),
+  ]),
+
   ("spawn_or_use_inventory_corpse", [
     (store_script_param_1, ":player_id"),
     (try_begin),
@@ -1387,6 +1410,10 @@ scripts.extend([
         (scene_prop_set_slot, "$g_target_corpse_instance_id", slot_scene_prop_inventory_max_length, corpse_inventory_max_length),
         (scene_prop_set_slot, "$g_target_corpse_instance_id", slot_scene_prop_inventory_targeted, 1),
         (multiplayer_send_int_to_server, client_event_agent_loot_armor, "$g_target_corpse_instance_id"),
+      (else_try),
+        (eq, ":event_type", server_event_toggle_walk),
+        (store_script_param, ":walk_mode", 3),
+        (assign, "$g_walk_mode", ":walk_mode"),
       (try_end),
 
     (else_try), # section of events received by server from the clients
@@ -2041,16 +2068,7 @@ scripts.extend([
         (agent_set_slot, ":agent_id", slot_agent_storage_corpse_instance_id, -1),
       (else_try),
         (eq, ":event_type", client_event_toggle_walk),
-        (store_script_param, ":walk_on", 3),
-        (player_is_active, ":sender_player_id"),
-        (player_get_agent_id, ":agent_id", ":sender_player_id"),
-        (try_begin),
-          (eq, ":walk_on", 1),
-          (assign, ":speed", walk_speed),
-        (else_try),
-          (assign, ":speed", 100),
-        (try_end),
-        (agent_set_speed_modifier, ":agent_id", ":speed"),
+        (call_script, "script_toggle_walk", ":sender_player_id", 0),
     (try_end),
     (try_end),
     ]),
