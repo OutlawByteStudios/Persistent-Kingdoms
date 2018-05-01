@@ -4079,12 +4079,12 @@ presentations.extend([
 
                 (item_get_type, ":item_type", ":item_id"),
                 (try_begin),
-                (this_or_next | eq, ":item_type", itp_type_arrows),
-                (this_or_next | eq, ":item_type", itp_type_bolts),
-                (eq, ":item_type", itp_type_thrown),
-                (assign, ":item_ammo", 0),
+                  (this_or_next | eq, ":item_type", itp_type_arrows),
+                  (this_or_next | eq, ":item_type", itp_type_bolts),
+                  (eq, ":item_type", itp_type_thrown),
+                  (assign, ":item_ammo", 0),
                 (else_try),
-                (assign, ":item_ammo", -1),
+                  (assign, ":item_ammo", -1),
                 (try_end),
 
                 (assign, ":error_string_id", "str_cant_put_ammo_in_container"),
