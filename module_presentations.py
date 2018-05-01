@@ -3792,6 +3792,7 @@ presentations.extend([
           (try_begin),
             (this_or_next|ge, ":target_inventory_slot", slot_scene_prop_inventory_item_0),
             (scene_prop_slot_ge, "$g_show_inventory_instance_id", slot_scene_prop_inventory_max_length, ":length"),
+
             (assign, ":error_string_id", "str_cant_put_money_bag_in_container"),
             (this_or_next|neq, ":item_id", "itm_money_bag"),
             (ge, ":target_inventory_slot", slot_scene_prop_inventory_item_0),
@@ -3991,22 +3992,19 @@ presentations.extend([
       (store_add, ":target_mesh_slot", ":found_obj_slot", slot_scene_prop_inventory_mesh_begin - slot_scene_prop_inventory_obj_begin),
 	  (scene_prop_get_slot, ":target_mesh_object_id", "$g_show_inventory_instance_id", ":target_mesh_slot"),
 		 
-      (assign, ":x_item_id", -1),
+      (le, "$g_show_inventory_selected_slot", -1),
+      (gt, ":target_mesh_object_id", -1),
+
+      (store_add, ":show_inventory_selected_slot", ":found_obj_slot", slot_scene_prop_inventory_begin - slot_scene_prop_inventory_obj_begin),
+      (scene_prop_get_slot, ":item_id", "$g_show_inventory_instance_id", ":show_inventory_selected_slot"),
+      (ge, ":item_id", all_items_begin),
+      (item_get_type, ":item_type", ":item_id"),
+
       (try_begin),
         (le, "$g_show_inventory_selected_slot", -1),
         (gt, ":target_mesh_object_id", -1),
-          
-        (store_add, ":show_inventory_selected_slot", ":found_obj_slot", slot_scene_prop_inventory_begin - slot_scene_prop_inventory_obj_begin),
-          
-        (scene_prop_get_slot, ":x_item_id", "$g_show_inventory_instance_id", ":show_inventory_selected_slot"),
-        (item_get_slot, ":length", ":x_item_id", slot_item_length),
-		(scene_prop_slot_ge, "$g_show_inventory_instance_id", slot_scene_prop_inventory_max_length, ":length"),
-          
         (try_begin),
           (is_between, ":show_inventory_selected_slot", slot_scene_prop_inventory_begin, slot_scene_prop_inventory_item_0),
-          (scene_prop_get_slot, ":item_id", "$g_show_inventory_instance_id", ":show_inventory_selected_slot"),
-          (item_get_type, ":item_type", ":item_id"),
-            
           (try_begin),
             (eq, ":item_type", itp_type_head_armor),
             (scene_prop_get_slot, ":equipped_item", "$g_show_inventory_instance_id", slot_scene_prop_inventory_item_0 + ek_head),
@@ -4067,20 +4065,47 @@ presentations.extend([
               (store_add, ":slot", ":index", slot_scene_prop_inventory_begin),
               (scene_prop_get_slot, ":to_slot_item", "$g_show_inventory_instance_id", ":slot"),
               (lt, ":to_slot_item", all_items_begin),
-              (multiplayer_send_4_int_to_server, client_event_transfer_inventory, "$g_show_inventory_instance_id", ":show_inventory_selected_slot", ":slot", ":item_id"),
+
+              # Check item is ok to transfer
+              (assign, ":error_string_id", "str_item_too_long_for_container"),
+              (item_get_slot, ":length", ":item_id", slot_item_length),
+              (try_begin),
+                (this_or_next | ge, ":slot", slot_scene_prop_inventory_item_0),
+                (scene_prop_slot_ge, "$g_show_inventory_instance_id", slot_scene_prop_inventory_max_length, ":length"),
+
+                (assign, ":error_string_id", "str_cant_put_money_bag_in_container"),
+                (this_or_next | neq, ":item_id", "itm_money_bag"),
+                (ge, ":slot", slot_scene_prop_inventory_item_0),
+
+                (item_get_type, ":item_type", ":item_id"),
+                (try_begin),
+                (this_or_next | eq, ":item_type", itp_type_arrows),
+                (this_or_next | eq, ":item_type", itp_type_bolts),
+                (eq, ":item_type", itp_type_thrown),
+                (assign, ":item_ammo", 0),
+                (else_try),
+                (assign, ":item_ammo", -1),
+                (try_end),
+
+                (assign, ":error_string_id", "str_cant_put_ammo_in_container"),
+                (this_or_next | eq, ":item_ammo", -1),
+                (this_or_next | scene_prop_slot_eq, "$g_show_inventory_instance_id", slot_scene_prop_store_ammo, 1),
+                (is_between, ":slot", slot_scene_prop_inventory_item_0, slot_scene_prop_inventory_item_0 + 5),
+
+                (assign, ":error_string_id", "str_cant_put_non_ammo_in_container"),
+                (this_or_next | eq, ":item_ammo", 0),
+                (this_or_next | scene_prop_slot_eq, "$g_show_inventory_instance_id", slot_scene_prop_store_only_ammo, 0),
+                (is_between, ":slot", slot_scene_prop_inventory_item_0, slot_scene_prop_inventory_item_0 + 5),
+
+                (multiplayer_send_4_int_to_server, client_event_transfer_inventory, "$g_show_inventory_instance_id", ":show_inventory_selected_slot", ":slot", ":item_id"),
+              (else_try),
+                (call_script, "script_preset_message", ":error_string_id", preset_message_error, 0, 0),
+              (try_end),
               (assign, ":index", ":inventory_length"),
             (try_end),
           (try_end),
         (try_end),
-      (else_try),
-        (lt, ":x_item_id", all_items_begin),
-      (else_try),
-		(eq, ":x_item_id", "itm_money_bag"),
-		(call_script, "script_preset_message", "str_cant_put_money_bag_in_container", preset_message_error, 0, 0),
-      (else_try),
-        (call_script, "script_preset_message", "str_item_too_long_for_container", preset_message_error, 0, 0),
       (try_end),
-      #end
 	  ]),
     ]),
 
