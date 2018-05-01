@@ -533,7 +533,7 @@ scripts.extend([
     (str_store_faction_name, s3, ":faction_id"),
     
     (server_add_message_to_log, "str_s1_kicked_s2_from_s3"),
-    (multiplayer_send_4_int_to_player, ":kicked", server_event_preset_message, "str_s2_kicked_you_from_the_faction",preset_message_faction|preset_message_faction_lord|preset_message_log|preset_message_small, ":faction_id", ":kicker"),
+    (multiplayer_send_4_int_to_player, ":kicked", server_event_preset_message, "str_s2_kicked_you_from_the_faction",preset_message_faction_lord|preset_message_log|preset_message_small, ":faction_id", ":kicker"),
   ]),
   
   #Log and show that player is kicked
@@ -547,7 +547,7 @@ scripts.extend([
     (str_store_faction_name, s3, ":faction_id"),
     
     (server_add_message_to_log, "str_s1_outlawed_s2_from_s3"),
-    (multiplayer_send_4_int_to_player, ":kicked", server_event_preset_message, "str_s2_outlawed_you_from_the_faction",preset_message_faction|preset_message_faction_lord|preset_message_log|preset_message_small, ":faction_id", ":kicker"),
+    (multiplayer_send_4_int_to_player, ":kicked", server_event_preset_message, "str_s2_outlawed_you_from_the_faction",preset_message_faction_lord|preset_message_log|preset_message_small, ":faction_id", ":kicker"),
   ]),
   
   ("game_start", []), # single player only, not used
@@ -3042,7 +3042,7 @@ scripts.extend([
         (str_store_player_username, s1, "$g_preset_message_value_1"),
         (assign, reg1, "$g_preset_message_value_2"),
       (else_try),
-        (is_between, "$g_preset_message_params", preset_message_faction, preset_message_faction_castle + 1),
+        (is_between, "$g_preset_message_params", preset_message_faction, preset_message_faction_lord + 1),
         (is_between, "$g_preset_message_value_1", factions_begin, factions_end),
         (str_store_faction_name, s1, "$g_preset_message_value_1"),
         (faction_get_color, "$g_preset_message_color", "$g_preset_message_value_1"),
