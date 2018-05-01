@@ -2991,9 +2991,6 @@ scripts.extend([
     (store_script_param, "$g_preset_message_value_1", 3),
     (store_script_param, "$g_preset_message_value_2", 4),
 
-    (str_store_player_username, s2, "$g_preset_message_value_2"),
-    (display_message, "@{s2}"),
-
     (assign, ":color", ":flags"), # unpack the color from the flags parameter
     (val_and, ":color", preset_message_color_mask),
     (try_begin),
