@@ -342,6 +342,11 @@ scripts.extend([
       (agent_get_player_id, ":player_id", ":player_agent_id"),
       (str_store_player_username, s11, ":player_id"),
       (assign, reg31, ":instance_id"),
+      
+      (agent_get_position, pos10, ":attach_agent_id"),
+      (position_get_x, reg11, pos10),
+      (position_get_y, reg12, pos10),
+      (position_get_z, reg13, pos10),
     
       (try_begin),
         (eq, ":attach_agent_id", ":player_agent_id"),
@@ -363,6 +368,11 @@ scripts.extend([
       (agent_get_player_id, ":player_id", ":player_agent_id"),
       (str_store_player_username, s11, ":player_id"),
       (assign, reg31, ":instance_id"),
+      
+      (agent_get_position, pos10, ":attach_agent_id"),
+      (position_get_x, reg11, pos10),
+      (position_get_y, reg12, pos10),
+      (position_get_z, reg13, pos10),
       
       (try_begin),
         (eq, ":attach_agent_id", ":player_agent_id"),

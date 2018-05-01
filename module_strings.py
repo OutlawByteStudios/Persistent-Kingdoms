@@ -1069,10 +1069,10 @@ Poisonous herbs can also sometimes be found, which are then applied to the blade
   ("castle_names_end", "Invalid Castle Name"),
 
   #Log formats
-  ("attach_to_himself_log", "{s11} attached a cart to himself (IID: {reg31})."),
-  ("attach_to_horse_log", "{s11} attached a cart to his horse (IID: {reg31})."),
-  ("detach_from_himself_log", "{s11} detached a cart from himself (IID: {reg31})."),
-  ("detach_from_horse_log", "{s11} detached a cart from his horse (IID: {reg31})."),
+  ("attach_to_himself_log", "{s11} attached a cart to himself (IID: {reg31}) (x:{reg11}, y:{reg12}, z:{reg13})."),
+  ("attach_to_horse_log", "{s11} attached a cart to his horse (IID: {reg31}) (x:{reg11}, y:{reg12}, z:{reg13})."),
+  ("detach_from_himself_log", "{s11} detached a cart from himself (IID: {reg31}) (x:{reg11}, y:{reg12}, z:{reg13})."),
+  ("detach_from_horse_log", "{s11} detached a cart from his horse (IID: {reg31}) (x:{reg11}, y:{reg12}, z:{reg13})."),
   ("log_use_money_bag", "{s11} used pouch containing {reg31} gold."),
   ("log_spawn_money_bag", "{s11} spawned pouch containing {reg31} gold (IID: {reg0})."),
   ("log_money_chest_withdraw", "{s11} withdrew {reg31} gold from chest belonging to {s12}."),
