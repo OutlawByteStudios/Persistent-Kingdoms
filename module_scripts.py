@@ -40,6 +40,9 @@ scripts.extend([
         (assign, ":force_off", 1),
       (try_end),
 
+      (assign, reg0, ":force_off"),
+      (server_add_message_to_log, "@{reg0}"),
+
       (try_begin),
         (this_or_next|eq, ":force_off", 1),
         (eq, ":walk_mode", 1),
