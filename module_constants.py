@@ -664,7 +664,7 @@ action_menu_strings_end = "str_action_menu_end"
 animation_strings_begin = "str_anim_cheer" # range of strings associated with the animation menu
 animation_strings_end = "str_log_animation"
 
-profile_option_strings_begin = "str_display_name_labels" # range of strings for options stored in a player profile
+profile_option_strings_begin = "str_profile_display_name_labels" # range of strings for options stored in a player profile
 
 lute_sounds_begin = "snd_lute_1"
 lute_sounds_end = "snd_lute_4"

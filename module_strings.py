@@ -524,18 +524,28 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("commit_suicide", "Commit suicide"),
   ("clear_projectiles", "Clear projectiles on chests and doors"),
   ("action_menu_end", "action_menu_end"),
-  
+
+  # Other C Menu options
   ("s0_are_you_sure", "{s0} - are you sure?"),
-  #("confirmation", "confirmation"),
   ("unmute_music", "Unmute instruments"),
+  ("hide_name_labels", "Hide name labels"),
   ("display_name_labels", "Display name labels"),
   ("display_basic_name_labels", "Display basic name labels"),
-  ("hide_name_labels", "Hide name labels"),
   ("hide_chat_overlay", "Hide chat overlay"),
   ("display_local_chat_on_overlay", "Display local chat on overlay"),
   ("deactivate_clickable_animation_menu", "Deactivate clickable animation menu"),
   ("unmute_global_chat", "Unmute global chat"),
   ("walk_off", "Walking mode off"),
+
+  ("profile_display_name_labels", "Display name labels"),
+  ("profile_hide_faction_in_name_labels", "Hide faction in name labels"),
+  ("profile_display_basic_name_labels", "Display basic name labels"),
+  ("profile_display_chat_overlay", "Display chat overlay"),
+  ("profile_overlay_shows_faction_chat", "Overlay shows faction chat instead of local"),
+  ("profile_disable_automatic_shadow_recalculation", "Disable automatic shadow recalculation"),
+  ("profile_mute_global_chat", "Mute global chat"),
+  ("profile_non_clickable_animation_menu", "Non-clickable animation menu"),
+  ("profile_disable_rain_snow_particles", "Disable rain and snow particles"),
 
   ("open_close_helmet_error", "This helmet has no toggleable visor!"),
 
