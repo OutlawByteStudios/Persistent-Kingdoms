@@ -306,12 +306,12 @@ scripts.extend([
       
       (try_begin),
         (store_add, ":total_health", ":healing", ":health_percent"),
-        (gt, ":total_health", ":health_percent"),
+        (gt, ":total_health", ":healing_limit"),
         (store_sub, ":healing", ":healing_limit", ":health_percent"),
       (try_end),
       
       (agent_get_player_id, ":healer_player_id", ":healer_agent_id"),
-        (str_store_player_username, s11, ":healer_player_id"),
+      (str_store_player_username, s11, ":healer_player_id"),
       (assign, reg31, ":healing"),
       
       (try_begin),#If the healed is a player
