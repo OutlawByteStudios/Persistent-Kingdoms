@@ -46,6 +46,7 @@ scripts.extend([
         (assign, ":walk_mode", 0),
         (val_mul, ":speed", walk_speed_factor),
       (else_try),
+        (neq, ":force_off", 1),
         (assign, ":walk_mode", 1),
         (val_div, ":speed", walk_speed_factor),
       (try_end),
