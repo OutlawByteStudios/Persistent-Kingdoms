@@ -283,6 +283,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("lock_current_faction", "Lock current faction"),
   ("unlock_current_faction", "Unlock current faction"),
   ("log_current_position", "Log current position"),
+  ("your_current_position_is", "Your current position is: (x:{reg11}, y:{reg12}, z:{reg13})"),
   ("quit", "Quit"),
   ("choose_a_player_to_s0", "Choose a player to {s0}:"),
   ("kick", "kick"),

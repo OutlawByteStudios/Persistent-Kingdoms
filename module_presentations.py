@@ -2438,6 +2438,17 @@ presentations.extend([
         (multiplayer_send_int_to_server, client_event_admin_action, admin_action_mute_players),
       (else_try),
         (eq, ":object", "$g_presentation_obj_admin_menu_log_current_position"),
+
+        (multiplayer_get_my_player, ":my_player_id"),
+        (player_is_active, ":my_player_id"),
+        (player_get_agent_id, ":my_agent_id", ":my_player_id"),
+        (agent_get_position, pos10, ":my_agent_id"),
+        (position_get_x, reg11, pos10),
+        (position_get_y, reg12, pos10),
+        (position_get_z, reg13, pos10),
+
+        (display_message, "str_your_current_position_is"),
+
         (multiplayer_send_int_to_server, client_event_admin_action, admin_action_log_current_position),
       (try_end),
       (gt, ":action", -1),
