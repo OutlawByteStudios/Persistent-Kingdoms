@@ -4222,6 +4222,12 @@ presentations.extend([
         (assign, "$g_list_players_event", -1),
         (assign, "$g_list_players_action_string_id", "str_send_message_to"),
         (assign, "$g_list_players_return_presentation", "prsnt_chat_box"),
+
+        (try_begin),
+            (eq, "$g_chat_box_string_id", 0),
+            (assign, "$g_list_players_return_presentation_on_escape", 0),
+        (try_end),
+
         (start_presentation, "prsnt_list_players"),
         (presentation_set_duration, 0),
       (try_end),
