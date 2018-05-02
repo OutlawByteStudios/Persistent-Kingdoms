@@ -304,7 +304,7 @@ items = [
 ["winged_great_helmet", "Winged Great Helmet", [("maciejowski_helmet_new",0)], itp_type_head_armor|itp_covers_head, 0,
  9240, weight(2.75)|head_armor(55)|difficulty(15), imodbits_plate],
 ["black_helmet", "Black Helmet", [("black_helm",0)], itp_type_head_armor, 0,
- 9638, weight(2.75)|head_armor(100)|difficulty(20), imodbits_plate],
+ 9638, weight(1)|head_armor(100)|difficulty(20), imodbits_plate],
 
 ["ragged_shirt", "Ragged Shirt", [("shirt", 0)], itp_type_body_armor|itp_covers_legs, 0,
  2, weight(1)|body_armor(2)|difficulty(0), imodbits_cloth],
@@ -490,7 +490,7 @@ items = [
 ["plate_armor", "Plate Armor", [("full_plate_armor",0)], itp_type_body_armor|itp_covers_legs, 0,
  81400, weight(30)|body_armor(55)|leg_armor(17)|difficulty(16), imodbits_plate],
 ["black_armor", "Black Armor", [("black_armor",0)], itp_type_body_armor|itp_covers_legs, 0,
- 55200, weight(31)|body_armor(200)|leg_armor(50)|difficulty(20), imodbits_plate],
+ 55200, weight(1)|body_armor(200)|leg_armor(50)|difficulty(20), imodbits_plate],
 ["light_heraldic_mail", "Light Heraldic Mail", [("heraldic_armor_new_c",0)], itp_type_body_armor|itp_covers_legs, 0,
  1313, weight(12)|body_armor(30)|leg_armor(5)|difficulty(9), imodbits_armor, init_heraldic_item("tableau_heraldic_armor_c")],
 ["heraldic_mail_with_tunic", "Heraldic Mail with Tunic", [("heraldic_armor_new_b",0)], itp_type_body_armor|itp_covers_legs, 0,
@@ -556,7 +556,7 @@ items = [
 ["plate_boots", "Plate Boots", [("plate_boots",0)], itp_type_foot_armor|itp_attach_armature, 0,
  2864, weight(3.5)|leg_armor(34)|difficulty(15), imodbits_plate],
 ["black_greaves", "Black Greaves", [("black_greaves",0)], itp_type_foot_armor|itp_attach_armature, 0,
- 5661, weight(3.5)|leg_armor(100)|difficulty(20), imodbits_plate],
+ 5661, weight(1)|leg_armor(100)|difficulty(20), imodbits_plate],
 
 ["leather_gloves", "Leather Gloves", [("leather_gloves_L",0)], itp_type_hand_armor, 0,
  545, weight(0.25)|body_armor(2)|difficulty(0), imodbits_cloth],
