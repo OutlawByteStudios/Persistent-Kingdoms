@@ -413,6 +413,38 @@ instrument_dropped = (ti_on_item_dropped, 0, 0, [], # handle instruments
     (call_script, "script_client_stop_playing_musical_instrument", ":agent_id"),
     ])
 
+instrument_with_sheild_wield = (ti_on_item_wielded, 0, 0, [], # handle instruments
+   [(store_trigger_param_1, ":agent_id"),
+
+    (agent_get_wielded_item, ":r_item_id", ":agent_id", 0),
+    (this_or_next|eq, ":r_item_id", "itm_lute"),
+    (eq, ":r_item_id", "itm_lyre"),
+
+    (agent_get_wielded_item, ":item_id", ":agent_id", 1),
+    (gt, ":item_id", all_items_begin),
+    (item_get_type, ":item_type", ":item_id"),
+    (eq, ":item_type", itp_type_shield),
+
+    (agent_set_wielded_item, ":agent_id", -1),
+    (agent_set_wielded_item, ":agent_id", ":r_item_id"),
+    ])
+
+instrument_with_sheild_pickup = (ti_on_item_picked_up, 0, 0, [],  # handle instruments
+    [(store_trigger_param_1, ":agent_id"),
+
+    (agent_get_wielded_item, ":r_item_id", ":agent_id", 0),
+    (this_or_next|eq, ":r_item_id", "itm_lute"),
+    (eq, ":r_item_id", "itm_lyre"),
+
+    (agent_get_wielded_item, ":item_id", ":agent_id", 1),
+    (gt, ":item_id", all_items_begin),
+    (item_get_type, ":item_type", ":item_id"),
+    (eq, ":item_type", itp_type_shield),
+
+    (agent_set_wielded_item, ":agent_id", -1),
+    (agent_set_wielded_item, ":agent_id", ":r_item_id"),
+    ])
+
 sitting_check = (1, 0, 0, [], # server: handle agents sitting
    [(multiplayer_is_server),
     (try_for_agents, ":agent_id"),
@@ -1138,6 +1170,8 @@ def common_triggers(self):
     instrument_killed,
     instrument_unwielded,
     instrument_dropped,
+    instrument_with_sheild_wield,
+    instrument_with_sheild_pickup,
     sitting_check,
     sitting_check_chair,
 
