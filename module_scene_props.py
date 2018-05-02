@@ -3332,6 +3332,8 @@ scene_props = [
   
   ("cm_buy_barded_horse",spr_buy_item_flags(13),"cwe_knight_horse_2","bo_pw_horse", spr_buy_item_triggers("itm_cwe_knight_horse_2", resources=["itm_saddle", "itm_horse_armor", "itm_wheat_sheaf"], herding=3)),
   ("cm_buy_barded_horse_with_mask",spr_buy_item_flags(17),"cwe_knight_horse_1_mask","bo_pw_horse", spr_buy_item_triggers("itm_cwe_knight_horse_1_mask", resources=["itm_saddle", "itm_horse_armor", ("itm_wheat_sheaf", 2)], herding=3)),
+  ("cm_buy_saracen_sultan_horse",spr_buy_item_flags(17),"saracen_horse_sultan","bo_pw_horse", spr_buy_item_triggers("itm_saracen_horse_sultan", resources=["itm_saddle", "itm_horse_armor", ("itm_wheat_sheaf", 2)], herding=3)),
+  ("cm_buy_saracen_war_horse",spr_buy_item_flags(17),"saracin_hard_horses_d","bo_pw_horse", spr_buy_item_triggers("itm_saracin_hard_horses_d", resources=["itm_saddle", "itm_horse_armor", ("itm_wheat_sheaf", 2)], herding=3)),
   
   ("cm_buy_katana",spr_buy_item_flags(15),"katana","bo_pw_weapon", spr_buy_item_triggers("itm_katana", resources=["itm_iron_bar_long"], engineer=7)),
   ("cm_buy_wakizashi",spr_buy_item_flags(8),"wakizashi","bo_pw_weapon", spr_buy_item_triggers("itm_wakizashi", resources=["itm_iron_bar"], engineer=4)),
@@ -3418,9 +3420,8 @@ scene_props = [
   ("pw_change_troop_crossbowman",spr_use_time(60),"crossbow_a","bo_pw_weapon", spr_change_troop_triggers("trp_crossbowman", cost=3500)),
   ("pw_change_troop_lancer",spr_use_time(70),"shield_heater_c","bo_pw_shield_kite_small", spr_change_troop_triggers("trp_lancer", cost=3000)),
   ("pw_change_troop_man_at_arms",spr_use_time(90),"shield_heater_c","bo_pw_shield_kite_small", spr_change_troop_triggers("trp_man_at_arms", cost=5000)),
-  ("pw_change_troop_mounted_knight",spr_use_time(90),"shield_heater_c","bo_pw_shield_kite_small", spr_change_troop_triggers("trp_mounted_knight", cost=5000)),
+  ("pw_change_troop_knight",spr_use_time(90),"shield_heater_c","bo_pw_shield_kite_small", spr_change_troop_triggers("trp_knight", cost=7000)),
   ("pw_change_troop_sergeant",spr_use_time(90),"shield_kite_i","bo_pw_shield_kite_small", spr_change_troop_triggers("trp_sergeant", cost=5000)),
-  ("pw_change_troop_dismounted_knight",spr_use_time(90),"shield_kite_i","bo_pw_shield_kite_small", spr_change_troop_triggers("trp_dismounted_knight", cost=5000)),
   ("pw_change_troop_engineer",spr_use_time(80),"pw_repair_hammer","bo_pw_weapon_small", spr_change_troop_triggers("trp_engineer", cost=2500)),
   ("pw_change_troop_master_smith",spr_use_time(120),"pw_repair_hammer","bo_pw_weapon_small", spr_change_troop_triggers("trp_master_smith", cost=7500)),
   ("pw_change_troop_doctor",spr_use_time(100),"package","bobaggage", spr_change_troop_triggers("trp_doctor", cost=3500)),
