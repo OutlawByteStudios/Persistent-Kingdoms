@@ -6629,6 +6629,8 @@ scripts.extend([
       (try_end),
     (else_try),
       (this_or_next|eq, ":item_id", "itm_invisible_sword"),
+      (this_or_next|eq, ":item_id", "itm_riotshield"),
+      (this_or_next|eq, ":item_id", "itm_baton"),
       (eq, ":item_id", "itm_admin_scalpel"),
       (agent_get_player_id, ":player_id", ":agent_id"),
       (player_is_active, ":player_id"),
@@ -6729,6 +6731,8 @@ scripts.extend([
     (else_try), # remove admin items dropped on the ground
       (this_or_next|eq, ":item_id", "itm_invisible_sword"),
       (this_or_next|eq, ":item_id", "itm_admin_lock_pick"),
+      (this_or_next|eq, ":item_id", "itm_riotshield"),
+      (this_or_next|eq, ":item_id", "itm_baton"),
       (eq, ":item_id", "itm_admin_scalpel"),
       (init_position, pos1),
       (position_set_z, pos1, z_position_to_hide_object),
