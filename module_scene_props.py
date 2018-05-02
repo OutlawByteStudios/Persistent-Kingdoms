@@ -3332,6 +3332,8 @@ scene_props = [
   
   ("cm_buy_barded_horse",spr_buy_item_flags(13),"cwe_knight_horse_2","bo_pw_horse", spr_buy_item_triggers("itm_cwe_knight_horse_2", resources=["itm_saddle", "itm_horse_armor", "itm_wheat_sheaf"], herding=3)),
   ("cm_buy_barded_horse_with_mask",spr_buy_item_flags(17),"cwe_knight_horse_1_mask","bo_pw_horse", spr_buy_item_triggers("itm_cwe_knight_horse_1_mask", resources=["itm_saddle", "itm_horse_armor", ("itm_wheat_sheaf", 2)], herding=3)),
+  ("cm_buy_saracen_sultan_horse",spr_buy_item_flags(17),"saracen_horse_sultan","bo_pw_horse", spr_buy_item_triggers("itm_saracen_horse_sultan", resources=["itm_saddle", "itm_horse_armor", ("itm_wheat_sheaf", 2)], herding=3)),
+  ("cm_buy_saracen_war_horse",spr_buy_item_flags(17),"saracin_hard_horses_d","bo_pw_horse", spr_buy_item_triggers("itm_saracin_hard_horses_d", resources=["itm_saddle", "itm_horse_armor", ("itm_wheat_sheaf", 2)], herding=3)),
   
   ("cm_buy_katana",spr_buy_item_flags(15),"katana","bo_pw_weapon", spr_buy_item_triggers("itm_katana", resources=["itm_iron_bar_long"], engineer=7)),
   ("cm_buy_wakizashi",spr_buy_item_flags(8),"wakizashi","bo_pw_weapon", spr_buy_item_triggers("itm_wakizashi", resources=["itm_iron_bar"], engineer=4)),
