@@ -2047,6 +2047,14 @@ presentations.extend([
       (assign, ":cur_y", 10),
       (position_set_x, pos1, 130),
 
+      (create_button_overlay, reg0, "str_log_current_position"),
+      (assign, "$g_presentation_obj_admin_menu_log_current_position", reg0),
+      (overlay_set_color, reg0, 0xFFFFFF),
+      (overlay_set_size, reg0, pos2),
+      (position_set_y, pos1, ":cur_y"),
+      (overlay_set_position, reg0, pos1),
+      (val_add, ":cur_y", escape_menu_item_height),
+
       (try_begin),
         (player_slot_eq, ":my_player_id", slot_player_admin_no_factions, 0),
         (player_get_slot, ":faction_id", ":my_player_id"),
@@ -2428,6 +2436,20 @@ presentations.extend([
       (else_try),
         (eq, ":object", "$g_presentation_obj_admin_menu_mute_players"),
         (multiplayer_send_int_to_server, client_event_admin_action, admin_action_mute_players),
+      (else_try),
+        (eq, ":object", "$g_presentation_obj_admin_menu_log_current_position"),
+
+        (multiplayer_get_my_player, ":my_player_id"),
+        (player_is_active, ":my_player_id"),
+        (player_get_agent_id, ":my_agent_id", ":my_player_id"),
+        (agent_get_position, pos10, ":my_agent_id"),
+        (position_get_x, reg11, pos10),
+        (position_get_y, reg12, pos10),
+        (position_get_z, reg13, pos10),
+
+        (display_message, "str_your_current_position_is"),
+
+        (multiplayer_send_int_to_server, client_event_admin_action, admin_action_log_current_position),
       (try_end),
       (gt, ":action", -1),
       (presentation_set_duration, 0),

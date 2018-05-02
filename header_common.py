@@ -271,6 +271,7 @@ admin_action_teleport_to_ships                  = 19
 admin_action_reset_ships                        = 20
 admin_action_join_faction                       = 21
 admin_action_lock_faction                       = 22
+admin_action_log_current_position               = 23
 
 faction_admin_action_change_banner              = 0
 faction_admin_action_kick_player                = 1
