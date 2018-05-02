@@ -4101,7 +4101,7 @@ presentations.extend([
               (else_try),
                 (call_script, "script_preset_message", ":error_string_id", preset_message_error, 0, 0),
               (try_end),
-              (assign, ":index", ":inventory_length"),
+              (assign, ":inventory_length", ":index"),
             (try_end),
           (try_end),
         (try_end),
