@@ -4124,7 +4124,9 @@ presentations.extend([
         (gt, "$g_target_player_id", 0),
         (try_begin),
           (player_is_active, "$g_target_player_id"),
-          (player_slot_eq, "$g_target_player_id", slot_player_list_button_id, "$g_target_player_overlay_id"), # bug caused here
+          (this_or_next|player_slot_eq, "$g_target_player_id", slot_player_list_button_id, "$g_target_player_overlay_id"),
+          (eq, "$g_skip_list_button_check", 1),
+          (assign, "$g_skip_list_button_check", 0),
         (else_try),
           (assign, "$g_target_player_id", 0),
         (try_end),

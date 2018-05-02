@@ -33,7 +33,8 @@ scripts.extend([
       (gt, "$g_private_message_player_id", 0),
       (player_is_active, "$g_private_message_player_id"),
 
-      (assign, "$g_target_player_id", "$g_private_message_player_id"),
+      (assign, "$g_custom_target_player_id", "$g_private_message_player_id"),
+      (assign, "$g_skip_list_button_check", 1),
 
       (assign, "$g_chat_box_event_type", chat_event_type_private_message),
       (assign, "$g_chat_box_player_string_id", "str_send_private_message_to_s1"),
