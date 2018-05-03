@@ -2972,7 +2972,7 @@ scene_props = [
   ("pw_buy_light_heraldic_mail",spr_buy_item_flags(10),"heraldic_armor_new_c","bo_pw_armor_body", spr_buy_item_triggers("itm_light_heraldic_mail", resources=["itm_iron_bar_short","itm_linen_cloth","itm_leather_piece"], engineer=4, tableau="tableau_heraldic_armor_c")),
   ("pw_buy_heraldic_mail_with_tunic",spr_buy_item_flags(12),"heraldic_armor_new_b","bo_pw_armor_body", spr_buy_item_triggers("itm_heraldic_mail_with_tunic", resources=[("itm_iron_bar_short",2),"itm_linen_cloth"], engineer=4, tableau="tableau_heraldic_armor_b")),
   ("pw_buy_heraldic_mail_with_tabard",spr_buy_item_flags(14),"heraldic_armor_new_d","bo_pw_armor_body", spr_buy_item_triggers("itm_heraldic_mail_with_tabard", resources=[("itm_iron_bar_short",3),"itm_linen_cloth"], engineer=5, tableau="tableau_heraldic_armor_d")),
-  ("pw_buy_heraldic_mail_with_surcoat",spr_buy_item_flags(16),"heraldic_armor_new_a","bo_pw_armor_body", spr_buy_item_triggers("itm_heraldic_mail_with_surcoat", resources=[("itm_iron_bar_short",3),"itm_leather_piece","itm_linen_cloth"], engineer=6, tableau="tableau_heraldic_armor_a")),
+  ("pw_buy_heraldic_mail_with_surcoat",spr_buy_item_flags(16),"heraldic_armor_new_a","bo_pw_armor_body", spr_buy_item_triggers("itm_heraldic_mail_with_surcoat", resources=[("itm_iron_bar_short",3),"itm_linen_cloth"], engineer=6, tableau="tableau_heraldic_armor_a")),
 
   ("pw_buy_wrapping_boots",spr_buy_item_flags(1),"wrapping_boots_a","bo_pw_armor_foot", spr_buy_item_triggers("itm_wrapping_boots", resources=["itm_linen_cloth_small"], tailoring=1)),
   ("pw_buy_woolen_hose",spr_buy_item_flags(1),"woolen_hose_a","bo_pw_armor_foot", spr_buy_item_triggers("itm_woolen_hose", resources=["itm_linen_cloth_small"], tailoring=1)),
