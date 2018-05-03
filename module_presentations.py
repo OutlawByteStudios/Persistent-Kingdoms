@@ -1549,8 +1549,6 @@ presentations.extend([
         (assign, ":my_player_id", 0), # only add the requesting player to the list for fade out and freeze tools
       (try_end),
 
-      (assign, ":my_player_id", 0), # DEBUG
-
       (val_max, "$g_list_players_action_string_id", 0),
       (str_store_string, s0, "$g_list_players_action_string_id"),
       (create_text_overlay, ":prompt_overlay_id", "str_choose_a_player_to_s0", 0),
@@ -1652,6 +1650,11 @@ presentations.extend([
         (gt, ":cur_time", 200),
         (assign, "$g_target_player_id", 0),
         (assign, "$g_target_player_overlay_id", 0),
+        (try_begin), # if cancelling a PM target then remove them from the global variable
+            (eq, "$g_list_players_return_presentation", "prsnt_chat_box"),
+            (eq, "$g_chat_box_event_type", chat_event_type_private_message),
+            (assign, "$g_private_message_player_id", 0),
+        (try_end),
         (try_begin),
           (gt, "$g_list_players_return_presentation", 0),
           (neg|is_presentation_active, "$g_list_players_return_presentation"),
