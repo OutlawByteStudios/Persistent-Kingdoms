@@ -35,12 +35,18 @@ scripts.extend([
       (agent_get_slot, ":walk_mode", ":agent_id", slot_agent_walk_mode),
       (agent_get_speed_modifier, ":speed", ":agent_id"),
 
+      (assign, ":continue", 1),
       (try_begin), # turn off so it is reapplied.
         (eq, ":reapply", 1),
-        (eq, ":walk_mode", 1),
-        (assign, ":walk_mode", 0),
+        (try_begin),
+          (eq, ":walk_mode", 1),
+          (assign, ":walk_mode", 0),
+        (else_try),
+          (assign, ":continue", 0),
+        (try_end),
       (try_end),
-
+      (eq, ":continue", 1),
+    
       (assign, ":continue", 0),
       (try_begin),
         (eq, ":walk_mode", 1),
