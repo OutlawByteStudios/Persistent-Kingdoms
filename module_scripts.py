@@ -27,11 +27,25 @@ scripts.extend([
   ("toggle_walk", [
     (store_script_param, ":player_id", 1),
     (store_script_param, ":force_off_if_on", 2),
+    (store_script_param, ":reapply", 3),
+
     (try_begin),
       (player_is_active, ":player_id"),
       (player_get_agent_id, ":agent_id", ":player_id"),
       (agent_get_slot, ":walk_mode", ":agent_id", slot_agent_walk_mode),
       (agent_get_speed_modifier, ":speed", ":agent_id"),
+
+      (try_begin), # turn off so it is reapplied.
+        (eq, ":reapply", 1),
+        (try_begin),
+          (eq, ":walk_mode", 1),
+          (assign, ":walk_mode", 0),
+        (else_try),
+          (neq, ":force_off_if_on", 1),
+          (assign, ":walk_mode", 1),
+        (try_end),
+      (try_end),
+
       (assign, ":continue", 0),
       (try_begin),
         (eq, ":walk_mode", 1),
@@ -2090,7 +2104,7 @@ scripts.extend([
         (agent_set_slot, ":agent_id", slot_agent_storage_corpse_instance_id, -1),
       (else_try),
         (eq, ":event_type", client_event_toggle_walk),
-        (call_script, "script_toggle_walk", ":sender_player_id", 0),
+        (call_script, "script_toggle_walk", ":sender_player_id", 0, 0),
     (try_end),
     (try_end),
     ]),
@@ -7009,6 +7023,9 @@ scripts.extend([
         (assign, reg14, ":reload_modifier"),
       (try_end),
     (try_end),
+
+    (agent_get_player_id, ":player_id", ":agent_id"),
+    (call_script, "script_toggle_walk", ":player_id", 0, 1),
     ]),
 
   ("scene_prop_adjust_hit", # server: adjust hit damage by an agent on a resource scene prop for tools, skill, and more; reg0 = agent id

@@ -316,7 +316,7 @@ agent_hit = (ti_on_agent_hit, 0, 0, [], # server: apply extra scripted effects f
     (try_begin),
         (neg|agent_is_non_player, ":attacked_agent_id"),
         (agent_get_player_id, ":player_id", ":attacked_agent_id"),
-        (call_script, "script_toggle_walk", ":player_id", 1),
+        (call_script, "script_toggle_walk", ":player_id", 1, 0),
     (try_end),
     (call_script, "script_log_hit", ":attacked_agent_id", ":attacker_agent_id", ":damage_dealt", reg0, 0),
     ])
