@@ -46,7 +46,7 @@ scripts.extend([
         (try_end),
       (try_end),
       (eq, ":continue", 1),
-    
+
       (assign, ":continue", 0),
       (try_begin),
         (eq, ":walk_mode", 1),
@@ -7025,8 +7025,11 @@ scripts.extend([
       (try_end),
     (try_end),
 
-    (agent_get_player_id, ":player_id", ":agent_id"),
-    (call_script, "script_toggle_walk", ":player_id", 0, 1),
+    (try_begin),
+      (multiplayer_is_server),
+      (agent_get_player_id, ":player_id", ":agent_id"),
+      (call_script, "script_toggle_walk", ":player_id", 0, 1),
+    (try_end),
     ]),
 
   ("scene_prop_adjust_hit", # server: adjust hit damage by an agent on a resource scene prop for tools, skill, and more; reg0 = agent id
