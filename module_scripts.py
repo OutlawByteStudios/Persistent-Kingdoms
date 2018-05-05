@@ -37,13 +37,8 @@ scripts.extend([
 
       (try_begin), # turn off so it is reapplied.
         (eq, ":reapply", 1),
-        (try_begin),
-          (eq, ":walk_mode", 1),
-          (assign, ":walk_mode", 0),
-        (else_try),
-          (neq, ":force_off_if_on", 1),
-          (assign, ":walk_mode", 1),
-        (try_end),
+        (eq, ":walk_mode", 1),
+        (assign, ":walk_mode", 0),
       (try_end),
 
       (assign, ":continue", 0),
