@@ -220,7 +220,7 @@ agent_spawn = (ti_on_agent_spawn, 0, 0, [], # server and clients: set up new age
    [(store_trigger_param_1, ":agent_id"),
     (call_script, "script_on_agent_spawned", ":agent_id"),
 
-	(try_begin),
+    (try_begin),
       #Log the player's equipment on log ins. Due to player actually not having items when they "joined", it needs to log when
       #they are spawned for the first time
       #CRUCIAL: Updates on the player's equipment should be done before this code block so the server logs properly
@@ -243,6 +243,7 @@ agent_spawn = (ti_on_agent_spawn, 0, 0, [], # server and clients: set up new age
     (try_end),
 
     (try_begin),
+      (multiplayer_is_server),
       (neg|agent_is_non_player, ":agent_id"),
       (agent_get_player_id, ":player_id", ":agent_id"),
       (player_get_slot, ":faction_id", ":player_id", slot_player_faction_id),
