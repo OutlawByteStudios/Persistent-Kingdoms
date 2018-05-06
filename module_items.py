@@ -1156,7 +1156,7 @@ items = [
  10780, hit_points(150)|body_armor(40)|difficulty(3)|horse_speed(40)|horse_maneuver(50)|horse_charge(28)|horse_scale(112), imodbits_none],
 ["cwe_knight_horse_1_mask", "Barded Horse with Mask", [("cwe_knight_horse_1_mask",0)], itp_type_horse, 0,
  13280, hit_points(165)|body_armor(50)|difficulty(4)|horse_speed(44)|horse_maneuver(42)|horse_charge(30)|horse_scale(110), imodbits_none],
-["saracen_horse_sultan", "Saracen Sultan Horse", [("saracen_horse_Sultan",0)], itp_type_horse, 0,
+["saracen_horse_sultan", "Saracen Sultan Horse", [("saracen_horse_sultan",0)], itp_type_horse, 0,
  13280, hit_points(165)|body_armor(50)|difficulty(4)|horse_speed(44)|horse_maneuver(42)|horse_charge(30)|horse_scale(110), imodbits_none],
 ["warhorse_sarranid", "Barded War Horse", [("warhorse_sarranid",0)], itp_type_horse, 0,
  15190, hit_points(165)|body_armor(58)|difficulty(4)|horse_speed(43)|horse_maneuver(44)|horse_charge(32)|horse_scale(112), imodbits_none],
