@@ -1508,14 +1508,14 @@ presentations.extend([
         (try_end),
       (else_try),
         (eq, "$g_list_players_event", client_event_faction_admin_action),
-        (try_begin),
+        (try_begin),# hide other lords or marshals for player if lord or marshal
           (this_or_next | eq, "$g_list_players_event_value", faction_admin_action_mute_player),
           (this_or_next | eq, "$g_list_players_event_value", faction_admin_action_toggle_player_door_key),
           (this_or_next | eq, "$g_list_players_event_value", faction_admin_action_toggle_player_item_key),
           (eq, "$g_list_players_event_value", faction_admin_action_toggle_player_announce),
           (assign, ":not_display_if_lord", 1),
           (assign, ":not_display_if_marshal", 1),
-        (else_try),
+        (else_try), # hide other lords or marshals for player if marshal
           (player_slot_eq, ":my_player_id", slot_player_is_lord, 0),
           (this_or_next | eq, "$g_list_players_event_value", faction_admin_action_kick_player),
           (eq, "$g_list_players_event_value", faction_admin_action_outlaw_player),
