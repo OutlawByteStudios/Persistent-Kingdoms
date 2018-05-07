@@ -14174,6 +14174,7 @@ scripts.extend([
       (assign, ":duration_ms", 0), # duration in milliseconds: animations are set automatically, but this should be set when only playing a sound
       (assign, ":prevent_if_wielding", 0), # 1 = prevent this animation from being triggered if the agent is wielding any items
       (assign, ":prevent_if_moving", 0), # 1 = prevent this animation from being triggered if the agent is moving
+      (assign, ":prevent_if_on_horse", 0),
       (assign, ":add_to_chat", 0), # display the animation string in the local chat for near the player
       (assign, ":music", -1), # ensure that music is handled correctly
       (assign, ":instrument", -1), # required wielded item
@@ -14181,7 +14182,7 @@ scripts.extend([
         animation_menu_entry("str_anim_cheer", animation="anim_cheer", man_sound="snd_man_victory"),
         animation_menu_entry("str_anim_clap", animation="anim_man_clap", woman_alt_animation="anim_woman_clap", prevent_if_wielding=1),
         animation_menu_entry("str_anim_raise_sword", animation="anim_pose_raise_sword"),
-        animation_menu_entry("str_anim_sit", animation="anim_sitting_pillow_male", woman_alt_animation="anim_sitting_pillow_female", prevent_if_moving=1, upper_body_only=0),
+        animation_menu_entry("str_anim_sit", animation="anim_sitting_pillow_male", woman_alt_animation="anim_sitting_pillow_female", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0),
         animation_menu_entry("str_anim_hands_on_hips", animation="anim_pose_hands_on_hips", prevent_if_wielding=1, prevent_if_moving=1),
         animation_menu_entry("str_anim_arms_crossed", animation="anim_pose_arms_crossed", prevent_if_wielding=1, prevent_if_moving=1),
         animation_menu_entry("str_anim_stand_still", animation="anim_stand_lord", woman_alt_animation="anim_stand_lady", prevent_if_moving=1),
@@ -14254,6 +14255,12 @@ scripts.extend([
         (position_get_x, ":sideways_speed", pos0),
         (this_or_next|gt, ":forwards_speed", 10),
         (gt, ":sideways_speed", 10),
+        (assign, ":animation", -1),
+      (try_end),
+      (try_begin),
+        (eq, ":prevent_if_on_horse", 1),
+        (agent_get_horse, ":horse_id", ":agent_id"),
+        (gt, ":horse_id", -1),
         (assign, ":animation", -1),
       (try_end),
       (try_begin),
