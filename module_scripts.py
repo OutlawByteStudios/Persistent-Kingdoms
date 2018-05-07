@@ -1147,6 +1147,7 @@ scripts.extend([
               (player_set_slot, ":player_id", slot_player_has_faction_item_key, 1),
               (player_set_slot, ":player_id", slot_player_can_faction_announce, 1),
               (player_set_slot, ":player_id", slot_player_faction_chat_muted, 0),
+              (player_set_slot, ":player_id", slot_player_is_marshal, 0),
             (else_try), # for other players, just display an announcement
               (eq, "$g_preset_message_display_enabled", 1),
               (str_store_player_username, s10, ":player_id"),
@@ -5770,6 +5771,7 @@ scripts.extend([
     (player_set_slot, ":player_id", slot_player_has_faction_money_key, 1),
     (player_set_slot, ":player_id", slot_player_has_faction_item_key, 1),
     (player_set_slot, ":player_id", slot_player_can_faction_announce, 1),
+    (player_set_slot, ":player_id", slot_player_is_marshal, 0),
     (player_set_slot, ":player_id", slot_player_faction_chat_muted, 0),
     (faction_set_slot, ":faction_id", slot_faction_lord_last_seen_time, 0),
     (str_store_faction_name, s1, ":faction_id"),
