@@ -14180,6 +14180,7 @@ scripts.extend([
       (assign, ":prevent_if_wielding", 0), # 1 = prevent this animation from being triggered if the agent is wielding any items
       (assign, ":prevent_if_moving", 0), # 1 = prevent this animation from being triggered if the agent is moving
       (assign, ":prevent_if_on_horse", 0),
+      (assign, ":position_animation", 0),
       (assign, ":add_to_chat", 0), # display the animation string in the local chat for near the player
       (assign, ":music", -1), # ensure that music is handled correctly
       (assign, ":instrument", -1), # required wielded item
@@ -14187,7 +14188,7 @@ scripts.extend([
         animation_menu_entry("str_anim_cheer", animation="anim_cheer", man_sound="snd_man_victory"),
         animation_menu_entry("str_anim_clap", animation="anim_man_clap", woman_alt_animation="anim_woman_clap", prevent_if_wielding=1),
         animation_menu_entry("str_anim_raise_sword", animation="anim_pose_raise_sword"),
-        animation_menu_entry("str_anim_sit", animation="anim_sitting_pillow_male", woman_alt_animation="anim_sitting_pillow_female", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0),
+        animation_menu_entry("str_anim_sit", animation="anim_sitting_pillow_male", woman_alt_animation="anim_sitting_pillow_female", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0, position_animation=1),
         animation_menu_entry("str_anim_hands_on_hips", animation="anim_pose_hands_on_hips", prevent_if_wielding=1, prevent_if_moving=1),
         animation_menu_entry("str_anim_arms_crossed", animation="anim_pose_arms_crossed", prevent_if_wielding=1, prevent_if_moving=1),
         animation_menu_entry("str_anim_stand_still", animation="anim_stand_lord", woman_alt_animation="anim_stand_lady", prevent_if_moving=1),
@@ -14329,9 +14330,8 @@ scripts.extend([
           (gt, ":animation", -1),
           (agent_set_animation, ":agent_id", ":animation", ":upper_body_only"),
 
-          (try_begin),
-            (this_or_next | eq, ":animation", "anim_sitting_pillow_male"),
-            (eq, ":animation", "anim_sitting_pillow_female"),
+          (try_begin), # position animations
+            (eq, ":position_animation", 1),
             (agent_get_position, pos0, ":agent_id"),
             (position_get_x, ":x", pos0),
             (position_get_y, ":y", pos0),
@@ -14339,6 +14339,7 @@ scripts.extend([
             (agent_set_slot, ":agent_id", slot_agent_animation_position_x, ":x"),
             (agent_set_slot, ":agent_id", slot_agent_animation_position_y, ":y"),
             (agent_set_slot, ":agent_id", slot_agent_animation_position_z, ":z"),
+            (agent_set_slot, ":agent_id", slot_agent_position_animation, ":animation"),
           (try_end),
 
 

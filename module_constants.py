@@ -160,8 +160,9 @@ slot_agent_scene_prop_in_use          = 68
 slot_agent_animation_position_x       = 69
 slot_agent_animation_position_y       = 70
 slot_agent_animation_position_z       = 71
+slot_agent_position_animation         = 72
 
-slot_agent_walk_mode                  = 72
+slot_agent_walk_mode                  = 73
 
 
 ########################################################

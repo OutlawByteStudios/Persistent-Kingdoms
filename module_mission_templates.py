@@ -446,16 +446,15 @@ instrument_with_sheild_pickup = (ti_on_item_picked_up, 0, 0, [],  # handle instr
     (agent_set_wielded_item, ":agent_id", ":r_item_id"),
     ])
 
-sitting_check = (1, 0, 0, [], # server: handle agents sitting
+position_animation_check = (1, 0, 0, [], # server: handle agents sitting
    [(multiplayer_is_server),
     (try_for_agents, ":agent_id"),
       (agent_is_active,":agent_id"),
       (agent_is_alive,":agent_id"),
       (agent_is_human,":agent_id"),
+      (agent_get_slot, ":position_animation", ":agent_id", slot_agent_position_animation),
       (try_begin),
-        (agent_slot_eq,":agent_id", slot_agent_last_animation_string_id, "str_anim_sit"),
-        (agent_slot_eq, ":agent_id", slot_agent_scene_prop_in_use, -1),
-
+        (gt, ":position_animation", 0),
         (agent_get_position, pos0, ":agent_id"),
 
         (agent_get_slot, ":x", ":agent_id", slot_agent_animation_position_x),
@@ -478,12 +477,17 @@ sitting_check = (1, 0, 0, [], # server: handle agents sitting
         (get_distance_between_positions, ":dist", pos0, pos1),
         (gt, ":dist", 30),
 
-        (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_sitting_finish",0),
-        (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_sitting_finish",1),
+        (try_begin),
+            (this_or_next|eq, ":position_animation", "anim_sitting_pillow_male"),
+            (eq, ":position_animation", "anim_sitting_pillow_female"),
+            (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_sitting_finish",0),
+            (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_sitting_finish",1),
+        (try_end),
 
         (agent_set_slot, ":agent_id", slot_agent_animation_position_x, -1),
         (agent_set_slot, ":agent_id", slot_agent_animation_position_y, -1),
         (agent_set_slot, ":agent_id", slot_agent_animation_position_z, -1),
+        (agent_set_slot, ":agent_id", slot_agent_position_animation, 0),
       (try_end),
     (try_end),
     ])
@@ -1175,7 +1179,7 @@ def common_triggers(self):
     instrument_dropped,
     instrument_with_sheild_wield,
     instrument_with_sheild_pickup,
-    sitting_check,
+    position_animation_check,
     sitting_check_chair,
 
     player_check_loop,
