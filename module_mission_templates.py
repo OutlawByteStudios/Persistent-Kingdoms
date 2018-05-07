@@ -452,10 +452,8 @@ sitting_check = (1, 0, 0, [], # server: handle agents sitting
       (agent_is_active,":agent_id"),
       (agent_is_alive,":agent_id"),
       (agent_is_human,":agent_id"),
-      (agent_get_animation, ":anim", ":agent_id", 0),
       (try_begin),
-        (this_or_next|eq,":anim","anim_sitting_pillow_male"),
-        (eq,":anim","anim_sitting_pillow_female"),
+        (agent_slot_eq,":agent_id", slot_agent_last_animation_string_id, "str_anim_sit"),
         (agent_slot_eq, ":agent_id", slot_agent_scene_prop_in_use, -1),
 
         (agent_get_position, pos0, ":agent_id"),
