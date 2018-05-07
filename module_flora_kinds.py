@@ -136,7 +136,7 @@ flora_kinds = [
   ("pk_pine_3",fkf_plain|fkf_plain_forest|fkf_steppe|fkf_steppe_forest|fkf_tree|density(0),[("pk_pine_4","bo_pk_pine_4",("0","0"))]),
   ("pk_pine_4",fkf_plain|fkf_plain_forest|fkf_steppe|fkf_steppe_forest|fkf_tree|density(0),[("pk_pine_5","bo_pk_pine_5",("0","0"))]),
   ("pk_pine_5",fkf_plain|fkf_plain_forest|fkf_steppe|fkf_steppe_forest|fkf_tree|density(0),[("pk_pine_6","bo_pk_pine_6",("0","0"))]),
-  ("pk_pine_6",fkf_plain|fkf_plain_forest|fkf_steppe|fkf_steppe_forest|fkf_tree|density(0),[("pk_pine_7","bo_pk_tree_7",("0","0"))]),
+  ("pk_pine_6",fkf_plain|fkf_plain_forest|fkf_steppe|fkf_steppe_forest|fkf_tree|density(0),[("pk_pine_7","bo_pk_pine_7",("0","0"))]),
   ("pk_pine_7",fkf_plain|fkf_plain_forest|fkf_steppe|fkf_steppe_forest|fkf_tree|density(0),[("pk_pine_8","bo_pk_tree_8",("0","0"))]),
   ("pk_pine_8",fkf_plain|fkf_plain_forest|fkf_steppe|fkf_steppe_forest|fkf_tree|density(0),[("pk_pine_9","bo_pk_pine_9",("0","0")),("pk_pine_12","bo_pk_pine_12",("0","0"))]),
   ("pk_pine_9",fkf_plain|fkf_plain_forest|fkf_steppe|fkf_steppe_forest|fkf_tree|density(0),[("pk_pine_10","bo_pk_pine_10",("0","0")),("pk_pine_11","bo_pk_pine_11",("0","0")),("pk_pine_13","bo_pk_pine_13",("0","0"))]),
