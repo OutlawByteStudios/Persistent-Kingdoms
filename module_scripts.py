@@ -288,6 +288,7 @@ scripts.extend([
             (try_end),
           (try_end),
         (else_try),#Else, the attacker is either horse or animal
+          (neg|agent_is_non_player, ":attacked_agent_id"),
           (agent_get_player_id, ":attacked_player_id", ":attacked_agent_id"),
           (str_store_player_username, s12, ":attacked_player_id"), 
           (agent_get_rider, ":rider_id", ":attacker_agent_id"),
