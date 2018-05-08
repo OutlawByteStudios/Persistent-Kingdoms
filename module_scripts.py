@@ -13943,6 +13943,9 @@ scripts.extend([
       (player_set_slot, ":value_1", slot_player_faction_chat_muted, ":is_muted"),
       (multiplayer_send_3_int_to_player, ":sender_player_id", server_event_player_set_slot, ":value_1", slot_player_faction_chat_muted, ":is_muted"),
     (else_try),
+      (player_is_active, ":value_1"),
+      (player_slot_eq, ":value_1", slot_player_faction_id, ":faction_id"),
+
       (assign, ":key_slot", -1),
       (try_begin),
         (eq, ":action", faction_admin_action_toggle_player_door_key),
@@ -13985,8 +13988,6 @@ scripts.extend([
       (try_end),
 
       (gt, ":key_slot", -1),
-      (player_is_active, ":value_1"),
-      (player_slot_eq, ":value_1", slot_player_faction_id, ":faction_id"),
       (try_begin),
         (player_slot_eq, ":value_1", ":key_slot", 0),
         (assign, ":has_key", 1),
@@ -14023,12 +14024,10 @@ scripts.extend([
 
     (else_try),
       (eq, ":action", faction_admin_action_toggle_player_marshal),
-      (player_set_slot, ":value_1", slot_player_is_marshal, ":has_key"),
+      (player_slot_eq, ":sender_player_id", slot_player_is_lord, 1),
 
       (player_is_active, ":value_1"),
       (player_slot_eq, ":value_1", slot_player_faction_id, ":faction_id"),
-
-      (player_slot_eq, ":sender_player_id", slot_player_is_lord, 1),
 
       (try_begin),
         (player_slot_eq, ":value_1", slot_player_is_marshal, 0),
@@ -14051,10 +14050,11 @@ scripts.extend([
         (player_is_active, ":player_id"),
         (player_slot_eq, ":player_id", slot_player_faction_id, ":faction_id"),
 
-        (try_begin),
+        (try_begin), # Tell lord / marshals about new marshal
           (this_or_next|player_slot_eq, ":player_id", slot_player_is_lord, 1),
           (this_or_next|player_slot_eq, ":player_id", slot_player_is_marshal, 1),
           (eq, ":player_id", ":value_1"),
+
           (multiplayer_send_3_int_to_player, ":player_id", server_event_player_set_slot, ":value_1", slot_player_is_marshal,":has_key"),
           (try_begin),
             (eq, ":has_key", 1),
@@ -14064,11 +14064,12 @@ scripts.extend([
             (multiplayer_send_3_int_to_player, ":player_id", server_event_player_set_slot, ":value_1",slot_player_faction_chat_muted, 0),
           (try_end),
 
+          # Tell player if they have been added / removed from marshal
           (eq, ":player_id", ":value_1"),
-          (eq, ":has_key", 1),
-          (multiplayer_send_3_int_to_player, ":player_id", server_event_preset_message,  "str_you_are_a_marshal",preset_message_faction|preset_message_log|preset_message_small, ":faction_id", 0),
+          (multiplayer_send_3_int_to_player, ":player_id", server_event_preset_message,  "str_you_are_a_marshal",preset_message_faction|preset_message_log|preset_message_small, ":faction_id", ":has_key"),
         (try_end),
 
+        # Tell new marshal who has keys, etc.
         (neq, ":player_id", ":value_1"),
         (player_get_slot, ":has_door_key", ":player_id", slot_player_has_faction_door_key),
         (multiplayer_send_3_int_to_player, ":value_1", server_event_player_set_slot, ":player_id",slot_player_has_faction_door_key, ":has_door_key"),
