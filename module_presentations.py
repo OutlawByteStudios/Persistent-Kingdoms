@@ -1283,7 +1283,6 @@ presentations.extend([
       (else_try),
         (eq, ":object", "$g_presentation_obj_escape_menu_quit"),
         (try_for_agents, ":agent_id"),
-          (agent_is_active, ":agent_id"),
           (agent_stop_sound, ":agent_id"), # Stop all singings on every agent
         (try_end),
         (presentation_set_duration, 0),
