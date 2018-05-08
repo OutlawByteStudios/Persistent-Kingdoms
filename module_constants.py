@@ -562,7 +562,7 @@ admin_chat_color                      = 0xFFFF00FF
 invalid_faction_color                 = 0xFF888888
 
 outlaw_rating_for_kill                = 2
-outlaw_rating_for_team_kill           = 5
+outlaw_rating_for_team_kill           = 0
 outlaw_rating_for_lord_outlawed       = 4
 outlaw_rating_outlawed                = 15 # outlaw players when they get this rating
 outlaw_rating_maximum                 = 30 # don't add increase the rating more than this
