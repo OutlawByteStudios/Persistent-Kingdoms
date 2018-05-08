@@ -525,7 +525,6 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("reveal_money_pouch_to_target", "Reveal money pouch to target"),
   ("reveal_money_pouch_to_area", "Reveal money pouch to nearby players"),
   ("commit_suicide", "Commit suicide"),
-  ("clear_projectiles", "Clear projectiles on chests and doors"),
   ("action_menu_end", "action_menu_end"),
 
   # Other C Menu options
