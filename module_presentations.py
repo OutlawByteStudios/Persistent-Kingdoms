@@ -5062,7 +5062,6 @@ presentations.extend([
           (assign, "$g_mute_music", 1),
           (overlay_set_text, ":overlay_id", "str_unmute_music"),
           (try_for_agents, ":music_agent_id"),
-            (agent_is_active, ":music_agent_id"),
             (agent_stop_sound, ":music_agent_id"),
           (try_end),
         (try_end),
