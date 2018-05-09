@@ -1360,7 +1360,7 @@ scripts.extend([
           (start_presentation, "prsnt_script_message"),
         (try_end),
       (else_try), # display script messages
-        (eq, ":event_type", server_event_script_set_color),
+        (eq, ":event_type", server_event_script_message_set_color),
         (store_script_param, "$g_script_message_color", 3),
       (else_try), # convert the packed permissions value into player slots, to limit menu items displayed and similar
         (eq, ":event_type", server_event_admin_set_permissions),
@@ -4373,7 +4373,7 @@ scripts.extend([
     (multiplayer_send_2_int_to_player, ":player_id", server_event_return_game_rules, command_set_disallow_ranged_weapons, "$g_full_respawn_health"),
     (store_mission_timer_a, ":mission_timer"),
     (multiplayer_send_2_int_to_player, ":player_id", server_event_return_game_rules, command_set_server_mission_timer, ":mission_timer"),
-    (multiplayer_send_2_int_to_player, ":player_id", server_event_script_set_color, "$g_script_message_color"),
+    (multiplayer_send_2_int_to_player, ":player_id", server_event_script_message_set_color, "$g_script_message_color"),
     ]),
 
   ("after_client_is_setup", # clients: called after the server has finished sending the initial module data updates
