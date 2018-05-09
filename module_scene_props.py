@@ -3255,7 +3255,7 @@ scene_props = [
   ("cm_buy_polished_steel_boots",spr_buy_item_flags(10),"narf_greaves","bo_pw_armor_foot", spr_buy_item_triggers("itm_narf_greaves", resources=[("itm_leather_piece",2),("itm_iron_bar",2)], engineer=6)),
   ("cm_buy_steel_boots",spr_buy_item_flags(10),"steel_greaves","bo_pw_armor_foot", spr_buy_item_triggers("itm_steel_greaves", resources=[("itm_leather_piece",2),("itm_iron_bar",2)], engineer=6)),
   
-  ("cm_buy_tourney_helm_yellow",spr_buy_item_flags(5),"tourney_helm_yellow","bo_pw_armor_head", spr_buy_item_triggers("itm_tourney_helm_yellow", resources=["itm_leather_piece","itm_iron_piece"], engineer=2)),
+  ("cm_buy_tourney_helm_yellow",spr_buy_item_flags(5),"tourney_helmY","bo_pw_armor_head", spr_buy_item_triggers("itm_tourney_helm_yellow", resources=["itm_leather_piece","itm_iron_piece"], engineer=2)),
   ("cm_buy_saracen_helmet_with_leather",spr_buy_item_flags(5),"helm_saracin_c","bo_pw_armor_head", spr_buy_item_triggers("itm_helm_saracin_c", resources=["itm_leather_piece","itm_iron_piece"], engineer=2)),
   ("cm_buy_saracen_helmet_with_mail",spr_buy_item_flags(6),"sar_infantry_helmet1","bo_pw_armor_head", spr_buy_item_triggers("itm_sar_infantry_helmet1", resources=["itm_iron_bar_short","itm_leather_piece"], engineer=2)),
   ("cm_buy_chapel_de_fer_cloth",spr_buy_item_flags(7),"chapel_de_fer_cloth2","bo_pw_armor_head_armature", spr_buy_item_triggers("itm_chapel_de_fer_cloth2", resources=["itm_iron_bar_short","itm_linen_cloth_small"], engineer=2)),
