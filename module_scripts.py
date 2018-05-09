@@ -1359,6 +1359,9 @@ scripts.extend([
           (str_store_string_reg, s12, s0),
           (start_presentation, "prsnt_script_message"),
         (try_end),
+      (else_try), # display script messages
+        (eq, ":event_type", server_event_script_set_color),
+        (store_script_param, "$g_script_message_color", 3),
       (else_try), # convert the packed permissions value into player slots, to limit menu items displayed and similar
         (eq, ":event_type", server_event_admin_set_permissions),
         (store_script_param, ":permissions", 3),
@@ -2665,9 +2668,6 @@ scripts.extend([
       (eq, ":command", command_set_disallow_ranged_weapons),
       (val_clamp, ":value", 0, 2),
       (assign, "$g_full_respawn_health", ":value"),
-    (else_try),
-      (eq, ":command", command_limit_sergeant),
-      (assign, "$g_script_message_color", ":value"),
     (else_try),
       (eq, ":command", command_limit_officer),
       (call_script, "script_mute_all_players", ":value"),
@@ -4373,7 +4373,7 @@ scripts.extend([
     (multiplayer_send_2_int_to_player, ":player_id", server_event_return_game_rules, command_set_disallow_ranged_weapons, "$g_full_respawn_health"),
     (store_mission_timer_a, ":mission_timer"),
     (multiplayer_send_2_int_to_player, ":player_id", server_event_return_game_rules, command_set_server_mission_timer, ":mission_timer"),
-    (multiplayer_send_2_int_to_player, ":player_id", server_event_return_game_rules, command_limit_sergeant, "$g_script_message_color"),
+    (multiplayer_send_2_int_to_player, ":player_id", server_event_script_set_color, "$g_script_message_color"),
     ]),
 
   ("after_client_is_setup", # clients: called after the server has finished sending the initial module data updates

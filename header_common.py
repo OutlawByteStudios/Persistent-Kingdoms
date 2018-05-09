@@ -31,15 +31,16 @@ server_event_admin_chat                         = 23
 server_event_admin_chat_announce                = 24
 server_event_script_message                     = 25
 server_event_script_message_announce            = 26
-server_event_admin_set_permissions              = 27
-server_event_set_attached_scene_prop            = 28
-server_event_local_animation                    = 29
-server_event_update_scene_prop_hit_points       = 30
-server_event_agent_stop_sound                   = 31
-server_event_agent_play_sound                   = 32
-server_event_agent_animation                    = 33
-server_event_inventory_ready                    = 34
-server_event_toggle_walk                        = 35
+server_event_script_set_color                   = 27
+server_event_admin_set_permissions              = 28
+server_event_set_attached_scene_prop            = 29
+server_event_local_animation                    = 30
+server_event_update_scene_prop_hit_points       = 31
+server_event_agent_stop_sound                   = 32
+server_event_agent_play_sound                   = 33
+server_event_agent_animation                    = 34
+server_event_inventory_ready                    = 35
+server_event_toggle_walk                        = 36
 
 # Add new events here: above if sent from the server, below if from clients.
 client_event_toggle_walk                        = 87
@@ -181,7 +182,7 @@ command_limit_artillery                         = 75
 command_limit_rocket                            = 76
 command_limit_sapper                            = 77
 command_limit_musician                          = 78
-command_limit_sergeant                          = 79 # Script message color
+command_limit_sergeant                          = 79
 command_limit_officer                           = 80 # Mute all players
 command_limit_general                           = 81 # PM system (when implemented)
 # Hard coded commands
