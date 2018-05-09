@@ -436,6 +436,7 @@ chat_event_type_faction               = 4
 chat_event_type_faction_announce      = 5
 chat_event_type_admin                 = 6
 chat_event_type_admin_announce        = 7
+chat_event_type_script_message        = 8
 
 slot_chat_overlay_local_color         = 0
 slot_chat_overlay_faction_color       = 1
@@ -559,6 +560,7 @@ local_chat_color                      = 0xFFFFDD8A
 local_chat_shout_color                = 0xFFFF8C27
 local_animation_color                 = 0xFFFFBBAA
 admin_chat_color                      = 0xFFFF00FF
+script_message_color                  = 0xFFFF4300
 invalid_faction_color                 = 0xFF888888
 
 outlaw_rating_for_kill                = 2
