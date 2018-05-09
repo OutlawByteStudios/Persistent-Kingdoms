@@ -1025,7 +1025,7 @@ Poisonous herbs can also sometimes be found, which are then applied to the blade
   ("castle_name_86", "Golden Tooth"),
   ("castle_name_87", "Highgarden"),
   ("castle_name_88", "Horn Hill"),	
-  ("castle_name_89", "Kingslanding"),
+  ("castle_name_89", "Kings Landing"),
   ("castle_name_90", "Storms End"),
   ("castle_name_91", "Dragonstone"),
   ("castle_name_92", "Sunspear"),
