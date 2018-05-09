@@ -573,6 +573,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("anim_arms_crossed", "Arms crossed"),
   ("anim_stand_still", "Stand still"),
   ("anim_sit", "Sit"),
+  ("anim_surrender", "Surrender"),
   ("anim_away_vile_beggar", "Away with you, vile beggar"),
   ("anim_my_lord", "My lord"),
   ("anim_almost_harvesting_season", "It's almost harvesting season"),
