@@ -3483,6 +3483,21 @@ presentations.extend([
       ]),
     ]),
 
+    ("script_message", prsntf_read_only|prsntf_manual_end_only, 0,
+     [(ti_on_presentation_load,
+       [(set_fixed_point_multiplier, 1000),
+        (create_text_overlay, ":overlay_id", s12, tf_center_justify|tf_with_outline),
+        (overlay_set_color, ":overlay_id", "$g_script_message_color"),
+        (position_set_x, pos1, 500),
+        (position_set_y, pos1, 450),
+        (overlay_set_position, ":overlay_id", pos1),
+        (position_set_x, pos1, 1500),
+        (position_set_y, pos1, 1500),
+        (overlay_set_size, ":overlay_id", pos1),
+        (presentation_set_duration, 500),
+        ]),
+      ]),
+
   ("display_agent_labels", prsntf_read_only|prsntf_manual_end_only, 0, # display player name and optionally faction name above the heads of nearby agents
    [(ti_on_presentation_load,
      [(assign, "$g_presentation_agent_labels_overlay_count", 0),
