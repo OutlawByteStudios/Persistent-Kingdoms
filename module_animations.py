@@ -1634,7 +1634,7 @@ animations = [
  [1.0, "this_way", 0, 40, arf_use_stand_progress|arf_cyclic],
 ],
 ["hand_on_chest", 0, amf_play|amf_priority_continue|amf_continue_to_next,
- [1.0, "hand_on_chest", 0, 30, arf_blend_in_3],
+ [1.0, "hand_on_chest", 0, 16, arf_blend_in_3],
 ],
 ["hand_on_chest_still", 0, amf_play|amf_keep|amf_priority_continue,
  [1.0, "hand_on_chest", 16, 16, arf_use_stand_progress|arf_cyclic],
