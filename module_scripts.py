@@ -14046,9 +14046,10 @@ scripts.extend([
             (multiplayer_send_3_int_to_player, ":player_id", server_event_player_set_slot, ":value_1",slot_player_faction_chat_muted, 0),
           (try_end),
 
-          # Tell player if they have been added / removed from marshal
+          # Tell player if they have been added to marshal
           (eq, ":player_id", ":value_1"),
-          (multiplayer_send_3_int_to_player, ":player_id", server_event_preset_message,  "str_you_are_a_marshal",preset_message_faction|preset_message_log|preset_message_small, ":faction_id", ":has_key"),
+          (eq, ":has_key", 1),
+          (multiplayer_send_3_int_to_player, ":player_id", server_event_preset_message,  "str_you_are_a_marshal",preset_message_faction|preset_message_log|preset_message_small, ":faction_id", 0),
         (try_end),
 
         # Tell new marshal who has keys, etc.
