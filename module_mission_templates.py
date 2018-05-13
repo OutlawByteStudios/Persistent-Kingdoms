@@ -483,6 +483,8 @@ position_animation_check = (1, 0, 0, [], # server: handle agents sitting
             (eq, ":position_animation", "anim_sitting_pillow_female"),
             (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_sitting_finish",0),
             (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_sitting_finish",1),
+          (else_try),
+            # cancel animations here.
           (try_end),
 
           (agent_set_slot, ":agent_id", slot_agent_animation_position_x, -1),
