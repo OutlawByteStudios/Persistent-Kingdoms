@@ -1,13 +1,14 @@
 The license of the original "Native" module system released by TaleWorlds is
 unknown, but it remains their property. The "3 clause BSD" license in
 LICENSE.txt applies to changes from that base for the "Persistent World"
-module by Steven Schwartfeger (Vornne).
+module by Steven Schwartfeger (Vornne) and for the "Persistent Kingdoms"
+module by the Phoenix Dev Team (http://pw-phoenix.com/).
 
 Basically, you can use the module system for your project as long as the
-license is kept and credit is given to Persistent World as the base, but the
-name "Persistent World" or close derivatives is not used without permission
-to name or promote your project, to deceive people into thinking that yours is
-an official version.
+license is kept and credit is given to Persistent World and Persistent Kingdoms
+as the base, but the name "Persistent World", "Persistent Kingdoms" or close
+derivatives is not used without permission to name or promote your project,
+to deceive people into thinking that yours is an official version.
 
 Using the same module directory name as an official release on a dedicated
 server would only be permitted for minor bug fixes and enhancements that seem

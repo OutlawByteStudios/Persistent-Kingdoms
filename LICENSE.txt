@@ -1,3 +1,14 @@
+Any modifications made from the original Persistent World are under the Copyright (c) 2018
+Phoenix Dev Team (http://pw-phoenix.com), Persistent Kingdoms
+All rights reserved.
+
+The conditions of source code use are under the same terms of the Persistent World license,
+with the following additions:
+
+    * Neither the name "Persistent Kingdoms" nor the names of its contributors
+      may be used to endorse or promote products derived from this software
+      without specific prior written permission.
+
 Copyright (c) 2010 Steven Schwartfeger, Persistent World
 All rights reserved.
 
