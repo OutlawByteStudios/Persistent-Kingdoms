@@ -579,7 +579,6 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("anim_bow", "Bow"),
   ("anim_sleeping", "Sleep"),
   ("anim_nod_head", "Nod Head"),
-  ("anim_giving_birth", "Give Birth"),
   ("anim_peeing", "Pee"),
   ("anim_wave_hand", "Wave"),
   ("anim_this_way", "This Way"),
@@ -619,6 +618,9 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("anim_lyre_3", "*Lyre* Fair Lady Kate"),
   ("anim_lyre_4", "*Lyre* Vecc"),
   ("log_animation", "*ANIMATION* [{s1}] {s0}"),
+
+  # unused animations
+  ("anim_giving_birth", "Give Birth"),
 
   ("done", "Done"),
   ("use", "Use"),
