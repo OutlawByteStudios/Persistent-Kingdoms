@@ -7,7 +7,7 @@ import process_operations as po
 import argparse
 
 parser = argparse.ArgumentParser(description="Dump crafting recipes to a file.")
-parser.add_argument("output_format", choices=["txt", "xml", "bal"])
+parser.add_argument("output_format", choices=["txt", "xml", "bal", "csv"])
 parser.add_argument("output_file", nargs='?', default="crafting_recipes", help="file name without extension")
 parser.add_argument("--pretty", "-p", action="store_true", help="pretty print xml output with newlines and indentation")
 args = parser.parse_args()
@@ -52,17 +52,38 @@ for entry in crafting_data:
   item_info.swing_damage = get_damage_str(get_swing_damage(item[6]))
   item_info.thrust_damage = get_damage_str(get_thrust_damage(item[6]))
 
+  item_type = item[3] & 0xff
+  if item[0] in ("saddle", "horse_armor", "small_mining_pick", "woodcutter_axe", "mining_pick", "repair_hammer",
+    "lock_pick", "bucket", "fishing_spear", "fishing_net", "sickle", "scythe", "kitchen_knife",
+    "cleaver", "knife", "butchering_knife", "broom", "herding_crook", "surgeon_scalpel", "torch",
+    "book_a", "book_b", "book_c", "book_d", "book_e", "book_f", "lyre", "lute", "warhorn", "dart", "die", "wheat_sack"):
+    item_info.type = "Tools & Misc"
+  elif item_type in (itp_type_bow, itp_type_crossbow, itp_type_thrown, itp_type_arrows, itp_type_bolts):
+    item_info.type = "Ranged Weapons & Ammo"
+  elif item_type == itp_type_shield:
+    item_info.type = "Shields"
+  elif  item_type in (itp_type_one_handed_wpn, itp_type_two_handed_wpn, itp_type_polearm):
+    item_info.type = "Melee Weapons"
+  elif item_type == itp_type_horse:
+    item_info.type = "Horses"
+  elif item_type in (itp_type_head_armor, itp_type_body_armor, itp_type_foot_armor, itp_type_hand_armor):
+    item_info.type = "Armour"
+  else:
+    print (item[1])
+
   recipe = CraftingRecipe()
   recipe.crafted_item = item_info
   recipe.skill_names = [skills[get_id(entry[1][i][0])][1] if entry[1][i][0] != -1 else "None" for i in xrange(2)]
   recipe.skill_levels = [entry[1][i][1] for i in xrange(2)]
   recipe.resources_default_cost = 0
   recipe.resource_names = []
+  recipe.resource_ids=[]
   for resource in entry[3]:
     if resource == -1:
       continue
     item = items[get_id(resource)]
     recipe.resources_default_cost += item[5]
+    recipe.resource_ids.append(item[0])
     recipe.resource_names.append(item[1])
   recipe.average_skill_level = entry[4]
   recipe.max_crafting_reward = (recipe.resources_default_cost +
@@ -88,32 +109,29 @@ elif args.output_format == "xml":
   root = ET.Element("crafting_recipies")
   for recipe in crafting_recipes:
     entry = ET.SubElement(root, "recipe")
-    item = ET.SubElement(entry, "crafted_item")
-    ET.SubElement(item, "identifier").text = recipe.crafted_item.identifier
-    ET.SubElement(item, "name").text = recipe.crafted_item.name
-    ET.SubElement(item, "mesh").text = recipe.crafted_item.mesh
-    ET.SubElement(item, "price").text = str(recipe.crafted_item.price)
-    ET.SubElement(item, "weight").text = str(recipe.crafted_item.weight)
-    ET.SubElement(item, "difficulty").text = str(recipe.crafted_item.difficulty)
-    ET.SubElement(item, "head_armor").text = str(recipe.crafted_item.head_armor)
-    ET.SubElement(item, "body_armor").text = str(recipe.crafted_item.body_armor)
-    ET.SubElement(item, "leg_armor").text = str(recipe.crafted_item.leg_armor)
-    ET.SubElement(item, "speed").text = str(recipe.crafted_item.speed)
-    ET.SubElement(item, "missile_speed").text = str(recipe.crafted_item.missile_speed)
-    ET.SubElement(item, "length").text = str(recipe.crafted_item.length)
-    ET.SubElement(item, "swing_damage").text = str(recipe.crafted_item.swing_damage)
-    ET.SubElement(item, "thrust_damage").text = str(recipe.crafted_item.thrust_damage)
-    skills = ET.SubElement(entry, "alternative_skills")
+    ET.SubElement(entry, "identifier").text = recipe.crafted_item.identifier
+    ET.SubElement(entry, "name").text = recipe.crafted_item.name
+    ET.SubElement(entry, "mesh").text = recipe.crafted_item.mesh
+    ET.SubElement(entry, "price").text = str(recipe.crafted_item.price)
+    ET.SubElement(entry, "weight").text = str(recipe.crafted_item.weight)
+    ET.SubElement(entry, "difficulty").text = str(recipe.crafted_item.difficulty)
+    ET.SubElement(entry, "head_armor").text = str(recipe.crafted_item.head_armor)
+    ET.SubElement(entry, "body_armor").text = str(recipe.crafted_item.body_armor)
+    ET.SubElement(entry, "leg_armor").text = str(recipe.crafted_item.leg_armor)
+    ET.SubElement(entry, "speed").text = str(recipe.crafted_item.speed)
+    ET.SubElement(entry, "missile_speed").text = str(recipe.crafted_item.missile_speed)
+    ET.SubElement(entry, "length").text = str(recipe.crafted_item.length)
+    ET.SubElement(entry, "swing_damage").text = str(recipe.crafted_item.swing_damage)
+    ET.SubElement(entry, "thrust_damage").text = str(recipe.crafted_item.thrust_damage)
+    temp_skill_list = []
     for name, level in zip(recipe.skill_names, recipe.skill_levels):
       if level <= 0:
         continue
-      skill = ET.SubElement(skills, "skill")
-      ET.SubElement(skill, "name").text = name
-      ET.SubElement(skill, "level").text = str(level)
+      temp_skill_list.append(name + " " + `level`)
+    ET.SubElement(entry, "crafting_skills").text = " / ".join(temp_skill_list) 
     ET.SubElement(entry, "average_skill_level").text = str(recipe.average_skill_level)
-    resources = ET.SubElement(entry, "resources")
-    for resource_name in recipe.resource_names:
-      ET.SubElement(resources, "resource").text = resource_name
+    for idx, resource_name in enumerate(recipe.resource_names):
+      ET.SubElement(entry, "crafting_resource_" + `idx + 1`).text = resource_name
     ET.SubElement(entry, "resources_default_cost").text = str(recipe.resources_default_cost)
     ET.SubElement(entry, "max_crafting_reward").text = str(recipe.max_crafting_reward)
     ET.SubElement(entry, "time").text = str(recipe.time)
@@ -150,3 +168,29 @@ elif args.output_format == "bal":
         recipe.crafted_item.price / float(recipe.resources_default_cost),
         recipe.max_crafting_reward / float(recipe.resources_default_cost * recipe.time),
         len(set(recipe.resource_names))))
+
+elif args.output_format == "csv":
+
+  with open(args.output_file + ".csv","w") as f:
+    f.write("Type,Item Name,Required Skill(s),Resource 1,Resource 2,Resource 3,Resource 4,Price,Difficulty,Head Armour,Body Armour,Leg Armour,Speed,Swing Damage,Thrust Damage\n")
+    for recipe in crafting_recipes:
+      f.write("%s,%s," % (recipe.crafted_item.type,recipe.crafted_item.name))
+      temp_skill_list = []
+      for name, level in zip(recipe.skill_names, recipe.skill_levels):
+        if level <= 0:
+          continue
+        temp_skill_list.append(name + " " + `level`)
+      f.write("%s," % (" / ".join(temp_skill_list)))
+      for x in range(0, 4):
+        f.write("%s," % (("wp-content/uploads/2018/05/" + recipe.resource_ids[x] + ".png") if -len(recipe.resource_names) <= x < len(recipe.resource_names) else ""))
+      f.write("%s,%s,%s,%s,%s,%s,%s,%s" % (
+        str(recipe.crafted_item.price),
+        str(recipe.crafted_item.difficulty),
+        str(recipe.crafted_item.head_armor),
+        str(recipe.crafted_item.body_armor),
+        str(recipe.crafted_item.leg_armor),
+        str(recipe.crafted_item.speed),
+        str(recipe.crafted_item.swing_damage),
+        str(recipe.crafted_item.thrust_damage),
+        ))  
+      f.write("\n")
