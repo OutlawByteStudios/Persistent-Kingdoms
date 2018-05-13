@@ -14232,7 +14232,7 @@ scripts.extend([
         animation_menu_entry("str_anim_go_away", animation="anim_go_away", prevent_if_wielding=1),
         animation_menu_entry("str_anim_peeing", animation="anim_peeing", prevent_if_wielding=1),
         animation_menu_entry("str_anim_hand_on_chest", animation="anim_hand_on_chest", prevent_if_wielding=1),
-        animation_menu_entry("str_anim_kneel_down", animation="anim_kneel_down", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0, position_animation=1),
+        animation_menu_entry("str_anim_bow", animation="anim_bow", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0, position_animation=1),
         animation_menu_entry("str_anim_sleeping", animation="anim_sleeping", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0, position_animation=1),
         animation_menu_entry("str_anim_giving_birth", animation="anim_giving_birth", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0, position_animation=1),
       (else_try),

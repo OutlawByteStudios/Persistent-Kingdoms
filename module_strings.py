@@ -576,7 +576,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("anim_arms_crossed", "Arms crossed"),
   ("anim_stand_still", "Stand still"),
   ("anim_sit", "Sit"),
-  ("anim_kneel_down", "Kneel"),
+  ("anim_bow", "Bow"),
   ("anim_sleeping", "Sleep"),
   ("anim_nod_head", "Nod Head"),
   ("anim_giving_birth", "Give Birth"),
