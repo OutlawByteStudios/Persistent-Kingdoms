@@ -1657,7 +1657,6 @@ animations = [
 ["tracking", acf_enforce_all, amf_play|amf_keep|amf_priority_continue,
  [1.0, "tracking", 0, 20, arf_use_stand_progress|arf_cyclic],
 ],
-["unused_human_anim_68", 0, 0, [1.0, "anim_human", 0, 1, 0]],
 ["unused_human_anim_69", 0, 0, [1.0, "anim_human", 0, 1, 0]],
 ["unused_human_anim_70", 0, 0, [1.0, "anim_human", 0, 1, 0]],
 ["unused_human_anim_71", 0, 0, [1.0, "anim_human", 0, 1, 0]],
