@@ -477,10 +477,13 @@ position_animation_check = (1, 0, 0, [], # server: handle agents sitting
         (get_distance_between_positions, ":dist", pos0, pos1),
         (try_begin),
           (gt, ":dist", 30),
-
+    
           (try_begin),
             (this_or_next|eq, ":position_animation", "anim_sitting_pillow_male"),
             (eq, ":position_animation", "anim_sitting_pillow_female"),
+            (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_sitting_finish",0),
+            (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_sitting_finish",1),
+          (else_try), # cancel other position animations. Using this animation as a placeholder as it seems to be good for all current position animations implemented.
             (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_sitting_finish",0),
             (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_sitting_finish",1),
           (try_end),
@@ -489,6 +492,7 @@ position_animation_check = (1, 0, 0, [], # server: handle agents sitting
           (agent_set_slot, ":agent_id", slot_agent_animation_position_y, -1),
           (agent_set_slot, ":agent_id", slot_agent_animation_position_z, -1),
           (agent_set_slot, ":agent_id", slot_agent_position_animation, 0),
+
         (else_try),
           (agent_get_wielded_item, ":left_hand_item", ":agent_id", 1),
           (ge, ":left_hand_item", all_items_begin),
