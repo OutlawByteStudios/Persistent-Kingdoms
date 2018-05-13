@@ -570,7 +570,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("anim_cheer", "Cheer"),
   ("anim_clap", "Clap"),
   ("anim_raise_sword", "Raise sword"),
-  ("anim_cool_2h_stance", "Shoulder Sword"),
+  ("anim_lean_on_sword", "Lean on Sword"),
   ("anim_hands_on_hips", "Hands on hips"),
   ("anim_hand_on_chest", "Hand on Chest"),
   ("anim_arms_crossed", "Arms crossed"),

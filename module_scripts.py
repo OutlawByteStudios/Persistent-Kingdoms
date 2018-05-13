@@ -14225,7 +14225,7 @@ scripts.extend([
         animation_menu_entry("str_anim_horn_charge", animation="anim_play_horn", man_sound="snd_horncharge", woman_sound="snd_horncharge", instrument="itm_warhorn", horn=1),
         animation_menu_entry("str_anim_horn_regroup", animation="anim_play_horn", man_sound="snd_hornregroup", woman_sound="snd_hornregroup", instrument="itm_warhorn", horn=1),
         animation_menu_entry("str_anim_horn_retreat", animation="anim_play_horn", man_sound="snd_hornretreat", woman_sound="snd_hornretreat", instrument="itm_warhorn", horn=1),
-        animation_menu_entry("str_anim_cool_2h_stance", animation="anim_cool_2h_stance"),
+        animation_menu_entry("str_anim_lean_on_sword", animation="anim_lean_on_sword", prevent_if_moving=1, prevent_if_on_horse=1),
         animation_menu_entry("str_anim_nod_head", animation="anim_nod_head"),
         animation_menu_entry("str_anim_wave_hand", animation="anim_wave_hand", prevent_if_wielding=1),
         animation_menu_entry("str_anim_this_way", animation="anim_this_way", prevent_if_wielding=1),
