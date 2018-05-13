@@ -41,8 +41,11 @@ server_event_agent_play_sound                   = 33
 server_event_agent_animation                    = 34
 server_event_inventory_ready                    = 35
 server_event_toggle_walk                        = 36
+server_event_bank_management                    = 37
 
 # Add new events here: above if sent from the server, below if from clients.
+
+client_event_bank_management                    = 86
 client_event_toggle_walk                        = 87
 client_event_close_inventory                    = 88
 client_event_open_inventory                     = 89
