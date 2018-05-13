@@ -578,6 +578,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("anim_sit", "Sit"),
   ("anim_bow", "Bow"),
   ("anim_sleeping", "Sleep"),
+  ("anim_track", "Tracking"),
   ("anim_nod_head", "Nod Head"),
   ("anim_peeing", "Pee"),
   ("anim_wave_hand", "Wave"),

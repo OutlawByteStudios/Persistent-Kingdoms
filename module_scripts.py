@@ -14235,6 +14235,7 @@ scripts.extend([
         animation_menu_entry("str_anim_bow", animation="anim_bow", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0, position_animation=1),
         animation_menu_entry("str_anim_sleeping", animation="anim_sleeping", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0, position_animation=1),
         animation_menu_entry("str_anim_giving_birth", animation="anim_giving_birth", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0, position_animation=1),
+        animation_menu_entry("str_anim_track", animation="anim_tracking", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0, position_animation=1),
       (else_try),
         (assign, ":string_id", -1),
       (try_end),
