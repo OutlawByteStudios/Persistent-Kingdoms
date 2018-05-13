@@ -611,7 +611,7 @@ random_gear_in_chests                 = 0
 
 walk_speed_factor                     = 2
 
-bank_access_distance                  = 60
+bank_access_distance                  = 400
 
 all_items_begin = "itm_tattered_headcloth"
 all_items_end = "itm_all_items_end"

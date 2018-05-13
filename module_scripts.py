@@ -1437,14 +1437,14 @@ scripts.extend([
         (assign, "$g_walk_mode", ":walk_mode"),
       (else_try),
         (eq, ":event_type", server_event_bank_management),
-        (store_script_param, "$g_bank_instance_id", 1),
+        (store_script_param, "$g_bank_instance_id", 3),
         (start_presentation, "prsnt_bank_menu"),
       (try_end),
 
     (else_try), # section of events received by server from the clients
       (multiplayer_is_server),
       (try_begin), # handle players requesting to attach a cart to themselves or a horse
-		    (eq, ":event_type", client_event_attach_scene_prop),
+		(eq, ":event_type", client_event_attach_scene_prop),
         (store_script_param, ":instance_id", 3),
         (player_get_agent_id, ":agent_id", ":sender_player_id"),
         (try_begin),
@@ -2100,12 +2100,15 @@ scripts.extend([
         (store_script_param, ":withdraw_or_deposit", 4),
         (store_script_param, ":bank_instance_id", 5),
 
+        (player_get_agent_id, ":agent_id", ":sender_player_id"),
         (agent_get_position, pos0, ":agent_id"),
         (prop_instance_get_position, pos1, ":bank_instance_id"),
         (get_distance_between_positions, ":dist", pos0, pos1),
 
         (try_begin),
-          (le, ":dist", bank_access_distance),
+          (gt, ":dist", bank_access_distance),
+          (multiplayer_send_2_int_to_player, ":sender_player_id", server_event_preset_message, "str_no_bank_nearby", preset_message_error),
+        (else_try),
           (try_begin),
             (eq, ":withdraw_or_deposit", 0),
             (call_script, "script_bank_withdraw", ":sender_player_id", ":amount"),
@@ -2113,8 +2116,6 @@ scripts.extend([
             (eq, ":withdraw_or_deposit", 1),
             (call_script, "script_bank_deposit", ":sender_player_id", ":amount"),
           (try_end),
-        (else_try),
-          (multiplayer_send_2_int_to_player, ":sender_player_id", server_event_preset_message, "str_no_bank_nearby", preset_message_error),
         (try_end),
       (try_end),
     (try_end),
@@ -3178,6 +3179,7 @@ scripts.extend([
     (neg|is_presentation_active, "prsnt_chat_box"),
     (neg|is_presentation_active, "prsnt_show_inventory"),
     (neg|is_presentation_active, "prsnt_money_bag"),
+    (neg|is_presentation_active, "prsnt_bank_menu"),
     (neg|is_presentation_active, "prsnt_tabbed_stats_chart"),
     (neg|is_presentation_active, "prsnt_escape_menu"),
     (neg|is_presentation_active, "prsnt_action_menu"),
@@ -14691,6 +14693,13 @@ scripts.extend([
     ]),
 
   ## CUSTOM SERVER SCRIPTS START ##
+  ("setup_bank_menu",
+   [(store_script_param, ":agent_id", 1),
+    (store_script_param, ":instance_id", 2),
+    (agent_get_player_id, ":player_id", ":agent_id"),
+    (multiplayer_send_int_to_player, ":player_id", server_event_bank_management, ":instance_id"),
+   ]),
+
   ("bank_withdraw",
    [
      (server_add_message_to_log, "@withdraw"),
