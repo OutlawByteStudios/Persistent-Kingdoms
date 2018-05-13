@@ -1442,7 +1442,7 @@ animations = [
  [3.0, "poses", 7, 7, arf_cyclic|arf_blend_in_8],
 ],
 ["pose_arms_crossed", 0, amf_play|amf_keep|amf_priority_continue,
- [4.0, "pw_pose_arms_crossed", 0, 4, arf_cyclic],
+ [4.0, "pw_pose_arms_crossed", 0, 4, arf_blend_in_5],
 ],
 ["man_clap", 0, amf_play|amf_priority_continue,
  [7.0, "wedding_guest", 50, 230, arf_blend_in_5],
