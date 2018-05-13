@@ -896,6 +896,16 @@ def spr_chairs(anim, female_anim=0):
       ]),
     ]
 
+def spr_bank(use_string="str_access", hit_points=2000):
+    return [(ti_on_scene_prop_init,
+             [(store_trigger_param_1, ":instance_id"),
+              (scene_prop_set_hit_points, ":instance_id", spr_check_hit_points(hit_points)),
+              (scene_prop_set_slot, ":instance_id", slot_scene_prop_full_hit_points, hit_points),
+              (scene_prop_set_slot, ":instance_id", slot_scene_prop_next_resource_hp, hit_points),
+              (scene_prop_set_slot, ":instance_id", slot_scene_prop_use_string, use_string),
+              ]),
+            spr_call_script_use_trigger("script_setup_bank_menu")]
+
 scene_props = [
   ("invalid_object",0,"question_mark","0", []),
   ("inventory",sokf_type_container|sokf_place_at_origin,"package","bobaggage", []),
@@ -3574,7 +3584,7 @@ scene_props = [
   ("pw_castle_money_chest",sokf_dynamic_physics|sokf_missiles_not_attached|spr_chest_flags(use_time=2),"pw_chest_b","bo_pw_chest_b", spr_castle_money_chest_triggers(hit_points=6000)),
   ("pw_item_chest_a",sokf_dynamic_physics|sokf_missiles_not_attached|spr_chest_flags(use_time=1),"pw_chest_c","bo_pw_chest_c", spr_item_chest_triggers(hit_points=7000, inventory_count=48, max_item_length=180)),
   ("pw_item_chest_b",sokf_dynamic_physics|sokf_missiles_not_attached|spr_chest_flags(use_time=1),"pw_chest_b","bo_pw_chest_b", spr_item_chest_triggers(hit_points=5000, inventory_count=32, max_item_length=100)),
-  ("pw_item_chest_invisible",sokf_dynamic_physics|sokf_missiles_not_attached|sokf_invisible|spr_chest_flags(1),"pw_invisible_chest","bo_pw_invisible_chest", spr_item_chest_triggers(hit_points=2000, inventory_count=12, max_item_length=120)),
+  ("pw_item_chest_invisible",sokf_dynamic_physics|sokf_missiles_not_attached|sokf_invisible|spr_chest_flags(use_time=1, destructible=False),"pw_invisible_chest","bo_pw_invisible_chest", spr_bank()),
   ("cm_arrow_holder_bucket",sokf_dynamic_physics|sokf_missiles_not_attached|spr_chest_flags(use_time=1, destructible=False),"pk_arrow_holder_bucket","bo_pk_arrow_holder_bucket", spr_item_chest_triggers(inventory_count=12, store_ammo=1, store_only_ammo=1, destructible=False)),
 
   ("pw_signpost_castle",0,"pw_signpost_castle","bo_pw_signpost", []),
