@@ -575,6 +575,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("anim_hand_on_chest", "Hand on chest"),
   ("anim_arms_crossed", "Arms crossed"),
   ("anim_stand_still", "Stand still"),
+  ("anim_surrender", "Surrender"),
   ("anim_sit", "Sit"),
   ("anim_bow", "Bow"),
   ("anim_sleeping", "Sleep"),
