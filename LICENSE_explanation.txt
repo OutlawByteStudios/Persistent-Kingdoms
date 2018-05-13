@@ -1,7 +1,8 @@
 The license of the original "Native" module system released by TaleWorlds is
 unknown, but it remains their property. The "3 clause BSD" license in
 LICENSE.txt applies to changes from that base for the "Persistent World"
-module by Steven Schwartfeger (Vornne).
+module by Steven Schwartfeger (Vornne) and for the "Persistent Kingdoms"
+module by the Phoenix Dev Team (http://pw-phoenix.com/).
 
 Basically, you can use the module system for your project as long as the
 license is kept and credit is given to Persistent World as the base, but the
