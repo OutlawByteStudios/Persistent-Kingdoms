@@ -679,6 +679,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("admin_cheat_money", "Give yourself money (Admin)"),
   ("bank_withdraw", "Withdraw money from bank"),
   ("bank_deposit", "Deposit money into bank"),
+  ("bank_deposit_all", "Deposit all money into bank"),
   ("no_bank_nearby", "No bank nearby."),
   ("no_money_chest_nearby", "No money chests nearby."),
   ("cant_open_money_chest", "You can't open the money chest."),
