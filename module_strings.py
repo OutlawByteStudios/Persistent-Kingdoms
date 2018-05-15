@@ -678,6 +678,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("withdraw_money_chest", "Withdraw from money chest"),
   ("admin_cheat_money", "Give yourself money (Admin)"),
   ("bank_withdraw", "Withdraw money from bank"),
+  ("bank_withdraw_5k", "Withdraw 5k from bank"),
   ("bank_deposit", "Deposit money into bank"),
   ("bank_deposit_all", "Deposit all money into bank"),
   ("no_bank_nearby", "No bank nearby."),

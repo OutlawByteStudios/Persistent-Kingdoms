@@ -904,7 +904,8 @@ def spr_bank(use_string="str_access", hit_points=2000):
               (scene_prop_set_slot, ":instance_id", slot_scene_prop_next_resource_hp, hit_points),
               (scene_prop_set_slot, ":instance_id", slot_scene_prop_use_string, use_string),
               ]),
-            spr_call_script_use_trigger("script_setup_bank_menu")]
+            spr_call_script_use_trigger("script_setup_bank_menu"),
+            spr_call_script_cancel_use_trigger("script_setup_bank_menu")]
 
 scene_props = [
   ("invalid_object",0,"question_mark","0", []),
