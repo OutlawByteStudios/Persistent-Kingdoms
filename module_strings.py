@@ -681,6 +681,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("bank_deposit", "Deposit money into bank"),
   ("bank_deposit_all", "Deposit all money into bank"),
   ("no_bank_nearby", "No bank nearby."),
+  ("too_close_to_bank_for_money_pouch", "You are too close to a bank to drop a money bag."),
   ("no_money_chest_nearby", "No money chests nearby."),
   ("cant_open_money_chest", "You can't open the money chest."),
   ("not_enough_money_in_chest", "Not enough money in the chest."),
