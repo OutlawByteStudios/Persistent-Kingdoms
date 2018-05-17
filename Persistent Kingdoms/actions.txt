@@ -903,19 +903,19 @@
   10.000000 lady_stand 0 287 1073741833 0 0.000000 0.000000 0.000000  0.250000 
   10.000000 lady_stand 287 574 1073741833 0 0.000000 0.000000 0.000000  0.250000 
   10.000000 lady_stand 574 863 1073741833 0 0.000000 0.000000 0.000000  0.250000 
- stand_lord 0 33554433  1
+ stand_lord 0 100663297  1
   10.000000 lord_stand 0 111 1342177289 0 0.000000 0.000000 0.000000  0.250000 
  dance 0 0  1
   20.000000 anim_human 0 387 6 0 0.0 0.0 0.0 0.0 
  pose_raise_sword 0 33554433  1
   2.000000 poses 0 0 268435462 0 0.0 0.0 0.0 0.0 
- pose_hands_on_hips 0 33554433  4
+ pose_hands_on_hips 0 100663297  4
   3.000000 poses 1 1 268435465 0 0.0 0.0 0.0 0.0 
   3.000000 poses 2 2 268435465 0 0.0 0.0 0.0 0.0 
   3.000000 poses 6 6 268435465 0 0.0 0.0 0.0 0.0 
   3.000000 poses 7 7 268435465 0 0.0 0.0 0.0 0.0 
- pose_arms_crossed 0 33554433  1
-  4.000000 pw_pose_arms_crossed 0 4 268435456 0 0.0 0.0 0.0 0.0 
+ pose_arms_crossed 0 100663297  1
+  4.000000 pw_pose_arms_crossed 0 4 6 0 0.0 0.0 0.0 0.0 
  man_clap 0 33554433  2
   7.000000 wedding_guest 50 230 6 0 0.0 0.0 0.0 0.0 
   5.000000 wedding_guest 590 680 6 0 0.0 0.0 0.0 0.0 
@@ -1013,6 +1013,14 @@
  pause_encumbered 1024 33554465  2
   2.000000 sword_loop02 10 55 5 0 0.0 0.0 0.0 0.0 
   2.000000 sword_loop02 65 100 5 0 0.0 0.0 0.0 0.0 
+ sitting 256 67108865  1
+  8.000000 dedal_sitting_low 65 65 1342177280 0 0.000000 0.000000 0.000000  0.250000 
+ sitting_pillow_male 256 67108865  1
+  8.000000 sitting_man_agura 1 1 1342177280 0 0.000000 0.000000 0.000000  0.250000 
+ sitting_pillow_female 256 67108865  1
+  8.000000 sitting_woman_agura 1 1 1342177280 0 0.000000 0.000000 0.000000  0.250000 
+ sitting_finish 0 33554496  1
+  0.100000 dedal_sitting_low 240 240 6 0 0.0 0.0 0.0 0.0 
  play_lute 1024 100663360  1
   1.000000 dedal_lute_standing 3 7 1342177280 0 0.000000 0.000000 0.000000  0.250000 
  play_lyre 1024 100663360  1
@@ -1021,44 +1029,36 @@
   6.000000 skel_hornblow 1 10 268435462 0 0.000000 0.000000 0.000000  0.250000 
  pose_finish 0 33554496  1
   0.100000 stand_man 0 1 6 0 0.0 0.0 0.0 0.0 
- unused_human_anim_50 0 0  1
-  1.000000 anim_human 0 1 0 0 0.0 0.0 0.0 0.0 
- unused_human_anim_51 0 0  1
-  1.000000 anim_human 0 1 0 0 0.0 0.0 0.0 0.0 
- unused_human_anim_52 0 0  1
-  1.000000 anim_human 0 1 0 0 0.0 0.0 0.0 0.0 
- unused_human_anim_53 0 0  1
-  1.000000 anim_human 0 1 0 0 0.0 0.0 0.0 0.0 
- unused_human_anim_54 0 0  1
-  1.000000 anim_human 0 1 0 0 0.0 0.0 0.0 0.0 
- unused_human_anim_55 0 0  1
-  1.000000 anim_human 0 1 0 0 0.0 0.0 0.0 0.0 
- unused_human_anim_56 0 0  1
-  1.000000 anim_human 0 1 0 0 0.0 0.0 0.0 0.0 
- unused_human_anim_57 0 0  1
-  1.000000 anim_human 0 1 0 0 0.0 0.0 0.0 0.0 
- unused_human_anim_58 0 0  1
-  1.000000 anim_human 0 1 0 0 0.0 0.0 0.0 0.0 
- unused_human_anim_59 0 0  1
-  1.000000 anim_human 0 1 0 0 0.0 0.0 0.0 0.0 
- unused_human_anim_60 0 0  1
-  1.000000 anim_human 0 1 0 0 0.0 0.0 0.0 0.0 
- unused_human_anim_61 0 0  1
-  1.000000 anim_human 0 1 0 0 0.0 0.0 0.0 0.0 
- unused_human_anim_62 0 0  1
-  1.000000 anim_human 0 1 0 0 0.0 0.0 0.0 0.0 
- unused_human_anim_63 0 0  1
-  1.000000 anim_human 0 1 0 0 0.0 0.0 0.0 0.0 
- unused_human_anim_64 0 0  1
-  1.000000 anim_human 0 1 0 0 0.0 0.0 0.0 0.0 
- unused_human_anim_65 0 0  1
-  1.000000 anim_human 0 1 0 0 0.0 0.0 0.0 0.0 
- unused_human_anim_66 0 0  1
-  1.000000 anim_human 0 1 0 0 0.0 0.0 0.0 0.0 
- unused_human_anim_67 0 0  1
-  1.000000 anim_human 0 1 0 0 0.0 0.0 0.0 0.0 
- unused_human_anim_68 0 0  1
-  1.000000 anim_human 0 1 0 0 0.0 0.0 0.0 0.0 
+ surrender 1024 100663297  1
+  8.000000 surrender 1 10 268435462 0 0.000000 0.000000 0.000000  0.250000 
+ surrender_finish 0 33554433  1
+  0.100000 surrender 1 10 6 0 0.0 0.0 0.0 0.0 
+ lean_on_sword 1024 100663297  1
+  1.000000 cool_2h_stance 0 1 4 0 0.0 0.0 0.0 0.0 
+ bow 1024 2181038081  1
+  3.000000 bow 0 29 4 0 0.0 0.0 0.0 0.0 
+ bow_still 1024 100663297  1
+  1.000000 bow 29 29 1342177280 0 0.0 0.0 0.0 0.0 
+ sleeping 1024 100663297  1
+  5.000000 sleeping 0 78 1342177280 0 0.0 0.0 0.0 0.0 
+ nod_head 1024 33554433  1
+  2.000000 nod_head 0 24 4 0 0.0 0.0 0.0 0.0 
+ go_away 1024 33554433  1
+  3.000000 go_away 0 34 4 0 0.0 0.0 0.0 0.0 
+ this_way 0 33554433  1
+  1.000000 this_way 0 40 4 0 0.0 0.0 0.0 0.0 
+ hand_on_chest 0 2181038081  1
+  1.000000 hand_on_chest 0 16 4 0 0.0 0.0 0.0 0.0 
+ hand_on_chest_still 0 100663297  1
+  1.000000 hand_on_chest 16 16 1342177280 0 0.0 0.0 0.0 0.0 
+ wave_hand 0 33554433  1
+  2.000000 wave_hand 0 30 4 0 0.0 0.0 0.0 0.0 
+ giving_birth 1024 100663297  1
+  1.000000 giving_birth 0 109 1342177280 0 0.0 0.0 0.0 0.0 
+ peeing 1024 100663297  1
+  1.000000 peeing 0 20 1342177280 0 0.0 0.0 0.0 0.0 
+ tracking 1024 100663297  1
+  1.000000 tracking 0 20 1342177280 0 0.0 0.0 0.0 0.0 
  unused_human_anim_69 0 0  1
   1.000000 anim_human 0 1 0 0 0.0 0.0 0.0 0.0 
  unused_human_anim_70 0 0  1
