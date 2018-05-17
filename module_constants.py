@@ -26,57 +26,68 @@ slot_player_list_button_id            = 7 # overlay id in the player list presen
 slot_player_outlaw_rating             = 8
 slot_player_is_lord                   = 9
 slot_player_non_lord_troop_id         = 10 # the last troop used before changing to a lord only troop, to revert after respawning if someone else is voted lord
-slot_player_poll_faction_id           = 11 # marks whether the player can vote in the current poll
-slot_player_requested_spawn_point     = 12 # the spawn point requested by the player after dying, if any; -1 to indicate a newly connected player that hasn't yet requested to spawn
-slot_player_has_faction_door_key      = 13
-slot_player_has_faction_money_key     = 14
-slot_player_has_faction_item_key      = 15
-slot_player_teleport_to_ship_no       = 16 # instance no of the last ship teleported to with the admin tool
-slot_player_last_faction_kicked_from  = 17 # stores when kicked from a faction, so subsequent kicks can be free of cost
-slot_player_accessing_instance_id     = 18 # stores the instance id of the inventory currently being accessed by the player, for updates if anyone else changes it
-slot_player_last_action_time          = 19 # mission time of the last action that should be prevented from quick repetition
+slot_player_is_marshal               = 11
+slot_player_poll_faction_id           = 12 # marks whether the player can vote in the current poll
+slot_player_requested_spawn_point     = 13 # the spawn point requested by the player after dying, if any; -1 to indicate a newly connected player that hasn't yet requested to spawn
+slot_player_has_faction_door_key      = 14
+slot_player_has_faction_money_key     = 15
+slot_player_has_faction_item_key      = 16
+slot_player_teleport_to_ship_no       = 17 # instance no of the last ship teleported to with the admin tool
+slot_player_last_faction_kicked_from  = 18 # stores when kicked from a faction, so subsequent kicks can be free of cost
+slot_player_accessing_instance_id     = 19 # stores the instance id of the inventory currently being accessed by the player, for updates if anyone else changes it
+slot_player_last_action_time          = 20 # mission time of the last action that should be prevented from quick repetition
 
-slot_player_equip_item_0              = 20 # module equipment slots corresponding to the hard coded ones in header_items starting with ek_
-slot_player_equip_item_1              = 21
-slot_player_equip_item_2              = 22
-slot_player_equip_item_3              = 23
-slot_player_equip_head                = 24
-slot_player_equip_body                = 25
-slot_player_equip_foot                = 26
-slot_player_equip_gloves              = 27
-slot_player_equip_horse               = 28
-slot_player_equip_end                 = 29
-slot_player_equip_item_0_ammo         = 30
-slot_player_equip_item_1_ammo         = 31
-slot_player_equip_item_2_ammo         = 32
-slot_player_equip_item_3_ammo         = 33
+slot_player_equip_item_0              = 21 # module equipment slots corresponding to the hard coded ones in header_items starting with ek_
+slot_player_equip_item_1              = 22
+slot_player_equip_item_2              = 23
+slot_player_equip_item_3              = 24
+slot_player_equip_head                = 25
+slot_player_equip_body                = 26
+slot_player_equip_foot                = 27
+slot_player_equip_gloves              = 28
+slot_player_equip_horse               = 29
+slot_player_equip_end                 = 30
+slot_player_equip_item_0_ammo         = 31
+slot_player_equip_item_1_ammo         = 32
+slot_player_equip_item_2_ammo         = 33
+slot_player_equip_item_3_ammo         = 34
 
-slot_player_spawn_food_amount         = 34 # saved food for next spawn
-slot_player_faction_chat_muted        = 35
-slot_player_kick_at_time              = 36 # time to kick a player after the name server has rejected them, to allow time to recieve the message
-slot_player_can_faction_announce      = 37
-slot_player_next_spawn_health_percent = 38 # spawn health percentage for the troop applied after death, if that server option is enabled
-slot_player_accessing_unique_id       = 39 # a unique number identifying an inventory scene prop being accessed that could despawn and the instance id be reused, like corpses
+slot_player_spawn_food_amount         = 35 # saved food for next spawn
+slot_player_faction_chat_muted        = 36
+slot_player_kick_at_time              = 37 # time to kick a player after the name server has rejected them, to allow time to recieve the message
+slot_player_can_faction_announce      = 38
+slot_player_next_spawn_health_percent = 39 # spawn health percentage for the troop applied after death, if that server option is enabled
+slot_player_accessing_unique_id       = 40 # a unique number identifying an inventory scene prop being accessed that could despawn and the instance id be reused, like corpses
 
-slot_player_admin_no_panel            = 40 # admin permission slots: the default value 0 is permissive so everything works when a name server is not connected
-slot_player_admin_no_gold             = 41
-slot_player_admin_no_kick             = 42
-slot_player_admin_no_temporary_ban    = 43
-slot_player_admin_no_permanent_ban    = 44
-slot_player_admin_no_kill_fade        = 45
-slot_player_admin_no_freeze           = 46
-slot_player_admin_no_teleport_self    = 47
-slot_player_admin_no_admin_items      = 48
-slot_player_admin_no_heal_self        = 49
-slot_player_admin_no_godlike_troop    = 50
-slot_player_admin_no_ships            = 51
-slot_player_admin_no_announce         = 52
-slot_player_admin_no_override_poll    = 53
-slot_player_admin_no_all_items        = 54
-slot_player_admin_no_mute             = 55
-slot_player_admin_no_animals          = 56
-slot_player_admin_no_factions         = 57
-slot_player_admin_end                 = 58
+slot_player_admin_no_panel            = 41 # admin permission slots: the default value 0 is permissive so everything works when a name server is not connected
+slot_player_admin_no_gold             = 42
+slot_player_admin_no_kick             = 43
+slot_player_admin_no_temporary_ban    = 44
+slot_player_admin_no_permanent_ban    = 45
+slot_player_admin_no_kill_fade        = 46
+slot_player_admin_no_freeze           = 47
+slot_player_admin_no_teleport_self    = 48
+slot_player_admin_no_admin_items      = 49
+slot_player_admin_no_heal_self        = 50
+slot_player_admin_no_godlike_troop    = 51
+slot_player_admin_no_ships            = 52
+slot_player_admin_no_announce         = 53
+slot_player_admin_no_override_poll    = 54
+slot_player_admin_no_all_items        = 55
+slot_player_admin_no_mute             = 56
+slot_player_admin_no_animals          = 57
+slot_player_admin_no_join_factions    = 58
+slot_player_admin_no_factions         = 59
+slot_player_admin_end                 = 60
+
+slot_player_freeze_instance_id        = 61 #Needed for removing freeze walls on disconnects
+
+slot_player_commit_suicide_time       = 62
+suicide_delay                         = 15 # suicide delay time
+
+#This slot is for the equipment logs
+slot_player_first_spawn_occured       = 63
+#End
 
 ########################################################
 ##  AGENT SLOTS            #############################
@@ -143,6 +154,17 @@ slot_agent_cannot_attack              = 64 # marks that any attack should be can
 slot_agent_armor_damage_through       = 65 # factor of letting damage received bleed through the armor
 slot_agent_last_apply_factors_item_id = 66 # last item id that modifier factors were last checked for, to avoid duplicating calculations due to trigger activation quirks
 
+slot_agent_playing_music              = 67
+slot_agent_scene_prop_in_use          = 68
+
+slot_agent_animation_position_x       = 69
+slot_agent_animation_position_y       = 70
+slot_agent_animation_position_z       = 71
+slot_agent_position_animation         = 72
+
+slot_agent_walk_mode                  = 73
+
+
 ########################################################
 ##  SCENE PROP SLOTS       #############################
 ########################################################
@@ -191,6 +213,8 @@ slot_scene_prop_speed_limit           = 25 # used for ships
 slot_scene_prop_no_move_physics       = 26 # whether to disable physics when moving, so agents can't ride on the prop
 slot_scene_prop_capture_faction_id    = 27 # faction that has captured this prop individually, rather than the castle it belongs to
 
+capture_point_use_time                = 20 # time it takes to capture a castle
+
 slot_scene_prop_next_resource_hp      = 30 # hit points when the next resource item should be produced
 slot_scene_prop_state                 = 31 # constants below starting with scene_prop_state_
 slot_scene_prop_state_time            = 32 # mission time involved with changing state, if appropriate
@@ -215,6 +239,11 @@ slot_scene_prop_crafting_resource_1   = 51
 slot_scene_prop_crafting_resource_2   = 52
 slot_scene_prop_crafting_resource_3   = 53
 slot_scene_prop_crafting_resource_4   = 54
+#Slot to keep agent_id of the killer
+slot_scene_prop_corpse_owner          = 60
+
+slot_scene_prop_store_ammo            = 55
+slot_scene_prop_store_only_ammo       = 56
 
 scene_prop_state_active               = 0
 scene_prop_state_destroyed            = 1
@@ -262,6 +291,7 @@ slot_item_bonus_against_wood          = 6
 slot_item_couchable                   = 7
 slot_item_has_attack_requirements     = 8
 slot_item_max_raw_damage              = 9 # maximum out of swing and thrust damage
+slot_item_open_close_helmet           = 10
 
 item_class_none                       = 0
 item_class_repair                     = 1
@@ -306,14 +336,17 @@ slot_faction_castle_banner_variant    = 5 # work around an unwanted engine optim
 slot_faction_list_button_id           = 6 # overlay id in the faction list presentation
 slot_faction_is_locked                = 7 # 1 if an adminstrator locked the faction to prevent lord polls
 
-slot_faction_poll_end_time            = 20
-slot_faction_poll_voter_count         = 21
-slot_faction_poll_yes_votes           = 22
-slot_faction_poll_no_votes            = 23
-slot_faction_poll_type                = 24 # listed below, starting with poll_type_
-slot_faction_poll_value_1             = 25
-slot_faction_poll_value_2             = 26
-slot_faction_poll_target_unique_id    = 27 # when targeting a player, store their unique id to prevent accidentally harming another player reusing their id after they quit
+slot_faction_poll_last_time           = 20
+poll_cooldown_time                    = 20
+
+slot_faction_poll_end_time            = 21
+slot_faction_poll_voter_count         = 22
+slot_faction_poll_yes_votes           = 23
+slot_faction_poll_no_votes            = 24
+slot_faction_poll_type                = 25 # listed below, starting with poll_type_
+slot_faction_poll_value_1             = 26
+slot_faction_poll_value_2             = 27
+slot_faction_poll_target_unique_id    = 28 # when targeting a player, store their unique id to prevent accidentally harming another player reusing their id after they quit
 
 poll_type_change_scene                = 0
 poll_type_kick_player                 = 1
@@ -324,6 +357,7 @@ poll_cost_change_scene                = 1000
 poll_cost_kick_player                 = 500
 poll_cost_ban_player                  = 700
 poll_cost_faction_lord                = 1000
+poll_cost_self_faction_lord           = 5000
 
 poll_vote_no                          = 0
 poll_vote_yes                         = 1
@@ -402,6 +436,7 @@ chat_event_type_faction               = 4
 chat_event_type_faction_announce      = 5
 chat_event_type_admin                 = 6
 chat_event_type_admin_announce        = 7
+chat_event_type_script_message        = 8
 
 slot_chat_overlay_local_color         = 0
 slot_chat_overlay_faction_color       = 1
@@ -525,10 +560,11 @@ local_chat_color                      = 0xFFFFDD8A
 local_chat_shout_color                = 0xFFFF8C27
 local_animation_color                 = 0xFFFFBBAA
 admin_chat_color                      = 0xFFFF00FF
+script_message_color                  = 0xFFFF4300
 invalid_faction_color                 = 0xFF888888
 
 outlaw_rating_for_kill                = 2
-outlaw_rating_for_team_kill           = 5
+outlaw_rating_for_team_kill           = 0
 outlaw_rating_for_lord_outlawed       = 4
 outlaw_rating_outlawed                = 15 # outlaw players when they get this rating
 outlaw_rating_maximum                 = 30 # don't add increase the rating more than this
@@ -567,6 +603,15 @@ max_scene_prop_instance_id            = 10000 # when trying to loop over all pro
 
 max_food_amount                       = 100
 max_hit_points_percent                = 200
+
+admin_restock_amount                  = 5 # amount admin restocks pile by for each use
+
+animations_while_muted                = 1 # can players use animations while muted?
+random_gear_in_chests                 = 0
+
+walk_speed_factor                     = 2
+
+bank_access_distance                  = 400
 
 all_items_begin = "itm_tattered_headcloth"
 all_items_end = "itm_all_items_end"
@@ -618,24 +663,47 @@ admin_action_log_strings_begin = "str_log_admin_kick" # range of strings associa
 ambient_sounds_begin = "snd_fire_loop" # for ambient sound emitter scene props
 ambient_sounds_end = "snd_sounds_end"
 
-action_menu_strings_begin = "str_toggle_name_labels" # range of strings associated with the action menu
+action_menu_strings_begin = "str_open_inventory" # range of strings associated with the action menu
 action_menu_strings_end = "str_action_menu_end"
 
 animation_strings_begin = "str_anim_cheer" # range of strings associated with the animation menu
 animation_strings_end = "str_log_animation"
 
-profile_option_strings_begin = "str_display_name_labels" # range of strings for options stored in a player profile
+profile_option_strings_begin = "str_profile_display_name_labels" # range of strings for options stored in a player profile
+
+lute_sounds_begin = "snd_lute_1"
+lute_sounds_end = "snd_lute_4"
+lyre_sounds_begin = "snd_lyre_1"
+lyre_sounds_end = "snd_lyre_4"
+horn_sounds_begin = "snd_horncharge"
+horn_sounds_end = "snd_hornretreat"
+
+teleport_doors_begin = "spr_pw_door_teleport_small_arch_a"
+teleport_doors_end = "spr_pw_door_teleport_invisible_not_pickable_horse"
+
+rotating_doors_begin = "spr_pw_door_rotate_a"
+rotating_doors_end = "spr_cm_door_rotate_akra_right"
+
+item_chests_begin = "spr_pw_castle_money_chest"
+item_chests_end = "spr_cm_arrow_holder_bucket"
+
+display_no_name_labels = 0
+display_name_labels_with_faction = 1
+display_name_labels = 2
+display_basic_name_labels = 3
 
 from header_common import *
 
 profile_options = [ # global flag variables for options stored in a player profile
   "$g_display_agent_labels",
   "$g_hide_faction_in_name_labels",
+  "$g_basic_name_labels",
   "$g_display_chat_overlay",
   "$g_chat_overlay_type_selected",
   "$g_disable_automatic_shadow_recalculation",
   "$g_animation_menu_no_mouse_grab",
   "$g_mute_global_chat",
+  "$g_mute_music",
   "$g_disable_rain_snow_particles",
   ]
 if len(profile_options) >= profile_banner_id_option_bits_end - profile_banner_id_option_bits_begin:

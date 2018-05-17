@@ -29,14 +29,30 @@ server_event_faction_chat                       = 21
 server_event_faction_chat_announce              = 22
 server_event_admin_chat                         = 23
 server_event_admin_chat_announce                = 24
-server_event_admin_set_permissions              = 25
-server_event_set_attached_scene_prop            = 26
-server_event_local_animation                    = 27
-server_event_update_scene_prop_hit_points       = 28
+server_event_script_message                     = 25
+server_event_script_message_announce            = 26
+server_event_script_message_set_color           = 27
+server_event_admin_set_permissions              = 28
+server_event_set_attached_scene_prop            = 29
+server_event_local_animation                    = 30
+server_event_update_scene_prop_hit_points       = 31
+server_event_agent_stop_sound                   = 32
+server_event_agent_play_sound                   = 33
+server_event_agent_animation                    = 34
+server_event_inventory_ready                    = 35
+server_event_toggle_walk                        = 36
+server_event_bank_management                    = 37
 
 # Add new events here: above if sent from the server, below if from clients.
 
-client_event_request_animation                  = 95
+client_event_bank_management                    = 86
+client_event_toggle_walk                        = 87
+client_event_close_inventory                    = 88
+client_event_open_inventory                     = 89
+client_event_open_close_helmet                  = 90
+client_event_commit_suicide                     = 93
+client_event_request_animation                  = 94
+client_event_reveal_money_pouch_area            = 95
 client_event_reveal_money_pouch                 = 96
 client_event_agent_loot_armor                   = 97
 client_event_toggle_drop_armor                  = 98
@@ -61,6 +77,8 @@ client_event_change_faction_banner              = 124
 client_event_transfer_inventory                 = 125
 client_event_control_scene_prop                 = 126
 client_event_attach_scene_prop                  = 127
+
+
 # Network events are limited to numbers between 0 and 127 by the game engine.
 
 preset_message_default                          = 0x0
@@ -69,6 +87,7 @@ preset_message_agent                            = 0x3 # converts value 1 from ag
 preset_message_player                           = 0x4 # converts value 1 from player id into username string
 preset_message_faction                          = 0x5 # converts value 1 from faction id into name string
 preset_message_faction_castle                   = 0x6 # converts value 1 from castle id into name string
+preset_message_faction_lord                     = 0x7 # converts value 1 from lord/marshal name id into name string
 preset_message_params_mask                      = 0xF
 
 preset_message_white                            = 0x00
@@ -167,8 +186,8 @@ command_limit_rocket                            = 76
 command_limit_sapper                            = 77
 command_limit_musician                          = 78
 command_limit_sergeant                          = 79
-command_limit_officer                           = 80
-command_limit_general                           = 81
+command_limit_officer                           = 80 # Mute all players
+command_limit_general                           = 81 # PM system (when implemented)
 # Hard coded commands
 command_get_max_players                         = 101
 command_set_max_players                         = 102
@@ -239,22 +258,26 @@ admin_action_kick_player                        = 0
 admin_action_ban_player_temp                    = 1
 admin_action_ban_player_perm                    = 2
 admin_action_mute_player                        = 3
-admin_action_kill_player                        = 4
-admin_action_fade_player_out                    = 5
-admin_action_freeze_player                      = 6
-admin_action_teleport_to_player                 = 7
-admin_action_teleport_behind_player             = 8
-admin_action_teleport_forwards                  = 9
-admin_action_get_armor                          = 10
-admin_action_get_invisible                      = 11
+admin_action_mute_players                       = 4
+admin_action_kill_player                        = 5
+admin_action_fade_player_out                    = 6
+admin_action_freeze_player                      = 7
+admin_action_teleport_to_player                 = 8
+admin_action_teleport_behind_player             = 9
+admin_action_teleport_player                    = 10
+admin_action_teleport_forwards                  = 11
 admin_action_refill_health                      = 12
 admin_action_become_godlike                     = 13
-admin_action_get_horse                          = 14
-admin_action_remove_horses                      = 15
-admin_action_remove_stray_horses                = 16
-admin_action_teleport_to_ships                  = 17
-admin_action_reset_ships                        = 18
-admin_action_lock_faction                       = 19
+admin_action_get_armor                          = 14
+admin_action_get_invisible                      = 15
+admin_action_get_horse                          = 16
+admin_action_remove_horses                      = 17
+admin_action_remove_stray_horses                = 18
+admin_action_teleport_to_ships                  = 19
+admin_action_reset_ships                        = 20
+admin_action_join_faction                       = 21
+admin_action_lock_faction                       = 22
+admin_action_log_current_position               = 23
 
 faction_admin_action_change_banner              = 0
 faction_admin_action_kick_player                = 1
@@ -266,6 +289,7 @@ faction_admin_action_set_relation_peaceful      = 6
 faction_admin_action_outlaw_player              = 7
 faction_admin_action_mute_player                = 8
 faction_admin_action_toggle_player_announce     = 9
+faction_admin_action_toggle_player_marshal      = 10
 
 max_possible_gold                               = 1000000000
 max_correctly_displayed_gold                    = 131071 # player gold over this value will not be updated correctly by the game engine

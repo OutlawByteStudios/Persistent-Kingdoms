@@ -1,2 +1,0 @@
-map_icons_file version 1
-0

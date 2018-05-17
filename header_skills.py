@@ -519,6 +519,18 @@ knows_herding_8 = knows_reserved_4_8
 knows_herding_9 = knows_reserved_4_9
 knows_herding_10 = knows_reserved_4_10
 
+skl_musician = skl_reserved_5
+knows_musician_1 = knows_reserved_5_1
+knows_musician_2 = knows_reserved_5_2
+knows_musician_3 = knows_reserved_5_3
+knows_musician_4 = knows_reserved_5_4
+knows_musician_5 = knows_reserved_5_5
+knows_musician_6 = knows_reserved_5_6
+knows_musician_7 = knows_reserved_5_7
+knows_musician_8 = knows_reserved_5_8
+knows_musician_9 = knows_reserved_5_9
+knows_musician_10 = knows_reserved_5_10
+
 pw_skills = [
   "ironflesh",
   "power_strike",
@@ -535,6 +547,7 @@ pw_skills = [
   "sailing",
   "tailoring",
   "herding",
+  "musician",
   ]
 
 def get_skill_name(skill):
