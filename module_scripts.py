@@ -3390,7 +3390,7 @@ scripts.extend([
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_i19", 0xFF0a1458),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_i20", 0xFFd2c297),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_i21", 0xFF2a2a2a),
-    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_j01", 0xFF737373),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_j01", 0xFFc7c7c7),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_j02", 0xFF772020),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_j03", 0xFF812528),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_j04", 0xFF7b1f10),
