@@ -544,10 +544,10 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("profile_display_basic_name_labels", "Display basic name labels"),
   ("profile_display_chat_overlay", "Display chat overlay"),
   ("profile_overlay_shows_faction_chat", "Overlay shows faction chat instead of local"),
-  ("profile_disable_automatic_shadow_recalculation", "Disable automatic shadow recalculation"),
   ("profile_mute_global_chat", "Mute global chat"),
   ("profile_mute_music", "Mute instruments"),
   ("profile_non_clickable_animation_menu", "Non-clickable animation menu"),
+  ("profile_disable_automatic_shadow_recalculation", "Disable automatic shadow recalculation"),
   ("profile_disable_rain_snow_particles", "Disable rain and snow particles"),
 
   ("open_close_helmet_error", "This helmet has no toggleable visor!"),
