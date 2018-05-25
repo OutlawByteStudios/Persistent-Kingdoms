@@ -1193,10 +1193,6 @@ presentations.extend([
 
       (val_sub, ":cur_y", escape_menu_item_height),
       (position_set_y, pos1, ":cur_y"),
-      (overlay_set_position, "$g_presentation_obj_escape_menu_show_rules", pos1),
-
-      (val_sub, ":cur_y", escape_menu_item_height),
-      (position_set_y, pos1, ":cur_y"),
       (overlay_set_position, "$g_presentation_obj_escape_menu_show_info", pos1),
 
       (val_sub, ":cur_y", escape_menu_item_height),
@@ -1252,10 +1248,6 @@ presentations.extend([
         (eq, ":object", "$g_presentation_obj_escape_menu_controls"),
         (presentation_set_duration, 0),
         (change_screen_controls),
-      (else_try),
-        (eq, ":object", "$g_presentation_obj_escape_menu_show_rules"),
-        (presentation_set_duration, 0),
-        (multiplayer_send_message_to_server, client_event_request_game_rules),
       (else_try),
         (eq, ":object", "$g_presentation_obj_escape_menu_show_info"),
         (presentation_set_duration, 0),
