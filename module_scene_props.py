@@ -3241,7 +3241,7 @@ scene_props = [
   ("cm_buy_decorated_grey_churburg",spr_buy_item_flags(22),"churburg","bo_pw_armor_body", spr_buy_item_triggers("itm_churburg", resources=[("itm_iron_bar_long",2),"itm_leather_piece","itm_linen_cloth"], engineer=7)),
   ("cm_buy_milanese_plate",spr_buy_item_flags(23),"armour_new_b","bo_pw_armor_body", spr_buy_item_triggers("itm_armour_new_b", resources=[("itm_iron_bar_long",2),"itm_leather_piece","itm_linen_cloth"], engineer=7)),
   ("cm_buy_gothic_plate",spr_buy_item_flags(23),"gothic_armour_plain","bo_pw_armor_body", spr_buy_item_triggers("itm_gothic_armour_plain", resources=[("itm_iron_bar_long",2),"itm_leather_piece","itm_linen_cloth"], engineer=7)),
-  
+
   ("cm_buy_leather_gauntlets",spr_buy_item_flags(2),"leather_gauntlet_L","bo_pw_armor_hand", spr_buy_item_triggers("itm_leather_gauntlet", resources=["itm_leather_piece"], tailoring=2, engineer=4)),
   ("cm_buy_mail_gauntlets",spr_buy_item_flags(4),"mail_gauntlets_L","bo_pw_armor_hand", spr_buy_item_triggers("itm_mail_gauntlets", resources=["itm_iron_piece"], engineer=3)),
   ("cm_buy_demi_gauntlets",spr_buy_item_flags(5),"demi_gauntlets_L","bo_pw_armor_hand", spr_buy_item_triggers("itm_demi_gauntlets", resources=["itm_leather_piece","itm_iron_piece"], engineer=4)),
@@ -3250,7 +3250,7 @@ scene_props = [
   ("cm_buy_decorated_saracen_gauntlets",spr_buy_item_flags(5),"gauntlets_arabs_b_L","bo_pw_armor_hand", spr_buy_item_triggers("itm_gauntlets_arabs_b", resources=["itm_leather_piece",("itm_iron_piece",2)], engineer=5)),
   ("cm_buy_hourglass_gauntlets",spr_buy_item_flags(6),"hourglass_gauntlets_L","bo_pw_armor_hand", spr_buy_item_triggers("itm_hourglass_gauntlets", resources=["itm_leather_piece",("itm_iron_bar_short",2)], engineer=6)),
   ("cm_buy_decorated_hourglass_gauntlets",spr_buy_item_flags(6),"hourglass_gauntlets_ornate_L","bo_pw_armor_hand", spr_buy_item_triggers("itm_hourglass_gauntlets_ornate", resources=["itm_leather_piece",("itm_iron_bar_short",2)], engineer=6)),
- 
+
   ("cm_buy_black_rich_boots",spr_buy_item_flags(4),"civil_rich_Boots_b","bo_pw_armor_foot", spr_buy_item_triggers("itm_civil_rich_boots_b", resources=[("itm_leather_piece",2)], tailoring=2, engineer=3)),
   ("cm_buy_red_rich_boots",spr_buy_item_flags(4),"civil_rich_Boots_a","bo_pw_armor_foot", spr_buy_item_triggers("itm_civil_rich_boots_a", resources=[("itm_leather_piece",2)], tailoring=2, engineer=3)),
   ("cm_buy_rus_cavalry_boots",spr_buy_item_flags(4),"rus_cav_boots","bo_pw_armor_foot", spr_buy_item_triggers("itm_rus_cav_boots", resources=[("itm_leather_piece",2)], tailoring=2, engineer=3)),
@@ -3265,7 +3265,7 @@ scene_props = [
   ("cm_buy_shynbaulds",spr_buy_item_flags(8),"shynbaulds","bo_pw_armor_foot", spr_buy_item_triggers("itm_shynbaulds", resources=["itm_leather_piece",("itm_iron_bar_short",3)], engineer=6)),
   ("cm_buy_polished_steel_boots",spr_buy_item_flags(10),"narf_greaves","bo_pw_armor_foot", spr_buy_item_triggers("itm_narf_greaves", resources=[("itm_leather_piece",2),("itm_iron_bar",2)], engineer=6)),
   ("cm_buy_steel_boots",spr_buy_item_flags(10),"steel_greaves","bo_pw_armor_foot", spr_buy_item_triggers("itm_steel_greaves", resources=[("itm_leather_piece",2),("itm_iron_bar",2)], engineer=6)),
-  
+
   ("cm_buy_tourney_helm_yellow",spr_buy_item_flags(5),"tourney_helmY","bo_pw_armor_head", spr_buy_item_triggers("itm_tourney_helm_yellow", resources=["itm_leather_piece","itm_iron_piece"], engineer=2)),
   ("cm_buy_saracen_helmet_with_leather",spr_buy_item_flags(5),"helm_saracin_c","bo_pw_armor_head", spr_buy_item_triggers("itm_helm_saracin_c", resources=["itm_leather_piece","itm_iron_piece"], engineer=2)),
   ("cm_buy_saracen_helmet_with_mail",spr_buy_item_flags(6),"sar_infantry_helmet1","bo_pw_armor_head", spr_buy_item_triggers("itm_sar_infantry_helmet1", resources=["itm_iron_bar_short","itm_leather_piece"], engineer=2)),
@@ -3311,9 +3311,9 @@ scene_props = [
   ("cm_buy_great_bascinet",spr_buy_item_flags(21),"greatbascinet1","bo_pw_armor_head_armature", spr_buy_item_triggers("itm_greatbascinet1", resources=["itm_iron_bar","itm_iron_bar_short","itm_linen_cloth_small"], engineer=6)),
   ("cm_buy_greathelm_with_bascinet",spr_buy_item_flags(21),"greathelm1","bo_pw_armor_head", spr_buy_item_triggers("itm_greathelm1", resources=["itm_iron_bar","itm_iron_bar_short","itm_linen_cloth_small"], engineer=6)),
   ("cm_buy_weimar_helmet",spr_buy_item_flags(21),"weimarhelm","bo_pw_armor_head_armature", spr_buy_item_triggers("itm_weimarhelm", resources=["itm_iron_bar","itm_iron_bar_short","itm_linen_cloth_small"], engineer=6)),
- 
+
   ("cm_buy_early_transitional_armor",spr_buy_item_flags(16),"early_transitional_heraldic","bo_pw_armor_body", spr_buy_item_triggers("itm_early_transitional_heraldic", resources=[("itm_iron_bar_short",2),"itm_linen_cloth"], engineer=6)),
- 
+
   ("cm_buy_practice_dagger",spr_buy_item_flags(1),"practice_dagger","bo_pw_weapon_small", spr_buy_item_triggers("itm_practice_dagger", resources=["itm_wood_pole_short"], engineer=2)),
   ("cm_buy_iberian_mace",spr_buy_item_flags(4),"faradon_iberianmace","bo_pw_weapon_small", spr_buy_item_triggers("itm_faradon_iberianmace", resources=[("itm_iron_bar_short",2)], engineer=2)),
   ("cm_buy_warhammer",spr_buy_item_flags(4),"faradon_warhammer","bo_pw_weapon_small", spr_buy_item_triggers("itm_faradon_warhammer", resources=["itm_iron_bar_short", "itm_stick"], engineer=3)),
@@ -3322,7 +3322,7 @@ scene_props = [
   ("cm_buy_scottish_sword",spr_buy_item_flags(9),"scottish_sword","bo_pw_weapon", spr_buy_item_triggers("itm_scottish_sword", resources=["itm_iron_bar"], engineer=4)),
   ("cm_buy_italian_sword",spr_buy_item_flags(10),"italian_sword","bo_pw_weapon", spr_buy_item_triggers("itm_italian_sword", resources=["itm_iron_bar"], engineer=4)),
   ("cm_buy_crusader_sword",spr_buy_item_flags(10),"crusader_sword","bo_pw_weapon", spr_buy_item_triggers("itm_crusader_sword", resources=["itm_iron_bar"], engineer=4)),
-  
+
   ("cm_buy_langes_messer",spr_buy_item_flags(11),"grosse_messer_b","bo_pw_weapon", spr_buy_item_triggers("itm_grosse_messer_b", resources=["itm_iron_bar_long"], engineer=5)),
   ("cm_buy_longsword",spr_buy_item_flags(12),"longsword_b","bo_pw_weapon", spr_buy_item_triggers("itm_longsword_b", resources=["itm_iron_bar_long"], engineer=5)),
   ("cm_buy_german_longsword",spr_buy_item_flags(12),"german_bastard_sword","bo_pw_weapon", spr_buy_item_triggers("itm_german_bastard_sword", resources=["itm_iron_bar_long"], engineer=5)),
@@ -3330,7 +3330,7 @@ scene_props = [
   ("cm_buy_german_greatsword",spr_buy_item_flags(15),"faradon_twohanded1","bo_pw_weapon", spr_buy_item_triggers("itm_faradon_twohanded1", resources=["itm_iron_bar_long"], engineer=6)),
   ("cm_buy_danish_greatsword",spr_buy_item_flags(15),"danish_greatsword","bo_pw_weapon", spr_buy_item_triggers("itm_danish_greatsword", resources=["itm_iron_bar_long"], engineer=7)),
   ("cm_buy_claymore",spr_buy_item_flags(15),"claymore","bo_pw_weapon", spr_buy_item_triggers("itm_claymore", resources=["itm_iron_bar_long"], engineer=7)),
-  
+
   ("cm_buy_battle_fork",spr_buy_item_flags(2),"battle_fork","bo_pw_weapon_small", spr_buy_item_triggers("itm_battle_fork", resources=["itm_wood_pole", "itm_iron_piece"], engineer=1)),
   ("cm_buy_short_poleaxe",spr_buy_item_flags(4),"poleaxe_no3","bo_pw_weapon_big", spr_buy_item_triggers("itm_poleaxe_no3", resources=["itm_wood_pole", "itm_iron_bar_short"], engineer=2)),
   ("cm_buy_german_poleaxe",spr_buy_item_flags(5),"german_poleaxe","bo_pw_weapon_big", spr_buy_item_triggers("itm_german_poleaxe", resources=["itm_wood_pole", "itm_iron_bar_short"], engineer=2)),
@@ -3338,17 +3338,17 @@ scene_props = [
   ("cm_buy_elegant_poleaxe",spr_buy_item_flags(5),"elegant_poleaxe","bo_pw_weapon_big", spr_buy_item_triggers("itm_elegant_poleaxe", resources=["itm_wood_pole", "itm_iron_piece"], engineer=3)),
   ("cm_buy_english_bill",spr_buy_item_flags(5),"english_bill","bo_pw_weapon_big", spr_buy_item_triggers("itm_english_bill", resources=["itm_wood_pole", "itm_iron_piece"], engineer=3)),
   ("cm_buy_swiss_halberd",spr_buy_item_flags(5),"swiss_halberd","bo_pw_weapon_big", spr_buy_item_triggers("itm_swiss_halberd", resources=["itm_wood_pole", "itm_iron_piece"], engineer=3)),
-  
+
   ("cm_buy_decorated_longbow",spr_buy_item_flags(9),"bow_f_decorated_bow","bo_pw_weapon", spr_buy_item_triggers("itm_bow_f_decorated_bow", resources=["itm_wood_pole"], engineer=5)),
-  
+
   ("cm_buy_barded_horse",spr_buy_item_flags(13),"cwe_knight_horse_2","bo_pw_horse", spr_buy_item_triggers("itm_cwe_knight_horse_2", resources=["itm_saddle", "itm_horse_armor", "itm_wheat_sheaf"], herding=3)),
   ("cm_buy_barded_horse_with_mask",spr_buy_item_flags(17),"cwe_knight_horse_1_mask","bo_pw_horse", spr_buy_item_triggers("itm_cwe_knight_horse_1_mask", resources=["itm_saddle", "itm_horse_armor", ("itm_wheat_sheaf", 2)], herding=3)),
   ("cm_buy_saracen_sultan_horse",spr_buy_item_flags(17),"saracen_horse_sultan","bo_pw_horse", spr_buy_item_triggers("itm_saracen_horse_sultan", resources=["itm_saddle", "itm_horse_armor", ("itm_wheat_sheaf", 2)], herding=3)),
   ("cm_buy_saracen_war_horse",spr_buy_item_flags(17),"saracin_hard_horses_d","bo_pw_horse", spr_buy_item_triggers("itm_saracin_hard_horses_d", resources=["itm_saddle", "itm_horse_armor", ("itm_wheat_sheaf", 2)], herding=3)),
-  
+
   ("cm_buy_katana",spr_buy_item_flags(15),"katana","bo_pw_weapon", spr_buy_item_triggers("itm_katana", resources=["itm_iron_bar_long"], engineer=7)),
   ("cm_buy_wakizashi",spr_buy_item_flags(8),"wakizashi","bo_pw_weapon", spr_buy_item_triggers("itm_wakizashi", resources=["itm_iron_bar"], engineer=4)),
-  
+
   ("cm_wooden_hut",0,"cm_wooden_hut","bo_cm_wooden_hut", []),
   ("cm_palisade_wall_a",0,"cm_palisade_wall_a","bo_cm_palisade_wall_a", []),
   ("cm_palisade_wall_b",0,"cm_palisade_wall_b","bo_cm_palisade_wall_b", []),
@@ -3401,7 +3401,7 @@ scene_props = [
   ("cm_square_tower_akr_f",0,"cm_square_tower_Akr_f","bo_cm_square_tower_Akr_f", []),
   ("cm_beacon_acr",0,"cm_beacon_Acr","bo_cm_beacon_Acr", []),
   ("cm_main_gate_acre",0,"cm_main_gate_Acre","bo_cm_main_gate_Acre", []),
-  
+
   ("pw_destroy_heap",spr_use_time(2),"destroy_heap","bo_destroy_heap", spr_destroy_heap_triggers()),
 
   ("pw_rest_bed_a",spr_use_time(30),"bed_a","bo_bed_a", spr_rest_triggers(40, min_health_pct=35)),
@@ -3488,39 +3488,39 @@ scene_props = [
   ("pw_door_teleport_invisible_horse",sokf_dynamic_physics|sokf_missiles_not_attached|sokf_invisible|spr_use_time(1),"pw_invisible_door","bo_pw_invisible_door", spr_teleport_door_triggers(pos_offset=(0,50,0), horse_can_tp=1)),
   ("pw_door_teleport_invisible_not_pickable_horse",sokf_dynamic_physics|sokf_missiles_not_attached|sokf_invisible|spr_use_time(1),"pw_invisible_door","bo_pw_invisible_door", spr_teleport_door_triggers(pos_offset=(0,50,0), pickable=0, horse_can_tp=1)),
 
-  ("pw_door_rotate_a",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(1),"castle_f_sally_door_a","bo_castle_f_sally_door_a", spr_rotate_door_triggers(hit_points=5000)),
-  ("pw_door_rotate_b",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(1),"castle_e_sally_door_a","bo_castle_e_sally_door_a_fixed", spr_rotate_door_triggers(hit_points=5000)),
-  ("pw_door_rotate_c",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(1),"castle_f_door_a","bo_castle_f_door_a_fixed", spr_rotate_door_triggers(hit_points=5000)),
-  ("pw_door_rotate_d",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(1),"pw_door_d","bo_pw_door_d", spr_rotate_door_triggers(hit_points=5000)),
-  ("pw_door_rotate_a_indestructible",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(1),"castle_f_sally_door_a","bo_castle_f_sally_door_a", spr_rotate_door_no_hit_triggers()),
-  ("pw_door_rotate_b_indestructible",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(1),"castle_e_sally_door_a","bo_castle_e_sally_door_a_fixed", spr_rotate_door_no_hit_triggers()),
-  ("pw_door_rotate_c_indestructible",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(1),"castle_f_door_a","bo_castle_f_door_a_fixed", spr_rotate_door_no_hit_triggers()),
-  ("pw_door_rotate_d_indestructible",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(1),"pw_door_d","bo_pw_door_d", spr_rotate_door_no_hit_triggers()),
-  ("pw_door_rotate_viking_left",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(1),"viking_keep_destroy_sally_door_left","bo_viking_keep_destroy_sally_door_left_fixed", spr_rotate_door_triggers(hit_points=5000, left=1)),
-  ("pw_door_rotate_viking_right",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(1),"viking_keep_destroy_sally_door_right","bo_viking_keep_destroy_sally_door_right_fixed", spr_rotate_door_triggers(hit_points=5000)),
-  ("pw_door_rotate_gatehouse_left",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(1),"pw_gatehouse_door_left","bo_pw_gatehouse_door_left", spr_rotate_door_triggers(hit_points=7000, left=1)),
-  ("pw_door_rotate_gatehouse_right",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(1),"pw_gatehouse_door_right","bo_pw_gatehouse_door_right", spr_rotate_door_triggers(hit_points=7000)),
-  ("pw_door_rotate_dungeon_cell_a",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_no_hit_flags(2),"dungeon_door_cell_a","bo_dungeon_door_cell_a_fixed", spr_rotate_door_no_hit_triggers()),
-  ("pw_door_rotate_dungeon_cell_b",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_no_hit_flags(2),"dungeon_door_cell_b_fixed","bo_dungeon_door_cell_b_fixed", spr_rotate_door_no_hit_triggers()),
-  ("pw_door_rotate_dungeon_cell_c",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_no_hit_flags(2),"dungeon_door_cell_c","bo_dungeon_door_cell_c", spr_rotate_door_no_hit_triggers()),
-  ("pw_door_rotate_dungeon_a",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(1),"pw_dungeon_door_a","bo_pw_dungeon_door_a", spr_rotate_door_triggers(hit_points=5000)),
-  ("pw_door_rotate_dungeon_b",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(1),"pw_dungeon_door_b","bo_pw_dungeon_door_a", spr_rotate_door_triggers(hit_points=5000)),
-  ("pw_door_rotate_dungeon_c",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(1),"pw_dungeon_door_c","bo_pw_dungeon_door_a", spr_rotate_door_triggers(hit_points=5000)),
-  ("pw_door_rotate_e_left",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(1),"pw_door_e_left","bo_pw_door_left", spr_rotate_door_triggers(hit_points=5000, left=1)),
-  ("pw_door_rotate_e_right",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(1),"pw_door_e_right","bo_pw_door_right", spr_rotate_door_triggers(hit_points=5000)),
-  ("pw_door_rotate_f_left",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(1),"pw_door_f_left","bo_pw_door_left", spr_rotate_door_triggers(hit_points=5000, left=1)),
-  ("pw_door_rotate_f_right",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(1),"pw_door_f_right","bo_pw_door_right", spr_rotate_door_triggers(hit_points=5000)),
-  ("pw_door_rotate_h_left",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(1),"pw_door_g_left","bo_pw_door_left", spr_rotate_door_triggers(hit_points=5000, left=1)),
-  ("pw_door_rotate_h_right",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(1),"pw_door_g_right","bo_pw_door_right", spr_rotate_door_triggers(hit_points=5000)),
-  ("pw_door_rotate_towngate_left",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(2),"towngate_rectangle_door_left","bo_towngate_rectangle_door_left_fixed", spr_rotate_door_triggers(hit_points=10000, left=1)),
-  ("pw_door_rotate_towngate_right",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(2),"towngate_rectangle_door_right","bo_towngate_rectangle_door_right_fixed", spr_rotate_door_triggers(hit_points=10000)),
-  ("pw_door_rotate_earth_left",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(2),"earth_sally_gate_left","bo_earth_sally_gate_left", spr_rotate_door_triggers(hit_points=10000, left=1)),
-  ("pw_door_rotate_earth_right",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(2),"earth_sally_gate_right","bo_earth_sally_gate_right", spr_rotate_door_triggers(hit_points=10000)),
-  ("pw_door_rotate_stable",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(1),"pw_full_stable_door_a","bo_pw_full_stable_door_a", spr_rotate_door_triggers(hit_points=1000, left=1)),
-  ("pw_door_rotate_village_a",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(1),"pw_village_door_a","bo_pw_village_door_a", spr_rotate_door_triggers(hit_points=2000)),
-  ("pw_door_rotate_village_b",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(1),"pw_village_door_b","bo_pw_village_door_a", spr_rotate_door_triggers(hit_points=2000)),
-  ("cm_door_rotate_akra_left",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(1),"cm_akra_vorota_b","bo_cm_akra_vorota_b", spr_rotate_door_triggers(hit_points=5000, left=1)),
-  ("cm_door_rotate_akra_right",sokf_dynamic_physics|sokf_missiles_not_attached|spr_rotate_door_flags(1),"cm_akra_vorota_a","bo_cm_akra_vorota_a", spr_rotate_door_triggers(hit_points=5000)),
+  ("pw_door_rotate_a",spr_rotate_door_flags(1),"castle_f_sally_door_a","bo_castle_f_sally_door_a", spr_rotate_door_triggers(hit_points=5000)),
+  ("pw_door_rotate_b",spr_rotate_door_flags(1),"castle_e_sally_door_a","bo_castle_e_sally_door_a_fixed", spr_rotate_door_triggers(hit_points=5000)),
+  ("pw_door_rotate_c",spr_rotate_door_flags(1),"castle_f_door_a","bo_castle_f_door_a_fixed", spr_rotate_door_triggers(hit_points=5000)),
+  ("pw_door_rotate_d",spr_rotate_door_flags(1),"pw_door_d","bo_pw_door_d", spr_rotate_door_triggers(hit_points=5000)),
+  ("pw_door_rotate_a_indestructible",spr_rotate_door_flags(1),"castle_f_sally_door_a","bo_castle_f_sally_door_a", spr_rotate_door_no_hit_triggers()),
+  ("pw_door_rotate_b_indestructible",spr_rotate_door_flags(1),"castle_e_sally_door_a","bo_castle_e_sally_door_a_fixed", spr_rotate_door_no_hit_triggers()),
+  ("pw_door_rotate_c_indestructible",spr_rotate_door_flags(1),"castle_f_door_a","bo_castle_f_door_a_fixed", spr_rotate_door_no_hit_triggers()),
+  ("pw_door_rotate_d_indestructible",spr_rotate_door_flags(1),"pw_door_d","bo_pw_door_d", spr_rotate_door_no_hit_triggers()),
+  ("pw_door_rotate_viking_left",spr_rotate_door_flags(1),"viking_keep_destroy_sally_door_left","bo_viking_keep_destroy_sally_door_left_fixed", spr_rotate_door_triggers(hit_points=5000, left=1)),
+  ("pw_door_rotate_viking_right",spr_rotate_door_flags(1),"viking_keep_destroy_sally_door_right","bo_viking_keep_destroy_sally_door_right_fixed", spr_rotate_door_triggers(hit_points=5000)),
+  ("pw_door_rotate_gatehouse_left",spr_rotate_door_flags(1),"pw_gatehouse_door_left","bo_pw_gatehouse_door_left", spr_rotate_door_triggers(hit_points=7000, left=1)),
+  ("pw_door_rotate_gatehouse_right",spr_rotate_door_flags(1),"pw_gatehouse_door_right","bo_pw_gatehouse_door_right", spr_rotate_door_triggers(hit_points=7000)),
+  ("pw_door_rotate_dungeon_cell_a",spr_rotate_door_no_hit_flags(2),"dungeon_door_cell_a","bo_dungeon_door_cell_a_fixed", spr_rotate_door_no_hit_triggers()),
+  ("pw_door_rotate_dungeon_cell_b",spr_rotate_door_no_hit_flags(2),"dungeon_door_cell_b_fixed","bo_dungeon_door_cell_b_fixed", spr_rotate_door_no_hit_triggers()),
+  ("pw_door_rotate_dungeon_cell_c",spr_rotate_door_no_hit_flags(2),"dungeon_door_cell_c","bo_dungeon_door_cell_c", spr_rotate_door_no_hit_triggers()),
+  ("pw_door_rotate_dungeon_a",spr_rotate_door_flags(1),"pw_dungeon_door_a","bo_pw_dungeon_door_a", spr_rotate_door_triggers(hit_points=5000)),
+  ("pw_door_rotate_dungeon_b",spr_rotate_door_flags(1),"pw_dungeon_door_b","bo_pw_dungeon_door_a", spr_rotate_door_triggers(hit_points=5000)),
+  ("pw_door_rotate_dungeon_c",spr_rotate_door_flags(1),"pw_dungeon_door_c","bo_pw_dungeon_door_a", spr_rotate_door_triggers(hit_points=5000)),
+  ("pw_door_rotate_e_left",spr_rotate_door_flags(1),"pw_door_e_left","bo_pw_door_left", spr_rotate_door_triggers(hit_points=5000, left=1)),
+  ("pw_door_rotate_e_right",spr_rotate_door_flags(1),"pw_door_e_right","bo_pw_door_right", spr_rotate_door_triggers(hit_points=5000)),
+  ("pw_door_rotate_f_left",spr_rotate_door_flags(1),"pw_door_f_left","bo_pw_door_left", spr_rotate_door_triggers(hit_points=5000, left=1)),
+  ("pw_door_rotate_f_right",spr_rotate_door_flags(1),"pw_door_f_right","bo_pw_door_right", spr_rotate_door_triggers(hit_points=5000)),
+  ("pw_door_rotate_h_left",spr_rotate_door_flags(1),"pw_door_g_left","bo_pw_door_left", spr_rotate_door_triggers(hit_points=5000, left=1)),
+  ("pw_door_rotate_h_right",spr_rotate_door_flags(1),"pw_door_g_right","bo_pw_door_right", spr_rotate_door_triggers(hit_points=5000)),
+  ("pw_door_rotate_towngate_left",spr_rotate_door_flags(2),"towngate_rectangle_door_left","bo_towngate_rectangle_door_left_fixed", spr_rotate_door_triggers(hit_points=10000, left=1)),
+  ("pw_door_rotate_towngate_right",spr_rotate_door_flags(2),"towngate_rectangle_door_right","bo_towngate_rectangle_door_right_fixed", spr_rotate_door_triggers(hit_points=10000)),
+  ("pw_door_rotate_earth_left",spr_rotate_door_flags(2),"earth_sally_gate_left","bo_earth_sally_gate_left", spr_rotate_door_triggers(hit_points=10000, left=1)),
+  ("pw_door_rotate_earth_right",spr_rotate_door_flags(2),"earth_sally_gate_right","bo_earth_sally_gate_right", spr_rotate_door_triggers(hit_points=10000)),
+  ("pw_door_rotate_stable",spr_rotate_door_flags(1),"pw_full_stable_door_a","bo_pw_full_stable_door_a", spr_rotate_door_triggers(hit_points=1000, left=1)),
+  ("pw_door_rotate_village_a",spr_rotate_door_flags(1),"pw_village_door_a","bo_pw_village_door_a", spr_rotate_door_triggers(hit_points=2000)),
+  ("pw_door_rotate_village_b",spr_rotate_door_flags(1),"pw_village_door_b","bo_pw_village_door_a", spr_rotate_door_triggers(hit_points=2000)),
+  ("cm_door_rotate_akra_left",spr_rotate_door_flags(1),"cm_akra_vorota_b","bo_cm_akra_vorota_b", spr_rotate_door_triggers(hit_points=5000, left=1)),
+  ("cm_door_rotate_akra_right",spr_rotate_door_flags(1),"cm_akra_vorota_a","bo_cm_akra_vorota_a", spr_rotate_door_triggers(hit_points=5000)),
 
   ("pw_wooden_bridge_a",spr_structure_flags(),"bridge_wooden","bo_bridge_wooden_fixed", spr_bridge_triggers("pw_wooden_bridge_a_footing", hit_points=15000)),
   ("pw_wooden_bridge_a_footing",spr_build_flags(),"pw_build_bridge","bo_pw_build", spr_bridge_footing_triggers()),
@@ -3578,7 +3578,7 @@ scene_props = [
 
   ("cm_civ_cart",sokf_static_movement|spr_use_time(1),"cm_civ_cart","bo_cm_civ_cart", spr_cart_triggers(horse="itm_cart_horse", detach_offset=40, detach_rotation=-18, inventory_count=48, max_item_length=250, access_distance=-220)),
   ("cm_war_cart",sokf_static_movement|spr_use_time(1),"cm_war_cart","bo_cm_war_cart", spr_cart_triggers(horse="itm_cart_horse", detach_offset=120, inventory_count=24, max_item_length=250, access_distance=-240, store_ammo=1)),
-  
+
   ("pw_ship_a",sokf_moveable|sokf_destructible|sokf_show_hit_point_bar,"pw_ship_a","bo_pw_ship_a", spr_ship_triggers(hit_points=5000, length=800, width=150, height=-20, speed=6, sail="pw_ship_a_sail", sail_off="pw_ship_a_sail_off", collision="pw_ship_a_cd")),
   ("pw_ship_a_sail",sokf_moveable,"pw_ship_a_sail","bo_pw_ship_a_sail", []),
   ("pw_ship_a_sail_off",sokf_moveable,"pw_ship_a_sail_off","bo_pw_ship_a_sail_off", []),
