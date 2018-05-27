@@ -509,7 +509,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("disable_s0", "Disable {s0}"),
   ("un", "un"),
 
-  ("drop_items", "Drop Items"),
+  ("drop_items", "Drop items"),
   ("display_faction_in_name_labels", "Display name and faction labels"),
   ("display_chat_overlay", "Display chat overlay"),
   ("display_faction_chat_on_overlay", "Display faction chat on overlay"),
