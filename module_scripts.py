@@ -13250,7 +13250,7 @@ scripts.extend([
     (faction_get_slot, ":value_1", ":poll_faction_id", slot_faction_poll_value_1),
 
     (try_begin), # if a lord poll apply cooldown regardless of result.
-      (eq, ":poll_result", poll_type_faction_lord),
+      (eq, ":poll_type", poll_type_faction_lord),
       (store_mission_timer_a, ":time"),
       (val_add, ":time", poll_cooldown_time),
       (faction_set_slot, ":poll_faction_id", slot_faction_poll_last_time, ":time"),
