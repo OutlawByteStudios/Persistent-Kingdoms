@@ -5095,7 +5095,7 @@ presentations.extend([
         (eq, ":string_id", "str_toggle_head"),
         (multiplayer_send_int_to_server, client_event_toggle_drop_armor, ek_head),
       (else_try),
-        (eq, ":string_id", "str_open_inventory"),
+        (eq, ":string_id", "str_drop_items"),
         (multiplayer_send_message_to_server, client_event_open_inventory),
       (else_try),
         (eq, ":string_id", "str_toggle_hand"),
