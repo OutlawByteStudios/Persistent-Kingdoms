@@ -1097,12 +1097,6 @@ presentations.extend([
       (overlay_set_size, reg0, pos2),
       (val_add, ":cur_y", escape_menu_item_height),
 
-      (create_button_overlay, reg0, "str_show_rules", 0),
-      (assign, "$g_presentation_obj_escape_menu_show_rules", reg0),
-      (overlay_set_color, reg0, 0xFFFFFF),
-      (overlay_set_size, reg0, pos2),
-      (val_add, ":cur_y", escape_menu_item_height),
-
       (create_button_overlay, reg0, "str_show_info", 0),
       (assign, "$g_presentation_obj_escape_menu_show_info", reg0),
       (overlay_set_color, reg0, 0xFFFFFF),
