@@ -13254,6 +13254,12 @@ scripts.extend([
       (store_mission_timer_a, ":time"),
       (val_add, ":time", poll_cooldown_time),
       (faction_set_slot, ":poll_faction_id", slot_faction_poll_last_time, ":time"),
+
+      (get_max_players, ":max_players"),
+      (try_for_range, ":player_id", 1, ":max_players"),
+        (player_is_active, ":player_id"),
+        (multiplayer_send_3_int_to_player, ":player_id", server_event_faction_set_slot, ":poll_faction_id",slot_faction_poll_last_time, ":time"),
+      (try_end),
     (try_end),
 
 
@@ -13299,13 +13305,6 @@ scripts.extend([
       (eq, ":poll_type", poll_type_faction_lord),
       (this_or_next|neg|player_is_active, ":value_1"),
       (eq, ":check_unique_id", ":target_unique_id"),
-
-      (get_max_players, ":max_players"),
-      (try_for_range, ":player_id", 1, ":max_players"),
-        (player_is_active, ":player_id"),
-        (multiplayer_send_3_int_to_player, ":player_id", server_event_faction_set_slot, ":poll_faction_id", slot_faction_poll_last_time, ":time"),
-      (try_end),
-
       (call_script, "script_cf_faction_set_lord", ":value_1", ":target_unique_id", ":poll_faction_id"),
     (try_end),
     ]),
