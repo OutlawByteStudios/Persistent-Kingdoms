@@ -59,34 +59,35 @@ slot_player_can_faction_announce      = 38
 slot_player_next_spawn_health_percent = 39 # spawn health percentage for the troop applied after death, if that server option is enabled
 slot_player_accessing_unique_id       = 40 # a unique number identifying an inventory scene prop being accessed that could despawn and the instance id be reused, like corpses
 
-slot_player_admin_no_panel            = 41 # admin permission slots: the default value 0 is permissive so everything works when a name server is not connected
-slot_player_admin_no_gold             = 42
-slot_player_admin_no_kick             = 43
-slot_player_admin_no_temporary_ban    = 44
-slot_player_admin_no_permanent_ban    = 45
-slot_player_admin_no_kill_fade        = 46
-slot_player_admin_no_freeze           = 47
-slot_player_admin_no_teleport_self    = 48
-slot_player_admin_no_admin_items      = 49
-slot_player_admin_no_heal_self        = 50
-slot_player_admin_no_godlike_troop    = 51
-slot_player_admin_no_ships            = 52
-slot_player_admin_no_announce         = 53
-slot_player_admin_no_override_poll    = 54
-slot_player_admin_no_all_items        = 55
-slot_player_admin_no_mute             = 56
-slot_player_admin_no_animals          = 57
-slot_player_admin_no_join_factions    = 58
-slot_player_admin_no_factions         = 59
-slot_player_admin_end                 = 60
+slot_player_admin_no_tools            = 41
+slot_player_admin_no_panel            = 42 # admin permission slots: the default value 0 is permissive so everything works when a name server is not connected
+slot_player_admin_no_gold             = 43
+slot_player_admin_no_kick             = 44
+slot_player_admin_no_temporary_ban    = 45
+slot_player_admin_no_permanent_ban    = 46
+slot_player_admin_no_kill_fade        = 47
+slot_player_admin_no_freeze           = 48
+slot_player_admin_no_teleport_self    = 49
+slot_player_admin_no_admin_items      = 50
+slot_player_admin_no_heal_self        = 51
+slot_player_admin_no_godlike_troop    = 52
+slot_player_admin_no_ships            = 53
+slot_player_admin_no_announce         = 54
+slot_player_admin_no_override_poll    = 55
+slot_player_admin_no_all_items        = 56
+slot_player_admin_no_mute             = 57
+slot_player_admin_no_animals          = 58
+slot_player_admin_no_join_factions    = 59
+slot_player_admin_no_factions         = 60
+slot_player_admin_end                 = 61
 
-slot_player_freeze_instance_id        = 61 #Needed for removing freeze walls on disconnects
+slot_player_freeze_instance_id        = 62 #Needed for removing freeze walls on disconnects
 
-slot_player_commit_suicide_time       = 62
+slot_player_commit_suicide_time       = 63
 suicide_delay                         = 15 # suicide delay time
 
 #This slot is for the equipment logs
-slot_player_first_spawn_occured       = 63
+slot_player_first_spawn_occured       = 64
 #End
 
 ########################################################
