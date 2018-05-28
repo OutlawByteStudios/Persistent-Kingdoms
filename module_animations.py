@@ -1622,7 +1622,7 @@ animations = [
  [1.0, "cool_2h_stance", 0, 1, arf_blend_in_3],
 ],
 ["bow", acf_enforce_all, amf_play|amf_priority_continue|amf_continue_to_next,
- [3.0, "bow", 0, 29, arf_blend_in_3],
+ [1.5, "bow", 0, 29, arf_blend_in_3],
 ],
 ["bow_still", acf_enforce_all, amf_play|amf_keep|amf_priority_continue,
  [1.0, "bow", 29, 29, arf_use_stand_progress|arf_cyclic],
