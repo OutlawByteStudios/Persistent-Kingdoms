@@ -13248,6 +13248,15 @@ scripts.extend([
 
     (faction_get_slot, ":poll_type", ":poll_faction_id", slot_faction_poll_type),
     (faction_get_slot, ":value_1", ":poll_faction_id", slot_faction_poll_value_1),
+
+    (try_begin), # if a lord poll apply cooldown regardless of result.
+      (eq, ":poll_result", poll_type_faction_lord),
+      (store_mission_timer_a, ":time"),
+      (val_add, ":time", poll_cooldown_time),
+      (faction_set_slot, ":poll_faction_id", slot_faction_poll_last_time, ":time"),
+    (try_end),
+
+
     (try_begin),
       (this_or_next|eq, ":poll_result", poll_result_yes),
       (eq, ":poll_result", poll_result_admin_yes),
@@ -13290,10 +13299,6 @@ scripts.extend([
       (eq, ":poll_type", poll_type_faction_lord),
       (this_or_next|neg|player_is_active, ":value_1"),
       (eq, ":check_unique_id", ":target_unique_id"),
-
-      (store_mission_timer_a, ":time"),
-      (val_add, ":time", poll_cooldown_time),
-      (faction_set_slot, ":poll_faction_id", slot_faction_poll_last_time, ":time"),
 
       (get_max_players, ":max_players"),
       (try_for_range, ":player_id", 1, ":max_players"),
