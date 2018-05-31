@@ -476,7 +476,7 @@ position_animation_check = (1, 0, 0, [], # server: handle agents sitting
 
         (get_distance_between_positions, ":dist", pos0, pos1),
         (try_begin),
-          (gt, ":dist", 30),
+          (gt, ":dist", 20),
     
           (try_begin),
             (this_or_next|eq, ":position_animation", "anim_sitting_pillow_male"),
