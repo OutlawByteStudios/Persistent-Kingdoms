@@ -1,5 +1,5 @@
 stringsfile version 1
-780
+782
 str_no_string NO_STRING!
 str_empty_string _
 str_yes Yes.
@@ -340,6 +340,7 @@ str_disable_rain_snow_particles Disable_rain_and_snow_particles
 str_reg0__s0 {!}{reg0}._{s0}
 str_menu_guestures Guestures
 str_menu_guestures_2 Guestures_2
+str_menu_stationary Stationary
 str_menu_neutral Neutral
 str_menu_hostile Hostile
 str_menu_robbery Robbery
@@ -354,15 +355,16 @@ str_anim_hand_on_chest Hand_on_chest
 str_anim_arms_crossed Arms_crossed
 str_anim_stand_still Stand_still
 str_anim_surrender Surrender
-str_anim_sit Sit
-str_anim_bow Bow
-str_anim_sleeping Sleep
-str_anim_track Tracking
 str_anim_nod_head Nod_head
 str_anim_peeing Pee
 str_anim_wave_hand Wave
 str_anim_this_way This_way
 str_anim_go_away Go_away
+str_anim_sit Sit
+str_anim_sleeping Sleep
+str_anim_kneel Kneel
+str_anim_track Tracking
+str_anim_bow Bow
 str_anim_away_vile_beggar Away_with_you,_vile_beggar
 str_anim_my_lord My_lord
 str_anim_almost_harvesting_season It's_almost_harvesting_season
