@@ -1791,9 +1791,18 @@ scripts.extend([
       (else_try), # handle the use of admin tools
         (eq, ":event_type", client_event_admin_action),
         (store_script_param, ":admin_action", 3),
-        (store_script_param, ":target_player_id", 4),
+
         (try_begin),
-          (call_script, "script_cf_admin_action", ":admin_action", ":sender_player_id", ":target_player_id"),
+          (eq, ":admin_action", admin_action_log_current_position),
+          (store_script_param, ":x", 4),
+          (store_script_param, ":y", 5),
+          (store_script_param, ":z", 6),
+          (call_script, "script_cf_admin_action", ":admin_action", ":sender_player_id", ":x", ":y", ":z"),
+        (else_try),
+          (store_script_param, ":target_player_id", 4),
+          (try_begin),
+            (call_script, "script_cf_admin_action", ":admin_action", ":sender_player_id", ":target_player_id"),
+          (try_end),
         (try_end),
       (else_try), # handle requests for a poll
         (eq, ":event_type", client_event_request_poll),
@@ -3195,6 +3204,7 @@ scripts.extend([
     (neg|is_presentation_active, "prsnt_game_multiplayer_admin_panel"),
     (neg|is_presentation_active, "prsnt_game_rules"),
     (neg|is_presentation_active, "prsnt_admin_item_select"),
+    (neg|is_presentation_active, "prsnt_distance_to_position"),
     ]),
 
   ("initialize_banner_info", # store background colors for all the banners in an array
@@ -13248,6 +13258,21 @@ scripts.extend([
 
     (faction_get_slot, ":poll_type", ":poll_faction_id", slot_faction_poll_type),
     (faction_get_slot, ":value_1", ":poll_faction_id", slot_faction_poll_value_1),
+
+    (try_begin), # if a lord poll apply cooldown regardless of result.
+      (eq, ":poll_type", poll_type_faction_lord),
+      (store_mission_timer_a, ":time"),
+      (val_add, ":time", poll_cooldown_time),
+      (faction_set_slot, ":poll_faction_id", slot_faction_poll_last_time, ":time"),
+
+      (get_max_players, ":max_players"),
+      (try_for_range, ":player_id", 1, ":max_players"),
+        (player_is_active, ":player_id"),
+        (multiplayer_send_3_int_to_player, ":player_id", server_event_faction_set_slot, ":poll_faction_id",slot_faction_poll_last_time, ":time"),
+      (try_end),
+    (try_end),
+
+
     (try_begin),
       (this_or_next|eq, ":poll_result", poll_result_yes),
       (eq, ":poll_result", poll_result_admin_yes),
@@ -13290,17 +13315,6 @@ scripts.extend([
       (eq, ":poll_type", poll_type_faction_lord),
       (this_or_next|neg|player_is_active, ":value_1"),
       (eq, ":check_unique_id", ":target_unique_id"),
-
-      (store_mission_timer_a, ":time"),
-      (val_add, ":time", poll_cooldown_time),
-      (faction_set_slot, ":poll_faction_id", slot_faction_poll_last_time, ":time"),
-
-      (get_max_players, ":max_players"),
-      (try_for_range, ":player_id", 1, ":max_players"),
-        (player_is_active, ":player_id"),
-        (multiplayer_send_3_int_to_player, ":player_id", server_event_faction_set_slot, ":poll_faction_id", slot_faction_poll_last_time, ":time"),
-      (try_end),
-
       (call_script, "script_cf_faction_set_lord", ":value_1", ":target_unique_id", ":poll_faction_id"),
     (try_end),
     ]),
@@ -13453,7 +13467,8 @@ scripts.extend([
 
     (assign,":target_is_player", 1),
     (try_begin),
-        (eq, ":admin_action", admin_action_join_faction),
+        (this_or_next|eq, ":admin_action", admin_action_join_faction),
+        (eq, ":admin_action", admin_action_log_current_position),
         (assign,":target_is_player", 0),
     (try_end),
 
@@ -13836,11 +13851,34 @@ scripts.extend([
       (str_store_faction_name, s5, ":faction_id"),
     (else_try),
       (eq, ":admin_action", admin_action_log_current_position),
+      (set_fixed_point_multiplier, 1000),
+
+      (store_script_param, ":y", 4),
+      (store_script_param, ":z", 5),
+
       (player_get_agent_id, ":admin_agent_id", ":admin_player_id"),
       (agent_get_position, pos10, ":admin_agent_id"),
+
+      (try_begin),
+        (eq, ":target_player_id", -1),
+        (eq, ":y", -1),
+        (eq, ":z", -1),
+      (else_try),
+        (position_set_x, pos11, ":target_player_id"),
+        (position_set_y, pos11, ":y"),
+        (position_set_z, pos11, ":z"),
+        (position_get_x, reg21, pos11),
+        (position_get_y, reg22, pos11),
+        (position_get_z, reg23, pos11),
+        (get_distance_between_positions_in_meters, reg14, pos10, pos11),
+
+        (val_add, ":admin_action", 1),
+      (try_end),
+
       (position_get_x, reg11, pos10),
       (position_get_y, reg12, pos10),
       (position_get_z, reg13, pos10),
+
     (else_try),
       (assign, ":admin_action", -1),
     (try_end),
@@ -13854,6 +13892,7 @@ scripts.extend([
         (str_store_faction_name, s4, ":target_player_id"),
         (assign, ":log_string_id", "str_log_admin_target_faction"),
     (else_try),
+      (eq, ":target_is_player", 1),
       (neq, ":target_player_id", 0),
       (neq, ":target_player_id", ":admin_player_id"),
       (player_get_unique_id, reg1, ":target_player_id"),
@@ -14132,20 +14171,22 @@ scripts.extend([
     (troop_set_slot, "trp_animation_menu_strings", 0, "str_menu_guestures"), # offset 0 is for the main menu to select sub menus
     (troop_set_slot, "trp_animation_menu_strings", 0 + animation_menu_end_offset, "str_anim_cheer"),
     (troop_set_slot, "trp_animation_menu_strings", 1, "str_anim_cheer"),
-    (troop_set_slot, "trp_animation_menu_strings", 1 + animation_menu_end_offset, "str_anim_sit"),
-    (troop_set_slot, "trp_animation_menu_strings", 2, "str_anim_sit"),
-    (troop_set_slot, "trp_animation_menu_strings", 2 + animation_menu_end_offset, "str_anim_away_vile_beggar"),
-    (troop_set_slot, "trp_animation_menu_strings", 3, "str_anim_away_vile_beggar"),
-    (troop_set_slot, "trp_animation_menu_strings", 3 + animation_menu_end_offset, "str_anim_war_cry"),
-    (troop_set_slot, "trp_animation_menu_strings", 4, "str_anim_war_cry"),
-    (troop_set_slot, "trp_animation_menu_strings", 4 + animation_menu_end_offset, "str_anim_stand_and_deliver"),
-    (troop_set_slot, "trp_animation_menu_strings", 5, "str_anim_stand_and_deliver"),
-    (troop_set_slot, "trp_animation_menu_strings", 5 + animation_menu_end_offset, "str_log_animation"),
-    (troop_set_slot, "trp_animation_menu_strings", 5 + animation_menu_end_offset, "str_anim_horn_charge"),
-    (troop_set_slot, "trp_animation_menu_strings", 6, "str_anim_horn_charge"),
-    (troop_set_slot, "trp_animation_menu_strings", 6 + animation_menu_end_offset, "str_anim_lute_1"),
-    (troop_set_slot, "trp_animation_menu_strings", 7, "str_anim_lute_1"),
-    (troop_set_slot, "trp_animation_menu_strings", 7 + animation_menu_end_offset, "str_log_animation"),
+    (troop_set_slot, "trp_animation_menu_strings", 1 + animation_menu_end_offset, "str_anim_nod_head"),
+    (troop_set_slot, "trp_animation_menu_strings", 2, "str_anim_nod_head"),
+    (troop_set_slot, "trp_animation_menu_strings", 2 + animation_menu_end_offset, "str_anim_sit"),
+    (troop_set_slot, "trp_animation_menu_strings", 3, "str_anim_sit"),
+    (troop_set_slot, "trp_animation_menu_strings", 3 + animation_menu_end_offset, "str_anim_away_vile_beggar"),
+    (troop_set_slot, "trp_animation_menu_strings", 4, "str_anim_away_vile_beggar"),
+    (troop_set_slot, "trp_animation_menu_strings", 4 + animation_menu_end_offset, "str_anim_war_cry"),
+    (troop_set_slot, "trp_animation_menu_strings", 5, "str_anim_war_cry"),
+    (troop_set_slot, "trp_animation_menu_strings", 5 + animation_menu_end_offset, "str_anim_stand_and_deliver"),
+    (troop_set_slot, "trp_animation_menu_strings", 6, "str_anim_stand_and_deliver"),
+    (troop_set_slot, "trp_animation_menu_strings", 6 + animation_menu_end_offset, "str_log_animation"),
+    (troop_set_slot, "trp_animation_menu_strings", 6 + animation_menu_end_offset, "str_anim_horn_charge"),
+    (troop_set_slot, "trp_animation_menu_strings", 7, "str_anim_horn_charge"),
+    (troop_set_slot, "trp_animation_menu_strings", 7 + animation_menu_end_offset, "str_anim_lute_1"),
+    (troop_set_slot, "trp_animation_menu_strings", 8, "str_anim_lute_1"),
+    (troop_set_slot, "trp_animation_menu_strings", 8 + animation_menu_end_offset, "str_log_animation"),
     ]),
 
   ("initialize_animation_durations", []), # copies animation durations in milliseconds from module_animations.py to slots of trp_animation_durations
@@ -14261,7 +14302,8 @@ scripts.extend([
         animation_menu_entry("str_anim_go_away", animation="anim_go_away", prevent_if_wielding=1),
         animation_menu_entry("str_anim_peeing", animation="anim_peeing", prevent_if_wielding=1, prevent_if_moving=1),
         animation_menu_entry("str_anim_hand_on_chest", animation="anim_hand_on_chest", prevent_if_wielding=1),
-        animation_menu_entry("str_anim_bow", animation="anim_bow", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0, position_animation=1),
+        animation_menu_entry("str_anim_bow", animation="anim_bow", prevent_if_moving=1, prevent_if_wielding=1, prevent_if_on_horse=1, upper_body_only=0, position_animation=1),
+        animation_menu_entry("str_anim_kneel", animation="anim_kneel", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0, position_animation=1),
         animation_menu_entry("str_anim_sleeping", animation="anim_sleeping", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0, position_animation=1),
         animation_menu_entry("str_anim_giving_birth", animation="anim_giving_birth", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0, position_animation=1),
         animation_menu_entry("str_anim_track", animation="anim_tracking", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0, position_animation=1),

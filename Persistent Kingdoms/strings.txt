@@ -1,5 +1,5 @@
 stringsfile version 1
-780
+785
 str_no_string NO_STRING!
 str_empty_string _
 str_yes Yes.
@@ -75,7 +75,9 @@ str_join_faction Join_faction
 str_lock_current_faction Lock_current_faction
 str_unlock_current_faction Unlock_current_faction
 str_log_current_position Log_current_position
+str_log_distance_to_position Log_distance_to_position
 str_your_current_position_is Your_current_position_is:_(x:{reg11},_y:{reg12},_z:{reg13})
+str_your_distance_to_position_is The_distance_from_you_(x:{reg11},_y:{reg12},_z:{reg13})_to_position_(x:{reg21},_y:{reg22},_z:{reg23})_is:_{reg14}m
 str_quit Quit
 str_choose_a_player_to_s0 Choose_a_player_to_{s0}:
 str_kick kick
@@ -149,6 +151,7 @@ str_log_admin_reset_ships reset_sunken_ships
 str_log_admin_join_faction joined
 str_log_admin_lock_faction {s4}locked_faction_{s5}
 str_log_admin_own_position logged_his_position_(x:{reg11},_y:{reg12},_z:{reg13})
+str_log_admin_own_distance logged_distance_from_him_(x:{reg11},_y:{reg12},_z:{reg13})_to_position_(x:{reg21},_y:{reg22},_z:{reg23})_as:_{reg14}m
 str_log_admin_cheat_money took_{reg0}_gold
 str_log_admin_cheat_item took_item_'{s4}'
 str_log_admin_restocked_s4 restocked_a_stockpile_of_'{s4}'s
@@ -294,7 +297,7 @@ str_s0 {!}{s0}
 str_enable_s0 Enable_{s0}
 str_disable_s0 Disable_{s0}
 str_un un
-str_open_inventory Open_inventory
+str_drop_items Drop_items
 str_display_faction_in_name_labels Display_name_and_faction_labels
 str_display_chat_overlay Display_chat_overlay
 str_display_faction_chat_on_overlay Display_faction_chat_on_overlay
@@ -326,10 +329,10 @@ str_profile_hide_faction_in_name_labels Hide_faction_in_name_labels
 str_profile_display_basic_name_labels Display_basic_name_labels
 str_profile_display_chat_overlay Display_chat_overlay
 str_profile_overlay_shows_faction_chat Overlay_shows_faction_chat_instead_of_local
-str_profile_disable_automatic_shadow_recalculation Disable_automatic_shadow_recalculation
 str_profile_mute_global_chat Mute_global_chat
 str_profile_mute_music Mute_instruments
 str_profile_non_clickable_animation_menu Non-clickable_animation_menu
+str_profile_disable_automatic_shadow_recalculation Disable_automatic_shadow_recalculation
 str_profile_disable_rain_snow_particles Disable_rain_and_snow_particles
 str_open_close_helmet_error This_helmet_has_no_toggleable_visor!
 str_suicide_in_reg1 You_will_commit_suicide_in_{reg1}_seconds!
@@ -340,6 +343,7 @@ str_disable_rain_snow_particles Disable_rain_and_snow_particles
 str_reg0__s0 {!}{reg0}._{s0}
 str_menu_guestures Guestures
 str_menu_guestures_2 Guestures_2
+str_menu_stationary Stationary
 str_menu_neutral Neutral
 str_menu_hostile Hostile
 str_menu_robbery Robbery
@@ -354,15 +358,16 @@ str_anim_hand_on_chest Hand_on_chest
 str_anim_arms_crossed Arms_crossed
 str_anim_stand_still Stand_still
 str_anim_surrender Surrender
-str_anim_sit Sit
-str_anim_bow Bow
-str_anim_sleeping Sleep
-str_anim_track Tracking
 str_anim_nod_head Nod_head
 str_anim_peeing Pee
 str_anim_wave_hand Wave
 str_anim_this_way This_way
 str_anim_go_away Go_away
+str_anim_sit Sit
+str_anim_sleeping Sleep
+str_anim_kneel Kneel
+str_anim_track Tracking
+str_anim_bow Bow
 str_anim_away_vile_beggar Away_with_you,_vile_beggar
 str_anim_my_lord My_lord
 str_anim_almost_harvesting_season It's_almost_harvesting_season
