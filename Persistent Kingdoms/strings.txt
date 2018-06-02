@@ -1,5 +1,5 @@
 stringsfile version 1
-782
+785
 str_no_string NO_STRING!
 str_empty_string _
 str_yes Yes.
@@ -75,7 +75,9 @@ str_join_faction Join_faction
 str_lock_current_faction Lock_current_faction
 str_unlock_current_faction Unlock_current_faction
 str_log_current_position Log_current_position
+str_log_distance_to_position Log_distance_to_position
 str_your_current_position_is Your_current_position_is:_(x:{reg11},_y:{reg12},_z:{reg13})
+str_your_distance_to_position_is The_distance_from_you_(x:{reg11},_y:{reg12},_z:{reg13})_to_position_(x:{reg21},_y:{reg22},_z:{reg23})_is:_{reg14}m
 str_quit Quit
 str_choose_a_player_to_s0 Choose_a_player_to_{s0}:
 str_kick kick
@@ -149,6 +151,7 @@ str_log_admin_reset_ships reset_sunken_ships
 str_log_admin_join_faction joined
 str_log_admin_lock_faction {s4}locked_faction_{s5}
 str_log_admin_own_position logged_his_position_(x:{reg11},_y:{reg12},_z:{reg13})
+str_log_admin_own_distance logged_distance_from_him_(x:{reg11},_y:{reg12},_z:{reg13})_to_position_(x:{reg21},_y:{reg22},_z:{reg23})_as:_{reg14}m
 str_log_admin_cheat_money took_{reg0}_gold
 str_log_admin_cheat_item took_item_'{s4}'
 str_log_admin_restocked_s4 restocked_a_stockpile_of_'{s4}'s
