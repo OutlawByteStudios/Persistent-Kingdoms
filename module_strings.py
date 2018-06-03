@@ -741,7 +741,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("you_are_not_lord_of_s1", "You are not the lord of {s1}."),
   ("you_are_now_lord_of_s1", "You are now the lord of {s1}."),
   ("s10_now_lord_of_s1", "{s10} is now the lord of the {s1}."),
-  ("s10_now_known_as_s1", "{s10} are now known as {s1}."),
+  ("s10_now_known_as_s1", "{s10} are now known as {s1} (FID: {reg10})."),
   ("banner_used_by_s1", "That banner is used by {s1}."),
   ("s1_doesnt_need_merc", "{s1} doesn't need mercenaries."),
   ("s1_reign_supreme", "{s1} reign supreme!"),

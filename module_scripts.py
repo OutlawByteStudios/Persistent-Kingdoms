@@ -1607,6 +1607,7 @@ scripts.extend([
                 (multiplayer_send_string_to_player, ":player_id", server_event_faction_set_name, s0),
               (try_end),
               (str_store_string, s1, s0),
+              (assign, reg10, ":faction_id"),
               (server_add_message_to_log, "str_s10_now_known_as_s1"),
             (try_end),
           (else_try),
