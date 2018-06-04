@@ -176,6 +176,15 @@ scripts.extend([
       (str_store_player_username, s11, ":defender_player_id"),
       (str_store_player_username, s12, ":attacker_player_id"),
       (assign, reg31, ":damage"),
+      
+      #Get the weapon's name
+      (try_begin),
+        (agent_get_wielded_item, ":weapon_id", ":attacker_agent_id", 1),
+        (ge, ":weapon_id", all_items_begin),
+        (str_store_item_name, s10, ":weapon_id"),
+      (else_try),
+        (str_store_string, s10, "@fist"),
+      (try_end),
     
       (server_add_message_to_log, "str_shield_hit_log"),
     (try_end),
@@ -4388,6 +4397,7 @@ scripts.extend([
       (neq, ":faction_id", "fac_commoners"),
       (str_store_player_username, s0, ":player_id"),
       (str_store_faction_name, s1, ":faction_id"),
+      (assign, reg11, ":faction_id"),
       (server_add_message_to_log, "str_s0_joined_the_s1"),
     (try_end),
     (try_for_range, ":other_player_id", 1, ":max_players"),
