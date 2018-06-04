@@ -179,7 +179,7 @@ scripts.extend([
       
       #Get the weapon's name
       (try_begin),
-        (agent_get_wielded_item, ":weapon_id", ":attacker_agent_id", 1),
+        (agent_get_wielded_item, ":weapon_id", ":attacker_agent_id", 0),
         (ge, ":weapon_id", all_items_begin),
         (str_store_item_name, s10, ":weapon_id"),
       (else_try),
@@ -519,6 +519,7 @@ scripts.extend([
       (agent_get_item_slot, reg36, ":agent_id", ek_item_1),
       (agent_get_item_slot, reg37, ":agent_id", ek_item_2),
       (agent_get_item_slot, reg38, ":agent_id", ek_item_3),
+
       (agent_get_horse, ":horse_agent_id", ":agent_id"),
       
       (assign, reg39, 0),
