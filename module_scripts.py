@@ -2043,10 +2043,10 @@ scripts.extend([
 
             (multiplayer_send_4_int_to_player, ":other_player_id", server_event_preset_message, "str_s1_reveals_money_pouch_containing_about_reg1", preset_message_player|preset_message_chat_log|preset_message_yellow, ":sender_player_id", ":approximate_gold"),
 
-            (str_store_player_username, s0, ":other_player_id"),
+            (str_store_player_username, s1, ":other_player_id"),
             (try_begin),
               (eq, ":first_player", 1),
-              (str_store_string, s0, "str_s0"),
+              (str_store_string, s0, "str_s1"),
               (assign, ":first_player", 0),
             (else_try),
               (str_store_string, s0, "str_s0__s1"),
