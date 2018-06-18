@@ -208,11 +208,14 @@ player_exit = (ti_on_player_exit, 0, 0, [], # server: save player values on exit
     # End
 
 
-	#Remove freeze walls if they exist
+    #Remove freeze walls if they exist
     (try_begin),
       (player_get_slot, ":freeze_instance_id", ":player_id", slot_player_freeze_instance_id),
       (gt, ":freeze_instance_id", -1),
       (prop_instance_is_valid, ":freeze_instance_id"),
+      (prop_instance_get_scene_prop_kind, ":spr_id", ":freeze_instance_id"),
+      (this_or_next|eq, ":spr_id", "spr_code_freeze_agent"),
+      (eq, ":spr_id", "spr_code_freeze_horse_agent"),
       (call_script, "script_remove_scene_prop", ":freeze_instance_id"),
       (player_set_slot, ":player_id", slot_player_freeze_instance_id, -1),
     (try_end),
