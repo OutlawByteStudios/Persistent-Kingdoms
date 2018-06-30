@@ -3483,6 +3483,8 @@ scene_props = [
   ("cm_buy_nephrite_earrings",spr_buy_item_flags(17),"nephrite_earrings","bo_pw_weapon_small", spr_buy_item_triggers("itm_nephrite_earrings", resources=["itm_gold_nugget"], engineer=6)),
   ("cm_buy_black_pearl_earrings",spr_buy_item_flags(18),"black_pearl_earrings","bo_pw_weapon_small", spr_buy_item_triggers("itm_black_pearl_earrings", resources=["itm_gold_nugget"], engineer=6)),
   ("cm_buy_ruby_earrings",spr_buy_item_flags(18),"ruby_earrings","bo_pw_weapon_small", spr_buy_item_triggers("itm_ruby_earrings", resources=["itm_gold_nugget"], engineer=6)),
+  
+  ("cm_import_piglet",spr_use_time(20),"sack","bo_sack_fixed", spr_import_item_triggers("itm_piglet", pos_offset=(0,50,50), price_multiplier=300, check_script="script_cf_can_spawn_herd_animal")),
 
   ("pw_destroy_heap",spr_use_time(2),"destroy_heap","bo_destroy_heap", spr_destroy_heap_triggers()),
 
