@@ -3464,6 +3464,10 @@ scene_props = [
   ("cm_ab_tent_comander_blue",0,"1429_tente_comander_bleu","bo_1429_tente_comander",[]),
   ("cm_ab_tent_merch",0,"tent_merch","bo_tent_merch",[]),
   ("cm_ab_tent_merch2",0,"tent_merch2","bo_tent_merch",[]),
+  
+  ("cm_buy_bollock_dagger",spr_buy_item_flags(3),"bollock_dagger","bo_pw_weapon_small", spr_buy_item_triggers("itm_bollock_dagger", resources=["itm_iron_bar", "itm_wood_pole"], engineer=2)),
+  ("cm_buy_pikeman_dagger",spr_buy_item_flags(3),"pikeman_dagger","bo_pw_weapon_small", spr_buy_item_triggers("itm_pikeman_dagger", resources=["itm_iron_bar", "itm_wood_pole"], engineer=2)),
+  ("cm_buy_rondel_dagger",spr_buy_item_flags(3),"rondel_dagger","bo_pw_weapon_small", spr_buy_item_triggers("itm_rondel_dagger", resources=["itm_iron_bar", "itm_wood_pole"], engineer=2)),
 
   ("pw_destroy_heap",spr_use_time(2),"destroy_heap","bo_destroy_heap", spr_destroy_heap_triggers()),
 
