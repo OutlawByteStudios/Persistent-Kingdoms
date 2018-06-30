@@ -3485,6 +3485,22 @@ scene_props = [
   ("cm_buy_ruby_earrings",spr_buy_item_flags(18),"ruby_earrings","bo_pw_weapon_small", spr_buy_item_triggers("itm_ruby_earrings", resources=["itm_gold_nugget"], engineer=6)),
   
   ("cm_import_piglet",spr_use_time(20),"sack","bo_sack_fixed", spr_import_item_triggers("itm_piglet", pos_offset=(0,50,50), price_multiplier=300, check_script="script_cf_can_spawn_herd_animal")),
+  
+  ("cm_buy_byrnie_a_tunic",spr_buy_item_flags(2),"byrnie_a_tunic","bo_pw_armor_body", spr_buy_item_triggers("itm_byrnie_a_tunic", resources=["itm_linen_cloth"], tailoring=1)),
+  ("cm_buy_byrnie_a_tunic_c",spr_buy_item_flags(2),"byrnie_a_tunic_c","bo_pw_armor_body", spr_buy_item_triggers("itm_byrnie_a_tunic_c", resources=["itm_linen_cloth"], tailoring=1)),
+  ("cm_buy_rich_tunic_e",spr_buy_item_flags(2),"rich_tunic_e","bo_pw_armor_body", spr_buy_item_triggers("itm_rich_tunic_e", resources=["itm_linen_cloth"], tailoring=1)),
+  ("cm_buy_sar_pants",spr_buy_item_flags(2),"sar_pants","bo_pw_armor_body", spr_buy_item_triggers("itm_sar_pants", resources=["itm_linen_cloth"], tailoring=1)),
+  ("cm_buy_shirt_e",spr_buy_item_flags(2),"shirt_e","bo_pw_armor_body", spr_buy_item_triggers("itm_shirt_e", resources=["itm_linen_cloth"], tailoring=1)),
+  ("cm_buy_ribaude_dress",spr_buy_item_flags(2),"ribaude_dress","bo_pw_armor_body", spr_buy_item_triggers("itm_ribaude_dress", resources=["itm_linen_cloth"], tailoring=1)),
+  ("cm_buy_tavern_keep_shirt",spr_buy_item_flags(2),"tavern_keep_shirt","bo_pw_armor_body", spr_buy_item_triggers("itm_tavern_keep_shirt", resources=["itm_linen_cloth"], tailoring=1)),
+  ("cm_buy_red_dress2",spr_buy_item_flags(2),"red_dress2","bo_pw_armor_body", spr_buy_item_triggers("itm_red_dress2", resources=["itm_linen_cloth"], tailoring=1)),
+  ("cm_buy_rich_blue_dress",spr_buy_item_flags(2),"rich_blue_dress","bo_pw_armor_body", spr_buy_item_triggers("itm_rich_blue_dress", resources=["itm_linen_cloth"], tailoring=1)),
+  ("cm_buy_nobleman_outfit_charles",spr_buy_item_flags(2),"nobleman_outfit_charles","bo_pw_armor_body", spr_buy_item_triggers("itm_nobleman_outfit_charles", resources=["itm_linen_cloth"], tailoring=1)),
+  ("cm_buy_nobleman_outfit_anglais",spr_buy_item_flags(2),"nobleman_outfit_anglais","bo_pw_armor_body", spr_buy_item_triggers("itm_nobleman_outfit_anglais", resources=["itm_linen_cloth"], tailoring=1)),
+  ("cm_buy_new_noble_tunic_a",spr_buy_item_flags(2),"new_noble_tunic_a","bo_pw_armor_body", spr_buy_item_triggers("itm_new_noble_tunic_a", resources=["itm_linen_cloth"], tailoring=1)),
+  ("cm_buy_new_noble_tunic_b",spr_buy_item_flags(2),"new_noble_tunic_b","bo_pw_armor_body", spr_buy_item_triggers("itm_new_noble_tunic_b", resources=["itm_linen_cloth"], tailoring=1)),
+  ("cm_buy_maid_dress",spr_buy_item_flags(2),"maid_dress","bo_pw_armor_body", spr_buy_item_triggers("itm_maid_dress", resources=["itm_linen_cloth"], tailoring=1)),
+  ("cm_buy_peasant_dress_c",spr_buy_item_flags(2),"peasant_dress_c","bo_pw_armor_body", spr_buy_item_triggers("itm_peasant_dress_c", resources=["itm_linen_cloth"], tailoring=1)),
 
   ("pw_destroy_heap",spr_use_time(2),"destroy_heap","bo_destroy_heap", spr_destroy_heap_triggers()),
 
