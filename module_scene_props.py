@@ -3465,9 +3465,24 @@ scene_props = [
   ("cm_ab_tent_merch",0,"tent_merch","bo_tent_merch",[]),
   ("cm_ab_tent_merch2",0,"tent_merch2","bo_tent_merch",[]),
   
-  ("cm_buy_bollock_dagger",spr_buy_item_flags(3),"bollock_dagger","bo_pw_weapon_small", spr_buy_item_triggers("itm_bollock_dagger", resources=["itm_iron_bar", "itm_wood_pole"], engineer=2)),
-  ("cm_buy_pikeman_dagger",spr_buy_item_flags(3),"pikeman_dagger","bo_pw_weapon_small", spr_buy_item_triggers("itm_pikeman_dagger", resources=["itm_iron_bar", "itm_wood_pole"], engineer=2)),
-  ("cm_buy_rondel_dagger",spr_buy_item_flags(3),"rondel_dagger","bo_pw_weapon_small", spr_buy_item_triggers("itm_rondel_dagger", resources=["itm_iron_bar", "itm_wood_pole"], engineer=2)),
+  ("cm_buy_bollock_dagger",spr_buy_item_flags(3),"bollock_dagger","bo_pw_weapon_small", spr_buy_item_triggers("itm_bollock_dagger", resources=["itm_iron_bar_short"], engineer=3)),
+  ("cm_buy_pikeman_dagger",spr_buy_item_flags(3),"pikeman_dagger","bo_pw_weapon_small", spr_buy_item_triggers("itm_pikeman_dagger", resources=["itm_iron_bar_short"], engineer=3)),
+  ("cm_buy_rondel_dagger",spr_buy_item_flags(3),"rondel_dagger","bo_pw_weapon_small", spr_buy_item_triggers("itm_rondel_dagger", resources=["itm_iron_bar_short"], engineer=3)),
+  
+  ("cm_buy_silver_ring_sapphire",spr_buy_item_flags(10),"silver_ring_sapphire_L","bo_pw_weapon_small", spr_buy_item_triggers("itm_silver_ring_sapphire", resources=["itm_silver_nugget"], engineer=6)),
+  ("cm_buy_silver_ring_ruby",spr_buy_item_flags(12),"silver_ring_ruby_L","bo_pw_weapon_small", spr_buy_item_triggers("itm_silver_ring_ruby", resources=["itm_silver_nugget"], engineer=6)),
+  ("cm_buy_gold_ring_sapphire",spr_buy_item_flags(15),"gold_ring_sapphire_L","bo_pw_weapon_small", spr_buy_item_triggers("itm_gold_ring_sapphire", resources=["itm_gold_nugget"], engineer=6)),
+  ("cm_buy_gold_ring_ruby",spr_buy_item_flags(18),"gold_ring_ruby_L","bo_pw_weapon_small", spr_buy_item_triggers("itm_gold_ring_ruby", resources=["itm_gold_nugget"], engineer=6)),
+  ("cm_buy_gold_earrings",spr_buy_item_flags(10),"gold_earrings","bo_pw_weapon_small", spr_buy_item_triggers("itm_gold_earrings", resources=["itm_gold_nugget"], engineer=6)),
+  ("cm_buy_opal_earrings",spr_buy_item_flags(11),"opal_earrings","bo_pw_weapon_small", spr_buy_item_triggers("itm_opal_earrings", resources=["itm_gold_nugget"], engineer=6)),
+  ("cm_buy_agate_earrings",spr_buy_item_flags(12),"agate_earrings","bo_pw_weapon_small", spr_buy_item_triggers("itm_agate_earrings", resources=["itm_gold_nugget"], engineer=6)),
+  ("cm_buy_yellow_jade_earrings",spr_buy_item_flags(13),"yellow_jade_earrings","bo_pw_weapon_small", spr_buy_item_triggers("itm_yellow_jade_earrings", resources=["itm_gold_nugget"], engineer=6)),
+  ("cm_buy_amethyst_earrings",spr_buy_item_flags(14),"amethyst_earrings","bo_pw_weapon_small", spr_buy_item_triggers("itm_amethyst_earrings", resources=["itm_gold_nugget"], engineer=6)),
+  ("cm_buy_gold_earrings_b",spr_buy_item_flags(15),"gold_earrings_b","bo_pw_weapon_small", spr_buy_item_triggers("itm_gold_earrings_b", resources=["itm_gold_nugget"], engineer=6)),
+  ("cm_buy_sapphire_earrings",spr_buy_item_flags(16),"sapphire_earrings","bo_pw_weapon_small", spr_buy_item_triggers("itm_sapphire_earrings", resources=["itm_gold_nugget"], engineer=6)),
+  ("cm_buy_nephrite_earrings",spr_buy_item_flags(17),"nephrite_earrings","bo_pw_weapon_small", spr_buy_item_triggers("itm_nephrite_earrings", resources=["itm_gold_nugget"], engineer=6)),
+  ("cm_buy_black_pearl_earrings",spr_buy_item_flags(18),"black_pearl_earrings","bo_pw_weapon_small", spr_buy_item_triggers("itm_black_pearl_earrings", resources=["itm_gold_nugget"], engineer=6)),
+  ("cm_buy_ruby_earrings",spr_buy_item_flags(18),"ruby_earrings","bo_pw_weapon_small", spr_buy_item_triggers("itm_ruby_earrings", resources=["itm_gold_nugget"], engineer=6)),
 
   ("pw_destroy_heap",spr_use_time(2),"destroy_heap","bo_destroy_heap", spr_destroy_heap_triggers()),
 
