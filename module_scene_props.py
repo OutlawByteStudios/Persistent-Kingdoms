@@ -3502,6 +3502,8 @@ scene_props = [
   ("cm_buy_maid_dress",spr_buy_item_flags(2),"maid_dress","bo_pw_armor_body", spr_buy_item_triggers("itm_maid_dress", resources=["itm_linen_cloth"], tailoring=1)),
   ("cm_buy_peasant_dress_c",spr_buy_item_flags(2),"peasant_dress_c","bo_pw_armor_body", spr_buy_item_triggers("itm_peasant_dress_c", resources=["itm_linen_cloth"], tailoring=1)),
 
+  ("cm_buy_executioners_axe",spr_buy_item_flags(11),"executioners_axe","bo_pw_weapon", spr_buy_item_triggers("itm_executioners_axe", resources=["itm_wood_pole_short", "itm_iron_bar"], engineer=5)),
+  
   ("pw_destroy_heap",spr_use_time(2),"destroy_heap","bo_destroy_heap", spr_destroy_heap_triggers()),
 
   ("pw_rest_bed_a",spr_use_time(30),"bed_a","bo_bed_a", spr_rest_triggers(40, min_health_pct=35)),
