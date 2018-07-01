@@ -1073,11 +1073,11 @@ items = [
  
 ["crude_bow", "Crude Bow", [("hunting_bow",0),("hunting_bow_carry",ixmesh_carry)], itp_type_bow|itp_primary|itp_two_handed|itp_cant_use_on_horseback, itcf_shoot_bow|itcf_carry_bow_back,
  260, weight(1)|difficulty(1)|weapon_length(170)|spd_rtng(82)|shoot_speed(42)|thrust_damage(9, pierce), imodbits_bow],
-["bent_arrows", "Bent Arrows", [("arrow",0),("flying_missile",ixmesh_flying_ammo),("quiver",ixmesh_carry)], itp_type_arrows|itp_default_ammo, itcf_carry_quiver_back,
+["bent_arrows", "Practice Arrows", [("arrow",0),("flying_missile",ixmesh_flying_ammo),("quiver",ixmesh_carry)], itp_type_arrows|itp_default_ammo, itcf_carry_quiver_back,
  61, weight(3)|weapon_length(95)|thrust_damage(0, pierce)|max_ammo(30), imodbits_missile],
 ["flimsy_crossbow", "Flimsy Crossbow", [("light_crossbow",0)], itp_type_crossbow|itp_primary|itp_two_handed|itp_cant_use_on_horseback, itcf_shoot_crossbow|itcf_carry_crossbow_back,
  284, weight(3)|difficulty(9)|weapon_length(85)|spd_rtng(35)|shoot_speed(57)|thrust_damage(18, pierce)|max_ammo(1), imodbits_crossbow],
-["crude_bolts","Crude Bolts", [("bolt",0),("flying_missile",ixmesh_flying_ammo),("bolt_bag",ixmesh_carry)], itp_type_bolts, itcf_carry_quiver_right_vertical,
+["crude_bolts","Practice Bolts", [("bolt",0),("flying_missile",ixmesh_flying_ammo),("bolt_bag",ixmesh_carry)], itp_type_bolts, itcf_carry_quiver_right_vertical,
  47, weight(2.25)|weapon_length(55)|max_ammo(8), imodbits_missile],
 
 ["hunting_bow", "Hunting Bow", [("hunting_bow", 0), ("hunting_bow_carry",ixmesh_carry)], itp_type_bow|itp_primary|itp_two_handed|itp_cant_use_on_horseback, itcf_shoot_bow|itcf_carry_bow_back,
