@@ -24,6 +24,16 @@ import math
 scripts = []
 scripts.extend([
 
+  ("death_cam", [
+    (store_script_param, ":agent_id", 1),
+    (try_begin),
+      (neg|multiplayer_is_server),
+      (eq, "$g_actual_ghost_mode", 3),
+      (agent_get_position, pos0, ":agent_id"),
+      (mission_cam_set_position, pos0),
+    (try_end),
+  ]),
+
   ("toggle_walk", [
     (store_script_param, ":player_id", 1),
     (store_script_param, ":force_off_if_on", 2),
@@ -2749,7 +2759,13 @@ scripts.extend([
       (server_get_ghost_mode, ":value"),
     (else_try),
       (eq, ":command", command_set_ghost_mode),
-      (val_clamp, ":value", 0, 3),
+      (val_clamp, ":value", 0, 4),
+      (try_begin),
+        (neg|multiplayer_is_server),
+        (assign, "$g_actual_ghost_mode", ":value"),
+        (gt, ":value", 2),
+        (assign, ":value", 2),
+      (try_end),
       (server_set_ghost_mode, ":value"),
     (else_try),
       (eq, ":command", command_get_control_block_direction),

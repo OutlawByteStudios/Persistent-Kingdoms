@@ -270,6 +270,7 @@ agent_killed = (ti_on_agent_killed_or_wounded, 0, 0, [], # server and clients: h
     (try_end),
 
     (call_script, "script_client_check_show_respawn_time_counter", ":dead_agent_id"),
+    (call_script, "script_death_cam", ":dead_agent_id"),
     (call_script, "script_apply_consequences_for_agent_death", ":dead_agent_id", ":killer_agent_id"),
     (multiplayer_is_server),
     (call_script, "script_setup_agent_for_respawn", ":dead_agent_id"),
