@@ -90,7 +90,7 @@ scripts.extend([
         (spawn_item, "itm_agent_corpse", imod_rusty, "$g_spawn_item_prune_time"),
         (assign, ":corpse_instance_id", reg0),
         #Phoenix, to understand, check the spawning of corpses when people die lol
-        (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_corpse_owner, ":agent_id"),
+        (call_script, "script_log_drop_loot", ":corpse_instance_id", ":agent_id"),
         (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_is_mercenary, 1),
         #End
         (agent_set_slot, ":agent_id", slot_agent_storage_corpse_instance_id, ":corpse_instance_id"),
@@ -199,18 +199,25 @@ scripts.extend([
       (store_script_param_2, ":looter_agent_id"),
       (assign, reg31, ":corpse_instance_id"),
     
-      (scene_prop_get_slot, ":owner_agent_id", ":corpse_instance_id", slot_scene_prop_corpse_owner),
-    
       (agent_get_player_id, ":looter_player_id", ":looter_agent_id"),
       (str_store_player_username, s11, ":looter_player_id"),
     
-      (try_begin),
-        (gt, ":owner_agent_id", 0),
-        (neg|agent_is_non_player, ":owner_agent_id"),
-        (agent_get_player_id, ":owner_player_id", ":owner_agent_id"),
-        (str_store_player_username, s12, ":owner_player_id"),
-        (server_add_message_to_log, "str_log_loot_corpse"),
-      (try_end),
+      (server_add_message_to_log, "str_log_loot_corpse"),
+    (try_end),
+  ]),
+  
+  #Log dropping a loot after death, "Drop Items" option etc.
+  ("log_drop_loot", [
+    (try_begin),
+      (multiplayer_is_server),
+      (store_script_param_1, ":corpse_instance_id"),
+      (store_script_param_2, ":dropper_agent_id"),
+      (assign, reg31, ":corpse_instance_id"),
+    
+      (agent_get_player_id, ":dropper_player_id", ":dropper_agent_id"),
+      (str_store_player_username, s11, ":dropper_player_id"),
+    
+      (server_add_message_to_log, "str_log_s11_dropped_loot"),
     (try_end),
   ]),
   
@@ -1931,7 +1938,7 @@ scripts.extend([
               (set_spawn_position, pos1),
               (spawn_item, "itm_agent_corpse", imod_rusty, "$g_spawn_item_prune_time"),
               (assign, ":corpse_instance_id", reg0),
-              (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_corpse_owner, ":agent_id"),
+              (call_script, "script_log_drop_loot", ":corpse_instance_id", ":agent_id"),
               (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_is_mercenary, 1),
               (agent_set_slot, ":agent_id", slot_agent_storage_corpse_instance_id, ":corpse_instance_id"),
               (prop_instance_set_position, ":corpse_instance_id", pos1),
@@ -4208,7 +4215,7 @@ scripts.extend([
       (spawn_item, "itm_agent_corpse", ":imod", "$g_spawn_item_prune_time"),
       (assign, ":corpse_instance_id", reg0),
       #Set the according slot to keep the record of the corpse's owner's agent id
-      (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_corpse_owner, ":agent_id"),
+      (call_script, "script_log_drop_loot", ":corpse_instance_id", ":agent_id"),
       (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_is_mercenary, 1),#To perevent faction names appearing in logs in inventory transfers
       #End
       (prop_instance_set_position, ":corpse_instance_id", pos1),
@@ -6183,7 +6190,7 @@ scripts.extend([
           (set_spawn_position, pos1),
           (spawn_item, "itm_agent_corpse", imod_rusty, "$g_spawn_item_prune_time"),
           (assign, ":corpse_instance_id", reg0),
-          (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_corpse_owner, ":agent_id"),
+          (call_script, "script_log_drop_loot", ":corpse_instance_id", ":agent_id"),
           (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_is_mercenary, 1),
           (agent_set_slot, ":agent_id", slot_agent_storage_corpse_instance_id, ":corpse_instance_id"),
           (prop_instance_set_position, ":corpse_instance_id", pos1),
