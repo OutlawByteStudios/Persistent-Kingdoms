@@ -5866,7 +5866,6 @@ scripts.extend([
    [(store_script_param, ":player_id", 1), # must be valid
     (store_script_param, ":faction_id", 2),
     (store_script_param, ":change_faction_type", 3), # constants starting with change_faction_type_
-    (store_script_param, ":no_log", 3),
 
     (try_begin),
       (neg|player_slot_eq, ":player_id", slot_player_faction_id, ":faction_id"),
@@ -5894,7 +5893,6 @@ scripts.extend([
       (player_set_slot, ":player_id", slot_player_can_faction_announce, 0),
       (str_store_player_username, s0, ":player_id"),
 
-      (neq, ":no_log", 1),
       (try_begin),
         (eq, ":change_faction_type", change_faction_type_outlawed),
         (server_add_message_to_log, "str_s0_has_been_outlawed"),
@@ -13847,7 +13845,7 @@ scripts.extend([
       (try_end),
     (else_try),
       (eq, ":admin_action", admin_action_join_faction),
-      (call_script, "script_change_faction", ":admin_player_id", ":target_player_id", change_faction_type_no_respawn, 1),
+      (call_script, "script_change_faction", ":admin_player_id", ":target_player_id", change_faction_type_no_respawn),
     (else_try),
       (eq, ":admin_action", admin_action_lock_faction),
       (player_slot_eq, ":admin_player_id", slot_player_admin_no_factions, 0),
