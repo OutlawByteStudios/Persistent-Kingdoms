@@ -344,6 +344,7 @@ item_wielded = (ti_on_item_wielded, 0, 0, [], # handle agents wielding an item
    [(store_trigger_param_1, ":agent_id"),
     (store_trigger_param_2, ":item_id"),
     (call_script, "script_agent_calculate_stat_modifiers_for_item", ":agent_id", ":item_id", 1, 1),
+    (call_script, "script_check_wielding_while_sitting", ":agent_id", ":item_id"),
     ])
 
 item_unwielded = (ti_on_item_unwielded, 0, 0, [], # handle agents un-wielding an item

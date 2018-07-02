@@ -243,6 +243,8 @@ slot_scene_prop_crafting_resource_4   = 54
 #Slot to keep agent_id of the killer
 slot_scene_prop_corpse_owner          = 60
 
+slot_scene_prop_sitting_agent         = 55
+
 slot_scene_prop_store_ammo            = 55
 slot_scene_prop_store_only_ammo       = 56
 
