@@ -4107,6 +4107,7 @@ scripts.extend([
     (agent_set_slot, ":agent_id", slot_agent_animation_position_x, -1),
     (agent_set_slot, ":agent_id", slot_agent_animation_position_y, -1),
     (agent_set_slot, ":agent_id", slot_agent_animation_position_z, -1),
+    (agent_set_slot, ":agent_id", slot_agent_scene_prop_in_use, -1),
     (try_begin),
       (eq, "$g_full_respawn_health", 0),
       (agent_is_human, ":agent_id"),
