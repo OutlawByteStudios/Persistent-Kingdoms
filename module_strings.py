@@ -741,7 +741,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("you_are_not_lord_of_s1", "You are not the lord of {s1}."),
   ("you_are_now_lord_of_s1", "You are now the lord of {s1}."),
   ("s10_now_lord_of_s1", "{s10} is now the lord of the {s1}."),
-  ("s10_now_known_as_s1", "{s10} are now known as {s1}."),
+  ("s10_now_known_as_s1", "{s10} (FID: {reg10}) are now known as {s1}."),
   ("banner_used_by_s1", "That banner is used by {s1}."),
   ("s1_doesnt_need_merc", "{s1} doesn't need mercenaries."),
   ("s1_reign_supreme", "{s1} reign supreme!"),
@@ -1118,10 +1118,10 @@ Poisonous herbs can also sometimes be found, which are then applied to the blade
   ("log_put_item_in_finventory", "{s11} put {s12} into an inventory of {s10} (IID: {reg31})."),
   ("log_take_item_from_inventory", "{s11} took {s12} from an inventory (IID: {reg31})."),
   ("log_take_item_from_finventory", "{s11} took {s12} from an inventory of {s10} (IID: {reg31})."),
-  ("log_hit_player", "{s11} attacked {s12} with {s10} dealing {reg31} damage."),
-  ("log_hit_phorse", "{s11} attacked Horse ({s12}) with {s10} dealing {reg31} damage."),
-  ("log_hit_animal", "{s11} attacked Horse ({s12}) with {s10} dealing {reg31} damage (AID: {reg32})."),
-  ("log_bump", "Horse ({s11}) attacked {s12} dealing {reg31} damage."),
+  ("log_hit_player", "{s11} (FID: {reg10}) attacked {s12} (FID: {reg11}) with {s10} dealing {reg31} damage."),
+  ("log_hit_phorse", "{s11} (FID: {reg10}) attacked Horse ({s12} FID: {reg11})) with {s10} dealing {reg31} damage."),
+  ("log_hit_animal", "{s11} (FID: {reg10}) attacked Horse ({s12} FID: {reg11})) with {s10} dealing {reg31} damage (AID: {reg32})."),
+  ("log_bump", "Horse ({s11} FID: {reg10})) attacked {s12} FID: {reg11}) dealing {reg31} damage."),
   ("log_heal_player", "{s11} healed {s12} by {reg31} HP."),
   ("log_heal_phorse", "{s11} healed Horse ({s12}) by {reg31} HP."),
   ("log_heal_animal", "{s11} healed Horse ({s12}) by {reg31} HP."),
@@ -1132,7 +1132,7 @@ Poisonous herbs can also sometimes be found, which are then applied to the blade
   #End
 
   #Shield Log
-  ("shield_hit_log", "{s12} hit {s11}'s shield dealing {reg31} damage."),
+  ("shield_hit_log", "{s12} attacked {s11}'s shield with {s10} dealing {reg31} damage."),
   
   ("log_equipment", "{s11} had these items: H:{reg31}, B:{reg32}, G:{reg33}, F:{reg34}, HO:{reg39}, 1:{reg35}, 2:{reg36}, 3:{reg37}, 4:{reg38}"),
   ("s1_kicked_s2_from_s3", "{s1} kicked {s2} from {s3}."),

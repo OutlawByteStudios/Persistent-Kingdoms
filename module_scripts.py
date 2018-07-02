@@ -176,6 +176,15 @@ scripts.extend([
       (str_store_player_username, s11, ":defender_player_id"),
       (str_store_player_username, s12, ":attacker_player_id"),
       (assign, reg31, ":damage"),
+      
+      #Get the weapon's name
+      (try_begin),
+        (agent_get_wielded_item, ":weapon_id", ":attacker_agent_id", 0),
+        (ge, ":weapon_id", all_items_begin),
+        (str_store_item_name, s10, ":weapon_id"),
+      (else_try),
+        (str_store_string, s10, "@fist"),
+      (try_end),
     
       (server_add_message_to_log, "str_shield_hit_log"),
     (try_end),
@@ -213,7 +222,7 @@ scripts.extend([
       (store_script_param, ":attacker_agent_id", 2),
       (store_script_param, reg31, 3), #damage
       (store_script_param, ":item_id", 4),
-      (store_script_param, ":log_nevertheless", 5),
+      (store_script_param, ":log_nevertheless", 5),#Used by agent_hit_with_scripted_item when a scalpel etc. is not actually used to heal.
     
       (try_begin),
         (gt, ":item_id", -1),
@@ -231,6 +240,9 @@ scripts.extend([
         (neq, ":item_id", "itm_healing_herb"),
         (assign, ":log", 1),
       (try_end),
+      
+      (assign, reg10, -1),#Attacker faction id
+      (assign, reg11, -1),#Attacked faction id
     
       (try_begin), #If it wasn't a heal or usage of healing herb
         (eq, ":log", 1),
@@ -239,34 +251,39 @@ scripts.extend([
           (neg|agent_is_non_player, ":attacker_agent_id"),
           (agent_get_player_id, ":attacker_player_id", ":attacker_agent_id"),
           (str_store_player_username, s11, ":attacker_player_id"),
+          (player_get_slot, reg10, ":attacker_player_id", slot_player_faction_id),
           (try_begin),#If the defender is a player
             (neg|agent_is_non_player, ":attacked_agent_id"),
             (agent_get_player_id, ":attacked_player_id", ":attacked_agent_id"),
             (str_store_player_username, s12, ":attacked_player_id"),
             (server_add_message_to_log, "str_log_hit_player"),
+            (player_get_slot, reg11, ":attacked_player_id", slot_player_faction_id),
           (else_try),#Else, the defender is either horse or animal
             (agent_get_rider, ":rider_id", ":attacked_agent_id"),
             (try_begin),#The horse is mounted by a player
               (gt, ":rider_id", 0),
-            (agent_get_player_id, ":rider_player_id", ":rider_id"),
+              (agent_get_player_id, ":rider_player_id", ":rider_id"),
               (str_store_player_username, s12, ":rider_player_id"),
-            (server_add_message_to_log, "str_log_hit_phorse"),
+              (player_get_slot, reg11, ":rider_player_id", slot_player_faction_id),
+              (server_add_message_to_log, "str_log_hit_phorse"),
             (else_try),#Else, the horse or animal is Rogue (a weeabo)
               (agent_get_item_id, ":animal_item_id", ":attacked_agent_id"),
-            (str_store_item_name, s12, ":animal_item_id"),
+              (str_store_item_name, s12, ":animal_item_id"),
               (assign, reg32, ":attacked_agent_id"),
-            (server_add_message_to_log, "str_log_hit_animal"),
+              (server_add_message_to_log, "str_log_hit_animal"),
             (try_end),
           (try_end),
         (else_try),#Else, the attacker is either horse or animal
           (neg|agent_is_non_player, ":attacked_agent_id"),
           (agent_get_player_id, ":attacked_player_id", ":attacked_agent_id"),
-          (str_store_player_username, s12, ":attacked_player_id"), 
+          (str_store_player_username, s12, ":attacked_player_id"),
+          (player_get_slot, reg11, ":attacked_player_id", slot_player_faction_id),
           (agent_get_rider, ":rider_id", ":attacker_agent_id"),
           (try_begin),
             (gt, ":rider_id", 0),#If a player rides the horse
             (agent_get_player_id, ":attacker_player_id", ":rider_id"),
             (str_store_player_username, s11, ":attacker_player_id"), 
+            (player_get_slot, reg10, ":attacker_player_id", slot_player_faction_id),
           (else_try),#Else, the horse or animal is Rogue (a weeabo)
             (agent_get_item_id, ":animal_item_id", ":attacker_agent_id"),
             (str_store_item_name, s11, ":animal_item_id"),
@@ -502,6 +519,7 @@ scripts.extend([
       (agent_get_item_slot, reg36, ":agent_id", ek_item_1),
       (agent_get_item_slot, reg37, ":agent_id", ek_item_2),
       (agent_get_item_slot, reg38, ":agent_id", ek_item_3),
+
       (agent_get_horse, ":horse_agent_id", ":agent_id"),
       
       (assign, reg39, 0),
@@ -1599,6 +1617,7 @@ scripts.extend([
                 (multiplayer_send_string_to_player, ":player_id", server_event_faction_set_name, s0),
               (try_end),
               (str_store_string, s1, s0),
+              (assign, reg10, ":faction_id"),
               (server_add_message_to_log, "str_s10_now_known_as_s1"),
             (try_end),
           (else_try),
@@ -4379,6 +4398,7 @@ scripts.extend([
       (neq, ":faction_id", "fac_commoners"),
       (str_store_player_username, s0, ":player_id"),
       (str_store_faction_name, s1, ":faction_id"),
+      (assign, reg11, ":faction_id"),
       (server_add_message_to_log, "str_s0_joined_the_s1"),
     (try_end),
     (try_for_range, ":other_player_id", 1, ":max_players"),
