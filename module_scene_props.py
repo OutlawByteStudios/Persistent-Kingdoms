@@ -866,7 +866,7 @@ def spr_chairs(anim, female_anim=0):
         (position_set_z_to_ground_level, pos10),
         (position_set_z_to_ground_level, pos11),
         (get_distance_between_positions, ":distance", pos10, pos11),
-        (le, ":distance", 10),
+        (le, ":distance", 15),
         (assign, ":is_currently_used", 1),
       (try_end),
 

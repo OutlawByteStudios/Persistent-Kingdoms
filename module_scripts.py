@@ -14635,7 +14635,7 @@ scripts.extend([
         (get_distance_between_positions, ":distance", pos10, pos11),
         (assign, reg10, ":distance"),
         (display_message, "@{reg10}"),
-        (le, ":distance", 10),
+        (le, ":distance", 15),
         (neq, ":item_id", "itm_lyre"),
         (neq, ":item_id", "itm_lute"),
         (agent_set_wielded_item, ":agent_id", -1),
