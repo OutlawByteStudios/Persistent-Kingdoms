@@ -27,10 +27,24 @@ scripts.extend([
   ("death_cam", [
     (store_script_param, ":agent_id", 1),
     (try_begin),
-      (neg|multiplayer_is_server),
+      (neg|multiplayer_is_dedicated_server),
       (eq, "$g_actual_ghost_mode", 3),
       (agent_get_position, pos0, ":agent_id"),
-      (mission_cam_set_position, pos0),
+      (position_move_z, pos0, 1000),
+      (position_rotate_x, pos0, -90),
+      (mission_cam_set_mode, 1, 0),
+      (mission_cam_animate_to_position, pos0, 2000),
+    (try_end),
+  ]),
+
+  ("death_cam_off", [
+    (store_script_param, ":agent_id", 1),
+    (try_begin),
+      (neg|multiplayer_is_dedicated_server),
+      (multiplayer_get_my_player, ":my_player_id"),
+      (player_get_agent_id, ":my_agent_id", ":my_player_id"),
+      (eq, ":agent_id", ":my_agent_id"),
+      (mission_cam_set_mode, 0, 0),
     (try_end),
   ]),
 
