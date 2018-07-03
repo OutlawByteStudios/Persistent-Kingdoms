@@ -876,6 +876,12 @@ def spr_chairs(anim, female_anim=0):
         (try_begin),
           (agent_get_horse, ":player_horse", ":agent_id"),
           (le, ":player_horse", 0),
+          
+          (agent_get_speed, pos30, ":agent_id"),
+          (position_get_y, ":forwards_speed", pos30),
+          (position_get_x, ":sideways_speed", pos30),
+          (le, ":forwards_speed", 10),
+          (le, ":sideways_speed", 10),
 
           (try_begin),
             (set_fixed_point_multiplier, 100),
@@ -883,8 +889,17 @@ def spr_chairs(anim, female_anim=0):
             (agent_set_position,":agent_id",pos40),
             
             (agent_set_wielded_item, ":agent_id", -1),
+            
             (scene_prop_set_slot, ":instance_id", slot_scene_prop_sitting_agent, ":agent_id"),
-            (agent_set_slot, ":agent_id", slot_agent_scene_prop_in_use, ":instance_id"),
+            
+            (agent_get_position, pos41, ":agent_id"),
+            (position_get_x, ":x", pos41),
+            (position_get_y, ":y", pos41),
+            (position_get_z, ":z", pos41),
+            (agent_set_slot, ":agent_id", slot_agent_sitting_position_x, ":x"),
+            (agent_set_slot, ":agent_id", slot_agent_sitting_position_y, ":y"),
+            (agent_set_slot, ":agent_id", slot_agent_sitting_position_z, ":z"),
+            (agent_set_slot, ":agent_id", slot_agent_is_sitting, 1),
 
             (try_begin),
               (neq, female_anim, 0),

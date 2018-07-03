@@ -24,10 +24,11 @@ from header_animations import *
 # fall           :                4000  - 70000
 # act            : misc.          70000 - ...
 
-amf_priority_jump           = 3
-amf_priority_ride           = 3
+amf_priority_jump           = 4
+amf_priority_ride           = 4
 amf_priority_continue       = 1
 amf_priority_walk           = 2
+amf_priority_crouch         = 3
 amf_priority_attack         = 10
 amf_priority_cancel         = 12
 amf_priority_defend         = 14
@@ -453,7 +454,7 @@ animations = [
 ["walk_forward_crouch", acf_enforce_lowerbody, amf_priority_walk,
  [1.7, "low_walk", 0, 48, arf_use_walk_progress,pack2f(0.4,0.9)],
 ],
-["stand_to_crouch", acf_enforce_lowerbody, amf_priority_walk + 1,
+["stand_to_crouch", acf_enforce_lowerbody, amf_priority_crouch,
  [1.3, "crouch_down", 0, 50, arf_blend_in_1, 0, (0.0,0,0.0)],
 ],
 ["crouch_to_stand", acf_enforce_lowerbody, 0,
