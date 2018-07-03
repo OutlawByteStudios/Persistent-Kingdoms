@@ -157,10 +157,10 @@ slot_agent_last_apply_factors_item_id = 66 # last item id that modifier factors 
 
 slot_agent_playing_music              = 67
 
-slot_agent_is_sitting                 = 68
-slot_agent_sitting_position_x         = 69
-slot_agent_sitting_position_y         = 70
-slot_agent_sitting_position_z         = 71
+slot_agent_is_in_position_animation   = 68
+slot_agent_position_animation_x       = 69
+slot_agent_position_animation_y       = 70
+slot_agent_position_animation_z       = 71
 
 slot_agent_walk_mode                  = 73
 

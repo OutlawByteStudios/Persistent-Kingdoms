@@ -14407,8 +14407,9 @@ scripts.extend([
           (gt, ":animation", -1),
           (agent_set_animation, ":agent_id", ":animation", ":upper_body_only"),
 
-          (try_begin), # sitting animations
-            (is_between, ":animation", "anim_sitting", "anim_sitting_finish"),
+          (try_begin), # sitting-position animations
+            (eq, ":position_animation", 1),
+            (agent_set_wielded_item, ":agent_id", -1),
             (set_fixed_point_multiplier, 100),
             (agent_get_position, pos0, ":agent_id"),
             #No need for z because it is always set to the ground level when a check is made
@@ -14416,18 +14417,10 @@ scripts.extend([
             (position_get_x, ":x", pos0),
             (position_get_y, ":y", pos0),
             (position_get_z, ":z", pos0),
-            (agent_set_slot, ":agent_id", slot_agent_sitting_position_x, ":x"),
-            (agent_set_slot, ":agent_id", slot_agent_sitting_position_y, ":y"),
-            (agent_set_slot, ":agent_id", slot_agent_sitting_position_z, ":z"),
-            (agent_set_slot, ":agent_id", slot_agent_is_sitting, 1),
-          (try_end),
-          
-          #I made this because since "position_animation" is never used anymore,
-          #a warning is printed during compilation.
-          #I did not want to remove "position_animation" property of entries
-          #because it may have a future use
-          (try_begin),
-            (eq, ":position_animation", 1),
+            (agent_set_slot, ":agent_id", slot_agent_position_animation_x, ":x"),
+            (agent_set_slot, ":agent_id", slot_agent_position_animation_y, ":y"),
+            (agent_set_slot, ":agent_id", slot_agent_position_animation_z, ":z"),
+            (agent_set_slot, ":agent_id", slot_agent_is_in_position_animation, 1),
           (try_end),
 
         (try_end),
@@ -14629,14 +14622,14 @@ scripts.extend([
         (multiplayer_is_server),
         (agent_is_active, ":agent_id"),
         (agent_is_alive, ":agent_id"),
-        (agent_slot_eq, ":agent_id", slot_agent_is_sitting, 1),
+        (agent_slot_eq, ":agent_id", slot_agent_is_in_position_animation, 1),
         (try_begin),
           (set_fixed_point_multiplier, 100),
             
           (agent_get_position, pos10, ":agent_id"),
             
-          (agent_get_slot, ":x", ":agent_id", slot_agent_sitting_position_x),
-          (agent_get_slot, ":y", ":agent_id", slot_agent_sitting_position_y),
+          (agent_get_slot, ":x", ":agent_id", slot_agent_position_animation_x),
+          (agent_get_slot, ":y", ":agent_id", slot_agent_position_animation_y),
           (position_set_x, pos11, ":x"),
           (position_set_y, pos11, ":y"),
             
@@ -14644,8 +14637,6 @@ scripts.extend([
           (position_set_z_to_ground_level, pos11),
             
           (get_distance_between_positions, ":distance", pos10, pos11),
-          (assign, reg10, ":distance"),
-          (display_message, "@{reg10}"),
           (le, ":distance", 15),
             
           (try_begin),
@@ -14655,7 +14646,7 @@ scripts.extend([
           (try_end),
         (else_try),
           #So that the code block above won't be run if the agent is no longer sitting
-          (agent_set_slot, ":agent_id", slot_agent_is_sitting, 0),
+          (agent_set_slot, ":agent_id", slot_agent_is_in_position_animation, 0),
         (try_end),
       (try_end),
     ]),
