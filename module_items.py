@@ -1228,7 +1228,7 @@ items = [
  859, hit_points(70)|body_armor(20)|difficulty(11)|horse_speed(60)|horse_maneuver(70)|horse_scale(50), imodbits_none],
 ["pig", "Pig", [("pk_pig",0)], itp_type_horse, 0,
  859, hit_points(70)|body_armor(20)|difficulty(11)|horse_speed(30)|horse_maneuver(70)|horse_charge(50)|horse_scale(70), imodbits_none,
- itm_herd_animal(child_item="itm_piglet", grow_age=7, max_in_herd=20, attack_reaction=animal_reaction_charge, meat=8, hide=3, wildness=1, death_sound="snd_pig_slaughter"))],
+ itm_herd_animal(child_item="itm_piglet", grow_age=7, max_in_herd=20, attack_reaction=animal_reaction_charge, meat=8, hide=3, wildness=1, death_sound="snd_pig_slaughter")],
 ["piglet", "Piglet", [("pk_pig",0)], itp_type_horse, 0,
  315, hit_points(30)|body_armor(10)|difficulty(11)|horse_speed(20)|horse_maneuver(65)|horse_charge(10)|horse_scale(40), imodbits_none],
 
