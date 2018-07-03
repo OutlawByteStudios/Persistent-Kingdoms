@@ -1434,7 +1434,7 @@ animations = [
 ["dance", 0, 0,
  [20.0, "anim_human", 0, 387, arf_blend_in_5],
 ],
-["pose_raise_sword", 0, amf_play|amf_priority_continue,
+["pose_raise_sword", 0, amf_play|amf_keep|amf_priority_continue,
  [2.0, "poses", 0, 0, arf_cyclic|arf_blend_in_5],
 ],
 ["pose_hands_on_hips", 0, amf_play|amf_keep|amf_priority_continue,
