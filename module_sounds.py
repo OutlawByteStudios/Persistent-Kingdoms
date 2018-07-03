@@ -255,6 +255,9 @@ sounds = [
  ("horncharge", sf_priority_15 | sf_vol_12 | sf_stream_from_hd, ["horncharge.ogg"]),
  ("hornregroup", sf_priority_15 | sf_vol_12 | sf_stream_from_hd, ["hornregroup.ogg"]),
  ("hornretreat", sf_priority_15 | sf_vol_12 | sf_stream_from_hd, ["hornretreat.ogg"]),
+ 
+ ("pig_sound", sf_priority_6|sf_vol_12, ["pig_sound.mp3"]),
+ ("pig_slaughter", sf_priority_9|sf_vol_12, ["pig_slaughter.mp3"]),
 
  ("sounds_end", 0, []),
 ]
