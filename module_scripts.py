@@ -14421,6 +14421,7 @@ scripts.extend([
             (agent_set_slot, ":agent_id", slot_agent_position_animation_y, ":y"),
             (agent_set_slot, ":agent_id", slot_agent_position_animation_z, ":z"),
             (agent_set_slot, ":agent_id", slot_agent_is_in_position_animation, 1),
+            (agent_set_slot, ":agent_id", slot_agent_position_animation, ":animation"),
           (try_end),
 
         (try_end),
@@ -14639,9 +14640,13 @@ scripts.extend([
           (get_distance_between_positions, ":distance", pos10, pos11),
           (le, ":distance", 15),
             
+          (agent_get_slot, ":position_animation", ":agent_id", slot_agent_position_animation),
+          
           (try_begin),
-            (neq, ":item_id", "itm_lyre"),
-            (neq, ":item_id", "itm_lute"),
+            (is_between, ":position_animation", "anim_sitting", "anim_sitting_finish"),
+            (this_or_next|eq, ":item_id", "itm_lyre"),
+            (eq, ":item_id", "itm_lute"),
+          (else_try),
             (agent_set_wielded_item, ":agent_id", -1),
           (try_end),
         (else_try),
