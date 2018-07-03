@@ -880,8 +880,8 @@ def spr_chairs(anim, female_anim=0):
           (agent_get_speed, pos30, ":agent_id"),
           (position_get_y, ":forwards_speed", pos30),
           (position_get_x, ":sideways_speed", pos30),
-          (le, ":forwards_speed", 10),
-          (le, ":sideways_speed", 10),
+          (le, ":forwards_speed", 1),
+          (le, ":sideways_speed", 1),
 
           (try_begin),
             (set_fixed_point_multiplier, 100),

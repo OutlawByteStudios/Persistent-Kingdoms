@@ -1617,7 +1617,7 @@ animations = [
 ["surrender", acf_enforce_all, amf_play|amf_keep|amf_priority_continue,
  [2.0, "surrender", 1, 30, arf_blend_in_5|arf_cyclic],
 ],
-["lean_on_sword", acf_enforce_all, amf_play|amf_priority_continue,
+["lean_on_sword", acf_enforce_all, amf_play|amf_keep|amf_priority_continue,
  [1.0, "cool_2h_stance", 0, 1, blend_in_continue],
 ],
 ["bow", acf_enforce_all, amf_play|amf_priority_continue,
