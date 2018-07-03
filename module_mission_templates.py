@@ -219,12 +219,9 @@ player_exit = (ti_on_player_exit, 0, 0, [], # server: save player values on exit
 agent_spawn = (ti_on_agent_spawn, 0, 0, [], # server and clients: set up new agents after they spawn
    [(store_trigger_param_1, ":agent_id"),
     (call_script, "script_on_agent_spawned", ":agent_id"),
+    (call_script, "script_death_cam_off", ":agent_id"),
 
     (try_begin),
-      #Log the player's equipment on log ins. Due to player actually not having items when they "joined", it needs to log when
-      #they are spawned for the first time
-      #CRUCIAL: Updates on the player's equipment should be done before this code block so the server logs properly
-
       (multiplayer_is_server),
       (neg|agent_is_non_player, ":agent_id"),
       (agent_get_player_id, ":player_id", ":agent_id"),
@@ -270,6 +267,7 @@ agent_killed = (ti_on_agent_killed_or_wounded, 0, 0, [], # server and clients: h
     (try_end),
 
     (call_script, "script_client_check_show_respawn_time_counter", ":dead_agent_id"),
+    (call_script, "script_death_cam", ":dead_agent_id"),
     (call_script, "script_apply_consequences_for_agent_death", ":dead_agent_id", ":killer_agent_id"),
     (multiplayer_is_server),
     (call_script, "script_setup_agent_for_respawn", ":dead_agent_id"),

@@ -24,6 +24,33 @@ import math
 scripts = []
 scripts.extend([
 
+  ("death_cam", [
+    (store_script_param, ":agent_id", 1),
+    (try_begin),
+      (neg|multiplayer_is_dedicated_server),
+      (eq, "$g_actual_ghost_mode", 3),
+      (multiplayer_get_my_player, ":my_player_id"),
+      (player_get_agent_id, ":my_agent_id", ":my_player_id"),
+      (eq, ":agent_id", ":my_agent_id"),
+      (agent_get_position, pos0, ":agent_id"),
+      (position_move_z, pos0, 1000),
+      (position_rotate_x, pos0, -90),
+      (mission_cam_set_mode, 1, 0),
+      (mission_cam_animate_to_position, pos0, 2000),
+    (try_end),
+  ]),
+
+  ("death_cam_off", [
+    (store_script_param, ":agent_id", 1),
+    (try_begin),
+      (neg|multiplayer_is_dedicated_server),
+      (multiplayer_get_my_player, ":my_player_id"),
+      (player_get_agent_id, ":my_agent_id", ":my_player_id"),
+      (eq, ":agent_id", ":my_agent_id"),
+      (mission_cam_set_mode, 0, 0),
+    (try_end),
+  ]),
+
   ("toggle_walk", [
     (store_script_param, ":player_id", 1),
     (store_script_param, ":force_off_if_on", 2),
@@ -2749,7 +2776,13 @@ scripts.extend([
       (server_get_ghost_mode, ":value"),
     (else_try),
       (eq, ":command", command_set_ghost_mode),
-      (val_clamp, ":value", 0, 3),
+      (val_clamp, ":value", 0, 4),
+      (try_begin),
+        (neg|multiplayer_is_server),
+        (assign, "$g_actual_ghost_mode", ":value"),
+        (gt, ":value", 2),
+        (assign, ":value", 2),
+      (try_end),
       (server_set_ghost_mode, ":value"),
     (else_try),
       (eq, ":command", command_get_control_block_direction),
