@@ -5,7 +5,6 @@
 #### Persistent Worlds Overhaul Mod for Mount and Blade Warband.
 
 ![GitHub release](https://img.shields.io/github/release/SmartPhoenix/Persistent-Kingdoms.svg?style=flat-square)
-![GitHub repo size in bytes](https://img.shields.io/github/repo-size/SmartPhoenix/Persistent-Kingdoms.svg?style=flat-square)
 ![GitHub contributors](https://img.shields.io/github/contributors/SmartPhoenix/Persistent-Kingdoms.svg?style=flat-square)
 [![Discord](https://img.shields.io/discord/450652484634148875.svg?style=flat-square&logo=discord)](https://discord.gg/jwM54DB)
 [![Steam Group](https://img.shields.io/badge/Steam-Group-lightgrey.svg?style=flat-square)](https://steamcommunity.com/groups/persistent-kingdoms)
