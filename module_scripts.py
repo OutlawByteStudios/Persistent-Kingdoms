@@ -14613,10 +14613,14 @@ scripts.extend([
         (agent_get_animation, ":animation", ":agent_id", 0),
         
         (is_between, ":animation", position_animations_begin, position_animations_end),
-        (neq, ":item_id", "itm_lute"),
-        (neq, ":item_id", "itm_lyre"),
         
-        (agent_set_wielded_item, ":agent_id", -1),
+        (try_begin),
+          (is_between, ":animation", "anim_sitting", "anim_sitting_finish"),
+          (this_or_next|eq, ":item_id", "itm_lute"),
+          (eq, ":item_id", "itm_lyre"),
+        (else_try),
+          (agent_set_wielded_item, ":agent_id", -1),
+        (try_end),
       (try_end),
     ]),
 ])
