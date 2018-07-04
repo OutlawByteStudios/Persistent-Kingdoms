@@ -306,9 +306,9 @@ items = [
 ["black_helmet", "Black Helmet", [("black_helm",0)], itp_type_head_armor, 0,
  9638, weight(1)|head_armor(100)|difficulty(20), imodbits_plate],
  
-["crown", "Crown", [("crown", 0)], itp_type_head_armor|itp_fit_to_head|itp_doesnt_cover_hair, 0,
+["crown", "Crown", [("crown", 0)], itp_type_head_armor|itp_doesnt_cover_hair|itp_fit_to_head, 0,
  13400, weight(1)|head_armor(10)|difficulty(0), imodbits_plate],
-["bejeweled_crown", "Bejeweled Crown", [("bejeweled_crown", 0)], itp_type_head_armor|itp_fit_to_head|itp_doesnt_cover_hair, 0,
+["bejeweled_crown", "Bejeweled Crown", [("bejeweled_crown", 0)], itp_type_head_armor|itp_doesnt_cover_hair|itp_fit_to_head, 0,
  13400, weight(1)|head_armor(10)|difficulty(0), imodbits_plate],
 ["tourney_helm_yellow", "Tourney Helm Yellow", [("tourney_helmY",0)], itp_type_head_armor|itp_covers_head,0,
  620, weight(1.5)|head_armor(30)|difficulty(8), imodbits_plate],
