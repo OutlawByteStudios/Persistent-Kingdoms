@@ -156,12 +156,6 @@ slot_agent_armor_damage_through       = 65 # factor of letting damage received b
 slot_agent_last_apply_factors_item_id = 66 # last item id that modifier factors were last checked for, to avoid duplicating calculations due to trigger activation quirks
 
 slot_agent_playing_music              = 67
-slot_agent_scene_prop_in_use          = 68
-
-slot_agent_animation_position_x       = 69
-slot_agent_animation_position_y       = 70
-slot_agent_animation_position_z       = 71
-slot_agent_position_animation         = 72
 
 slot_agent_walk_mode                  = 73
 
@@ -243,6 +237,8 @@ slot_scene_prop_crafting_resource_4   = 54
 
 slot_scene_prop_store_ammo            = 55
 slot_scene_prop_store_only_ammo       = 56
+
+slot_scene_prop_sitting_agent         = 57
 
 scene_prop_state_active               = 0
 scene_prop_state_destroyed            = 1
@@ -685,6 +681,9 @@ rotating_doors_end = "spr_cm_door_rotate_akra_right"
 
 item_chests_begin = "spr_pw_castle_money_chest"
 item_chests_end = "spr_cm_arrow_holder_bucket"
+
+position_animations_begin = "anim_sitting"
+position_animations_end   = "anim_nod_head"
 
 display_no_name_labels = 0
 display_name_labels_with_faction = 1

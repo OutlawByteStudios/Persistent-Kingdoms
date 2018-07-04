@@ -4163,10 +4163,6 @@ scripts.extend([
     (agent_set_slot, ":agent_id", slot_agent_hunting_last_carcass, -1),
     (agent_set_slot, ":agent_id", slot_agent_animal_herd_manager, -1),
     (agent_set_slot, ":agent_id", slot_agent_animal_carcass_instance_id, -1),
-    (agent_set_slot, ":agent_id", slot_agent_scene_prop_in_use, -1),
-    (agent_set_slot, ":agent_id", slot_agent_animation_position_x, -1),
-    (agent_set_slot, ":agent_id", slot_agent_animation_position_y, -1),
-    (agent_set_slot, ":agent_id", slot_agent_animation_position_z, -1),
     (try_begin),
       (eq, "$g_full_respawn_health", 0),
       (agent_is_human, ":agent_id"),
@@ -14469,23 +14465,11 @@ scripts.extend([
           (gt, ":animation", -1),
           (agent_set_animation, ":agent_id", ":animation", ":upper_body_only"),
 
-          (try_begin), # position animations
+          (try_begin), # sitting-position animations
             (eq, ":position_animation", 1),
-            (agent_get_position, pos0, ":agent_id"),
-            (position_get_x, ":x", pos0),
-            (position_get_y, ":y", pos0),
-            (position_get_z, ":z", pos0),
-            (agent_set_slot, ":agent_id", slot_agent_animation_position_x, ":x"),
-            (agent_set_slot, ":agent_id", slot_agent_animation_position_y, ":y"),
-            (agent_set_slot, ":agent_id", slot_agent_animation_position_z, ":z"),
-            (agent_set_slot, ":agent_id", slot_agent_position_animation, ":animation"),
+            (agent_set_wielded_item, ":agent_id", -1),
           (try_end),
 
-
-          #(try_for_players, ":other_player_id"),
-          #  (player_is_active, ":other_player_id"),
-          #  (multiplayer_send_3_int_to_player, ":other_player_id", server_event_agent_animation, ":agent_id", ":animation", ":upper_body_only"),
-          #(try_end),
         (try_end),
         (try_begin),
           (gt, ":sound", -1),
@@ -14674,6 +14658,26 @@ scripts.extend([
           (agent_get_slot, ":sound", ":agent_id", slot_agent_playing_music),
           (gt, ":sound", 0),
           (multiplayer_send_2_int_to_player, ":player_id", server_event_agent_play_sound, ":agent_id", ":sound"),
+        (try_end),
+      (try_end),
+    ]),
+    
+    ("check_wielding_while_sitting", [
+      (store_script_param_1, ":agent_id"),
+      (store_script_param_2, ":item_id"),
+      (try_begin),
+        (multiplayer_is_server),
+        
+        (agent_get_animation, ":animation", ":agent_id", 0),
+        
+        (is_between, ":animation", position_animations_begin, position_animations_end),
+        
+        (try_begin),
+          (is_between, ":animation", "anim_sitting", "anim_sitting_finish"),
+          (this_or_next|eq, ":item_id", "itm_lute"),
+          (eq, ":item_id", "itm_lyre"),
+        (else_try),
+          (agent_set_wielded_item, ":agent_id", -1),
         (try_end),
       (try_end),
     ]),

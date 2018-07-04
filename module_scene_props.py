@@ -850,38 +850,50 @@ def spr_chairs(anim, female_anim=0):
     (ti_on_scene_prop_use,
      [(store_trigger_param_1, ":agent_id"),
       (store_trigger_param_2, ":instance_id"),
-      (agent_is_active,":agent_id"),
-      (agent_is_alive,":agent_id"),
-      (agent_get_player_id,":player_id",":agent_id"),
-      (player_is_active,":player_id"),
-      (prop_instance_is_valid,":instance_id"),
+      
+      (agent_get_player_id, ":player_id", ":agent_id"),
 
-      (neg|agent_slot_ge, ":agent_id", slot_agent_scene_prop_in_use, 0),
-
-      (assign,":in_use",0),
-      (try_for_agents, ":cur_agent"),
-        (agent_is_active,":cur_agent"),
-        (agent_is_alive,":cur_agent"),
-        (agent_get_slot,":cur_inst",":cur_agent",slot_agent_scene_prop_in_use),
-        (eq,":cur_inst",":instance_id"),
-        (neq,":cur_agent",":agent_id"),
-        (assign,":in_use",1),
+      (assign, ":is_currently_used", 0),
+      (try_begin),
+        (scene_prop_get_slot, ":sitting_agent", ":instance_id", slot_scene_prop_sitting_agent),
+        (agent_is_active, ":sitting_agent"),
+        (agent_is_alive, ":sitting_agent"),
+        
+        (agent_get_animation, ":animation", ":sitting_agent", 0),
+        (is_between, ":animation", position_animations_begin, position_animations_end),
+        
+        (set_fixed_point_multiplier, 100),
+        (agent_get_position, pos10, ":sitting_agent"),
+        (prop_instance_get_position, pos11, ":instance_id"),
+        (position_set_z_to_ground_level, pos10),
+        (position_set_z_to_ground_level, pos11),
+        (get_distance_between_positions, ":distance", pos10, pos11),
+        (le, ":distance", 15),
+        (assign, ":is_currently_used", 1),
       (try_end),
 
       (try_begin),
-        (eq,":in_use",0),
-
+        (eq, ":is_currently_used", 0),
         # not on horseback
         (try_begin),
           (agent_get_horse, ":player_horse", ":agent_id"),
           (le, ":player_horse", 0),
+          
+          (agent_get_speed, pos30, ":agent_id"),
+          (position_get_y, ":forwards_speed", pos30),
+          (position_get_x, ":sideways_speed", pos30),
+          (le, ":forwards_speed", 1),
+          (le, ":sideways_speed", 1),
 
           (try_begin),
             (set_fixed_point_multiplier, 100),
             (prop_instance_get_position, pos40, ":instance_id"),
             (agent_set_position,":agent_id",pos40),
-            (agent_set_slot,":agent_id",slot_agent_scene_prop_in_use,":instance_id"),
-
+            
+            (agent_set_wielded_item, ":agent_id", -1),
+            
+            (scene_prop_set_slot, ":instance_id", slot_scene_prop_sitting_agent, ":agent_id"),
+            
             (try_begin),
               (neq, female_anim, 0),
               (player_get_gender, ":gender", ":player_id"),
