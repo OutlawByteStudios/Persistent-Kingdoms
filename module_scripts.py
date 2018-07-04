@@ -14614,7 +14614,7 @@ scripts.extend([
         
         (agent_get_animation, ":animation", ":agent_id", 0),
         
-        (is_between, ":animation", "anim_sitting", "anim_nod_head"),
+        (is_between, ":animation", position_animations_begin, position_animations_end),
         (neq, ":item_id", "itm_lute"),
         (neq, ":item_id", "itm_lyre"),
         

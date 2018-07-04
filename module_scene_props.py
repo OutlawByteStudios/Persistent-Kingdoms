@@ -862,7 +862,7 @@ def spr_chairs(anim, female_anim=0):
         (agent_is_alive, ":sitting_agent"),
         
         (agent_get_animation, ":animation", ":sitting_agent", 0),
-        (is_between, ":animation", "anim_sitting", "anim_nod_head"),
+        (is_between, ":animation", position_animations_begin, position_animations_end),
         
         (set_fixed_point_multiplier, 100),
         (agent_get_position, pos10, ":sitting_agent"),
