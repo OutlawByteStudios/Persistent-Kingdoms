@@ -7,7 +7,7 @@
 ![GitHub release](https://img.shields.io/github/release/SmartPhoenix/Persistent-Kingdoms.svg?style=flat-square)
 ![GitHub repo size in bytes](https://img.shields.io/github/repo-size/SmartPhoenix/Persistent-Kingdoms.svg?style=flat-square)
 ![GitHub contributors](https://img.shields.io/github/contributors/SmartPhoenix/Persistent-Kingdoms.svg?style=flat-square)
-[![Discord](https://img.shields.io/discord/102860784329052160.svg?style=flat-square)](https://discord.gg/jwM54DB)
+[![Discord](https://img.shields.io/discord/450652484634148875.svg?style=flat-square)](https://discord.gg/jwM54DB)
 
 [![GitHub issues](https://img.shields.io/github/issues/SmartPhoenix/Persistent-Kingdoms.svg?style=flat-square)](https://github.com/SmartPhoenix/Persistent-Kingdoms/issues)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/SmartPhoenix/Persistent-Kingdoms.svg?style=flat-square)
