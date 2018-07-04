@@ -860,6 +860,10 @@ def spr_chairs(anim, female_anim=0):
         (scene_prop_get_slot, ":sitting_agent", ":instance_id", slot_scene_prop_sitting_agent),
         (agent_is_active, ":sitting_agent"),
         (agent_is_alive, ":sitting_agent"),
+        
+        (agent_get_animation, ":animation", ":sitting_agent", 0),
+        (is_between, ":animation", "anim_sitting", "anim_nod_head"),
+        
         (set_fixed_point_multiplier, 100),
         (agent_get_position, pos10, ":sitting_agent"),
         (prop_instance_get_position, pos11, ":instance_id"),
@@ -892,15 +896,6 @@ def spr_chairs(anim, female_anim=0):
             
             (scene_prop_set_slot, ":instance_id", slot_scene_prop_sitting_agent, ":agent_id"),
             
-            (agent_get_position, pos41, ":agent_id"),
-            (position_get_x, ":x", pos41),
-            (position_get_y, ":y", pos41),
-            (position_get_z, ":z", pos41),
-            (agent_set_slot, ":agent_id", slot_agent_position_animation_x, ":x"),
-            (agent_set_slot, ":agent_id", slot_agent_position_animation_y, ":y"),
-            (agent_set_slot, ":agent_id", slot_agent_position_animation_z, ":z"),
-            (agent_set_slot, ":agent_id", slot_agent_is_in_position_animation, 1),
-
             (try_begin),
               (neq, female_anim, 0),
               (player_get_gender, ":gender", ":player_id"),

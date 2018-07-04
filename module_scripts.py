@@ -14410,18 +14410,6 @@ scripts.extend([
           (try_begin), # sitting-position animations
             (eq, ":position_animation", 1),
             (agent_set_wielded_item, ":agent_id", -1),
-            (set_fixed_point_multiplier, 100),
-            (agent_get_position, pos0, ":agent_id"),
-            #No need for z because it is always set to the ground level when a check is made
-            #but no harm in keeping it since it doesn't cost and may have a future use
-            (position_get_x, ":x", pos0),
-            (position_get_y, ":y", pos0),
-            (position_get_z, ":z", pos0),
-            (agent_set_slot, ":agent_id", slot_agent_position_animation_x, ":x"),
-            (agent_set_slot, ":agent_id", slot_agent_position_animation_y, ":y"),
-            (agent_set_slot, ":agent_id", slot_agent_position_animation_z, ":z"),
-            (agent_set_slot, ":agent_id", slot_agent_is_in_position_animation, 1),
-            (agent_set_slot, ":agent_id", slot_agent_position_animation, ":animation"),
           (try_end),
 
         (try_end),
@@ -14623,36 +14611,14 @@ scripts.extend([
         (multiplayer_is_server),
         (agent_is_active, ":agent_id"),
         (agent_is_alive, ":agent_id"),
-        (agent_slot_eq, ":agent_id", slot_agent_is_in_position_animation, 1),
-        (try_begin),
-          (set_fixed_point_multiplier, 100),
-            
-          (agent_get_position, pos10, ":agent_id"),
-            
-          (agent_get_slot, ":x", ":agent_id", slot_agent_position_animation_x),
-          (agent_get_slot, ":y", ":agent_id", slot_agent_position_animation_y),
-          (position_set_x, pos11, ":x"),
-          (position_set_y, pos11, ":y"),
-            
-          (position_set_z_to_ground_level, pos10),
-          (position_set_z_to_ground_level, pos11),
-            
-          (get_distance_between_positions, ":distance", pos10, pos11),
-          (le, ":distance", 15),
-            
-          (agent_get_slot, ":position_animation", ":agent_id", slot_agent_position_animation),
-          
-          (try_begin),
-            (is_between, ":position_animation", "anim_sitting", "anim_sitting_finish"),
-            (this_or_next|eq, ":item_id", "itm_lyre"),
-            (eq, ":item_id", "itm_lute"),
-          (else_try),
-            (agent_set_wielded_item, ":agent_id", -1),
-          (try_end),
-        (else_try),
-          #So that the code block above won't be run if the agent is no longer sitting
-          (agent_set_slot, ":agent_id", slot_agent_is_in_position_animation, 0),
-        (try_end),
+        
+        (agent_get_animation, ":animation", ":agent_id", 0),
+        
+        (is_between, ":animation", "anim_sitting", "anim_nod_head"),
+        (neq, ":item_id", "itm_lute"),
+        (neq, ":item_id", "itm_lyre"),
+        
+        (agent_set_wielded_item, ":agent_id", -1),
       (try_end),
     ]),
 ])
