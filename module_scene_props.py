@@ -850,10 +850,8 @@ def spr_chairs(anim, female_anim=0):
     (ti_on_scene_prop_use,
      [(store_trigger_param_1, ":agent_id"),
       (store_trigger_param_2, ":instance_id"),
-      (agent_is_active,":agent_id"),
-      (agent_is_alive,":agent_id"),
-      (agent_get_player_id,":player_id",":agent_id"),
-      (player_is_active,":player_id"),
+      
+      (agent_get_player_id, ":player_id", ":agent_id"),
 
       (assign, ":is_currently_used", 0),
       (try_begin),

@@ -14609,8 +14609,6 @@ scripts.extend([
       (store_script_param_2, ":item_id"),
       (try_begin),
         (multiplayer_is_server),
-        (agent_is_active, ":agent_id"),
-        (agent_is_alive, ":agent_id"),
         
         (agent_get_animation, ":animation", ":agent_id", 0),
         
