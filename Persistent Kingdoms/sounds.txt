@@ -1,5 +1,5 @@
 soundsfile version 3
-376
+378
  drum_3.ogg 913
  tutorial_1.ogg 1937
  tutorial_2.ogg 1937
@@ -376,7 +376,9 @@ soundsfile version 3
  horncharge.ogg 3320
  hornregroup.ogg 3320
  hornretreat.ogg 3320
-236
+ pig_sound.mp3 3168
+ pig_slaughter.mp3 3216
+238
 snd_click 913 1 0 0 
 snd_tutorial_1 1937 1 1 0 
 snd_tutorial_2 1937 1 2 0 
@@ -612,4 +614,6 @@ snd_lyre_4 1864 1 372 0
 snd_horncharge 3320 1 373 0 
 snd_hornregroup 3320 1 374 0 
 snd_hornretreat 3320 1 375 0 
+snd_pig_sound 3168 1 376 0 
+snd_pig_slaughter 3216 1 377 0 
 snd_sounds_end 0 0 

@@ -255,6 +255,7 @@ g_presentation_obj_animation_menu_begin
 g_presentation_obj_animation_menu_end
 g_dbg_presentation_overlays_end
 g_dbg_presentation_registers_end
+g_actual_ghost_mode
 g_spawn_item_prune_time
 g_mute_all_players
 g_extra_item_details_1_value
