@@ -59,9 +59,9 @@ slot_player_can_faction_announce      = 38
 slot_player_next_spawn_health_percent = 39 # spawn health percentage for the troop applied after death, if that server option is enabled
 slot_player_accessing_unique_id       = 40 # a unique number identifying an inventory scene prop being accessed that could despawn and the instance id be reused, like corpses
 
-slot_player_admin_no_spectate         = 41
+slot_player_admin_no_spectate         = 41 # admin permission slots: the default value 0 is permissive so everything works when a name server is not connected
 slot_player_admin_no_tools            = 42
-slot_player_admin_no_panel            = 43 # admin permission slots: the default value 0 is permissive so everything works when a name server is not connected
+slot_player_admin_no_panel            = 43
 slot_player_admin_no_gold             = 44
 slot_player_admin_no_kick             = 45
 slot_player_admin_no_temporary_ban    = 46
