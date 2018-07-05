@@ -14324,7 +14324,7 @@ scripts.extend([
       (assign, ":prevent_if_wielding", 0), # 1 = prevent this animation from being triggered if the agent is wielding any items
       (assign, ":prevent_if_moving", 0), # 1 = prevent this animation from being triggered if the agent is moving
       (assign, ":prevent_if_on_horse", 0),
-      (assign, ":weapon_requirement", -2),  # required wielded item
+      (assign, ":weapon_requirement", 0),  # required wielded item
       (assign, ":weapon_type_requirement", 0),  # required wielded item type
       (assign, ":position_animation", 0),
       (assign, ":music", -1),  # ensure that music is handled correctly
@@ -14404,7 +14404,7 @@ scripts.extend([
         (assign, ":animation", -1),
       (try_end),
       (try_begin),
-        (gt, ":weapon_requirement", -2),
+        (ge, ":weapon_requirement", all_items_begin),
         (agent_get_wielded_item, ":weapon_held", ":agent_id", 0),
         (neq, ":weapon_held", ":weapon_requirement"),
         (assign, ":animation", -1),
