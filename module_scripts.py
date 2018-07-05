@@ -24,6 +24,33 @@ import math
 scripts = []
 scripts.extend([
 
+  ("death_cam", [
+    (store_script_param, ":agent_id", 1),
+    (try_begin),
+      (neg|multiplayer_is_dedicated_server),
+      (eq, "$g_actual_ghost_mode", 3),
+      (multiplayer_get_my_player, ":my_player_id"),
+      (player_get_agent_id, ":my_agent_id", ":my_player_id"),
+      (eq, ":agent_id", ":my_agent_id"),
+      (agent_get_position, pos0, ":agent_id"),
+      (position_move_z, pos0, 1000),
+      (position_rotate_x, pos0, -90),
+      (mission_cam_set_mode, 1, 0),
+      (mission_cam_animate_to_position, pos0, 2000),
+    (try_end),
+  ]),
+
+  ("death_cam_off", [
+    (store_script_param, ":agent_id", 1),
+    (try_begin),
+      (neg|multiplayer_is_dedicated_server),
+      (multiplayer_get_my_player, ":my_player_id"),
+      (player_get_agent_id, ":my_agent_id", ":my_player_id"),
+      (eq, ":agent_id", ":my_agent_id"),
+      (mission_cam_set_mode, 0, 0),
+    (try_end),
+  ]),
+
   ("toggle_walk", [
     (store_script_param, ":player_id", 1),
     (store_script_param, ":force_off_if_on", 2),
@@ -90,7 +117,7 @@ scripts.extend([
         (spawn_item, "itm_agent_corpse", imod_rusty, "$g_spawn_item_prune_time"),
         (assign, ":corpse_instance_id", reg0),
         #Phoenix, to understand, check the spawning of corpses when people die lol
-        (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_corpse_owner, ":agent_id"),
+        (call_script, "script_log_drop_loot", ":corpse_instance_id", ":agent_id"),
         (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_is_mercenary, 1),
         #End
         (agent_set_slot, ":agent_id", slot_agent_storage_corpse_instance_id, ":corpse_instance_id"),
@@ -176,6 +203,15 @@ scripts.extend([
       (str_store_player_username, s11, ":defender_player_id"),
       (str_store_player_username, s12, ":attacker_player_id"),
       (assign, reg31, ":damage"),
+      
+      #Get the weapon's name
+      (try_begin),
+        (agent_get_wielded_item, ":weapon_id", ":attacker_agent_id", 0),
+        (ge, ":weapon_id", all_items_begin),
+        (str_store_item_name, s10, ":weapon_id"),
+      (else_try),
+        (str_store_string, s10, "@fist"),
+      (try_end),
     
       (server_add_message_to_log, "str_shield_hit_log"),
     (try_end),
@@ -190,18 +226,25 @@ scripts.extend([
       (store_script_param_2, ":looter_agent_id"),
       (assign, reg31, ":corpse_instance_id"),
     
-      (scene_prop_get_slot, ":owner_agent_id", ":corpse_instance_id", slot_scene_prop_corpse_owner),
-    
       (agent_get_player_id, ":looter_player_id", ":looter_agent_id"),
       (str_store_player_username, s11, ":looter_player_id"),
     
-      (try_begin),
-        (gt, ":owner_agent_id", 0),
-        (neg|agent_is_non_player, ":owner_agent_id"),
-        (agent_get_player_id, ":owner_player_id", ":owner_agent_id"),
-        (str_store_player_username, s12, ":owner_player_id"),
-        (server_add_message_to_log, "str_log_loot_corpse"),
-      (try_end),
+      (server_add_message_to_log, "str_log_loot_corpse"),
+    (try_end),
+  ]),
+  
+  #Log dropping a loot after death, "Drop Items" option etc.
+  ("log_drop_loot", [
+    (try_begin),
+      (multiplayer_is_server),
+      (store_script_param_1, ":corpse_instance_id"),
+      (store_script_param_2, ":dropper_agent_id"),
+      (assign, reg31, ":corpse_instance_id"),
+    
+      (agent_get_player_id, ":dropper_player_id", ":dropper_agent_id"),
+      (str_store_player_username, s11, ":dropper_player_id"),
+    
+      (server_add_message_to_log, "str_log_s11_dropped_loot"),
     (try_end),
   ]),
   
@@ -213,7 +256,7 @@ scripts.extend([
       (store_script_param, ":attacker_agent_id", 2),
       (store_script_param, reg31, 3), #damage
       (store_script_param, ":item_id", 4),
-      (store_script_param, ":log_nevertheless", 5),
+      (store_script_param, ":log_nevertheless", 5),#Used by agent_hit_with_scripted_item when a scalpel etc. is not actually used to heal.
     
       (try_begin),
         (gt, ":item_id", -1),
@@ -231,6 +274,9 @@ scripts.extend([
         (neq, ":item_id", "itm_healing_herb"),
         (assign, ":log", 1),
       (try_end),
+      
+      (assign, reg10, -1),#Attacker faction id
+      (assign, reg11, -1),#Attacked faction id
     
       (try_begin), #If it wasn't a heal or usage of healing herb
         (eq, ":log", 1),
@@ -239,34 +285,39 @@ scripts.extend([
           (neg|agent_is_non_player, ":attacker_agent_id"),
           (agent_get_player_id, ":attacker_player_id", ":attacker_agent_id"),
           (str_store_player_username, s11, ":attacker_player_id"),
+          (player_get_slot, reg10, ":attacker_player_id", slot_player_faction_id),
           (try_begin),#If the defender is a player
             (neg|agent_is_non_player, ":attacked_agent_id"),
             (agent_get_player_id, ":attacked_player_id", ":attacked_agent_id"),
             (str_store_player_username, s12, ":attacked_player_id"),
             (server_add_message_to_log, "str_log_hit_player"),
+            (player_get_slot, reg11, ":attacked_player_id", slot_player_faction_id),
           (else_try),#Else, the defender is either horse or animal
             (agent_get_rider, ":rider_id", ":attacked_agent_id"),
             (try_begin),#The horse is mounted by a player
               (gt, ":rider_id", 0),
-            (agent_get_player_id, ":rider_player_id", ":rider_id"),
+              (agent_get_player_id, ":rider_player_id", ":rider_id"),
               (str_store_player_username, s12, ":rider_player_id"),
-            (server_add_message_to_log, "str_log_hit_phorse"),
+              (player_get_slot, reg11, ":rider_player_id", slot_player_faction_id),
+              (server_add_message_to_log, "str_log_hit_phorse"),
             (else_try),#Else, the horse or animal is Rogue (a weeabo)
               (agent_get_item_id, ":animal_item_id", ":attacked_agent_id"),
-            (str_store_item_name, s12, ":animal_item_id"),
+              (str_store_item_name, s12, ":animal_item_id"),
               (assign, reg32, ":attacked_agent_id"),
-            (server_add_message_to_log, "str_log_hit_animal"),
+              (server_add_message_to_log, "str_log_hit_animal"),
             (try_end),
           (try_end),
         (else_try),#Else, the attacker is either horse or animal
           (neg|agent_is_non_player, ":attacked_agent_id"),
           (agent_get_player_id, ":attacked_player_id", ":attacked_agent_id"),
-          (str_store_player_username, s12, ":attacked_player_id"), 
+          (str_store_player_username, s12, ":attacked_player_id"),
+          (player_get_slot, reg11, ":attacked_player_id", slot_player_faction_id),
           (agent_get_rider, ":rider_id", ":attacker_agent_id"),
           (try_begin),
             (gt, ":rider_id", 0),#If a player rides the horse
             (agent_get_player_id, ":attacker_player_id", ":rider_id"),
             (str_store_player_username, s11, ":attacker_player_id"), 
+            (player_get_slot, reg10, ":attacker_player_id", slot_player_faction_id),
           (else_try),#Else, the horse or animal is Rogue (a weeabo)
             (agent_get_item_id, ":animal_item_id", ":attacker_agent_id"),
             (str_store_item_name, s11, ":animal_item_id"),
@@ -502,6 +553,7 @@ scripts.extend([
       (agent_get_item_slot, reg36, ":agent_id", ek_item_1),
       (agent_get_item_slot, reg37, ":agent_id", ek_item_2),
       (agent_get_item_slot, reg38, ":agent_id", ek_item_3),
+
       (agent_get_horse, ":horse_agent_id", ":agent_id"),
       
       (assign, reg39, 0),
@@ -1599,6 +1651,7 @@ scripts.extend([
                 (multiplayer_send_string_to_player, ":player_id", server_event_faction_set_name, s0),
               (try_end),
               (str_store_string, s1, s0),
+              (assign, reg10, ":faction_id"),
               (server_add_message_to_log, "str_s10_now_known_as_s1"),
             (try_end),
           (else_try),
@@ -1920,7 +1973,7 @@ scripts.extend([
               (set_spawn_position, pos1),
               (spawn_item, "itm_agent_corpse", imod_rusty, "$g_spawn_item_prune_time"),
               (assign, ":corpse_instance_id", reg0),
-              (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_corpse_owner, ":agent_id"),
+              (call_script, "script_log_drop_loot", ":corpse_instance_id", ":agent_id"),
               (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_is_mercenary, 1),
               (agent_set_slot, ":agent_id", slot_agent_storage_corpse_instance_id, ":corpse_instance_id"),
               (prop_instance_set_position, ":corpse_instance_id", pos1),
@@ -2731,7 +2784,13 @@ scripts.extend([
       (server_get_ghost_mode, ":value"),
     (else_try),
       (eq, ":command", command_set_ghost_mode),
-      (val_clamp, ":value", 0, 3),
+      (val_clamp, ":value", 0, 4),
+      (try_begin),
+        (neg|multiplayer_is_server),
+        (assign, "$g_actual_ghost_mode", ":value"),
+        (gt, ":value", 2),
+        (assign, ":value", 2),
+      (try_end),
       (server_set_ghost_mode, ":value"),
     (else_try),
       (eq, ":command", command_get_control_block_direction),
@@ -4120,10 +4179,6 @@ scripts.extend([
     (agent_set_slot, ":agent_id", slot_agent_hunting_last_carcass, -1),
     (agent_set_slot, ":agent_id", slot_agent_animal_herd_manager, -1),
     (agent_set_slot, ":agent_id", slot_agent_animal_carcass_instance_id, -1),
-    (agent_set_slot, ":agent_id", slot_agent_scene_prop_in_use, -1),
-    (agent_set_slot, ":agent_id", slot_agent_animation_position_x, -1),
-    (agent_set_slot, ":agent_id", slot_agent_animation_position_y, -1),
-    (agent_set_slot, ":agent_id", slot_agent_animation_position_z, -1),
     (try_begin),
       (eq, "$g_full_respawn_health", 0),
       (agent_is_human, ":agent_id"),
@@ -4205,7 +4260,7 @@ scripts.extend([
       (spawn_item, "itm_agent_corpse", ":imod", "$g_spawn_item_prune_time"),
       (assign, ":corpse_instance_id", reg0),
       #Set the according slot to keep the record of the corpse's owner's agent id
-      (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_corpse_owner, ":agent_id"),
+      (call_script, "script_log_drop_loot", ":corpse_instance_id", ":agent_id"),
       (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_is_mercenary, 1),#To perevent faction names appearing in logs in inventory transfers
       #End
       (prop_instance_set_position, ":corpse_instance_id", pos1),
@@ -4401,6 +4456,7 @@ scripts.extend([
       (neq, ":faction_id", "fac_commoners"),
       (str_store_player_username, s0, ":player_id"),
       (str_store_faction_name, s1, ":faction_id"),
+      (assign, reg11, ":faction_id"),
       (server_add_message_to_log, "str_s0_joined_the_s1"),
     (try_end),
     (try_for_range, ":other_player_id", 1, ":max_players"),
@@ -5868,7 +5924,6 @@ scripts.extend([
    [(store_script_param, ":player_id", 1), # must be valid
     (store_script_param, ":faction_id", 2),
     (store_script_param, ":change_faction_type", 3), # constants starting with change_faction_type_
-    (store_script_param, ":no_log", 3),
 
     (try_begin),
       (neg|player_slot_eq, ":player_id", slot_player_faction_id, ":faction_id"),
@@ -5896,7 +5951,6 @@ scripts.extend([
       (player_set_slot, ":player_id", slot_player_can_faction_announce, 0),
       (str_store_player_username, s0, ":player_id"),
 
-      (neq, ":no_log", 1),
       (try_begin),
         (eq, ":change_faction_type", change_faction_type_outlawed),
         (server_add_message_to_log, "str_s0_has_been_outlawed"),
@@ -6187,7 +6241,7 @@ scripts.extend([
           (set_spawn_position, pos1),
           (spawn_item, "itm_agent_corpse", imod_rusty, "$g_spawn_item_prune_time"),
           (assign, ":corpse_instance_id", reg0),
-          (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_corpse_owner, ":agent_id"),
+          (call_script, "script_log_drop_loot", ":corpse_instance_id", ":agent_id"),
           (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_is_mercenary, 1),
           (agent_set_slot, ":agent_id", slot_agent_storage_corpse_instance_id, ":corpse_instance_id"),
           (prop_instance_set_position, ":corpse_instance_id", pos1),
@@ -13849,7 +13903,7 @@ scripts.extend([
       (try_end),
     (else_try),
       (eq, ":admin_action", admin_action_join_faction),
-      (call_script, "script_change_faction", ":admin_player_id", ":target_player_id", change_faction_type_no_respawn, 1),
+      (call_script, "script_change_faction", ":admin_player_id", ":target_player_id", change_faction_type_no_respawn),
     (else_try),
       (eq, ":admin_action", admin_action_lock_faction),
       (player_slot_eq, ":admin_player_id", slot_player_admin_no_factions, 0),
@@ -14433,23 +14487,11 @@ scripts.extend([
           (gt, ":animation", -1),
           (agent_set_animation, ":agent_id", ":animation", ":upper_body_only"),
 
-          (try_begin), # position animations
+          (try_begin), # sitting-position animations
             (eq, ":position_animation", 1),
-            (agent_get_position, pos0, ":agent_id"),
-            (position_get_x, ":x", pos0),
-            (position_get_y, ":y", pos0),
-            (position_get_z, ":z", pos0),
-            (agent_set_slot, ":agent_id", slot_agent_animation_position_x, ":x"),
-            (agent_set_slot, ":agent_id", slot_agent_animation_position_y, ":y"),
-            (agent_set_slot, ":agent_id", slot_agent_animation_position_z, ":z"),
-            (agent_set_slot, ":agent_id", slot_agent_position_animation, ":animation"),
+            (agent_set_wielded_item, ":agent_id", -1),
           (try_end),
 
-
-          #(try_for_players, ":other_player_id"),
-          #  (player_is_active, ":other_player_id"),
-          #  (multiplayer_send_3_int_to_player, ":other_player_id", server_event_agent_animation, ":agent_id", ":animation", ":upper_body_only"),
-          #(try_end),
         (try_end),
         (try_begin),
           (gt, ":sound", -1),
@@ -14638,6 +14680,26 @@ scripts.extend([
           (agent_get_slot, ":sound", ":agent_id", slot_agent_playing_music),
           (gt, ":sound", 0),
           (multiplayer_send_2_int_to_player, ":player_id", server_event_agent_play_sound, ":agent_id", ":sound"),
+        (try_end),
+      (try_end),
+    ]),
+    
+    ("check_wielding_while_sitting", [
+      (store_script_param_1, ":agent_id"),
+      (store_script_param_2, ":item_id"),
+      (try_begin),
+        (multiplayer_is_server),
+        
+        (agent_get_animation, ":animation", ":agent_id", 0),
+        
+        (is_between, ":animation", position_animations_begin, position_animations_end),
+        
+        (try_begin),
+          (is_between, ":animation", "anim_sitting", "anim_sitting_finish"),
+          (this_or_next|eq, ":item_id", "itm_lute"),
+          (eq, ":item_id", "itm_lyre"),
+        (else_try),
+          (agent_set_wielded_item, ":agent_id", -1),
         (try_end),
       (try_end),
     ]),
