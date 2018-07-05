@@ -4773,7 +4773,7 @@ scripts.extend([
    [(store_script_param, ":player_id", 1), # must be valid
     (store_script_param, ":permissions", 2),
 
-    (try_for_range, ":slot", slot_player_admin_no_panel, slot_player_admin_end),
+    (try_for_range, ":slot", slot_player_admin_no_spectate, slot_player_admin_end),
       (assign, ":value", ":permissions"),
       (val_and, ":value", 0x1),
       (val_rshift, ":permissions", 1),
