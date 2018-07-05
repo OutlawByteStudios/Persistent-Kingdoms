@@ -14326,14 +14326,13 @@ scripts.extend([
       (assign, ":prevent_if_on_horse", 0),
       (assign, ":weapon_requirement", -2),  # required wielded item
       (assign, ":weapon_type_requirement", 0),  # required wielded item type
-      (assign, ":position_animation", 0),
       (assign, ":music", -1),  # ensure that music is handled correctly
       (assign, ":add_to_chat", 0), # display the animation string in the local chat for near the player
       (try_begin), # the first script parameter is the name string id, which must be in the appropriate section of module_strings.py
         animation_menu_entry("str_anim_cheer", animation="anim_cheer", man_sound="snd_man_victory"),
         animation_menu_entry("str_anim_clap", animation="anim_man_clap", woman_alt_animation="anim_woman_clap", prevent_if_wielding=1),
         animation_menu_entry("str_anim_raise_sword", animation="anim_pose_raise_sword"),
-        animation_menu_entry("str_anim_sit", animation="anim_sitting_pillow_male", woman_alt_animation="anim_sitting_pillow_female", prevent_if_wielding=1, prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0, position_animation=1),
+        animation_menu_entry("str_anim_sit", animation="anim_sitting_pillow_male", woman_alt_animation="anim_sitting_pillow_female", prevent_if_wielding=1, prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0),
         animation_menu_entry("str_anim_surrender", animation="anim_surrender", prevent_if_wielding=1),
         animation_menu_entry("str_anim_hands_on_hips", animation="anim_pose_hands_on_hips", prevent_if_wielding=1, prevent_if_moving=1),
         animation_menu_entry("str_anim_arms_crossed", animation="anim_pose_arms_crossed", prevent_if_wielding=1, prevent_if_moving=1),
@@ -14372,18 +14371,17 @@ scripts.extend([
         animation_menu_entry("str_anim_horn_charge", animation="anim_play_horn", man_sound="snd_horncharge", woman_sound="snd_horncharge", weapon_requirement="itm_warhorn", horn=1),
         animation_menu_entry("str_anim_horn_regroup", animation="anim_play_horn", man_sound="snd_hornregroup", woman_sound="snd_hornregroup", weapon_requirement="itm_warhorn", horn=1),
         animation_menu_entry("str_anim_horn_retreat", animation="anim_play_horn", man_sound="snd_hornretreat", woman_sound="snd_hornretreat", weapon_requirement="itm_warhorn", horn=1),
-        animation_menu_entry("str_anim_lean_on_sword", animation="anim_lean_on_sword", prevent_if_moving=1, prevent_if_on_horse=1, weapon_type_requirement=itp_type_two_handed_wpn),
+        animation_menu_entry("str_anim_lean_on_sword", animation="anim_lean_on_sword", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0, weapon_type_requirement=itp_type_two_handed_wpn),
         animation_menu_entry("str_anim_nod_head", animation="anim_nod_head", prevent_if_moving=1),
         animation_menu_entry("str_anim_wave_hand", animation="anim_wave_hand", prevent_if_wielding=1),
         animation_menu_entry("str_anim_this_way", animation="anim_this_way", prevent_if_wielding=1),
         animation_menu_entry("str_anim_go_away", animation="anim_go_away", prevent_if_wielding=1),
         animation_menu_entry("str_anim_peeing", animation="anim_peeing", prevent_if_wielding=1, prevent_if_moving=1),
         animation_menu_entry("str_anim_hand_on_chest", animation="anim_hand_on_chest", prevent_if_wielding=1),
-        animation_menu_entry("str_anim_bow", animation="anim_bow", prevent_if_moving=1, prevent_if_wielding=1, prevent_if_on_horse=1, upper_body_only=0, position_animation=1),
-        animation_menu_entry("str_anim_kneel", animation="anim_kneel", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0, position_animation=1),
-        animation_menu_entry("str_anim_sleeping", animation="anim_sleeping", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0, position_animation=1),
-        animation_menu_entry("str_anim_giving_birth", animation="anim_giving_birth", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0, position_animation=1),
-        animation_menu_entry("str_anim_track", animation="anim_tracking", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0, position_animation=1),
+        animation_menu_entry("str_anim_bow", animation="anim_bow", prevent_if_moving=1, prevent_if_wielding=1, prevent_if_on_horse=1, upper_body_only=0),
+        animation_menu_entry("str_anim_kneel", animation="anim_kneel", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0),
+        animation_menu_entry("str_anim_sleeping", animation="anim_sleeping", prevent_if_wielding=1, prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0),
+        animation_menu_entry("str_anim_track", animation="anim_tracking", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0),
       (else_try),
         (assign, ":string_id", -1),
       (try_end),
@@ -14496,12 +14494,6 @@ scripts.extend([
         (try_begin),
           (gt, ":animation", -1),
           (agent_set_animation, ":agent_id", ":animation", ":upper_body_only"),
-
-          (try_begin), # sitting-position animations
-            (eq, ":position_animation", 1),
-            (agent_set_wielded_item, ":agent_id", -1),
-          (try_end),
-
         (try_end),
         (try_begin),
           (gt, ":sound", -1),
