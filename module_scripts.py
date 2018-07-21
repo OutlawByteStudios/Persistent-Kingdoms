@@ -10263,6 +10263,14 @@ scripts.extend([
     (store_script_param, ":target_horse", 2), # 0 = heal humans, 1 = heal horses
     (store_script_param, ":heal_percent", 3), # percentage healed per use
     (store_script_param, ":min_health_percent", 4), # minimum health percentage to be able to use this bed
+    (store_script_param, ":use_stage", 5), # 0 = start use, 1 = cancel use, 2 = finish use
+    (store_script_param, ":full_use_time", 6),
+    
+    (try_begin),
+      (eq, ":use_stage", 0),
+      (store_mission_timer_a, ":time"),
+      (agent_set_slot, ":agent_id", slot_agent_rest_use_start_time, ":time"),
+    (try_end),
 
     (agent_get_player_id, ":player_id", ":agent_id"),
     (player_is_active, ":player_id"),
@@ -10284,6 +10292,21 @@ scripts.extend([
       (assign, ":error_string_id", "str_too_hungry_to_rest"),
       (gt, ":food_amount", 0),
       (try_begin),
+        (try_begin),
+          (eq, ":use_stage", 1),
+          (agent_get_slot, ":start_time", ":agent_id", slot_agent_rest_use_start_time),
+          (store_mission_timer_a, ":time"),
+          (store_sub, ":time_between", ":time", ":start_time"),
+          (try_begin),
+            (ge, ":time_between", 3),
+            (val_mul, ":time_between", 1000),
+            (val_mul, ":full_use_time", 1000),
+            (val_mul, ":heal_percent", ":time_between"),
+            (val_div, ":heal_percent", ":full_use_time"),
+          (else_try),
+            (assign, ":heal_percent", 0),
+          (try_end),
+        (try_end),
         (neq, ":heal_percent", 0),
         (lt, ":health_percent", 100),
         (val_min, ":heal_percent", ":food_amount"),
