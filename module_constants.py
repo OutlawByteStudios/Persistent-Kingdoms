@@ -158,6 +158,8 @@ slot_agent_last_apply_factors_item_id = 66 # last item id that modifier factors 
 
 slot_agent_playing_music              = 67
 
+slot_agent_rest_use_start_time        = 68
+
 slot_agent_walk_mode                  = 73
 
 

@@ -211,18 +211,22 @@ def spr_gain_gold_triggers(gold_value, use_string="str_collect_reg1_gold"):
     spr_call_script_use_trigger("script_cf_gain_gold")]
 
 # Regain health in exchange for food points, after using. 'heal_pct' is the percentage healed, and 'min_health_pct' is the minimum health percentage required to rest.
-def spr_rest_triggers(heal_pct, min_health_pct=30, horse=0, use_string="str_rest"):
+def spr_rest_triggers(heal_pct, min_health_pct=30, horse=0, use_string="str_rest", use_time=15):
   return [(ti_on_scene_prop_init,
      [(store_trigger_param_1, ":instance_id"),
       (scene_prop_set_slot, ":instance_id", slot_scene_prop_use_string, use_string),
       ]),
     (ti_on_scene_prop_start_use,
      [(store_trigger_param_1, ":agent_id"),
-      (call_script, "script_cf_rest", ":agent_id", horse, 0, min_health_pct),
+      (call_script, "script_cf_rest", ":agent_id", horse, 0, min_health_pct, 0, use_time),
+      ]),
+    (ti_on_scene_prop_cancel_use,
+     [(store_trigger_param_1, ":agent_id"),
+      (call_script, "script_cf_rest", ":agent_id", horse, heal_pct, min_health_pct, 1, use_time),
       ]),
     (ti_on_scene_prop_use,
      [(store_trigger_param_1, ":agent_id"),
-      (call_script, "script_cf_rest", ":agent_id", horse, heal_pct, min_health_pct),
+      (call_script, "script_cf_rest", ":agent_id", horse, heal_pct, min_health_pct, 2, use_time),
       ]),
     ]
 
@@ -3522,19 +3526,19 @@ scene_props = [
   
   ("pw_destroy_heap",spr_use_time(2),"destroy_heap","bo_destroy_heap", spr_destroy_heap_triggers()),
 
-  ("pw_rest_bed_a",spr_use_time(30),"bed_a","bo_bed_a", spr_rest_triggers(40, min_health_pct=35)),
-  ("pw_rest_bed_b",spr_use_time(18),"bed_b","bo_bed_b", spr_rest_triggers(20, min_health_pct=50)),
-  ("pw_rest_bed_c",spr_use_time(22),"bed_c","bo_bed_c", spr_rest_triggers(30, min_health_pct=40)),
-  ("pw_rest_bed_e",spr_use_time(30),"bed_e","bo_bed_e", spr_rest_triggers(50, min_health_pct=30)),
-  ("pw_rest_bed_f",spr_use_time(15),"bed_f","bo_bed_f", spr_rest_triggers(15, min_health_pct=55)),
-  ("pw_rest_dungeon_bed_a",spr_use_time(15),"dungeon_bed_a","bo_bed_b", spr_rest_triggers(10, min_health_pct=60)),
-  ("pw_rest_dungeon_bed_b",spr_use_time(15),"dungeon_bed_b","bo_dungeon_bed_b", spr_rest_triggers(8, min_health_pct=70)),
-  ("pw_rest_pillow_a",spr_use_time(18),"pillow_a","bo_pillow", spr_rest_triggers(20, min_health_pct=45)),
-  ("pw_rest_pillow_b",spr_use_time(24),"pillow_b","bo_pillow", spr_rest_triggers(30, min_health_pct=40)),
-  ("pw_rest_invisible",sokf_invisible|spr_use_time(15),"pw_invisible_door","bo_pw_invisible_door", spr_rest_triggers(10, min_health_pct=60)),
-  ("pw_rest_horse_trough",spr_use_time(15),"feeding_trough_a","bo_feeding_trough_a", spr_rest_triggers(30, min_health_pct=30, horse=1, use_string="str_rest_horse")),
-  ("pw_rest_horse_hay",spr_use_time(30),"pw_horse_hay","bo_pw_horse_hay", spr_rest_triggers(70, min_health_pct=30, horse=1, use_string="str_rest_horse")),
-  ("pw_rest_horse_manger",spr_use_time(22),"wall_manger_a","bo_wall_manger_a", spr_rest_triggers(60, min_health_pct=25, horse=1, use_string="str_rest_horse")),
+  ("pw_rest_bed_a",spr_use_time(30),"bed_a","bo_bed_a", spr_rest_triggers(40, min_health_pct=35, use_time=30)),
+  ("pw_rest_bed_b",spr_use_time(18),"bed_b","bo_bed_b", spr_rest_triggers(20, min_health_pct=50, use_time=18)),
+  ("pw_rest_bed_c",spr_use_time(22),"bed_c","bo_bed_c", spr_rest_triggers(30, min_health_pct=40, use_time=22)),
+  ("pw_rest_bed_e",spr_use_time(30),"bed_e","bo_bed_e", spr_rest_triggers(50, min_health_pct=30, use_time=30)),
+  ("pw_rest_bed_f",spr_use_time(15),"bed_f","bo_bed_f", spr_rest_triggers(15, min_health_pct=55, use_time=15)),
+  ("pw_rest_dungeon_bed_a",spr_use_time(15),"dungeon_bed_a","bo_bed_b", spr_rest_triggers(10, min_health_pct=60, use_time=15)),
+  ("pw_rest_dungeon_bed_b",spr_use_time(15),"dungeon_bed_b","bo_dungeon_bed_b", spr_rest_triggers(8, min_health_pct=70, use_time=15)),
+  ("pw_rest_pillow_a",spr_use_time(18),"pillow_a","bo_pillow", spr_rest_triggers(20, min_health_pct=45, use_time=18)),
+  ("pw_rest_pillow_b",spr_use_time(24),"pillow_b","bo_pillow", spr_rest_triggers(30, min_health_pct=40, use_time=24)),
+  ("pw_rest_invisible",sokf_invisible|spr_use_time(15),"pw_invisible_door","bo_pw_invisible_door", spr_rest_triggers(10, min_health_pct=60, use_time=15)),
+  ("pw_rest_horse_trough",spr_use_time(15),"feeding_trough_a","bo_feeding_trough_a", spr_rest_triggers(30, min_health_pct=30, horse=1, use_string="str_rest_horse", use_time=15)),
+  ("pw_rest_horse_hay",spr_use_time(30),"pw_horse_hay","bo_pw_horse_hay", spr_rest_triggers(70, min_health_pct=30, horse=1, use_string="str_rest_horse", use_time=30)),
+  ("pw_rest_horse_manger",spr_use_time(22),"wall_manger_a","bo_wall_manger_a", spr_rest_triggers(60, min_health_pct=25, horse=1, use_string="str_rest_horse", use_time=22)),
   ("pw_clean_blood",spr_use_time(3),"cloth_a","bo_cloth_a", spr_clean_blood_triggers()),
 
   ("code_spawn_marker",0,"0","0", []),
