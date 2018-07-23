@@ -1207,8 +1207,6 @@ items = [
  15210, hit_points(165)|body_armor(58)|difficulty(4)|horse_speed(43)|horse_maneuver(44)|horse_charge(32)|horse_scale(112), imodbits_none],
 ["saracin_hard_horses_d", "Saracen War Horse", [("saracin_hard_horses_d",0)], itp_type_horse, 0,
  15210, hit_points(165)|body_armor(58)|difficulty(4)|horse_speed(43)|horse_maneuver(44)|horse_charge(32)|horse_scale(112), imodbits_none],
-["heraldic_charger", "Heraldic Charger", [("heraldic_charger", 0)], itp_type_horse, 0,
- 240, weight(0)|abundance(90)|body_armor(8)|difficulty(4)|hit_points(100)|horse_maneuver(44)|horse_speed(45)|weapon_length(104)|horse_charge(10), imodbits_horse_basic, init_heraldic_item("tableau_heraldic_charger")],
 ["plated_charger", "Plated Charger", [("plated_charger",0)], itp_type_horse, 0,
  21400, hit_points(180)|body_armor(65)|difficulty(4)|horse_speed(40)|horse_maneuver(45)|horse_charge(40)|horse_scale(112), imodbits_none],
  
