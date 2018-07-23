@@ -685,7 +685,7 @@ rotating_doors_end = "spr_cm_door_rotate_akra_right"
 item_chests_begin = "spr_pw_castle_money_chest"
 item_chests_end = "spr_cm_arrow_holder_bucket"
 
-position_animations_begin = "anim_sitting"
+position_animations_begin = "anim_lean_on_sword"
 position_animations_end   = "anim_nod_head"
 
 display_no_name_labels = 0
