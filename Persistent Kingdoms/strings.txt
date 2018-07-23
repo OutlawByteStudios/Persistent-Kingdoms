@@ -1,5 +1,5 @@
 stringsfile version 1
-787
+788
 str_no_string NO_STRING!
 str_empty_string _
 str_yes Yes.
@@ -294,6 +294,7 @@ str_reg0_players_of_reg1 {reg0}_players_of_{reg1}
 str_reg0_player_of_reg1 {reg0}_player_of_{reg1}
 str_reg0 {!}{reg0}
 str_s0 {!}{s0}
+str_s1 {!}{s1}
 str_enable_s0 Enable_{s0}
 str_disable_s0 Disable_{s0}
 str_un un
