@@ -203,16 +203,15 @@ player_exit = (ti_on_player_exit, 0, 0, [], # server: save player values on exit
     (player_get_unique_id, reg0, ":player_id"),
     (server_add_message_to_log, "str_s1_has_left_the_game_with_id_reg0"),
 
-	#Remove freeze walls if they exist
-    (player_get_slot, ":freeze_instance_id", ":player_id", slot_player_freeze_instance_id),
-    (gt, ":freeze_instance_id", -1),
-    (prop_instance_is_valid, ":freeze_instance_id"),
-    (call_script, "script_remove_scene_prop", ":freeze_instance_id"),
-    (player_set_slot, ":player_id", slot_player_freeze_instance_id, -1),
-
-    #Log equipment on log out
     (call_script, "script_log_equipment", ":player_id"),
-    #End
+
+    (try_begin),
+      (player_get_slot, ":freeze_instance_id", ":player_id", slot_player_freeze_instance_id),
+      (gt, ":freeze_instance_id", -1),
+      (prop_instance_is_valid, ":freeze_instance_id"),
+      (call_script, "script_remove_scene_prop", ":freeze_instance_id"),
+      (player_set_slot, ":player_id", slot_player_freeze_instance_id, -1),
+    (try_end),
   ])
 
 
