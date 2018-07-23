@@ -508,6 +508,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("reg0_player_of_reg1", "{reg0} player of {reg1}"),
   ("reg0", "{!}{reg0}"),
   ("s0", "{!}{s0}"),
+  ("s1", "{!}{s1}"),
   ("enable_s0", "Enable {s0}"),
   ("disable_s0", "Disable {s0}"),
   ("un", "un"),
