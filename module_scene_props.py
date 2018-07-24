@@ -3724,6 +3724,11 @@ scene_props = [
   ("pw_ferry_chain_10m",0,"pw_ferry_chain_10m","0", []),
   ("pw_ferry_chain_20m",0,"pw_ferry_chain_20m","0", []),
   ("pw_ferry_chain_30m",0,"pw_ferry_chain_30m","0", []),
+  
+  ("cm_boat",sokf_moveable|sokf_destructible|sokf_show_hit_point_bar,"cm_boat","bo_cm_boat", spr_ship_triggers(hit_points=3500, length=160, width=50, height=-18, speed=2, sail="cm_boat_oar", sail_off="cm_boat_oar_off", collision="cm_boat_cd")),
+  ("cm_boat_oar",sokf_moveable,"cm_boat_oar","0", []),
+  ("cm_boat_oar_off",sokf_moveable,"cm_boat_oar_off","0", []),
+  ("cm_boat_cd",sokf_invisible|sokf_dont_move_agent_over,"0","bo_cm_boat_cd", []),
 
   ("pw_castle_sign",0,"tree_house_guard_a","bo_tree_house_guard_a", [(ti_on_scene_prop_use, [])]),
   ("pw_castle_capture_point",sokf_dynamic_physics|sokf_missiles_not_attached|spr_use_time(capture_point_use_time),"pw_castle_flag_post","bo_pw_castle_flag_post", spr_capture_castle_triggers()),
