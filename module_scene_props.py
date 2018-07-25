@@ -3200,6 +3200,16 @@ scene_props = [
   ("pw_buy_warhorn",spr_buy_item_flags(8),"warhorn","bo_pw_weapon_small", spr_buy_item_triggers("itm_warhorn", pos_offset=(0,0,15), resources=["itm_iron_piece", "itm_leather_piece"], engineer=3)),
   ("pw_buy_dart",spr_buy_item_flags(1),"pw_dart","bo_pw_weapon_small", spr_buy_item_triggers("itm_dart")),
   ("pw_buy_die",spr_buy_item_flags(1),"pw_die","bo_pw_weapon_small", spr_buy_item_triggers("itm_die", pos_offset=(7,7,0), resources=["itm_stick"], engineer=2)),
+  
+  ("pw_buy_club",spr_buy_item_flags(3),"club","bo_pw_weapon", spr_buy_item_triggers("itm_club", resources=["itm_wood_pole_short"], engineer=2)),
+  ("pw_buy_spiked_club",spr_buy_item_flags(5),"spiked_club","bo_pw_weapon", spr_buy_item_triggers("itm_spiked_club", resources=["itm_wood_pole_short"], engineer=2)),
+  ("pw_buy_old_knife",spr_buy_item_flags(3),"peasant_knife","bo_pw_weapon_small", spr_buy_item_triggers("itm_old_knife", resources=["itm_iron_piece"], engineer=2)),
+  ("pw_buy_crude_spear",spr_buy_item_flags(5),"spear_g_1-9m","bo_pw_weapon_big", spr_buy_item_triggers("itm_crude_spear", resources=["itm_wood_pole_short"], engineer=2)),
+  ("pw_buy_blunt_falchion",spr_buy_item_flags(3),"falchion","bo_pw_weapon_small", spr_buy_item_triggers("itm_blunt_falchion", resources=["itm_iron_bar_short"], engineer=2)),
+  ("pw_buy_chipped_falchion",spr_buy_item_flags(5),"falchion","bo_pw_weapon_small", spr_buy_item_triggers("itm_chipped_falchion", resources=["itm_iron_bar_short"], engineer=2)),
+  ("pw_buy_rusty_sword",spr_buy_item_flags(3),"sword_rusty_a","bo_pw_weapon", spr_buy_item_triggers("itm_rusty_sword", resources=["itm_iron_bar_short"], engineer=2)),
+  ("pw_buy_worn_sword",spr_buy_item_flags(5),"sword_norman_rusty","bo_pw_weapon", spr_buy_item_triggers("itm_worn_sword", resources=["itm_iron_bar_short"], engineer=2)),
+  ("pw_buy_bent_lance",spr_buy_item_flags(5),"spear","bo_pw_weapon_big", spr_buy_item_triggers("itm_bent_lance", resources=["itm_wood_pole_short"], engineer=2)),
 
   ("cm_buy_blue_shirt",spr_buy_item_flags(2),"shirt_c","bo_pw_armor_body", spr_buy_item_triggers("itm_shirt_c", resources=["itm_linen_cloth"], tailoring=1)),
   ("cm_buy_green_shirt",spr_buy_item_flags(2),"shirt_b","bo_pw_armor_body", spr_buy_item_triggers("itm_shirt_b", resources=["itm_linen_cloth"], tailoring=1)),
