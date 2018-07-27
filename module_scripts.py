@@ -7108,7 +7108,11 @@ scripts.extend([
           (multiplayer_is_server),
           (agent_set_damage_modifier, ":agent_id", ":damage_modifier"),
           (agent_set_ranged_damage_modifier, ":agent_id", ":damage_modifier"),
+
           (agent_set_speed_modifier, ":agent_id", ":speed_modifier"),
+          (agent_get_player_id, ":player_id", ":agent_id"),
+          (call_script, "script_toggle_walk", ":player_id", 0, 1),
+
           (agent_set_accuracy_modifier, ":agent_id", ":accuracy_modifier"),
           (agent_set_reload_speed_modifier, ":agent_id", ":reload_modifier"),
           (try_begin), # remember the item id to avoid duplicate calculation if the script is called twice, by hard coded triggers or whatever
@@ -7126,12 +7130,6 @@ scripts.extend([
         (assign, reg13, ":accuracy_modifier"),
         (assign, reg14, ":reload_modifier"),
       (try_end),
-    (try_end),
-
-    (try_begin),
-      (multiplayer_is_server),
-      (agent_get_player_id, ":player_id", ":agent_id"),
-      (call_script, "script_toggle_walk", ":player_id", 0, 1),
     (try_end),
     ]),
 
