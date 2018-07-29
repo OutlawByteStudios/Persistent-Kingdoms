@@ -588,6 +588,8 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("anim_sit", "Sit"),
   ("anim_sleeping", "Sleep"),
   ("anim_kneel", "Kneel"),
+  ("anim_pray", "Pray"),
+  ("anim_beg", "Beg"),
   ("anim_track", "Tracking"),
   ("anim_bow", "Bow"),
   ("anim_lean_on_sword", "Lean on sword"),
