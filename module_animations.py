@@ -1657,7 +1657,7 @@ animations = [
  [2.0, "wave_hand", 0, 30, arf_blend_in_3],
 ],
 ["pike_stance", acf_enforce_all, amf_play|amf_keep|amf_priority_continue,
- [5.0, "pike_stance", 0, 19, arf_use_stand_progress|arf_cyclic],
+ [5.0, "pike_stance", 0, 29, arf_use_stand_progress|arf_cyclic],
 ],
 ["peeing", acf_enforce_all, amf_play|amf_keep|amf_priority_continue,
  [2.0, "peeing", 0, 30, arf_use_stand_progress|arf_cyclic],
