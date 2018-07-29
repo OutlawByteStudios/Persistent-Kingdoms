@@ -14402,6 +14402,7 @@ scripts.extend([
         animation_menu_entry("str_anim_kneel", animation="anim_kneel", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0),
         animation_menu_entry("str_anim_sleeping", animation="anim_sleeping", weapon_requirement=-1, prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0),
         animation_menu_entry("str_anim_track", animation="anim_tracking", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0),
+        animation_menu_entry("str_anim_pike_stance", animation="anim_pike_stance", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0, weapon_type_requirement=itp_type_polearm),
       (else_try),
         (assign, ":string_id", -1),
       (try_end),
