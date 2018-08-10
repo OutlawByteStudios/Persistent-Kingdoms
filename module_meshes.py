@@ -418,6 +418,8 @@ meshes = [
   ("tableau_mesh_colored_helmets_new_b", 0, "tableau_mesh_colored_helmets_new_b",  0, 0, 0, 0, 0, 0, 1, 1, 1),
   ("tableau_mesh_colored_helmets_new_d", 0, "tableau_mesh_colored_helmets_new_d",  0, 0, 0, 0, 0, 0, 1, 1, 1),
   ("tableau_mesh_colored_helmets_new_e", 0, "tableau_mesh_colored_helmets_new_e",  0, 0, 0, 0, 0, 0, 1, 1, 1),
+  
+  ("tableau_mesh_early_transitional_heraldic", 0, "tableau_mesh_early_transitional_heraldic",  0, 0, 0, 0, 0, 0, 1, 1, 1),
 
   ("pw_stats_chart_commoners", 0, "pw_stats_chart_commoners", 0, 0, 0, 0, 0, 0, 1, 1, 1),
   ("pw_stats_chart_outlaws", 0, "pw_stats_chart_outlaws", 0, 0, 0, 0, 0, 0, 1, 1, 1),

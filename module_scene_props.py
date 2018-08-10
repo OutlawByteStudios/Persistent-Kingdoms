@@ -3338,7 +3338,7 @@ scene_props = [
   ("cm_buy_greathelm_with_bascinet",spr_buy_item_flags(21),"greathelm1","bo_pw_armor_head", spr_buy_item_triggers("itm_greathelm1", resources=["itm_iron_bar","itm_iron_bar_short","itm_linen_cloth_small"], engineer=6)),
   ("cm_buy_weimar_helmet",spr_buy_item_flags(21),"weimarhelm","bo_pw_armor_head_armature", spr_buy_item_triggers("itm_weimarhelm", resources=["itm_iron_bar","itm_iron_bar_short","itm_linen_cloth_small"], engineer=6)),
 
-  ("cm_buy_early_transitional_armor",spr_buy_item_flags(16),"early_transitional_heraldic","bo_pw_armor_body", spr_buy_item_triggers("itm_early_transitional_heraldic", resources=[("itm_iron_bar_short",2),"itm_linen_cloth"], engineer=6)),
+  ("cm_buy_early_transitional_armor",spr_buy_item_flags(16),"early_transitional_heraldic","bo_pw_armor_body", spr_buy_item_triggers("itm_early_transitional_heraldic", resources=[("itm_iron_bar_short",2),"itm_linen_cloth"], engineer=6, tableau="tableau_heraldic_early_transitional_white")),
 
   ("cm_buy_practice_dagger",spr_buy_item_flags(1),"practice_dagger","bo_pw_weapon_small", spr_buy_item_triggers("itm_practice_dagger", resources=["itm_wood_pole_short"], engineer=2)),
   ("cm_buy_iberian_mace",spr_buy_item_flags(4),"faradon_iberianmace","bo_pw_weapon_small", spr_buy_item_triggers("itm_faradon_iberianmace", resources=[("itm_iron_bar_short",2)], engineer=2)),

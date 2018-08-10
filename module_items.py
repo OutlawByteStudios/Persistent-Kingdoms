@@ -709,7 +709,7 @@ items = [
 ["hauberk2", "Heavy Hauberk with Plate", [("hauberk2", 0)], itp_type_body_armor|itp_covers_legs, 0,
  9410, weight(23)|body_armor(45)|leg_armor(17)|difficulty(15), imodbits_armor],
 ["early_transitional_heraldic", "Early Transitional Armor", [("early_transitional_heraldic",0)], itp_type_body_armor|itp_covers_legs, 0,
- 10450, weight(23)|body_armor(45)|leg_armor(15)|difficulty(15), imodbits_armor],
+ 10450, weight(23)|body_armor(45)|leg_armor(15)|difficulty(15), imodbits_armor, init_heraldic_item("tableau_heraldic_early_transitional_white")],
 ["corrazina_green", "Green Corrazina", [("corrazina_green", 0)], itp_type_body_armor|itp_covers_legs, 0,
  12240, weight(24)|body_armor(46)|leg_armor(16)|difficulty(15), imodbits_armor],
 ["corrazina_red", "Red Corrazina", [("corrazina_red", 0)], itp_type_body_armor|itp_covers_legs, 0,
