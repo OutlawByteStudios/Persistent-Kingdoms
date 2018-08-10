@@ -3534,6 +3534,8 @@ scene_props = [
   ("cm_buy_crown",spr_buy_item_flags(12),"crown","bo_pw_armor_head", spr_buy_item_triggers("itm_crown", resources=["itm_gold_nugget"], engineer=6)),
   ("cm_buy_bejeweled_crown",spr_buy_item_flags(12),"bejeweled_crown","bo_pw_armor_head", spr_buy_item_triggers("itm_bejeweled_crown", resources=["itm_gold_nugget"], engineer=6)),
   
+  ("cm_buy_letter",spr_buy_item_flags(6),"letter","bo_pw_weapon_small", spr_buy_item_triggers("itm_letter", pos_offset=(0,0,15), resources=["itm_leather_roll"], engineer=3)),
+  
   ("pw_destroy_heap",spr_use_time(2),"destroy_heap","bo_destroy_heap", spr_destroy_heap_triggers()),
 
   ("pw_rest_bed_a",spr_use_time(30),"bed_a","bo_bed_a", spr_rest_triggers(40, min_health_pct=35, use_time=30)),
