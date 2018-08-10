@@ -220,6 +220,8 @@ tableaus = [
   ("heraldic_lamellar_armor_d", 0, "lamellar_armor_d", 1024, 1024, 0, 0, 0, 0, tableau_armor_banner("mesh_tableau_mesh_heraldic_lamellar_armor_d", banner_xyz=(62,29,10), banner_scale=70)),
   ("heraldic_mail_long_surcoat", 0, "mail_long_surcoat", 1024, 1024, 0, 0, 0, 0, tableau_armor_banner("mesh_tableau_mesh_heraldic_mail_long_surcoat", banner_xyz=(54,70,10), banner_scale=40)),
   ("heraldic_surcoat_over_mail", 0, "surcoat_over_mail", 1024, 1024, 0, 0, 0, 0, tableau_armor_banner("mesh_tableau_mesh_heraldic_surcoat_over_mail", banner_xyz=(-60,70,10), banner_scale=40)),
+  
+  ("heraldic_early_transitional_white", 0, "early_transitional_white", 1024, 1024, 0, 0, 0, 0, tableau_armor_banner("mesh_tableau_mesh_early_transitional_heraldic", banner_xyz=(20,135,10), banner_scale=65)),
 
   ("colored_arena_tunic", 0, "arena_tunicW", 512, 512, 0, 0, 0, 0, tableau_armor_color("mesh_tableau_mesh_colored_arena_tunic")),
   ("colored_arena_armor", 0, "arena_armorW", 512, 512, 0, 0, 0, 0, tableau_armor_color("mesh_tableau_mesh_colored_arena_armor")),
