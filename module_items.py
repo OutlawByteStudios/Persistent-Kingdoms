@@ -1468,6 +1468,10 @@ items = [
  13000 , weight(0.01)|head_armor(0)|body_armor(0)|leg_armor(0)|difficulty(7) ,imodbits_none|imodbit_female],
 ["ruby_earrings", "Ruby Earrings", [("ruby_earrings",0)], itp_type_head_armor|itp_doesnt_cover_hair,0,
  13000 , weight(0.01)|head_armor(0)|body_armor(0)|leg_armor(0)|difficulty(7) ,imodbits_none|imodbit_female],
+ 
+["letter", "Letter", [("letter_carry",0),("letter",ixmesh_carry),("letter",ixmesh_inventory)], itp_type_one_handed_wpn|itp_primary|itp_no_parry, itcf_carry_dagger_front_left,
+ 550, weight(1.75)|weapon_length(13), imodbits_none],
+
 
 itm_faction_banner("a01"),
 itm_faction_banner("a02"),
