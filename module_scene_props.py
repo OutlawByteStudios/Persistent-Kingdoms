@@ -3372,6 +3372,13 @@ scene_props = [
   ("cm_buy_saracen_sultan_horse",spr_buy_item_flags(17),"saracen_horse_sultan","bo_pw_horse", spr_buy_item_triggers("itm_saracen_horse_sultan", resources=["itm_saddle", "itm_horse_armor", ("itm_wheat_sheaf", 2)], herding=3)),
   ("cm_buy_saracen_war_horse",spr_buy_item_flags(17),"saracin_hard_horses_d","bo_pw_horse", spr_buy_item_triggers("itm_saracin_hard_horses_d", resources=["itm_saddle", "itm_horse_armor", ("itm_wheat_sheaf", 2)], herding=3)),
 
+  ("cm_buy_dragons_tongue",spr_buy_item_flags(4),"dragons_tongue","bo_pw_weapon_small", spr_buy_item_triggers("itm_dragons_tongue", resources=["itm_iron_bar_short", "itm_stick"], engineer=3)),
+  ("cm_buy_royal_dagger",spr_buy_item_flags(3),"royal_dagger_scabbard","bo_pw_weapon_small", spr_buy_item_triggers("itm_royal_dagger", resources=["itm_iron_bar_short"], engineer=3)),
+  ("cm_buy_noyan_dagger",spr_buy_item_flags(3),"noyan_dagger","bo_pw_weapon_small", spr_buy_item_triggers("itm_noyan_dagger", resources=["itm_iron_bar_short"], engineer=3)),
+  ("cm_buy_royal_sword",spr_buy_item_flags(10),"royal_sword","bo_pw_weapon", spr_buy_item_triggers("itm_royal_sword", resources=["itm_iron_bar"], engineer=4)),
+  ("cm_buy_battle_sceptre",spr_buy_item_flags(7),"hakim_battle_sceptre","bo_pw_weapon", spr_buy_item_triggers("itm_battle_sceptre", resources=["itm_wood_pole_short", "itm_iron_bar"], engineer=3)),
+  ("cm_buy_royal_bastard_sword",spr_buy_item_flags(12),"royal_bastard_sword","bo_pw_weapon", spr_buy_item_triggers("itm_royal_bastard_sword", resources=["itm_iron_bar_long"], engineer=5)),
+  ("cm_buy_royal_great_sword",spr_buy_item_flags(15),"royal_great_sword","bo_pw_weapon", spr_buy_item_triggers("itm_royal_great_sword", resources=["itm_iron_bar_long"], engineer=7)),
   ("cm_buy_katana",spr_buy_item_flags(15),"katana","bo_pw_weapon", spr_buy_item_triggers("itm_katana", resources=["itm_iron_bar_long"], engineer=7)),
   ("cm_buy_wakizashi",spr_buy_item_flags(8),"wakizashi","bo_pw_weapon", spr_buy_item_triggers("itm_wakizashi", resources=["itm_iron_bar"], engineer=4)),
 
@@ -3490,10 +3497,6 @@ scene_props = [
   ("cm_ab_tent_comander_blue",0,"1429_tente_comander_bleu","bo_1429_tente_comander",[]),
   ("cm_ab_tent_merch",0,"tent_merch","bo_tent_merch",[]),
   ("cm_ab_tent_merch2",0,"tent_merch2","bo_tent_merch",[]),
-  
-  ("cm_buy_bollock_dagger",spr_buy_item_flags(3),"bollock_dagger","bo_pw_weapon_small", spr_buy_item_triggers("itm_bollock_dagger", resources=["itm_iron_bar_short"], engineer=3)),
-  ("cm_buy_pikeman_dagger",spr_buy_item_flags(3),"pikeman_dagger","bo_pw_weapon_small", spr_buy_item_triggers("itm_pikeman_dagger", resources=["itm_iron_bar_short"], engineer=3)),
-  ("cm_buy_rondel_dagger",spr_buy_item_flags(3),"rondel_dagger","bo_pw_weapon_small", spr_buy_item_triggers("itm_rondel_dagger", resources=["itm_iron_bar_short"], engineer=3)),
   
   ("cm_buy_silver_ring_sapphire",spr_buy_item_flags(10),"silver_ring_sapphire_L","bo_pw_weapon_small", spr_buy_item_triggers("itm_silver_ring_sapphire", resources=["itm_silver_nugget"], engineer=6)),
   ("cm_buy_silver_ring_ruby",spr_buy_item_flags(12),"silver_ring_ruby_R","bo_pw_weapon_small", spr_buy_item_triggers("itm_silver_ring_ruby", resources=["itm_silver_nugget"], engineer=6)),
