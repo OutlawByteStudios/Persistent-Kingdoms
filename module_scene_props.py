@@ -3160,7 +3160,7 @@ scene_props = [
   ("pw_buy_warhorse_steppe",spr_buy_item_flags(15),"warhorse_steppe","bo_pw_horse", spr_buy_item_triggers("itm_warhorse_steppe", resources=["itm_saddle", "itm_horse_armor", "itm_wheat_sheaf"], herding=3)),
   ("pw_buy_warhorse_sarranid",spr_buy_item_flags(15),"warhorse_sarranid","bo_pw_horse", spr_buy_item_triggers("itm_warhorse_sarranid", resources=["itm_saddle", "itm_horse_armor", ("itm_wheat_sheaf", 2)], herding=3)),
   ("pw_buy_charger",spr_buy_item_flags(17),"charger_new","bo_pw_horse", spr_buy_item_triggers("itm_charger", resources=["itm_saddle", "itm_horse_armor", ("itm_wheat_sheaf", 2)], herding=3)),
-  ("pw_buy_plated_charger",spr_buy_item_flags(20),"plated_charger","bo_pw_horse", spr_buy_item_triggers("itm_plated_charger", resources=["itm_saddle", "itm_horse_armor", ("itm_wheat_sheaf", 2)], herding=3)),
+  ("pw_buy_plated_charger",spr_buy_item_flags(20),"plated_charger1","bo_pw_horse", spr_buy_item_triggers("itm_plated_charger", resources=["itm_saddle", "itm_horse_armor", ("itm_wheat_sheaf", 2)], herding=3)),
   ("pw_buy_saddle",spr_buy_item_flags(4),"pw_saddle","bo_pw_saddle", spr_buy_item_triggers("itm_saddle", pos_offset=(0,0,20), resources=["itm_leather_roll", "itm_board"], engineer=2)),
   ("pw_buy_horse_armor",spr_buy_item_flags(16),"pw_horse_armor","bo_pw_horse_armor", spr_buy_item_triggers("itm_horse_armor", pos_offset=(0,80,0), resources=[("itm_iron_bar", 4)], engineer=6)),
 
@@ -3225,7 +3225,11 @@ scene_props = [
   ("cm_buy_gambeson",spr_buy_item_flags(10),"gambeson","bo_pw_armor_body", spr_buy_item_triggers("itm_gambeson", resources=["itm_linen_cloth","itm_leather_piece"], tailoring=3)),
   ("cm_buy_padded_leather",spr_buy_item_flags(8),"fred_padded_leather","bo_pw_armor_body", spr_buy_item_triggers("itm_fred_padded_leather", resources=["itm_leather_roll","itm_linen_cloth_small"], tailoring=3, engineer=2)),
   ("cm_buy_padded_leather_with_cape",spr_buy_item_flags(10),"fred_padded_leather_cowl","bo_pw_armor_body", spr_buy_item_triggers("itm_fred_padded_leather_cowl", resources=["itm_leather_roll",("itm_linen_cloth_small",2)], tailoring=3, engineer=2)),
+  ("cm_buy_brown_assassin_armor",spr_buy_item_flags(11),"brown_assassin_armor","bo_pw_armor_body", spr_buy_item_triggers("itm_brown_assassin_armor", resources=[("itm_linen_cloth",2)], tailoring=2, engineer=2)),
+  ("cm_buy_white_assassin_armor",spr_buy_item_flags(11),"white_assassin_armor","bo_pw_armor_body", spr_buy_item_triggers("itm_white_assassin_armor", resources=[("itm_linen_cloth",2)], tailoring=2, engineer=2)),
+  ("cm_buy_green_assassin_armor",spr_buy_item_flags(11),"green_assassin_armor","bo_pw_armor_body", spr_buy_item_triggers("itm_green_assassin_armor", resources=[("itm_linen_cloth",2)], tailoring=2, engineer=2)),
   ("cm_buy_aketon",spr_buy_item_flags(11),"aketon","bo_pw_armor_body", spr_buy_item_triggers("itm_aketon", resources=[("itm_linen_cloth",2)], tailoring=2, engineer=2)),
+  ("cm_buy_light_mercenary_armor",spr_buy_item_flags(11),"light_mercenary_armor","bo_pw_armor_body", spr_buy_item_triggers("itm_light_mercenary_armor", resources=["itm_linen_cloth","itm_iron_bar_short"], engineer=3)),
   ("cm_buy_aketon_with_kneecops",spr_buy_item_flags(11),"aketon_kneecops","bo_pw_armor_body", spr_buy_item_triggers("itm_aketon_kneecops", resources=["itm_linen_cloth","itm_iron_bar_short"], engineer=3)),
   ("cm_buy_peasant_mail_with_cape",spr_buy_item_flags(11),"fred_peasant_mail","bo_pw_armor_body", spr_buy_item_triggers("itm_fred_peasant_mail", resources=["itm_iron_bar_short","itm_leather_piece"], engineer=3)),
   ("cm_buy_brown_gambeson_with_cape",spr_buy_item_flags(11),"cwe_archer_armor_2","bo_pw_armor_body", spr_buy_item_triggers("itm_cwe_archer_armor_2", resources=["itm_leather_roll","itm_leather_piece"], tailoring=2, engineer=2)),
@@ -3241,6 +3245,7 @@ scene_props = [
   ("cm_buy_brown_light_brigandine_with_mail",spr_buy_item_flags(11),"brigandine_brown_mail","bo_pw_armor_body", spr_buy_item_triggers("itm_brigandine_brown_mail", resources=[("itm_iron_bar_short",2),"itm_leather_roll"], engineer=4)),
   ("cm_buy_light_saracen_armor",spr_buy_item_flags(11),"turk_bandit_b","bo_pw_armor_body", spr_buy_item_triggers("itm_turk_bandit_b", resources=[("itm_iron_bar_short",2),"itm_linen_cloth_small"], engineer=4)),
   ("cm_buy_light_saracen_infantry_armor",spr_buy_item_flags(11),"turk_bandit_c","bo_pw_armor_body", spr_buy_item_triggers("itm_turk_bandit_c", resources=[("itm_iron_bar_short",2),"itm_linen_cloth"], engineer=4)),
+  ("cm_buy_medium_mercenary_armor",spr_buy_item_flags(11),"medium_mercenary_armor","bo_pw_armor_body", spr_buy_item_triggers("itm_medium_mercenary_armor", resources=[("itm_iron_bar_short",2),"itm_linen_cloth"], engineer=4)),
   ("cm_buy_rus_lamellar_armor",spr_buy_item_flags(11),"rus_lamellar_a","bo_pw_armor_body", spr_buy_item_triggers("itm_rus_lamellar_a", resources=[("itm_iron_bar_short",2),"itm_linen_cloth"], engineer=4)),
   ("cm_buy_light_kuyak",spr_buy_item_flags(11),"kuyak_a","bo_pw_armor_body", spr_buy_item_triggers("itm_kuyak_a", resources=[("itm_iron_bar_short",2),"itm_leather_piece"], engineer=4)),
   ("cm_buy_saracen_infantry_armor",spr_buy_item_flags(11),"sar_infantry_armor","bo_pw_armor_body", spr_buy_item_triggers("itm_sar_infantry_armor", resources=[("itm_iron_bar_short",2),"itm_linen_cloth_small"], engineer=4)),
@@ -3259,6 +3264,7 @@ scene_props = [
   ("cm_buy_red_brigandine_with_plate",spr_buy_item_flags(17),"brigandine_red_a","bo_pw_armor_body", spr_buy_item_triggers("itm_brigandine_red_a", resources=[("itm_iron_bar",2),"itm_linen_cloth"], engineer=6)),
   ("cm_buy_elite_lamellar_armor",spr_buy_item_flags(17),"drz_elite_lamellar_armor","bo_pw_armor_body", spr_buy_item_triggers("itm_drz_elite_lamellar_armor", resources=[("itm_iron_bar",2),"itm_leather_piece","itm_linen_cloth"], engineer=6)),
   ("cm_buy_ghulam_lamellar_armor",spr_buy_item_flags(17),"ghulam_heavy_cavalryman_3","bo_pw_armor_body", spr_buy_item_triggers("itm_ghulam_heavy_cavalryman_3", resources=[("itm_iron_bar",2),"itm_leather_piece","itm_linen_cloth"], engineer=6)),
+  ("cm_buy_heavy_mercenary_armor",spr_buy_item_flags(17),"heavy_mercenary_armor","bo_pw_armor_body", spr_buy_item_triggers("itm_heavy_mercenary_armor", resources=[("itm_iron_bar",2),"itm_leather_piece","itm_linen_cloth"], engineer=6)),
   ("cm_buy_red_brigandine_with_plate_and_mail",spr_buy_item_flags(17),"brigandine_red_mail","bo_pw_armor_body", spr_buy_item_triggers("itm_brigandine_red_mail", resources=[("itm_iron_bar",2),"itm_leather_piece","itm_linen_cloth"], engineer=6)),
   ("cm_buy_black_brigandine_with_plate_and_mail",spr_buy_item_flags(17),"brigandine_black_mail","bo_pw_armor_body", spr_buy_item_triggers("itm_brigandine_black_mail", resources=[("itm_iron_bar",2),"itm_leather_piece","itm_linen_cloth"], engineer=6)),
   ("cm_buy_sultan_armor",spr_buy_item_flags(20),"armor_sultan_saracens","bo_pw_armor_body", spr_buy_item_triggers("itm_armor_sultan_saracens", resources=[("itm_iron_bar",2),"itm_linen_cloth"], engineer=7)),
@@ -3267,7 +3273,8 @@ scene_props = [
   ("cm_buy_decorated_grey_churburg",spr_buy_item_flags(22),"churburg","bo_pw_armor_body", spr_buy_item_triggers("itm_churburg", resources=[("itm_iron_bar_long",2),"itm_leather_piece","itm_linen_cloth"], engineer=7)),
   ("cm_buy_milanese_plate",spr_buy_item_flags(23),"armour_new_b","bo_pw_armor_body", spr_buy_item_triggers("itm_armour_new_b", resources=[("itm_iron_bar_long",2),"itm_leather_piece","itm_linen_cloth"], engineer=7)),
   ("cm_buy_gothic_plate",spr_buy_item_flags(23),"gothic_armour_plain","bo_pw_armor_body", spr_buy_item_triggers("itm_gothic_armour_plain", resources=[("itm_iron_bar_long",2),"itm_leather_piece","itm_linen_cloth"], engineer=7)),
-
+  ("cm_buy_royal_plate",spr_buy_item_flags(23),"royal_plate","bo_pw_armor_body", spr_buy_item_triggers("itm_royal_plate", resources=[("itm_iron_bar_long",2),"itm_leather_piece","itm_linen_cloth"], engineer=7)),
+  
   ("cm_buy_leather_gauntlets",spr_buy_item_flags(2),"leather_gauntlet_L","bo_pw_armor_hand", spr_buy_item_triggers("itm_leather_gauntlet", resources=["itm_leather_piece"], tailoring=2, engineer=4)),
   ("cm_buy_mail_gauntlets",spr_buy_item_flags(4),"mail_gauntlets_L","bo_pw_armor_hand", spr_buy_item_triggers("itm_mail_gauntlets", resources=["itm_iron_piece"], engineer=3)),
   ("cm_buy_demi_gauntlets",spr_buy_item_flags(5),"demi_gauntlets_L","bo_pw_armor_hand", spr_buy_item_triggers("itm_demi_gauntlets", resources=["itm_leather_piece","itm_iron_piece"], engineer=4)),
@@ -3292,6 +3299,11 @@ scene_props = [
   ("cm_buy_polished_steel_boots",spr_buy_item_flags(10),"narf_greaves","bo_pw_armor_foot", spr_buy_item_triggers("itm_narf_greaves", resources=[("itm_leather_piece",2),("itm_iron_bar",2)], engineer=6)),
   ("cm_buy_steel_boots",spr_buy_item_flags(10),"steel_greaves","bo_pw_armor_foot", spr_buy_item_triggers("itm_steel_greaves", resources=[("itm_leather_piece",2),("itm_iron_bar",2)], engineer=6)),
 
+  ("cm_buy_crown",spr_buy_item_flags(12),"crown","bo_pw_armor_head", spr_buy_item_triggers("itm_crown", resources=["itm_gold_nugget"], engineer=6)),
+  ("cm_buy_bejeweled_crown",spr_buy_item_flags(12),"bejeweled_crown","bo_pw_armor_head", spr_buy_item_triggers("itm_bejeweled_crown", resources=["itm_gold_nugget"], engineer=6)),
+  ("cm_buy_brown_assassin_cape",spr_buy_item_flags(1),"brown_assassin_cape","bo_pw_armor_head", spr_buy_item_triggers("itm_brown_assassin_cape", resources=[("itm_linen_cloth_small",2)], tailoring=1)),
+  ("cm_buy_green_assassin_cape",spr_buy_item_flags(1),"green_assassin_cape","bo_pw_armor_head", spr_buy_item_triggers("itm_green_assassin_cape", resources=[("itm_linen_cloth_small",2)], tailoring=1)),
+  ("cm_buy_white_assassin_cape",spr_buy_item_flags(1),"white_assassin_cape","bo_pw_armor_head", spr_buy_item_triggers("itm_white_assassin_cape", resources=[("itm_linen_cloth_small",2)], tailoring=1)),
   ("cm_buy_tourney_helm_yellow",spr_buy_item_flags(5),"tourney_helmY","bo_pw_armor_head", spr_buy_item_triggers("itm_tourney_helm_yellow", resources=["itm_leather_piece","itm_iron_piece"], engineer=2)),
   ("cm_buy_saracen_helmet_with_leather",spr_buy_item_flags(5),"helm_saracin_c","bo_pw_armor_head", spr_buy_item_triggers("itm_helm_saracin_c", resources=["itm_leather_piece","itm_iron_piece"], engineer=2)),
   ("cm_buy_saracen_helmet_with_mail",spr_buy_item_flags(6),"sar_infantry_helmet1","bo_pw_armor_head", spr_buy_item_triggers("itm_sar_infantry_helmet1", resources=["itm_iron_bar_short","itm_leather_piece"], engineer=2)),
@@ -3534,8 +3546,6 @@ scene_props = [
   ("cm_buy_executioners_axe",spr_buy_item_flags(11),"executioners_axe","bo_pw_weapon", spr_buy_item_triggers("itm_executioners_axe", resources=["itm_wood_pole_short", "itm_iron_bar"], engineer=5)),
   ("cm_buy_practice_arrows",spr_buy_item_flags(2),"arrow","bo_pw_weapon", spr_buy_item_triggers("itm_bent_arrows", resources=["itm_stick"], engineer=1)),
   ("cm_buy_practice_bolts",spr_buy_item_flags(2),"bolt","bo_pw_weapon", spr_buy_item_triggers("itm_crude_bolts", resources=["itm_stick"], engineer=1)),
-  ("cm_buy_crown",spr_buy_item_flags(12),"crown","bo_pw_armor_head", spr_buy_item_triggers("itm_crown", resources=["itm_gold_nugget"], engineer=6)),
-  ("cm_buy_bejeweled_crown",spr_buy_item_flags(12),"bejeweled_crown","bo_pw_armor_head", spr_buy_item_triggers("itm_bejeweled_crown", resources=["itm_gold_nugget"], engineer=6)),
   
   ("cm_buy_letter",spr_buy_item_flags(6),"letter","bo_pw_weapon_small", spr_buy_item_triggers("itm_letter", pos_offset=(0,0,15), resources=["itm_leather_roll"], engineer=3)),
   
