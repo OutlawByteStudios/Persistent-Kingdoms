@@ -3160,7 +3160,7 @@ scene_props = [
   ("pw_buy_warhorse_steppe",spr_buy_item_flags(15),"warhorse_steppe","bo_pw_horse", spr_buy_item_triggers("itm_warhorse_steppe", resources=["itm_saddle", "itm_horse_armor", "itm_wheat_sheaf"], herding=3)),
   ("pw_buy_warhorse_sarranid",spr_buy_item_flags(15),"warhorse_sarranid","bo_pw_horse", spr_buy_item_triggers("itm_warhorse_sarranid", resources=["itm_saddle", "itm_horse_armor", ("itm_wheat_sheaf", 2)], herding=3)),
   ("pw_buy_charger",spr_buy_item_flags(17),"charger_new","bo_pw_horse", spr_buy_item_triggers("itm_charger", resources=["itm_saddle", "itm_horse_armor", ("itm_wheat_sheaf", 2)], herding=3)),
-  ("pw_buy_plated_charger",spr_buy_item_flags(20),"plated_charger","bo_pw_horse", spr_buy_item_triggers("itm_plated_charger", resources=["itm_saddle", "itm_horse_armor", ("itm_wheat_sheaf", 2)], herding=3)),
+  ("pw_buy_plated_charger",spr_buy_item_flags(20),"plated_charger1","bo_pw_horse", spr_buy_item_triggers("itm_plated_charger", resources=["itm_saddle", "itm_horse_armor", ("itm_wheat_sheaf", 2)], herding=3)),
   ("pw_buy_saddle",spr_buy_item_flags(4),"pw_saddle","bo_pw_saddle", spr_buy_item_triggers("itm_saddle", pos_offset=(0,0,20), resources=["itm_leather_roll", "itm_board"], engineer=2)),
   ("pw_buy_horse_armor",spr_buy_item_flags(16),"pw_horse_armor","bo_pw_horse_armor", spr_buy_item_triggers("itm_horse_armor", pos_offset=(0,80,0), resources=[("itm_iron_bar", 4)], engineer=6)),
 
