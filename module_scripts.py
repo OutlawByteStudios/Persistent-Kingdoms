@@ -14401,6 +14401,8 @@ scripts.extend([
         animation_menu_entry("str_anim_bow", animation="anim_bow", prevent_if_moving=1, weapon_requirement=-1, prevent_if_on_horse=1, upper_body_only=0),
         animation_menu_entry("str_anim_kneel", animation="anim_kneel", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0),
         animation_menu_entry("str_anim_sleeping", animation="anim_sleeping", weapon_requirement=-1, prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0),
+        animation_menu_entry("str_anim_pray", animation="anim_pray", weapon_requirement=-1, prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0),
+        animation_menu_entry("str_anim_beg", animation="anim_beg", weapon_requirement=-1, prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0),
         animation_menu_entry("str_anim_track", animation="anim_tracking", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0),
         animation_menu_entry("str_anim_pike_stance", animation="anim_pike_stance", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0, weapon_type_requirement=itp_type_polearm),
       (else_try),
@@ -14724,14 +14726,12 @@ scripts.extend([
       (try_end),
     ]),
     
-    ("check_wielding_while_sitting", [
+    ("check_wielding_during_position_animation", [
       (store_script_param_1, ":agent_id"),
       (store_script_param_2, ":item_id"),
       (try_begin),
         (multiplayer_is_server),
-        
         (agent_get_animation, ":animation", ":agent_id", 0),
-        
         (is_between, ":animation", position_animations_begin, position_animations_end),
         
         (try_begin),
