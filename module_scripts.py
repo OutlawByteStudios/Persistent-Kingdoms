@@ -14726,14 +14726,12 @@ scripts.extend([
       (try_end),
     ]),
     
-    ("check_wielding_while_sitting", [
+    ("check_wielding_during_position_animation", [
       (store_script_param_1, ":agent_id"),
       (store_script_param_2, ":item_id"),
       (try_begin),
         (multiplayer_is_server),
-        
         (agent_get_animation, ":animation", ":agent_id", 0),
-        
         (is_between, ":animation", position_animations_begin, position_animations_end),
         
         (try_begin),
