@@ -256,6 +256,11 @@ sounds = [
  ("flute_2", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["flute_2.ogg"]),
  ("flute_3", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["flute_3.ogg"]),
  ("flute_4", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["flute_4.ogg"]),
+ 
+ ("vielle_1", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["vielle_1.ogg"]),
+ ("vielle_2", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["vielle_2.ogg"]),
+ ("vielle_3", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["vielle_3.ogg"]),
+ ("vielle_4", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["vielle_4.ogg"]),
 
  ("horncharge", sf_priority_15 | sf_vol_12 | sf_stream_from_hd, ["horncharge.ogg"]),
  ("hornregroup", sf_priority_15 | sf_vol_12 | sf_stream_from_hd, ["hornregroup.ogg"]),
