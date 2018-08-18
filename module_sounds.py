@@ -251,6 +251,11 @@ sounds = [
  ("lyre_2", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["lyre_2.mp3"]),
  ("lyre_3", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["lyre_3.mp3"]),
  ("lyre_4", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["lyre_4.mp3"]),
+ 
+ ("flute_1", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["flute_1.ogg"]),
+ ("flute_2", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["flute_2.ogg"]),
+ ("flute_3", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["flute_3.ogg"]),
+ ("flute_4", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["flute_4.ogg"]),
 
  ("horncharge", sf_priority_15 | sf_vol_12 | sf_stream_from_hd, ["horncharge.ogg"]),
  ("hornregroup", sf_priority_15 | sf_vol_12 | sf_stream_from_hd, ["hornregroup.ogg"]),
