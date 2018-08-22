@@ -3510,6 +3510,9 @@ scene_props = [
   ("cm_ab_tent_merch",0,"tent_merch","bo_tent_merch",[]),
   ("cm_ab_tent_merch2",0,"tent_merch2","bo_tent_merch",[]),
   
+  ("cm_noticeboard",0,"cm_noticeboard","bo_cm_noticeboard",[]),
+  ("cm_noticeboardwall",0,"cm_noticeboardwall","bo_cm_noticeboardwall",[]),
+  
   ("cm_buy_silver_ring_sapphire",spr_buy_item_flags(10),"silver_ring_sapphire_L","bo_pw_weapon_small", spr_buy_item_triggers("itm_silver_ring_sapphire", resources=["itm_silver_nugget"], engineer=6)),
   ("cm_buy_silver_ring_ruby",spr_buy_item_flags(12),"silver_ring_ruby_R","bo_pw_weapon_small", spr_buy_item_triggers("itm_silver_ring_ruby", resources=["itm_silver_nugget"], engineer=6)),
   ("cm_buy_gold_ring_sapphire",spr_buy_item_flags(15),"gold_ring_sapphire_L","bo_pw_weapon_small", spr_buy_item_triggers("itm_gold_ring_sapphire", resources=["itm_gold_nugget"], engineer=6)),
