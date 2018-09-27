@@ -636,7 +636,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("anim_vielle_1", "*Vielle* Up in the high hammer"),
   ("anim_vielle_2", "*Vielle* Cantiga"),
   ("anim_vielle_3", "*Vielle* The Drunken Piper"),
-  ("anim_vielle_4", "*Vielle* L'Homme Armé"),
+  ("anim_vielle_4", "*Vielle* L'Homme Arme"),
   ("log_animation", "*ANIMATION* [{s1}] {s0}"),
 
   # unused animations
