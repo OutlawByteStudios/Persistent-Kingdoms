@@ -1441,7 +1441,7 @@ items = [
  1850, weight(1.75)|weapon_length(80), imodbits_none],
 ["lute", "Lute", [("lute_left_hand",0),("pw_lute_carry",ixmesh_carry),("pw_lute",ixmesh_inventory)], itp_type_one_handed_wpn|itp_force_attach_left_hand|itp_primary|itp_no_parry, itcf_carry_axe_back,
  1850, weight(2.5)|spd_rtng(100)|weapon_length(85), imodbits_none],
-["flute", "Flute", [("flute",0),("flute",ixmesh_carry),("flute",ixmesh_inventory)], itp_type_one_handed_wpn|itp_force_attach_left_hand|itp_primary|itp_no_parry, itcf_carry_axe_back,
+["flute", "Flute", [("flute",0),("flute_carry",ixmesh_carry),("flute",ixmesh_inventory)], itp_type_one_handed_wpn|itp_force_attach_left_hand|itp_primary|itp_no_parry, itcf_carry_axe_back,
  1850, weight(1.75)|weapon_length(80), imodbits_none],
 ["vielle", "Vielle", [("vielle",0),("vielle_carry",ixmesh_carry),("vielle_ixmesh",ixmesh_inventory)], itp_type_one_handed_wpn|itp_force_attach_left_hand|itp_primary|itp_no_parry, itcf_carry_axe_back,
  1850, weight(1.75)|weapon_length(80), imodbits_none],
