@@ -572,7 +572,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("menu_robbery", "Robbery"),
   ("menu_commands", "Horn"),
   ("menu_music_1", "Lute & Lyre"),
-  ("menu_music_2", "Flute & Shit"),
+  ("menu_music_2", "Flute & Vielle"),
   ("anim_cheer", "Cheer"),
   ("anim_clap", "Clap"),
   ("anim_raise_sword", "Raise sword"),
