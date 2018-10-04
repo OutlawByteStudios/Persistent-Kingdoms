@@ -1,0 +1,1 @@
+To install the Optional Textures, copy the contents of this folder into the parent folder to merge with the currently installed textures.
