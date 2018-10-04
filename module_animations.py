@@ -1680,8 +1680,6 @@ animations = [
 ["peeing", acf_enforce_all, amf_play|amf_keep|amf_priority_continue,
  [2.0, "peeing", 0, 30, arf_use_stand_progress|arf_cyclic],
 ],
-["unused_human_anim_74", 0, 0, [1.0, "anim_human", 0, 1, 0]],
-["unused_human_anim_75", 0, 0, [1.0, "anim_human", 0, 1, 0]],
 ["unused_human_anim_76", 0, 0, [1.0, "anim_human", 0, 1, 0]],
 ["unused_human_anim_77", 0, 0, [1.0, "anim_human", 0, 1, 0]],
 ["unused_human_anim_78", 0, 0, [1.0, "anim_human", 0, 1, 0]],
