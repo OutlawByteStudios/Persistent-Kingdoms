@@ -1411,6 +1411,7 @@ scripts.extend([
           (str_store_string_reg, s12, s0),
           (start_presentation, "prsnt_script_message"),
         (try_end),
+        (call_script, "script_chat_overlay_add_to_local_buffer", "$g_script_message_color"),
       (else_try), # display script messages
         (eq, ":event_type", server_event_script_message_set_color),
         (store_script_param, "$g_script_message_color", 3),
