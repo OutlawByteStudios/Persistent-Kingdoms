@@ -15134,14 +15134,14 @@ scripts.extend([
   # Input: none
   # Output: none
   ("skybox_init", [
-    (try_for_range, ":prop_kind", spr_srp_skybox_day, spr_srp_skybox_moon + 1),
+    (try_for_range, ":prop_kind", "spr_srp_skybox_day", "spr_srp_skybox_moon" + 1),
       (scene_prop_get_instance, ":prop_instance", ":prop_kind", 0),
       (scene_prop_set_visibility, ":prop_instance", 1),
       
       (try_begin),
-        (this_or_next|eq, ":prop_kind", spr_srp_skybox_night),
-        (this_or_next|eq, ":prop_kind", spr_srp_skybox_moon),
-        (eq, ":prop_kind", spr_srp_skybox_sun),
+        (this_or_next|eq, ":prop_kind", "spr_srp_skybox_night"),
+        (this_or_next|eq, ":prop_kind", "spr_srp_skybox_moon"),
+        (eq, ":prop_kind", "spr_srp_skybox_sun"),
         (scene_prop_fade_in, ":prop_instance", 1),
       (else_try),
         (scene_prop_fade_out, ":prop_instance", 1),
@@ -15288,5 +15288,99 @@ scripts.extend([
       (try_end),
     (try_end),
 
+  ]),
+  
+  # script_skybox_animate_sun_and_moon
+  #   Puts the sun and moon on the correct position for the time supplied and
+  #   animates them if necessary.
+  # Author: sHocK
+  # Called: client
+  # Input: arg1 = time of day
+  # Output: none
+  ("skybox_animate_sun_and_moon", [
+    # Get time and skyboxes
+    (store_script_param, ":time", 1),
+    (try_begin),
+      (scene_prop_get_instance, ":sun", "spr_srp_skybox_sun", 0),
+      (scene_prop_get_instance, ":moon", "spr_srp_skybox_moon", 0),
+    (else_try),
+      (display_message, "@[E] Could not get one or more skybox prop instances!"),
+    (try_end),
+
+    # Stop animating sun and moon
+    (prop_instance_stop_animating, ":sun"),
+    (prop_instance_stop_animating, ":moon"),
+
+    # Calculate the angles
+    (set_fixed_point_multiplier, 1),
+
+    # Sun angle (only show sun if it's day)
+    (try_begin),
+      (is_between, ":time", hours(1), hours(23)),
+    
+      # Sun angle  ( time * 5 / 18 + 24000 )
+      (store_mul, ":sun_angle", ":time", 5),
+      (val_div, ":sun_angle", 18),
+      (val_add, ":sun_angle", 24000),
+
+      # Put the sun on the computed angle
+      (prop_instance_get_starting_position, pos10, ":sun"),
+      (set_fixed_point_multiplier, 100),
+      (position_rotate_x_floating, pos10, ":sun_angle"),
+      (prop_instance_set_position, ":sun", pos10),
+
+      # It takes 27 in-game hours to rotate the sun by 270 degrees
+      (prop_instance_rotate_to_position, ":sun", pos10, ingame_hours(27) * 100, 270 * 100),
+    (else_try),
+      # Not the right time for the sun to start animating.
+
+      # Put it below the ground
+      (prop_instance_get_starting_position, pos10, ":sun"),
+      (position_rotate_x, pos10, 180),
+      (prop_instance_set_position, ":sun", pos10),
+    (try_end),
+
+
+    # Moon angle (only show moon if it's night)
+    (try_begin),
+      (this_or_next|is_between, ":time", hours(20), hours(24)),
+      (is_between, ":time", hours(0), hours(4)),
+
+      # Get moon angle (time * 5 / 6)
+      (store_mul, ":moon_angle", ":time", 5),
+      (val_div, ":moon_angle", 6),
+
+      # Put the moon on the computed angle
+      (prop_instance_get_starting_position, pos10, ":moon"),
+      (set_fixed_point_multiplier, 100),
+      (position_rotate_x_floating, pos10, ":moon_angle"),
+      (prop_instance_set_position, ":moon", pos10),
+
+      # It takes 9 in-game hours to rotate the moon by 270 degrees
+      (prop_instance_rotate_to_position, ":moon", pos10, ingame_hours(9) * 100, 270 * 100),
+    (else_try),
+      # Not the right time for the moon to start animating.
+        
+      # Put it below the ground
+      (prop_instance_get_starting_position, pos10, ":moon"),
+      (position_rotate_x, pos10, 180),
+      (prop_instance_set_position, ":moon", pos10),
+    (try_end),
+  ]),
+  
+  # script_skybox_spawn_all
+  #   Spawns all the skyboxes for later use.
+  # Author: sHocK
+  # Called: server
+  # Input: none
+  # Output: none
+  ("skybox_spawn_all", [
+    # Spawn all skyboxes
+    (init_position, pos2),
+    (set_spawn_position, pos2),
+
+    (try_for_range, ":prop_kind", "spr_srp_skybox_day", "spr_srp_skybox_moon" + 1),
+      (spawn_scene_prop, ":prop_kind"),
+    (try_end),
   ]),
 ])
