@@ -14915,4 +14915,378 @@ scripts.extend([
    ])
   ## CUSTOM SERVER SCRIPTS END ##
 
+  # script_get_time_of_day_to_reg0
+  #   Turns the supplied elapsed time into a time of day since midnight (in seconds)
+  # Author: sHocK
+  # Called: client
+  # Input: arg1 = time
+  # Output: reg0 = time of day
+  ("get_time_of_day_to_reg0", [
+    (store_script_param, reg0, 1),
+    (val_mod, reg0, day_duration),
+
+    (val_mul, reg0, hours(24)),
+
+    (set_fixed_point_multiplier, 1),
+    (val_div, reg0, day_duration),
+  ]),
+
+  # script_skybox_set_lighting_for_time
+  #   Sets the scene light for the specified time.
+  # Author: sHocK
+  # Called: client
+  # Input: arg1 = time of day (seconds), arg2 = use postfx
+  # Output: none
+  ("skybox_set_lighting_for_time", [
+    (store_script_param, ":time", 1),
+    (store_script_param, ":postfx_enabled", 2),
+
+    #(display_message, "@set new lighting"),
+    # http://i.imgur.com/HZMQF9k.png
+    # Set lighting and fog
+    (set_fixed_point_multiplier, 100),
+    (try_begin),
+      (is_between, ":time", 0, hours(1)),
+      (set_startup_sun_light, 3, 3, 7),
+      (set_startup_ambient_light, 1, 1, 5),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      (set_fog_distance, 200, 0x00000008),
+    (else_try),
+      (is_between, ":time", hours(1), hours(2)),
+      (set_startup_sun_light, 5, 5, 10),
+      (set_startup_ambient_light, 2, 2, 5),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      (set_fog_distance, 300, 0x00000008),
+    (else_try),
+      (is_between, ":time", hours(2), hours(2.5)),
+      (set_startup_sun_light, 5, 5, 10),
+      (set_startup_ambient_light, 3, 3, 5),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      (set_fog_distance, 400, 0x0000008),
+    (else_try),
+      (is_between, ":time", hours(2.5), hours(3)),
+      (set_startup_sun_light, 6, 5, 10),
+      (set_startup_ambient_light, 4, 3, 5),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      (set_fog_distance, 500, 0x0000008),
+    (else_try),
+      (is_between, ":time", hours(3), hours(4)),
+      (set_startup_sun_light, 10, 5, 12),
+      (set_startup_ambient_light, 8, 5, 10),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      (set_fog_distance, 900, 0x0000008),
+    (else_try),
+      (is_between, ":time", hours(4), hours(4.5)),
+      (set_startup_sun_light, 16, 8, 16),
+      (set_startup_ambient_light, 12, 8, 12),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      (set_fog_distance, 1200),
+    (else_try),
+      (is_between, ":time", hours(4.5), hours(5)),
+      (set_startup_sun_light, 20, 12, 20),
+      (set_startup_ambient_light, 20, 15, 20),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      (set_fog_distance, 1600),
+    (else_try),
+      (is_between, ":time", hours(5), hours(6)),
+      (set_startup_sun_light, 40, 40, 30),
+      (set_startup_ambient_light, 25, 20, 25),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      (set_fog_distance, 1900),
+    (else_try),
+      (is_between, ":time", hours(6), hours(7)),
+      (set_startup_sun_light, 50, 50, 45),
+      (set_startup_ambient_light, 30, 25, 30),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      (set_fog_distance, -1),
+    (else_try),
+      (is_between, ":time", hours(7), hours(8)),
+      (set_startup_sun_light, 60, 60, 55),
+      (set_startup_ambient_light, 30, 30, 30),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      (set_fog_distance, -1),
+    (else_try),
+      (is_between, ":time", hours(8), hours(9)),
+      (set_startup_sun_light, 70, 70, 70),
+      (set_startup_ambient_light, 40, 40, 40),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      (set_fog_distance, -1),
+    (else_try),
+      (is_between, ":time", hours(9), hours(10)),
+      (set_startup_sun_light, 80, 80, 80),
+      (set_startup_ambient_light, 50, 50, 50),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      (set_fog_distance, -1),
+    (else_try),
+      (is_between, ":time", hours(10), hours(11)),
+      (set_startup_sun_light, 100, 90, 90),
+      (set_startup_ambient_light, 60, 60, 60),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      (set_fog_distance, -1),
+    (else_try),
+      (is_between, ":time", hours(11), hours(12)),
+      (set_startup_sun_light, 100, 100, 100),
+      (set_startup_ambient_light, 70, 70, 70),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      (set_fog_distance, -1),
+    (else_try),
+      (is_between, ":time", hours(12), hours(13)),
+      (set_startup_sun_light, 120, 120, 120),
+      (set_startup_ambient_light, 85, 85, 85),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      (set_fog_distance, -1),
+    (else_try),
+      (is_between, ":time", hours(13), hours(14)),
+      (set_startup_sun_light, 100, 100, 100),
+      (set_startup_ambient_light, 70, 70, 70),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      (set_fog_distance, -1),
+    (else_try),
+      (is_between, ":time", hours(14), hours(15)),
+      (set_startup_sun_light, 100, 90, 90),
+      (set_startup_ambient_light, 60, 60, 60),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      (set_fog_distance, -1),
+    (else_try),
+      (is_between, ":time", hours(15), hours(16)),
+      (set_startup_sun_light, 80, 80, 80),
+      (set_startup_ambient_light, 50, 50, 55),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      (set_fog_distance, -1),
+    (else_try),
+      (is_between, ":time", hours(16), hours(17)),
+      (set_startup_sun_light, 70, 70, 70),
+      (set_startup_ambient_light, 40, 40, 60),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      (set_fog_distance, -1),
+    (else_try),
+      (is_between, ":time", hours(17), hours(18)),
+      (set_startup_sun_light, 60, 60, 55),
+      (set_startup_ambient_light, 30, 30, 65),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      (set_fog_distance, -1),
+    (else_try),
+      (is_between, ":time", hours(18), hours(19)),
+      (set_startup_sun_light, 50, 50, 45),
+      (set_startup_ambient_light, 30, 30, 70),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      (set_fog_distance, -1, 0x0000008),
+    (else_try),
+      (is_between, ":time", hours(19), hours(20)),
+      (set_startup_sun_light, 40, 40, 40),
+      (set_startup_ambient_light, 25, 25, 75),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      (set_fog_distance, -1, 0x0000008),
+    (else_try),
+      (is_between, ":time", hours(20), hours(20.5)),
+      (set_startup_sun_light, 40, 30, 30),
+      (set_startup_ambient_light, 25, 20, 65),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      (set_fog_distance, 1900, 0x0000008),
+    (else_try),
+      (is_between, ":time", hours(20.5), hours(21)),
+      (set_startup_sun_light, 35, 25, 25),
+      (set_startup_ambient_light, 30, 20, 50),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      (set_fog_distance, 1750, 0x0000008),
+    (else_try),
+      (is_between, ":time", hours(21), hours(22)),
+      (set_startup_sun_light, 30, 20, 20),
+      (set_startup_ambient_light, 35, 15, 40),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      (set_fog_distance, 1600, 0x0000008),
+    (else_try),
+      (is_between, ":time", hours(22), hours(22.5)),
+      (set_startup_sun_light, 20, 10, 15),
+      (set_startup_ambient_light, 30, 10, 40),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      (set_fog_distance, 1200, 0x0000008),
+    (else_try),
+      (is_between, ":time", hours(22.5), hours(23)),
+      (set_startup_sun_light, 8, 6, 8),
+      (set_startup_ambient_light, 15, 10, 30),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      (set_fog_distance, 900, 0x0000008),
+    (else_try),
+      (is_between, ":time", hours(23), hours(24)),
+      (set_startup_sun_light, 4, 5, 5),
+      (set_startup_ambient_light, 7, 7, 18),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      (set_fog_distance, 500, 0x0000008),
+    (try_end),
+
+    # Set postfx if it's enabled
+    (try_begin),
+      (eq, ":postfx_enabled", 1),
+      (try_begin),
+        (is_between, ":time", hours(6), hours(21)),
+        (set_postfx, pfx_sunset),
+      (else_try),
+        (set_postfx, pfx_night),
+      (try_end),
+    (try_end),
+  ]),
+
+  # script_skybox_init
+  #   Called when first setting the skyboxes. Set them all visible and faded out according to night time.
+  # Author: sHocK
+  # Called: client
+  # Input: none
+  # Output: none
+  ("skybox_init", [
+    (try_for_range, ":prop_kind", spr_srp_skybox_day, spr_srp_skybox_moon + 1),
+      (scene_prop_get_instance, ":prop_instance", ":prop_kind", 0),
+      (scene_prop_set_visibility, ":prop_instance", 1),
+      
+      (try_begin),
+        (this_or_next|eq, ":prop_kind", spr_srp_skybox_night),
+        (this_or_next|eq, ":prop_kind", spr_srp_skybox_moon),
+        (eq, ":prop_kind", spr_srp_skybox_sun),
+        (scene_prop_fade_in, ":prop_instance", 1),
+      (else_try),
+        (scene_prop_fade_out, ":prop_instance", 1),
+      (try_end),
+    (try_end),
+    (display_message, "@[i] Initialised skyboxes"),
+  ]),
+
+  # script_skybox_update
+  #   Sets the current skybox depending on the supplied time of day.
+  # Author: sHocK
+  # Called: client
+  # Input: arg1 = time of day (in seconds)
+  # Output: none
+  ("skybox_update", [
+    (store_script_param, ":time", 1),
+
+    # Set scene settings for current time
+    (try_begin),
+      (eq, "$auto_light_enabled", 1),
+      (call_script, "script_skybox_set_lighting_for_time", ":time", 0),
+    (try_end),
+
+    # Get the skybox prop instances
+    # TODO: Spawn props if not found
+    (try_begin),
+      (scene_prop_get_instance, ":box_day", "spr_srp_skybox_day", 0),
+      (scene_prop_get_instance, ":box_sunrise", "spr_srp_skybox_sunrise", 0),
+      (scene_prop_get_instance, ":box_sunset", "spr_srp_skybox_sunset", 0),
+      # We don't need the night skybox
+      (scene_prop_get_instance, ":sun", "spr_srp_skybox_sun", 0),
+      (scene_prop_get_instance, ":moon", "spr_srp_skybox_moon", 0),
+    (else_try),
+      (display_message, "@[E] Could not get one or more skybox prop instances!"),
+    (try_end),
+
+    # First time setting the skybox, hide everything but night sky.
+    (try_begin),
+      (eq, "$skybox_current", -1),
+      (call_script, "script_skybox_init"),
+    (try_end),
+
+    # Fade in/out the skybox
+    (try_begin),
+      (is_between, ":time", hours(4), hours(20)),
+      (try_begin),
+        (neq, "$skybox_current", "spr_srp_skybox_day"),
+
+        # Set sunset invisible, set sunrise visible
+        (scene_prop_set_visibility, ":box_sunset", 0),
+                
+        (scene_prop_fade_in, ":box_sunrise", 1),
+        (scene_prop_set_visibility, ":box_sunrise", 1),
+
+        # Fade in day sky
+        (scene_prop_set_visibility, ":box_day", 1),
+        (try_begin),
+          (eq, "$skybox_current", -1),
+          (scene_prop_fade_in, ":box_day", 1),
+        (else_try),
+          (scene_prop_fade_in, ":box_day", skybox_fade_time * 100),
+        (try_end),
+        
+        (call_script, "script_skybox_animate_sun_and_moon", ":time"),
+
+        (assign, "$skybox_current", "spr_srp_skybox_day"),
+        (display_message, "@skybox: set to day"),
+      (try_end),
+    (else_try),
+      (is_between, ":time", hours(2), hours(4)),
+      (try_begin),
+        (neq, "$skybox_current", "spr_srp_skybox_sunrise"),
+
+        # Set day and sunset invisible
+        (scene_prop_set_visibility, ":box_day", 0),
+        (scene_prop_set_visibility, ":box_sunset", 0),
+        
+        # Fade in sunrise
+        (scene_prop_set_visibility, ":box_sunrise", 1),
+        (try_begin),
+          (eq, "$skybox_current", -1),
+          (scene_prop_fade_in, ":box_sunrise", 1),
+        (else_try),
+          (scene_prop_fade_in, ":box_sunrise", skybox_fade_time * 100),
+        (try_end),
+
+        (call_script, "script_skybox_animate_sun_and_moon", ":time"),
+
+        (assign, "$skybox_current", "spr_srp_skybox_sunrise"),
+        (display_message, "@skybox: set to sunrise"),
+      (try_end),
+    (else_try),
+      (is_between, ":time", hours(20), hours(22)),
+      (try_begin),
+        (neq, "$skybox_current", "spr_srp_skybox_sunset"),
+        
+        # Set sunset and sunrise invisible, day visible
+        (scene_prop_set_visibility, ":box_sunrise", 0),
+        (scene_prop_set_visibility, ":box_day", 1),
+        (scene_prop_fade_in, ":box_day", 1),
+
+        # Fade in sunset over day
+        (scene_prop_set_visibility, ":box_sunset", 1),
+
+        (try_begin),
+          (eq, "$skybox_current", -1),
+          (scene_prop_fade_in, ":box_sunset", 1),
+        (else_try),
+          (scene_prop_fade_in, ":box_sunset", skybox_fade_time * 100),
+        (try_end),
+
+        (call_script, "script_skybox_animate_sun_and_moon", ":time"),
+
+        (assign, "$skybox_current", "spr_srp_skybox_sunset"),
+        (display_message, "@skybox: set to sunset"),
+      (try_end),
+    (else_try),
+      (this_or_next|is_between, ":time", 0, hours(2)),
+      (is_between, ":time", hours(22), hours(24)),
+      (try_begin),
+        (neq, "$skybox_current", "spr_srp_skybox_night"),
+
+        # Set day invisible and sunrise invisible
+        (scene_prop_set_visibility, ":box_day", 0),
+        (scene_prop_set_visibility, ":box_sunrise", 0),
+        
+        # Fade out sunset to show night sky
+        (try_begin),
+          (eq, "$skybox_current", -1),
+          (scene_prop_set_visibility, ":box_sunset", 0),
+        (else_try),
+          (scene_prop_set_visibility, ":box_sunset", 1),
+          (scene_prop_fade_out, ":box_sunset", skybox_fade_time * 100),
+        (try_end),
+        
+        # Show the moon and hide the sun
+        (scene_prop_set_visibility, ":moon", 1),
+        (scene_prop_set_visibility, ":sun", 0),
+
+        (call_script, "script_skybox_animate_sun_and_moon", ":time"),
+
+        (assign, "$skybox_current", "spr_srp_skybox_night"),
+        (display_message, "@skybox: set to night"),
+      (try_end),
+    (try_end),
+
+  ]),
 ])

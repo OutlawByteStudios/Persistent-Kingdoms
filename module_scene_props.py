@@ -922,6 +922,43 @@ def spr_bank(use_string="str_access", hit_points=2000):
               ]),
             spr_call_script_use_trigger("script_setup_bank_menu"),
             spr_call_script_cancel_use_trigger("script_setup_bank_menu")]
+            
+# For SRP skyboxes
+skybox_triggers = [
+  (ti_on_scene_prop_init, [
+    (store_trigger_param_1, ":instance"),
+    
+    # Scale the skybox and hide it
+    (scene_prop_set_visibility, ":instance", 0),
+    (set_fixed_point_multiplier, 1),
+    (prop_instance_set_scale, ":instance", skybox_scale, skybox_scale, skybox_scale),
+
+    # Get min and max scene coordinates      
+    (get_scene_boundaries, pos0, pos1),
+
+    (set_fixed_point_multiplier, 1000),
+
+    (position_get_x, ":min_x", pos0),
+    (position_get_y, ":min_y", pos0),
+    (position_get_x, ":max_x", pos1),
+    (position_get_y, ":max_y", pos1),
+
+    # Get the center of the scene
+    (val_add, ":max_x", ":min_x"),
+    (val_add, ":max_y", ":min_y"),
+
+    (set_fixed_point_multiplier, 1),
+    (val_div, ":max_x", 2),
+    (val_div, ":max_y", 2),
+
+    # Translate the skybox to the center
+    (init_position, pos0),
+    (set_fixed_point_multiplier, 1000),
+    (position_set_x, pos0, ":max_x"),
+    (position_set_y, pos0, ":max_y"),
+    (prop_instance_set_position, ":instance", pos0),
+  ]),
+]
 
 scene_props = [
   ("invalid_object",0,"question_mark","0", []),
@@ -3830,6 +3867,14 @@ scene_props = [
   ("custom_script_trigger_d",sokf_invisible|spr_use_time(1),"pw_invisible_chest","bo_pw_invisible_chest", []),
   ("custom_script_trigger_e",sokf_invisible|spr_use_time(1),"pw_invisible_chest","bo_pw_invisible_chest", []),
 
+  # [!] don't change the order
+  ("srp_skybox_day", 0, "srp_skybox_day", "0", skybox_triggers),
+  ("srp_skybox_sunrise", 0, "srp_skybox_sunrise", "0", skybox_triggers),
+  ("srp_skybox_sunset", 0, "srp_skybox_sunset", "0", skybox_triggers),
+  ("srp_skybox_night", 0, "srp_skybox_night", "0", skybox_triggers),
+  ("srp_skybox_sun", 0, "srp_skybox_sun", "0", skybox_triggers),
+  ("srp_skybox_moon", 0, "srp_skybox_moon", "0", skybox_triggers),
+  # [!] don't change the order
 ]
 
 def fill_scene_props_list(list_var, trigger_id, modify_function):
