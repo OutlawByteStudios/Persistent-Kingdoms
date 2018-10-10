@@ -185,6 +185,11 @@ after_mission_start_setup = (ti_after_mission_start, 0, 0, [], # spawn and move 
           (call_script, "script_cf_faction_change_relation", ":faction_id", ":target_faction_id", 1),
        (try_end),
     (try_end),
+    #Spawn SRP Skyboxes if wanted
+    (try_begin),
+      #(eq, "$g_day_night_cycle_enabled", 1),
+      (call_script, "script_skybox_spawn_all"),
+    (try_end),
     ])
 
 player_joined = (ti_server_player_joined, 0, 0, [], # server: handle connecting players
@@ -1074,6 +1079,11 @@ render_weather_effects = (0.1, 0, 0, [], # clients: regularly display weather ef
    [(neg|multiplayer_is_server),
     (call_script, "script_cf_render_weather_effects"),
     ])
+    
+skybox_update_interval = (5, 0, 0, [], [
+  (multiplayer_is_server),
+  (call_script, "script_skybox_send_info_to_players"),
+])
 
 def common_triggers(self):
 	return [(ti_before_mission_start, 0, 0, [(assign, "$g_game_type", "mt_" + self)], []),
@@ -1142,6 +1152,8 @@ def common_triggers(self):
     shadow_recalculation,
     adjust_weather_effects,
     render_weather_effects,
+    
+    skybox_update_interval,
     ]
 
 mission_templates = [

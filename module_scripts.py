@@ -1491,6 +1491,13 @@ scripts.extend([
         (eq, ":event_type", server_event_bank_management),
         (store_script_param, "$g_bank_instance_id", 3),
         (start_presentation, "prsnt_bank_menu"),
+      (else_try),
+        (eq, ":event_type", server_event_day_night_cycle_sync),
+        (store_script_param, "$time_of_day", 3),
+        (reset_mission_timer_b),
+        (display_message, "@received"),
+        (call_script, "script_get_time_of_day_to_reg0", "$time_of_day"),
+        (call_script, "script_skybox_update", reg0),
       (try_end),
 
     (else_try), # section of events received by server from the clients
@@ -12549,7 +12556,7 @@ scripts.extend([
     (else_try),
       (assign, ":day_time", 12),
     (try_end),
-    (scene_set_day_time, ":day_time"),
+    (scene_set_day_time, 0),
     (try_begin),
       (scene_prop_get_instance, ":instance_id", "spr_pw_scene_cloud_haze", 0),
       (prop_instance_get_variation_id, ":cloud", ":instance_id"),
@@ -12572,7 +12579,8 @@ scripts.extend([
        (store_add, ":hdr", ":id", 1),
       (try_end),
       (store_sub, ":non_hdr", ":hdr", 1),
-      (set_skybox, ":hdr", ":non_hdr"),
+      #(set_skybox, ":hdr", ":non_hdr"),
+      (set_skybox, -1, -1),
     (try_end),
    ]),
 
@@ -14912,7 +14920,7 @@ scripts.extend([
   ("bank_deposit",
    [
     (server_add_message_to_log, "@deposit"),
-   ])
+   ]),
   ## CUSTOM SERVER SCRIPTS END ##
 
   # script_get_time_of_day_to_reg0
@@ -15134,7 +15142,8 @@ scripts.extend([
   # Input: none
   # Output: none
   ("skybox_init", [
-    (try_for_range, ":prop_kind", "spr_srp_skybox_day", "spr_srp_skybox_moon" + 1),
+    (store_add, ":spr_end", "spr_srp_skybox_moon", 1),
+    (try_for_range, ":prop_kind", "spr_srp_skybox_day", ":spr_end"),
       (scene_prop_get_instance, ":prop_instance", ":prop_kind", 0),
       (scene_prop_set_visibility, ":prop_instance", 1),
       
@@ -15379,8 +15388,44 @@ scripts.extend([
     (init_position, pos2),
     (set_spawn_position, pos2),
 
-    (try_for_range, ":prop_kind", "spr_srp_skybox_day", "spr_srp_skybox_moon" + 1),
+    (store_add, ":spr_end", "spr_srp_skybox_moon", 1),
+    (try_for_range, ":prop_kind", "spr_srp_skybox_day", ":spr_end"),
       (spawn_scene_prop, ":prop_kind"),
+    (try_end),
+  ]),
+  
+  # script_skybox_send_info_to_player
+  #   Sends light information to the specified player.
+  # Author: sHocK
+  # Called: server
+  # Input: arg1 = player
+  # Output: none
+  ("skybox_send_info_to_player", [
+    (store_script_param, ":player", 1),
+    (try_begin),
+      (player_is_active, ":player"),
+
+      (store_mission_timer_b, reg50),
+      (val_add, reg50, "$time_of_day_offset"),
+      (val_mod, reg50, day_duration),
+      (multiplayer_send_int_to_player, ":player", server_event_day_night_cycle_sync, reg50),
+    (try_end),
+  ]),
+
+  # script_skybox_send_info_to_players
+  #   Sends light information to all players.
+  # Author: sHocK
+  # Called: server
+  # Input: none
+  # Output: none
+  ("skybox_send_info_to_players", [
+    (store_mission_timer_b, reg50),
+    #(val_add, reg50, "$time_of_day_offset"),
+    (val_mod, reg50, day_duration),
+    (display_message, "@received"),
+    (try_for_players, ":player"),
+      (player_is_active, ":player"),
+      (multiplayer_send_int_to_player, ":player", server_event_day_night_cycle_sync, reg50),
     (try_end),
   ]),
 ])

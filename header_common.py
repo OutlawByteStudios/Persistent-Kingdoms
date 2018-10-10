@@ -42,6 +42,7 @@ server_event_agent_animation                    = 34
 server_event_inventory_ready                    = 35
 server_event_toggle_walk                        = 36
 server_event_bank_management                    = 37
+server_event_day_night_cycle_sync               = 38
 
 # Add new events here: above if sent from the server, below if from clients.
 
