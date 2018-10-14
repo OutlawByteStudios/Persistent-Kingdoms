@@ -3380,7 +3380,7 @@ scene_props = [
 
   ("cm_buy_flute",spr_buy_item_flags(7),"flute","bo_pw_weapon_small", spr_buy_item_triggers("itm_flute", pos_offset=(0,0,7), resources=["itm_board"], engineer=2)),
   ("cm_buy_vielle",spr_buy_item_flags(7),"vielle","bo_pw_weapon_small", spr_buy_item_triggers("itm_vielle", pos_offset=(0,0,7), resources=["itm_board"], engineer=2)),
-  ("cm_buy_vielle_bow",spr_buy_item_flags(7),"vielle_bow_R","bo_pw_weapon_small", spr_buy_item_triggers("itm_vielle_bow", pos_offset=(0,0,7), resources=["itm_stick"], engineer=2)),
+  ("cm_buy_vielle_bow",spr_buy_item_flags(7),"vielle_bow_R","bo_vielle_bow_R", spr_buy_item_triggers("itm_vielle_bow", pos_offset=(0,0,7), resources=["itm_stick"], engineer=2)),
   
   ("cm_wooden_hut",0,"cm_wooden_hut","bo_cm_wooden_hut", []),
   ("cm_palisade_wall_a",0,"cm_palisade_wall_a","bo_cm_palisade_wall_a", []),
