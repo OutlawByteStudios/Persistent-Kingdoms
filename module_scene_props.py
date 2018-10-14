@@ -3197,6 +3197,8 @@ scene_props = [
   ("cm_buy_green_shirt",spr_buy_item_flags(2),"shirt_b","bo_pw_armor_body", spr_buy_item_triggers("itm_shirt_b", resources=["itm_linen_cloth"], tailoring=1)),
   ("cm_buy_decorated_khergit_vest",spr_buy_item_flags(3),"khergit_vest_d","bo_pw_armor_body", spr_buy_item_triggers("itm_khergit_vest_d", resources=["itm_linen_cloth"], tailoring=2)),
   ("cm_buy_white_khergit_vest",spr_buy_item_flags(3),"khergit_vest_a","bo_pw_armor_body", spr_buy_item_triggers("itm_khergit_vest_a", resources=["itm_linen_cloth"], tailoring=2)),
+  ("cm_buy_blue_kaftan",spr_buy_item_flags(3),"blue_kaftan","bo_pw_armor_body", spr_buy_item_triggers("itm_blue_kaftan", resources=["itm_linen_cloth"], tailoring=2)),
+  ("cm_buy_red_kaftan",spr_buy_item_flags(3),"drz_kaftan","bo_pw_armor_body", spr_buy_item_triggers("itm_drz_kaftan", resources=["itm_linen_cloth"], tailoring=2)),
   ("cm_buy_gold_tourney_armor",spr_buy_item_flags(5),"padded_armor","bo_pw_armor_body", spr_buy_item_triggers("itm_padded_armor", resources=["itm_linen_cloth","itm_leather_piece"], tailoring=1)),
   ("cm_buy_ragged_armor",spr_buy_item_flags(11),"ragged_armour_a","bo_pw_armor_body", spr_buy_item_triggers("itm_ragged_armour_a", resources=["itm_iron_bar_short","itm_linen_cloth"], engineer=3)),
   ("cm_buy_byrnie_with_green_tunic",spr_buy_item_flags(11),"byrnie_e","bo_pw_armor_body", spr_buy_item_triggers("itm_byrnie_e", resources=["itm_iron_bar_short","itm_linen_cloth"], engineer=3)),
@@ -3498,6 +3500,13 @@ scene_props = [
   
   ("cm_noticeboard",0,"cm_noticeboard","bo_cm_noticeboard",[]),
   ("cm_noticeboardwall",0,"cm_noticeboardwall","bo_cm_noticeboardwall",[]),
+  
+  ("cm_town_house_i",0,"srp_town_house_i","srp_town_house_i_bo",[]),
+  ("cm_town_house_m",0,"srp_town_house_m","srp_town_house_m_bo",[]),
+  ("cm_town_house_q",0,"srp_town_house_q","srp_town_house_q_bo",[]),
+  ("cm_town_house_r",0,"srp_town_house_r","srp_town_house_r_bo",[]),
+  ("cm_town_house_w",0,"srp_town_house_w","srp_town_house_w_bo",[]),
+  ("cm_town_house_s",0,"srp_town_house_s","srp_town_house_s_bo",[]),
   
   ("cm_buy_silver_ring_sapphire",spr_buy_item_flags(10),"silver_ring_sapphire_L","bo_pw_weapon_small", spr_buy_item_triggers("itm_silver_ring_sapphire", resources=["itm_silver_nugget"], engineer=6)),
   ("cm_buy_silver_ring_ruby",spr_buy_item_flags(12),"silver_ring_ruby_R","bo_pw_weapon_small", spr_buy_item_triggers("itm_silver_ring_ruby", resources=["itm_silver_nugget"], engineer=6)),
