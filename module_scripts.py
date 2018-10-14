@@ -12556,7 +12556,7 @@ scripts.extend([
     (else_try),
       (assign, ":day_time", 12),
     (try_end),
-    (scene_set_day_time, 0),
+    (scene_set_day_time, 5),
     (try_begin),
       (scene_prop_get_instance, ":instance_id", "spr_pw_scene_cloud_haze", 0),
       (prop_instance_get_variation_id, ":cloud", ":instance_id"),
@@ -12580,7 +12580,8 @@ scripts.extend([
       (try_end),
       (store_sub, ":non_hdr", ":hdr", 1),
       #(set_skybox, ":hdr", ":non_hdr"),
-      (set_skybox, -1, -1),
+      (set_skybox, 0, 1),
+      (display_message, "@set sk"),
     (try_end),
    ]),
 
@@ -15125,7 +15126,7 @@ scripts.extend([
 
     # Set postfx if it's enabled
     (try_begin),
-      (eq, ":postfx_enabled", 1),
+      #(eq, ":postfx_enabled", 1),
       (try_begin),
         (is_between, ":time", hours(6), hours(21)),
         (set_postfx, pfx_sunset),
