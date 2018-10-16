@@ -187,7 +187,8 @@ after_mission_start_setup = (ti_after_mission_start, 0, 0, [], # spawn and move 
     (try_end),
     #Spawn SRP Skyboxes if wanted
     (try_begin),
-      #(eq, "$g_day_night_cycle_enabled", 1),
+      (eq, "$g_day_night_cycle_enabled", 1),
+      (multiplayer_is_server),
       (call_script, "script_skybox_spawn_all"),
     (try_end),
     ])
@@ -1082,6 +1083,7 @@ render_weather_effects = (0.1, 0, 0, [], # clients: regularly display weather ef
     
 skybox_update_interval = (5, 0, 0, [], [
   (multiplayer_is_server),
+  (eq, "$g_day_night_cycle_enabled", 1),
   (call_script, "script_skybox_send_info_to_players"),
 ])
 

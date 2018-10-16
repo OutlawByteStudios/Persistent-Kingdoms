@@ -1495,7 +1495,6 @@ scripts.extend([
         (eq, ":event_type", server_event_day_night_cycle_sync),
         (store_script_param, "$time_of_day", 3),
         (reset_mission_timer_b),
-        (display_message, "@received"),
         (call_script, "script_get_time_of_day_to_reg0", "$time_of_day"),
         (call_script, "script_skybox_update", reg0),
       (try_end),
@@ -2776,6 +2775,9 @@ scripts.extend([
       (eq, ":command", command_limit_officer),
       (call_script, "script_mute_all_players", ":value"),
     (else_try),
+      (eq, ":command", command_limit_sapper),
+      (assign, "$g_day_night_cycle_enabled", ":value"),
+    (else_try),
       (eq, ":command", command_get_max_players),
       (server_get_max_num_players, ":value"),
     (else_try),
@@ -3110,6 +3112,7 @@ scripts.extend([
     (try_end),
     (assign, "$g_chat_overlay_local_buffer_stored", chat_overlay_ring_buffer_begin),
     (assign, "$g_chat_overlay_faction_buffer_stored", chat_overlay_ring_buffer_begin),
+    (assign, "$skybox_current", -1),
     ]),
 
   ("preset_message", # display a message built into the module, using a string id and parameters
@@ -15181,7 +15184,7 @@ scripts.extend([
       (scene_prop_get_instance, ":box_day", "spr_srp_skybox_day", 0),
       (scene_prop_get_instance, ":box_sunrise", "spr_srp_skybox_sunrise", 0),
       (scene_prop_get_instance, ":box_sunset", "spr_srp_skybox_sunset", 0),
-      # We don't need the night skybox
+      (scene_prop_get_instance, ":box_night", "spr_srp_skybox_night", 0),
       (scene_prop_get_instance, ":sun", "spr_srp_skybox_sun", 0),
       (scene_prop_get_instance, ":moon", "spr_srp_skybox_moon", 0),
     (else_try),
@@ -15202,6 +15205,8 @@ scripts.extend([
 
         # Set sunset invisible, set sunrise visible
         (scene_prop_set_visibility, ":box_sunset", 0),
+        (scene_prop_set_visibility, ":sun", 1),
+        (scene_prop_set_visibility, ":moon", 0),
                 
         (scene_prop_fade_in, ":box_sunrise", 1),
         (scene_prop_set_visibility, ":box_sunrise", 1),
@@ -15228,6 +15233,8 @@ scripts.extend([
         # Set day and sunset invisible
         (scene_prop_set_visibility, ":box_day", 0),
         (scene_prop_set_visibility, ":box_sunset", 0),
+        (scene_prop_set_visibility, ":sun", 1),
+        (scene_prop_set_visibility, ":moon", 1),
         
         # Fade in sunrise
         (scene_prop_set_visibility, ":box_sunrise", 1),
@@ -15251,6 +15258,8 @@ scripts.extend([
         # Set sunset and sunrise invisible, day visible
         (scene_prop_set_visibility, ":box_sunrise", 0),
         (scene_prop_set_visibility, ":box_day", 1),
+        (scene_prop_set_visibility, ":sun", 1),
+        (scene_prop_set_visibility, ":moon", 1),
         (scene_prop_fade_in, ":box_day", 1),
 
         # Fade in sunset over day
@@ -15285,6 +15294,15 @@ scripts.extend([
         (else_try),
           (scene_prop_set_visibility, ":box_sunset", 1),
           (scene_prop_fade_out, ":box_sunset", skybox_fade_time * 100),
+        (try_end),
+        
+        # Fade in night
+        (scene_prop_set_visibility, ":box_night", 1),
+        (try_begin),
+          (eq, "$skybox_current", -1),
+          (scene_prop_fade_in, ":box_night", 1),
+        (else_try),
+          (scene_prop_fade_in, ":box_night", skybox_fade_time * 100),
         (try_end),
         
         # Show the moon and hide the sun
@@ -15423,7 +15441,6 @@ scripts.extend([
     (store_mission_timer_b, reg50),
     #(val_add, reg50, "$time_of_day_offset"),
     (val_mod, reg50, day_duration),
-    (display_message, "@received"),
     (try_for_players, ":player"),
       (player_is_active, ":player"),
       (multiplayer_send_int_to_player, ":player", server_event_day_night_cycle_sync, reg50),

@@ -715,7 +715,7 @@ def ingame_hours(t):
 
 
 time_of_day_offset      = ingame_hours(5)
-skybox_fade_time        = 0.1
+skybox_fade_time        = 5
 skybox_scale            = 500
 skybox_check_interval   = 5                # Also updates clients
 
