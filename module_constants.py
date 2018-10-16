@@ -706,7 +706,7 @@ def minutes(t):
     return t * 60
 
 
-day_duration            = hours(0.1)
+day_duration            = hours(1)
 
 
 # Turns t as hours into in-game seconds
@@ -715,7 +715,7 @@ def ingame_hours(t):
 
 
 time_of_day_offset      = ingame_hours(5)
-skybox_fade_time        = 5
+skybox_fade_time        = 100
 skybox_scale            = 500
 skybox_check_interval   = 5                # Also updates clients
 

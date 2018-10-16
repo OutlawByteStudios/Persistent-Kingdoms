@@ -3112,7 +3112,6 @@ scripts.extend([
     (try_end),
     (assign, "$g_chat_overlay_local_buffer_stored", chat_overlay_ring_buffer_begin),
     (assign, "$g_chat_overlay_faction_buffer_stored", chat_overlay_ring_buffer_begin),
-    (assign, "$skybox_current", -1),
     ]),
 
   ("preset_message", # display a message built into the module, using a string id and parameters
@@ -14958,6 +14957,15 @@ scripts.extend([
     # Set lighting and fog
     (set_fixed_point_multiplier, 100),
     (try_begin),
+      (try_begin),
+        (neq, "$g_didid", 1),
+        (set_startup_sun_light, 120, 120, 120),
+        (set_startup_ambient_light, 70, 70, 70),
+        (set_startup_ground_ambient_light, 0, 0, 0),
+        (set_fog_distance, -1),
+        (assign, "$g_didid", 1),
+      (try_end),
+    (else_try),
       (is_between, ":time", 0, hours(1)),
       (set_startup_sun_light, 3, 3, 7),
       (set_startup_ambient_light, 1, 1, 5),
@@ -15129,7 +15137,7 @@ scripts.extend([
 
     # Set postfx if it's enabled
     (try_begin),
-      #(eq, ":postfx_enabled", 1),
+      (eq, ":postfx_enabled", 1),
       (try_begin),
         (is_between, ":time", hours(6), hours(21)),
         (set_postfx, pfx_sunset),
@@ -15146,13 +15154,15 @@ scripts.extend([
   # Input: none
   # Output: none
   ("skybox_init", [
+  
+    
+  
     (store_add, ":spr_end", "spr_srp_skybox_moon", 1),
     (try_for_range, ":prop_kind", "spr_srp_skybox_day", ":spr_end"),
       (scene_prop_get_instance, ":prop_instance", ":prop_kind", 0),
       (scene_prop_set_visibility, ":prop_instance", 1),
       
       (try_begin),
-        (this_or_next|eq, ":prop_kind", "spr_srp_skybox_night"),
         (this_or_next|eq, ":prop_kind", "spr_srp_skybox_moon"),
         (eq, ":prop_kind", "spr_srp_skybox_sun"),
         (scene_prop_fade_in, ":prop_instance", 1),
@@ -15173,10 +15183,11 @@ scripts.extend([
     (store_script_param, ":time", 1),
 
     # Set scene settings for current time
-    (try_begin),
-      (eq, "$auto_light_enabled", 1),
-      (call_script, "script_skybox_set_lighting_for_time", ":time", 0),
-    (try_end),
+    (call_script, "script_skybox_set_lighting_for_time", ":time", 0),
+    #(try_begin),
+      #(eq, "$auto_light_enabled", 1),
+      #(call_script, "script_skybox_set_lighting_for_time", ":time", 0),
+    #(try_end),
 
     # Get the skybox prop instances
     # TODO: Spawn props if not found
@@ -15203,22 +15214,21 @@ scripts.extend([
       (try_begin),
         (neq, "$skybox_current", "spr_srp_skybox_day"),
 
-        # Set sunset invisible, set sunrise visible
         (scene_prop_set_visibility, ":box_sunset", 0),
+        (scene_prop_set_visibility, ":box_night", 0),
         (scene_prop_set_visibility, ":sun", 1),
         (scene_prop_set_visibility, ":moon", 0),
-                
-        (scene_prop_fade_in, ":box_sunrise", 1),
-        (scene_prop_set_visibility, ":box_sunrise", 1),
-
-        # Fade in day sky
+        
         (scene_prop_set_visibility, ":box_day", 1),
         (try_begin),
           (eq, "$skybox_current", -1),
           (scene_prop_fade_in, ":box_day", 1),
+          (scene_prop_set_visibility, ":box_sunrise", 0),
         (else_try),
           (scene_prop_fade_in, ":box_day", skybox_fade_time * 100),
+          (scene_prop_fade_out, ":box_sunrise", skybox_fade_time * 100),
         (try_end),
+        
         
         (call_script, "script_skybox_animate_sun_and_moon", ":time"),
 
@@ -15241,9 +15251,13 @@ scripts.extend([
         (try_begin),
           (eq, "$skybox_current", -1),
           (scene_prop_fade_in, ":box_sunrise", 1),
+          (scene_prop_set_visibility, ":box_night", 0),
         (else_try),
           (scene_prop_fade_in, ":box_sunrise", skybox_fade_time * 100),
+          (scene_prop_set_visibility, ":box_night", 1),
+          (scene_prop_fade_out, ":box_night", skybox_fade_time * 100),
         (try_end),
+        
 
         (call_script, "script_skybox_animate_sun_and_moon", ":time"),
 
@@ -15257,20 +15271,20 @@ scripts.extend([
         
         # Set sunset and sunrise invisible, day visible
         (scene_prop_set_visibility, ":box_sunrise", 0),
-        (scene_prop_set_visibility, ":box_day", 1),
         (scene_prop_set_visibility, ":sun", 1),
         (scene_prop_set_visibility, ":moon", 1),
-        (scene_prop_fade_in, ":box_day", 1),
 
         # Fade in sunset over day
         (scene_prop_set_visibility, ":box_sunset", 1),
-
         (try_begin),
           (eq, "$skybox_current", -1),
           (scene_prop_fade_in, ":box_sunset", 1),
+          (scene_prop_set_visibility, ":box_day", 0),
         (else_try),
           (scene_prop_fade_in, ":box_sunset", skybox_fade_time * 100),
+          (scene_prop_fade_out, ":box_day", skybox_fade_time * 100),
         (try_end),
+        
 
         (call_script, "script_skybox_animate_sun_and_moon", ":time"),
 
@@ -15287,23 +15301,17 @@ scripts.extend([
         (scene_prop_set_visibility, ":box_day", 0),
         (scene_prop_set_visibility, ":box_sunrise", 0),
         
-        # Fade out sunset to show night sky
-        (try_begin),
-          (eq, "$skybox_current", -1),
-          (scene_prop_set_visibility, ":box_sunset", 0),
-        (else_try),
-          (scene_prop_set_visibility, ":box_sunset", 1),
-          (scene_prop_fade_out, ":box_sunset", skybox_fade_time * 100),
-        (try_end),
-        
-        # Fade in night
         (scene_prop_set_visibility, ":box_night", 1),
         (try_begin),
           (eq, "$skybox_current", -1),
           (scene_prop_fade_in, ":box_night", 1),
+          (scene_prop_set_visibility, ":box_sunset", 0),
         (else_try),
           (scene_prop_fade_in, ":box_night", skybox_fade_time * 100),
+          (scene_prop_fade_out, ":box_sunset", skybox_fade_time * 100),
+          (scene_prop_set_visibility, ":box_sunset", 1),
         (try_end),
+        
         
         # Show the moon and hide the sun
         (scene_prop_set_visibility, ":moon", 1),
