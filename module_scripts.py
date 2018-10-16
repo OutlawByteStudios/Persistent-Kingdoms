@@ -14957,15 +14957,6 @@ scripts.extend([
     # Set lighting and fog
     (set_fixed_point_multiplier, 100),
     (try_begin),
-      (try_begin),
-        (neq, "$g_didid", 1),
-        (set_startup_sun_light, 120, 120, 120),
-        (set_startup_ambient_light, 70, 70, 70),
-        (set_startup_ground_ambient_light, 0, 0, 0),
-        (set_fog_distance, -1),
-        (assign, "$g_didid", 1),
-      (try_end),
-    (else_try),
       (is_between, ":time", 0, hours(1)),
       (set_startup_sun_light, 3, 3, 7),
       (set_startup_ambient_light, 1, 1, 5),
@@ -15154,9 +15145,6 @@ scripts.extend([
   # Input: none
   # Output: none
   ("skybox_init", [
-  
-    
-  
     (store_add, ":spr_end", "spr_srp_skybox_moon", 1),
     (try_for_range, ":prop_kind", "spr_srp_skybox_day", ":spr_end"),
       (scene_prop_get_instance, ":prop_instance", ":prop_kind", 0),
@@ -15181,13 +15169,15 @@ scripts.extend([
   # Output: none
   ("skybox_update", [
     (store_script_param, ":time", 1),
-
-    # Set scene settings for current time
-    (call_script, "script_skybox_set_lighting_for_time", ":time", 0),
-    #(try_begin),
-      #(eq, "$auto_light_enabled", 1),
-      #(call_script, "script_skybox_set_lighting_for_time", ":time", 0),
-    #(try_end),
+    
+    (try_begin),
+      (store_mission_timer_a, ":time"),
+      (store_sub, ":time_passed", ":time", "$g_last_lighting_update_time"),
+      (this_or_next|ge, ":time_passed", ingame_hours(1)),
+      (le, "$g_last_lighting_update_time", 0),
+      (call_script, "script_skybox_set_lighting_for_time", ":time", 0),
+      (assign, "$g_last_lighting_update_time", ":time"),
+    (try_end),
 
     # Get the skybox prop instances
     # TODO: Spawn props if not found
@@ -15228,7 +15218,6 @@ scripts.extend([
           (scene_prop_fade_in, ":box_day", skybox_fade_time * 100),
           (scene_prop_fade_out, ":box_sunrise", skybox_fade_time * 100),
         (try_end),
-        
         
         (call_script, "script_skybox_animate_sun_and_moon", ":time"),
 

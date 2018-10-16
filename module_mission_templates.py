@@ -161,6 +161,7 @@ before_mission_start_setup = (ti_before_mission_start, 0, 0, [], # set up basic 
       (call_script, "script_load_profile_options"),
     (try_end),
     (assign, "$skybox_current", -1),
+    (assign, "$g_last_lighting_update_time", -1),
     ])
 
 after_mission_start_setup = (ti_after_mission_start, 0, 0, [], # spawn and move certain things after most other set up is done
