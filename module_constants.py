@@ -90,6 +90,7 @@ suicide_delay                         = 15 # suicide delay time
 #This slot is for the equipment logs
 slot_player_first_spawn_occured       = 65
 #End
+slot_player_custom_banner_mesh_id     = 66
 
 ########################################################
 ##  AGENT SLOTS            #############################
