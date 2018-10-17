@@ -706,7 +706,7 @@ def minutes(t):
     return t * 60
 
 
-day_duration            = hours(1)
+day_duration            = hours(4)
 
 
 # Turns t as hours into in-game seconds
