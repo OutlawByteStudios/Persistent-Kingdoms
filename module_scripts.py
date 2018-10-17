@@ -15161,7 +15161,6 @@ scripts.extend([
         (scene_prop_fade_out, ":prop_instance", 1),
       (try_end),
     (try_end),
-    (display_message, "@[i] Initialised skyboxes"),
   ]),
 
   # script_skybox_update
@@ -15225,7 +15224,6 @@ scripts.extend([
         (call_script, "script_skybox_animate_sun_and_moon", ":time"),
 
         (assign, "$skybox_current", "spr_srp_skybox_day"),
-        (display_message, "@skybox: set to day"),
       (try_end),
     (else_try),
       (is_between, ":time", hours(2), hours(4)),
@@ -15254,7 +15252,6 @@ scripts.extend([
         (call_script, "script_skybox_animate_sun_and_moon", ":time"),
 
         (assign, "$skybox_current", "spr_srp_skybox_sunrise"),
-        (display_message, "@skybox: set to sunrise"),
       (try_end),
     (else_try),
       (is_between, ":time", hours(20), hours(22)),
@@ -15281,7 +15278,6 @@ scripts.extend([
         (call_script, "script_skybox_animate_sun_and_moon", ":time"),
 
         (assign, "$skybox_current", "spr_srp_skybox_sunset"),
-        (display_message, "@skybox: set to sunset"),
       (try_end),
     (else_try),
       (this_or_next|is_between, ":time", 0, hours(2)),
@@ -15312,7 +15308,6 @@ scripts.extend([
         (call_script, "script_skybox_animate_sun_and_moon", ":time"),
 
         (assign, "$skybox_current", "spr_srp_skybox_night"),
-        (display_message, "@skybox: set to night"),
       (try_end),
     (try_end),
 
