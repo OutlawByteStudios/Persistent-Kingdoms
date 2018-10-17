@@ -1497,6 +1497,11 @@ scripts.extend([
         (reset_mission_timer_b),
         (call_script, "script_get_time_of_day_to_reg0", "$time_of_day"),
         (call_script, "script_skybox_update", reg0),
+      (else_try),
+        (eq, ":event_type", server_event_weather_sync),
+        (store_script_param, ":rain_mode", 3),
+        (store_script_param, ":strength", 4),
+        (set_rain, ":rain_mode", ":strength"),
       (try_end),
 
     (else_try), # section of events received by server from the clients
@@ -12558,7 +12563,7 @@ scripts.extend([
     (else_try),
       (assign, ":day_time", 12),
     (try_end),
-    (scene_set_day_time, 5),
+    (scene_set_day_time, ":day_time"),
     (try_begin),
       (scene_prop_get_instance, ":instance_id", "spr_pw_scene_cloud_haze", 0),
       (prop_instance_get_variation_id, ":cloud", ":instance_id"),
@@ -12581,9 +12586,7 @@ scripts.extend([
        (store_add, ":hdr", ":id", 1),
       (try_end),
       (store_sub, ":non_hdr", ":hdr", 1),
-      #(set_skybox, ":hdr", ":non_hdr"),
-      (set_skybox, 0, 1),
-      (display_message, "@set sk"),
+      (set_skybox, ":hdr", ":non_hdr"),
     (try_end),
    ]),
 
