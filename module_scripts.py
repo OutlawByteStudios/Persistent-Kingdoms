@@ -1493,20 +1493,20 @@ scripts.extend([
         (start_presentation, "prsnt_bank_menu"),
       (else_try),
         (eq, ":event_type", server_event_day_night_cycle_sync),
-        (store_script_param, "$time_of_day", 3),
+        (store_script_param, "$g_time_of_day", 3),
         (reset_mission_timer_b),
-        (call_script, "script_get_time_of_day_to_reg0", "$time_of_day"),
-        (call_script, "script_skybox_update", reg0),
-      (else_try),
-        (eq, ":event_type", server_event_day_night_cycle_sync_direct),
-        (store_script_param, ":direct_time", 3),
-        (reset_mission_timer_b),
-        (call_script, "script_skybox_update", ":direct_time"),
+        (call_script, "script_skybox_update", "$g_time_of_day"),
       (else_try),
         (eq, ":event_type", server_event_weather_sync),
         (store_script_param, ":rain_mode", 3),
         (store_script_param, ":strength", 4),
         (set_rain, ":rain_mode", ":strength"),
+      (else_try),
+        (eq, ":event_type", server_event_set_day_duration),
+        (store_script_param, "$g_day_duration", 3),
+        (val_max, "$g_day_duration", hours(0.5)),
+        (store_div, "$g_in_game_hour_in_seconds", "$g_day_duration", 24),
+        (store_mul, "$g_skybox_fade_time", "$g_in_game_hour_in_seconds", 100),
       (try_end),
 
     (else_try), # section of events received by server from the clients
@@ -2787,6 +2787,12 @@ scripts.extend([
     (else_try),
       (eq, ":command", command_limit_sapper),
       (assign, "$g_day_night_cycle_enabled", ":value"),
+    (else_try),
+      (eq, ":command", command_limit_rocket),
+      (assign, "$g_day_duration", ":value"),
+      (val_max, "$g_day_duration", hours(0.5)),
+      (store_div, "$g_in_game_hour_in_seconds", "$g_day_duration", 24),
+      (store_mul, "$g_skybox_fade_time", "$g_in_game_hour_in_seconds", 100),
     (else_try),
       (eq, ":command", command_get_max_players),
       (server_get_max_num_players, ":value"),
@@ -4509,6 +4515,8 @@ scripts.extend([
     (store_mission_timer_a, ":mission_timer"),
     (multiplayer_send_2_int_to_player, ":player_id", server_event_return_game_rules, command_set_server_mission_timer, ":mission_timer"),
     (multiplayer_send_2_int_to_player, ":player_id", server_event_script_message_set_color, "$g_script_message_color"),
+    (multiplayer_send_int_to_player, ":player_id", server_event_set_day_duration, "$g_day_duration"),
+    (call_script, "script_skybox_send_info_to_player", ":player_id"),
     ]),
 
   ("after_client_is_setup", # clients: called after the server has finished sending the initial module data updates
@@ -14934,22 +14942,6 @@ scripts.extend([
    ]),
   ## CUSTOM SERVER SCRIPTS END ##
 
-  # script_get_time_of_day_to_reg0
-  #   Turns the supplied elapsed time into a time of day since midnight (in seconds)
-  # Author: sHocK
-  # Called: client
-  # Input: arg1 = time
-  # Output: reg0 = time of day
-  ("get_time_of_day_to_reg0", [
-    (store_script_param, reg0, 1),
-    (val_mod, reg0, day_duration),
-
-    (val_mul, reg0, hours(24)),
-
-    (set_fixed_point_multiplier, 1),
-    (val_div, reg0, day_duration),
-  ]),
-
   # script_skybox_set_lighting_for_time
   #   Sets the scene light for the specified time.
   # Author: sHocK
@@ -15157,14 +15149,7 @@ scripts.extend([
     (try_for_range, ":prop_kind", "spr_srp_skybox_day", ":spr_end"),
       (scene_prop_get_instance, ":prop_instance", ":prop_kind", 0),
       (scene_prop_set_visibility, ":prop_instance", 1),
-      
-      (try_begin),
-        (this_or_next|eq, ":prop_kind", "spr_srp_skybox_moon"),
-        (eq, ":prop_kind", "spr_srp_skybox_sun"),
-        (scene_prop_fade_in, ":prop_instance", 1),
-      (else_try),
-        (scene_prop_fade_out, ":prop_instance", 1),
-      (try_end),
+      (scene_prop_fade_in, ":prop_instance", 1),
     (try_end),
   ]),
 
@@ -15177,13 +15162,16 @@ scripts.extend([
   ("skybox_update", [
     (store_script_param, ":time", 1),
     
+    (assign, reg31, ":time"),
+    (display_message, "@Time: {reg31}"),
+    
     (try_begin),
-      (store_mission_timer_a, ":time"),
-      (store_sub, ":time_passed", ":time", "$g_last_lighting_update_time"),
-      (this_or_next|ge, ":time_passed", ingame_hours(1)),
+      (store_mission_timer_a, ":now"),
+      (store_sub, ":time_passed", ":now", "$g_last_lighting_update_time"),
+      (this_or_next|ge, ":time_passed", "$g_in_game_hour_in_seconds"),
       (le, "$g_last_lighting_update_time", 0),
       (call_script, "script_skybox_set_lighting_for_time", ":time", 0),
-      (assign, "$g_last_lighting_update_time", ":time"),
+      (assign, "$g_last_lighting_update_time", ":now"),
     (try_end),
 
     # Get the skybox prop instances
@@ -15199,7 +15187,7 @@ scripts.extend([
       (display_message, "@[E] Could not get one or more skybox prop instances!"),
     (try_end),
 
-    # First time setting the skybox, hide everything but night sky.
+    # First time setting the skybox, hide everything but moon and sun
     (try_begin),
       (eq, "$skybox_current", -1),
       (call_script, "script_skybox_init"),
@@ -15222,13 +15210,14 @@ scripts.extend([
           (scene_prop_fade_in, ":box_day", 1),
           (scene_prop_set_visibility, ":box_sunrise", 0),
         (else_try),
-          (scene_prop_fade_in, ":box_day", skybox_fade_time * 100),
-          (scene_prop_fade_out, ":box_sunrise", skybox_fade_time * 100),
+          (scene_prop_fade_in, ":box_day", "$g_skybox_fade_time"),
+          (scene_prop_fade_out, ":box_sunrise", "$g_skybox_fade_time"),
         (try_end),
         
         (call_script, "script_skybox_animate_sun_and_moon", ":time"),
 
         (assign, "$skybox_current", "spr_srp_skybox_day"),
+        (display_message, "@Day"),
       (try_end),
     (else_try),
       (is_between, ":time", hours(2), hours(4)),
@@ -15248,15 +15237,15 @@ scripts.extend([
           (scene_prop_fade_in, ":box_sunrise", 1),
           (scene_prop_set_visibility, ":box_night", 0),
         (else_try),
-          (scene_prop_fade_in, ":box_sunrise", skybox_fade_time * 100),
+          (scene_prop_fade_in, ":box_sunrise", "$g_skybox_fade_time"),
           (scene_prop_set_visibility, ":box_night", 1),
-          (scene_prop_fade_out, ":box_night", skybox_fade_time * 100),
+          (scene_prop_fade_out, ":box_night", "$g_skybox_fade_time"),
         (try_end),
-        
 
         (call_script, "script_skybox_animate_sun_and_moon", ":time"),
-
+        
         (assign, "$skybox_current", "spr_srp_skybox_sunrise"),
+        (display_message, "@Sunrise"),
       (try_end),
     (else_try),
       (is_between, ":time", hours(20), hours(22)),
@@ -15264,6 +15253,7 @@ scripts.extend([
         (neq, "$skybox_current", "spr_srp_skybox_sunset"),
         
         # Set sunset and sunrise invisible, day visible
+        (scene_prop_set_visibility, ":box_night", 0),
         (scene_prop_set_visibility, ":box_sunrise", 0),
         (scene_prop_set_visibility, ":sun", 1),
         (scene_prop_set_visibility, ":moon", 1),
@@ -15275,14 +15265,14 @@ scripts.extend([
           (scene_prop_fade_in, ":box_sunset", 1),
           (scene_prop_set_visibility, ":box_day", 0),
         (else_try),
-          (scene_prop_fade_in, ":box_sunset", skybox_fade_time * 100),
-          (scene_prop_fade_out, ":box_day", skybox_fade_time * 100),
+          (scene_prop_fade_in, ":box_sunset", "$g_skybox_fade_time"),
+          (scene_prop_fade_out, ":box_day", "$g_skybox_fade_time"),
         (try_end),
         
-
         (call_script, "script_skybox_animate_sun_and_moon", ":time"),
 
         (assign, "$skybox_current", "spr_srp_skybox_sunset"),
+        (display_message, "@Sunset"),
       (try_end),
     (else_try),
       (this_or_next|is_between, ":time", 0, hours(2)),
@@ -15300,22 +15290,21 @@ scripts.extend([
           (scene_prop_fade_in, ":box_night", 1),
           (scene_prop_set_visibility, ":box_sunset", 0),
         (else_try),
-          (scene_prop_fade_in, ":box_night", skybox_fade_time * 100),
-          (scene_prop_fade_out, ":box_sunset", skybox_fade_time * 100),
+          (scene_prop_fade_in, ":box_night", "$g_skybox_fade_time"),
+          (scene_prop_fade_out, ":box_sunset", "$g_skybox_fade_time"),
           (scene_prop_set_visibility, ":box_sunset", 1),
         (try_end),
-        
         
         # Show the moon and hide the sun
         (scene_prop_set_visibility, ":moon", 1),
         (scene_prop_set_visibility, ":sun", 0),
-
+        
         (call_script, "script_skybox_animate_sun_and_moon", ":time"),
 
         (assign, "$skybox_current", "spr_srp_skybox_night"),
+        (display_message, "@Night"),
       (try_end),
     (try_end),
-
   ]),
   
   # script_skybox_animate_sun_and_moon
@@ -15358,7 +15347,8 @@ scripts.extend([
       (prop_instance_set_position, ":sun", pos10),
 
       # It takes 27 in-game hours to rotate the sun by 270 degrees
-      (prop_instance_rotate_to_position, ":sun", pos10, ingame_hours(27) * 100, 270 * 100),
+      (store_mul, ":rotation_duration", "$g_in_game_hour_in_seconds", 27 * 100),
+      (prop_instance_rotate_to_position, ":sun", pos10, ":rotation_duration", 270 * 100),
     (else_try),
       # Not the right time for the sun to start animating.
 
@@ -15368,6 +15358,8 @@ scripts.extend([
       (prop_instance_set_position, ":sun", pos10),
     (try_end),
 
+    # Calculate the angles
+    (set_fixed_point_multiplier, 1),
 
     # Moon angle (only show moon if it's night)
     (try_begin),
@@ -15385,7 +15377,8 @@ scripts.extend([
       (prop_instance_set_position, ":moon", pos10),
 
       # It takes 9 in-game hours to rotate the moon by 270 degrees
-      (prop_instance_rotate_to_position, ":moon", pos10, ingame_hours(9) * 100, 270 * 100),
+      (store_mul, ":rotation_duration", "$g_in_game_hour_in_seconds", 9 * 100),
+      (prop_instance_rotate_to_position, ":moon", pos10, ":rotation_duration", 270 * 100),
     (else_try),
       # Not the right time for the moon to start animating.
         
@@ -15420,14 +15413,16 @@ scripts.extend([
   # Input: arg1 = player
   # Output: none
   ("skybox_send_info_to_player", [
-    (store_script_param, ":player", 1),
+    (store_script_param, ":player_id", 1),
+    (store_mission_timer_b, ":day_time"),
+    (val_mod, ":day_time", hours(24)),
+    (val_mul, ":day_time", hours(24)),
+    (val_div, ":day_time", "$g_day_duration"),
+    (val_mod, ":day_time", hours(24)),
+    
     (try_begin),
-      (player_is_active, ":player"),
-
-      (store_mission_timer_b, reg50),
-      (val_add, reg50, "$time_of_day_offset"),
-      (val_mod, reg50, day_duration),
-      (multiplayer_send_int_to_player, ":player", server_event_day_night_cycle_sync, reg50),
+      (player_is_active, ":player_id"),
+      (multiplayer_send_int_to_player, ":player_id", server_event_day_night_cycle_sync, ":day_time"),
     (try_end),
   ]),
 
@@ -15438,12 +15433,15 @@ scripts.extend([
   # Input: none
   # Output: none
   ("skybox_send_info_to_players", [
-    (store_mission_timer_b, reg50),
-    #(val_add, reg50, "$time_of_day_offset"),
-    (val_mod, reg50, day_duration),
-    (try_for_players, ":player"),
-      (player_is_active, ":player"),
-      (multiplayer_send_int_to_player, ":player", server_event_day_night_cycle_sync, reg50),
+    (store_mission_timer_b, ":day_time"),
+    (val_mod, ":day_time", hours(24)),
+    (val_mul, ":day_time", hours(24)),
+    (val_div, ":day_time", "$g_day_duration"),
+    (val_mod, ":day_time", hours(24)),
+    
+    (try_for_players, ":player_id"),
+      (player_is_active, ":player_id"),
+      (multiplayer_send_int_to_player, ":player_id", server_event_day_night_cycle_sync, ":day_time"),
     (try_end),
   ]),
 ])

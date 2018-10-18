@@ -705,17 +705,6 @@ def hours(t):
 def minutes(t):
     return t * 60
 
-
-day_duration            = hours(4)
-
-
-# Turns t as hours into in-game seconds
-def ingame_hours(t):
-    return (day_duration / 24) * t
-
-
-time_of_day_offset      = ingame_hours(5)
-skybox_fade_time        = ingame_hours(1)
 skybox_scale            = 450
 skybox_check_interval   = 5                # Also updates clients
 
@@ -728,6 +717,7 @@ pfx_sunny = 5
 pfx_cloudy = 6
 pfx_overcast = 7
 pfx_high_contrast = 8
+############################
 
 from header_common import *
 
