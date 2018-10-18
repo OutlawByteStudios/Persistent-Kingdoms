@@ -3600,6 +3600,10 @@ scripts.extend([
       (player_is_active, ":player_id"),
       (player_get_slot, ":player_faction_id", ":player_id", slot_player_faction_id),
       (try_begin),
+        #Custom banners set by server side
+        (player_slot_ge, ":player_id", slot_player_custom_banner_mesh_id, 1),
+        (player_get_slot, ":banner_mesh", ":player_id", slot_player_custom_banner_mesh_id),
+      (else_try),
         (ge, ":player_faction_id", castle_factions_begin),
         (faction_get_slot, ":banner_mesh", ":player_faction_id", slot_faction_banner_mesh),
         (gt, ":banner_mesh", 0),
