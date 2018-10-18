@@ -1494,6 +1494,10 @@ scripts.extend([
       (else_try),
         (eq, ":event_type", server_event_day_night_cycle_sync),
         (store_script_param, "$g_time_of_day", 3),
+        (store_script_param, "$g_day_duration", 4),
+        (val_max, "$g_day_duration", hours(0.5)),
+        (store_div, "$g_in_game_hour_in_seconds", "$g_day_duration", 24),
+        (store_mul, "$g_skybox_fade_time", "$g_in_game_hour_in_seconds", 100),
         (reset_mission_timer_b),
         (call_script, "script_skybox_update", "$g_time_of_day"),
       (else_try),
@@ -1501,12 +1505,6 @@ scripts.extend([
         (store_script_param, ":rain_mode", 3),
         (store_script_param, ":strength", 4),
         (set_rain, ":rain_mode", ":strength"),
-      (else_try),
-        (eq, ":event_type", server_event_set_day_duration),
-        (store_script_param, "$g_day_duration", 3),
-        (val_max, "$g_day_duration", hours(0.5)),
-        (store_div, "$g_in_game_hour_in_seconds", "$g_day_duration", 24),
-        (store_mul, "$g_skybox_fade_time", "$g_in_game_hour_in_seconds", 100),
       (try_end),
 
     (else_try), # section of events received by server from the clients
@@ -15162,9 +15160,6 @@ scripts.extend([
   ("skybox_update", [
     (store_script_param, ":time", 1),
     
-    (assign, reg31, ":time"),
-    (display_message, "@Time: {reg31}"),
-    
     (try_begin),
       (store_mission_timer_a, ":now"),
       (store_sub, ":time_passed", ":now", "$g_last_lighting_update_time"),
@@ -15217,7 +15212,7 @@ scripts.extend([
         (call_script, "script_skybox_animate_sun_and_moon", ":time"),
 
         (assign, "$skybox_current", "spr_srp_skybox_day"),
-        (display_message, "@Day"),
+        (display_message, "@Time: Day"),
       (try_end),
     (else_try),
       (is_between, ":time", hours(2), hours(4)),
@@ -15245,7 +15240,7 @@ scripts.extend([
         (call_script, "script_skybox_animate_sun_and_moon", ":time"),
         
         (assign, "$skybox_current", "spr_srp_skybox_sunrise"),
-        (display_message, "@Sunrise"),
+        (display_message, "@Time: Sunrise"),
       (try_end),
     (else_try),
       (is_between, ":time", hours(20), hours(22)),
@@ -15272,7 +15267,7 @@ scripts.extend([
         (call_script, "script_skybox_animate_sun_and_moon", ":time"),
 
         (assign, "$skybox_current", "spr_srp_skybox_sunset"),
-        (display_message, "@Sunset"),
+        (display_message, "@Time: Sunset"),
       (try_end),
     (else_try),
       (this_or_next|is_between, ":time", 0, hours(2)),
@@ -15302,7 +15297,7 @@ scripts.extend([
         (call_script, "script_skybox_animate_sun_and_moon", ":time"),
 
         (assign, "$skybox_current", "spr_srp_skybox_night"),
-        (display_message, "@Night"),
+        (display_message, "@Time: Night"),
       (try_end),
     (try_end),
   ]),
@@ -15422,7 +15417,7 @@ scripts.extend([
     
     (try_begin),
       (player_is_active, ":player_id"),
-      (multiplayer_send_int_to_player, ":player_id", server_event_day_night_cycle_sync, ":day_time"),
+      (multiplayer_send_int_to_player, ":player_id", server_event_day_night_cycle_sync, ":day_time", "$g_day_duration"),
     (try_end),
   ]),
 
@@ -15441,7 +15436,7 @@ scripts.extend([
     
     (try_for_players, ":player_id"),
       (player_is_active, ":player_id"),
-      (multiplayer_send_int_to_player, ":player_id", server_event_day_night_cycle_sync, ":day_time"),
+      (multiplayer_send_2_int_to_player, ":player_id", server_event_day_night_cycle_sync, ":day_time", "$g_day_duration"),
     (try_end),
   ]),
 ])
