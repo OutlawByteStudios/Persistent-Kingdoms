@@ -4513,7 +4513,6 @@ scripts.extend([
     (store_mission_timer_a, ":mission_timer"),
     (multiplayer_send_2_int_to_player, ":player_id", server_event_return_game_rules, command_set_server_mission_timer, ":mission_timer"),
     (multiplayer_send_2_int_to_player, ":player_id", server_event_script_message_set_color, "$g_script_message_color"),
-    (multiplayer_send_int_to_player, ":player_id", server_event_set_day_duration, "$g_day_duration"),
     (call_script, "script_skybox_send_info_to_player", ":player_id"),
     ]),
 
