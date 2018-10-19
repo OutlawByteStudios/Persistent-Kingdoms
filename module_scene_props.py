@@ -931,7 +931,7 @@ skybox_triggers = [
     # Scale the skybox and hide it
     (scene_prop_set_visibility, ":instance", 0),
     (set_fixed_point_multiplier, 1),
-    (prop_instance_set_scale, ":instance", skybox_scale, skybox_scale, skybox_scale),
+    (prop_instance_set_scale, ":instance", "$g_skybox_scale", "$g_skybox_scale", "$g_skybox_scale"),
 
     # Get min and max scene coordinates      
     (get_scene_boundaries, pos0, pos1),

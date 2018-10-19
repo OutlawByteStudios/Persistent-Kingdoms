@@ -167,6 +167,10 @@ before_mission_start_setup = (ti_before_mission_start, 0, 0, [], # set up basic 
       (assign, "$g_day_duration", hours(0.5)),
       (store_div, "$g_in_game_hour_in_seconds", "$g_day_duration", 24),
     (try_end),
+    (try_begin),
+      (lt, "$g_skybox_scale", 1),
+      (assign, "$g_skybox_scale", skybox_scale),
+    (try_end),
     ])
 
 after_mission_start_setup = (ti_after_mission_start, 0, 0, [], # spawn and move certain things after most other set up is done
