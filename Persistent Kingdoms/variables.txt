@@ -21,6 +21,7 @@ g_presentation_credits_obj_8_alpha
 g_presentation_credits_obj_9_alpha
 g_game_type
 g_initial_stockpile_multiplier
+g_skybox_scale
 g_presentation_credits_obj_0
 g_presentation_credits_obj_0_alpha
 g_presentation_obj_profile_options_done
