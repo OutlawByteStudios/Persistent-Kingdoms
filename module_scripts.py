@@ -4521,7 +4521,10 @@ scripts.extend([
     (store_mission_timer_a, ":mission_timer"),
     (multiplayer_send_2_int_to_player, ":player_id", server_event_return_game_rules, command_set_server_mission_timer, ":mission_timer"),
     (multiplayer_send_2_int_to_player, ":player_id", server_event_script_message_set_color, "$g_script_message_color"),
-    (call_script, "script_skybox_send_info_to_player", ":player_id"),
+    (try_begin),
+      (eq, "$g_day_night_cycle_enabled", 1),
+      (call_script, "script_skybox_send_info_to_player", ":player_id"),
+    (try_end),
     ]),
 
   ("after_client_is_setup", # clients: called after the server has finished sending the initial module data updates
