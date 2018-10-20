@@ -694,6 +694,32 @@ display_name_labels_with_faction = 1
 display_name_labels = 2
 display_basic_name_labels = 3
 
+#===========================================================================
+#   SRP Skyboxes, time and weather
+#===========================================================================
+
+# Turns t as hours into seconds
+def hours(t):
+    return t * 60 * 60
+
+# Turns t as minutes into seconds
+def minutes(t):
+    return t * 60
+
+skybox_scale            = 450
+skybox_check_interval   = 5                # Also updates clients
+
+pfx_default = 0
+pfx_map_params = 1
+pfx_indoors = 2
+pfx_sunset = 3
+pfx_night = 4
+pfx_sunny = 5
+pfx_cloudy = 6
+pfx_overcast = 7
+pfx_high_contrast = 8
+############################
+
 from header_common import *
 
 profile_options = [ # global flag variables for options stored in a player profile

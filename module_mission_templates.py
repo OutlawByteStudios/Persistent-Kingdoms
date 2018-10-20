@@ -160,6 +160,17 @@ before_mission_start_setup = (ti_before_mission_start, 0, 0, [], # set up basic 
     (else_try),
       (call_script, "script_load_profile_options"),
     (try_end),
+    (assign, "$skybox_current", -1),
+    (assign, "$g_last_lighting_update_time", -1),
+    (try_begin),
+      (lt, "$g_day_duration", 1),
+      (assign, "$g_day_duration", hours(0.5)),
+      (store_div, "$g_in_game_hour_in_seconds", "$g_day_duration", 24),
+    (try_end),
+    (try_begin),
+      (lt, "$g_skybox_scale", 1),
+      (assign, "$g_skybox_scale", skybox_scale),
+    (try_end),
     ])
 
 after_mission_start_setup = (ti_after_mission_start, 0, 0, [], # spawn and move certain things after most other set up is done
@@ -184,6 +195,12 @@ after_mission_start_setup = (ti_after_mission_start, 0, 0, [], # spawn and move 
           (neq, ":faction_id", ":target_faction_id"),
           (call_script, "script_cf_faction_change_relation", ":faction_id", ":target_faction_id", 1),
        (try_end),
+    (try_end),
+    #Spawn SRP Skyboxes if wanted
+    (try_begin),
+      (eq, "$g_day_night_cycle_enabled", 1),
+      (multiplayer_is_server),
+      (call_script, "script_skybox_spawn_all"),
     (try_end),
     ])
 
@@ -1074,6 +1091,12 @@ render_weather_effects = (0.1, 0, 0, [], # clients: regularly display weather ef
    [(neg|multiplayer_is_server),
     (call_script, "script_cf_render_weather_effects"),
     ])
+    
+skybox_update_interval = (5, 0, 0, [], [
+  (multiplayer_is_server),
+  (eq, "$g_day_night_cycle_enabled", 1),
+  (call_script, "script_skybox_send_info_to_players"),
+])
 
 def common_triggers(self):
 	return [(ti_before_mission_start, 0, 0, [(assign, "$g_game_type", "mt_" + self)], []),
@@ -1142,6 +1165,8 @@ def common_triggers(self):
     shadow_recalculation,
     adjust_weather_effects,
     render_weather_effects,
+    
+    skybox_update_interval,
     ]
 
 mission_templates = [
