@@ -1076,7 +1076,7 @@ items = [
 ["claymore", "Claymore", [("claymore", 0)], itp_type_two_handed_wpn|itp_two_handed|itp_primary, itc_greatsword|itcf_carry_sword_back,
  4280, weight(3.0)|difficulty(15)|spd_rtng(96)|weapon_length(118)|swing_damage(43, cut)|thrust_damage(25, pierce), imodbits_sword_high], 
 ["executioners_axe", "Executioner's Axe", [("executioners_axe",0)], itp_type_two_handed_wpn|itp_no_parry|itp_cant_use_on_horseback|itp_primary|itp_bonus_against_shield|itp_wooden_parry|itp_two_handed|itp_unbalanced, itc_nodachi|itcf_carry_axe_back,
- 4610, weight(3.35)|difficulty(15)|spd_rtng(55)|weapon_length(83)|swing_damage(48, cut)|thrust_damage(0, pierce),imodbits_polearm],
+ 4610, weight(3.35)|difficulty(15)|spd_rtng(45)|weapon_length(83)|swing_damage(48, cut)|thrust_damage(0, pierce),imodbits_polearm],
 
 ["battle_fork", "Battle Fork", [("battle_fork",0)], itp_type_polearm|itp_offset_lance|itp_primary|itp_wooden_parry,itc_staff, 
  610, weight(2.2)|difficulty(9)|spd_rtng(85)|weapon_length(144)|swing_damage(15, blunt)|thrust_damage(22, pierce),imodbits_polearm],
