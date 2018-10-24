@@ -1479,11 +1479,11 @@ items = [
  
 ["silver_ring_sapphire","Silver Ring with Sapphire", [("silver_ring_sapphire_L",0)], itp_type_hand_armor|itp_force_show_left_hand|itp_force_show_right_hand,0,
  490, weight(0.01)|body_armor(0)|difficulty(0),imodbits_armor],
-["silver_ring_ruby","Silver Ring with Ruby", [("silver_ring_ruby_L",0)], itp_type_hand_armor|itp_force_show_left_hand|itp_force_show_right_hand,0,
+["silver_ring_ruby","Silver Ring with Ruby", [("silver_ring_ruby_L",0),("silver_ring_ruby_R",ixmesh_inventory)], itp_type_hand_armor|itp_force_show_left_hand|itp_force_show_right_hand,0,
  590, weight(0.01)|body_armor(0)|difficulty(0),imodbits_armor],
 ["gold_ring_sapphire","Gold Ring with Sapphire", [("gold_ring_sapphire_L",0)], itp_type_hand_armor|itp_force_show_left_hand|itp_force_show_right_hand,0,
  890, weight(0.01)|body_armor(0)|difficulty(0),imodbits_armor],
-["gold_ring_ruby","Gold Ring with Ruby", [("gold_ring_ruby_L",0)], itp_type_hand_armor|itp_force_show_left_hand|itp_force_show_right_hand,0,
+["gold_ring_ruby","Gold Ring with Ruby", [("gold_ring_ruby_L",0),("gold_ring_ruby_R",ixmesh_inventory)], itp_type_hand_armor|itp_force_show_left_hand|itp_force_show_right_hand,0,
  1290, weight(0.01)|body_armor(0)|difficulty(0),imodbits_armor],
 
 ["gold_earrings", "Golden Earrings", [("gold_earrings",0)], itp_type_head_armor|itp_doesnt_cover_hair,0,
