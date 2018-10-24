@@ -1499,7 +1499,7 @@ scripts.extend([
         (val_max, "$g_day_duration", hours(0.5)),
         (store_div, "$g_in_game_hour_in_seconds", "$g_day_duration", 24),
         #(store_mul, "$g_skybox_fade_time", "$g_in_game_hour_in_seconds", 100),
-        (assign, "$g_skybox_fade_time", 90 * 100), #90 seconds
+        (assign, "$g_skybox_fade_time", 180 * 1000), #90 seconds
         (reset_mission_timer_b),
         (call_script, "script_skybox_update", "$g_time_of_day"),
       (else_try),
