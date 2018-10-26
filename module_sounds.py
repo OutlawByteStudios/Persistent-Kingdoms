@@ -242,19 +242,32 @@ sounds = [
  ("everything_has_a_price", sf_priority_10|sf_vol_10|sf_stream_from_hd, ["encounter_bandit_16.ogg"]),
  ("slit_your_throat", sf_priority_10|sf_vol_10|sf_stream_from_hd, ["encounter_bandit_9.ogg"]),
 
- ("lute_1", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["lute_1.mp3"]),
- ("lute_2", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["lute_2.mp3"]),
- ("lute_3", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["lute_3.mp3"]),
- ("lute_4", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["lute_4.mp3"]),
+ ("lute_1", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["lute_1.ogg"]),
+ ("lute_2", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["lute_2.ogg"]),
+ ("lute_3", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["lute_3.ogg"]),
+ ("lute_4", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["lute_4.ogg"]),
 
- ("lyre_1", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["lyre_1.mp3"]),
- ("lyre_2", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["lyre_2.mp3"]),
- ("lyre_3", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["lyre_3.mp3"]),
- ("lyre_4", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["lyre_4.mp3"]),
+ ("lyre_1", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["lyre_1.ogg"]),
+ ("lyre_2", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["lyre_2.ogg"]),
+ ("lyre_3", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["lyre_3.ogg"]),
+ ("lyre_4", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["lyre_4.ogg"]),
+ 
+ ("flute_1", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["flute_1.ogg"]),
+ ("flute_2", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["flute_2.ogg"]),
+ ("flute_3", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["flute_3.ogg"]),
+ ("flute_4", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["flute_4.ogg"]),
+ 
+ ("vielle_1", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["vielle_1.ogg"]),
+ ("vielle_2", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["vielle_2.ogg"]),
+ ("vielle_3", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["vielle_3.ogg"]),
+ ("vielle_4", sf_priority_4 | sf_vol_7 | sf_stream_from_hd, ["vielle_4.ogg"]),
 
  ("horncharge", sf_priority_15 | sf_vol_12 | sf_stream_from_hd, ["horncharge.ogg"]),
  ("hornregroup", sf_priority_15 | sf_vol_12 | sf_stream_from_hd, ["hornregroup.ogg"]),
  ("hornretreat", sf_priority_15 | sf_vol_12 | sf_stream_from_hd, ["hornretreat.ogg"]),
+ 
+ ("pig_sound", sf_priority_6|sf_vol_12, ["pig_sound.ogg"]),
+ ("pig_slaughter", sf_priority_9|sf_vol_12, ["pig_slaughter.ogg"]),
 
  ("sounds_end", 0, []),
 ]

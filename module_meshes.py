@@ -69,8 +69,6 @@ meshes = [
   ("tableau_mesh_heraldic_armor_c", 0, "fixed_tableau_mesh_heraldic_armor_c",  0, 0, 0, 0, 0, 0, 1, 1, 1),
   ("tableau_mesh_heraldic_armor_d", 0, "fixed_tableau_mesh_heraldic_armor_d",  0, 0, 0, 0, 0, 0, 1, 1, 1),
 
-  ("tableau_mesh_heraldic_charger", 0, "tableau_mesh_heraldic_charger", 0, 0, 0, 0, 0, 0, 1, 1, 1),
-
   ("banner_a01", 0, "pw_banner_a01", 0, 0, 0, -90, 0, 0, 1, 1, 1),
   ("banner_a02", 0, "pw_banner_a02", 0, 0, 0, -90, 0, 0, 1, 1, 1),
   ("banner_a03", 0, "pw_banner_a03", 0, 0, 0, -90, 0, 0, 1, 1, 1),
@@ -418,6 +416,8 @@ meshes = [
   ("tableau_mesh_colored_helmets_new_b", 0, "tableau_mesh_colored_helmets_new_b",  0, 0, 0, 0, 0, 0, 1, 1, 1),
   ("tableau_mesh_colored_helmets_new_d", 0, "tableau_mesh_colored_helmets_new_d",  0, 0, 0, 0, 0, 0, 1, 1, 1),
   ("tableau_mesh_colored_helmets_new_e", 0, "tableau_mesh_colored_helmets_new_e",  0, 0, 0, 0, 0, 0, 1, 1, 1),
+  
+  ("tableau_mesh_early_transitional_heraldic", 0, "tableau_mesh_early_transitional_heraldic",  0, 0, 0, 0, 0, 0, 1, 1, 1),
 
   ("pw_stats_chart_commoners", 0, "pw_stats_chart_commoners", 0, 0, 0, 0, 0, 0, 1, 1, 1),
   ("pw_stats_chart_outlaws", 0, "pw_stats_chart_outlaws", 0, 0, 0, 0, 0, 0, 1, 1, 1),

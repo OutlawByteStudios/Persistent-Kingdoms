@@ -24,6 +24,33 @@ import math
 scripts = []
 scripts.extend([
 
+  ("death_cam", [
+    (store_script_param, ":agent_id", 1),
+    (try_begin),
+      (neg|multiplayer_is_dedicated_server),
+      (eq, "$g_actual_ghost_mode", 3),
+      (multiplayer_get_my_player, ":my_player_id"),
+      (player_get_agent_id, ":my_agent_id", ":my_player_id"),
+      (eq, ":agent_id", ":my_agent_id"),
+      (agent_get_position, pos0, ":agent_id"),
+      (position_move_z, pos0, 1000),
+      (position_rotate_x, pos0, -90),
+      (mission_cam_set_mode, 1, 0),
+      (mission_cam_animate_to_position, pos0, 2000),
+    (try_end),
+  ]),
+
+  ("death_cam_off", [
+    (store_script_param, ":agent_id", 1),
+    (try_begin),
+      (neg|multiplayer_is_dedicated_server),
+      (multiplayer_get_my_player, ":my_player_id"),
+      (player_get_agent_id, ":my_agent_id", ":my_player_id"),
+      (eq, ":agent_id", ":my_agent_id"),
+      (mission_cam_set_mode, 0, 0),
+    (try_end),
+  ]),
+
   ("toggle_walk", [
     (store_script_param, ":player_id", 1),
     (store_script_param, ":force_off_if_on", 2),
@@ -90,7 +117,7 @@ scripts.extend([
         (spawn_item, "itm_agent_corpse", imod_rusty, "$g_spawn_item_prune_time"),
         (assign, ":corpse_instance_id", reg0),
         #Phoenix, to understand, check the spawning of corpses when people die lol
-        (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_corpse_owner, ":agent_id"),
+        (call_script, "script_log_drop_loot", ":corpse_instance_id", ":agent_id"),
         (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_is_mercenary, 1),
         #End
         (agent_set_slot, ":agent_id", slot_agent_storage_corpse_instance_id, ":corpse_instance_id"),
@@ -176,6 +203,15 @@ scripts.extend([
       (str_store_player_username, s11, ":defender_player_id"),
       (str_store_player_username, s12, ":attacker_player_id"),
       (assign, reg31, ":damage"),
+      
+      #Get the weapon's name
+      (try_begin),
+        (agent_get_wielded_item, ":weapon_id", ":attacker_agent_id", 0),
+        (ge, ":weapon_id", all_items_begin),
+        (str_store_item_name, s10, ":weapon_id"),
+      (else_try),
+        (str_store_string, s10, "@fist"),
+      (try_end),
     
       (server_add_message_to_log, "str_shield_hit_log"),
     (try_end),
@@ -190,18 +226,25 @@ scripts.extend([
       (store_script_param_2, ":looter_agent_id"),
       (assign, reg31, ":corpse_instance_id"),
     
-      (scene_prop_get_slot, ":owner_agent_id", ":corpse_instance_id", slot_scene_prop_corpse_owner),
-    
       (agent_get_player_id, ":looter_player_id", ":looter_agent_id"),
       (str_store_player_username, s11, ":looter_player_id"),
     
-      (try_begin),
-        (gt, ":owner_agent_id", 0),
-        (neg|agent_is_non_player, ":owner_agent_id"),
-        (agent_get_player_id, ":owner_player_id", ":owner_agent_id"),
-        (str_store_player_username, s12, ":owner_player_id"),
-        (server_add_message_to_log, "str_log_loot_corpse"),
-      (try_end),
+      (server_add_message_to_log, "str_log_loot_corpse"),
+    (try_end),
+  ]),
+  
+  #Log dropping a loot after death, "Drop Items" option etc.
+  ("log_drop_loot", [
+    (try_begin),
+      (multiplayer_is_server),
+      (store_script_param_1, ":corpse_instance_id"),
+      (store_script_param_2, ":dropper_agent_id"),
+      (assign, reg31, ":corpse_instance_id"),
+    
+      (agent_get_player_id, ":dropper_player_id", ":dropper_agent_id"),
+      (str_store_player_username, s11, ":dropper_player_id"),
+    
+      (server_add_message_to_log, "str_log_s11_dropped_loot"),
     (try_end),
   ]),
   
@@ -213,7 +256,7 @@ scripts.extend([
       (store_script_param, ":attacker_agent_id", 2),
       (store_script_param, reg31, 3), #damage
       (store_script_param, ":item_id", 4),
-      (store_script_param, ":log_nevertheless", 5),
+      (store_script_param, ":log_nevertheless", 5),#Used by agent_hit_with_scripted_item when a scalpel etc. is not actually used to heal.
     
       (try_begin),
         (gt, ":item_id", -1),
@@ -231,6 +274,9 @@ scripts.extend([
         (neq, ":item_id", "itm_healing_herb"),
         (assign, ":log", 1),
       (try_end),
+      
+      (assign, reg10, -1),#Attacker faction id
+      (assign, reg11, -1),#Attacked faction id
     
       (try_begin), #If it wasn't a heal or usage of healing herb
         (eq, ":log", 1),
@@ -239,34 +285,39 @@ scripts.extend([
           (neg|agent_is_non_player, ":attacker_agent_id"),
           (agent_get_player_id, ":attacker_player_id", ":attacker_agent_id"),
           (str_store_player_username, s11, ":attacker_player_id"),
+          (player_get_slot, reg10, ":attacker_player_id", slot_player_faction_id),
           (try_begin),#If the defender is a player
             (neg|agent_is_non_player, ":attacked_agent_id"),
             (agent_get_player_id, ":attacked_player_id", ":attacked_agent_id"),
             (str_store_player_username, s12, ":attacked_player_id"),
             (server_add_message_to_log, "str_log_hit_player"),
+            (player_get_slot, reg11, ":attacked_player_id", slot_player_faction_id),
           (else_try),#Else, the defender is either horse or animal
             (agent_get_rider, ":rider_id", ":attacked_agent_id"),
             (try_begin),#The horse is mounted by a player
               (gt, ":rider_id", 0),
-            (agent_get_player_id, ":rider_player_id", ":rider_id"),
+              (agent_get_player_id, ":rider_player_id", ":rider_id"),
               (str_store_player_username, s12, ":rider_player_id"),
-            (server_add_message_to_log, "str_log_hit_phorse"),
+              (player_get_slot, reg11, ":rider_player_id", slot_player_faction_id),
+              (server_add_message_to_log, "str_log_hit_phorse"),
             (else_try),#Else, the horse or animal is Rogue (a weeabo)
               (agent_get_item_id, ":animal_item_id", ":attacked_agent_id"),
-            (str_store_item_name, s12, ":animal_item_id"),
+              (str_store_item_name, s12, ":animal_item_id"),
               (assign, reg32, ":attacked_agent_id"),
-            (server_add_message_to_log, "str_log_hit_animal"),
+              (server_add_message_to_log, "str_log_hit_animal"),
             (try_end),
           (try_end),
         (else_try),#Else, the attacker is either horse or animal
           (neg|agent_is_non_player, ":attacked_agent_id"),
           (agent_get_player_id, ":attacked_player_id", ":attacked_agent_id"),
-          (str_store_player_username, s12, ":attacked_player_id"), 
+          (str_store_player_username, s12, ":attacked_player_id"),
+          (player_get_slot, reg11, ":attacked_player_id", slot_player_faction_id),
           (agent_get_rider, ":rider_id", ":attacker_agent_id"),
           (try_begin),
             (gt, ":rider_id", 0),#If a player rides the horse
             (agent_get_player_id, ":attacker_player_id", ":rider_id"),
             (str_store_player_username, s11, ":attacker_player_id"), 
+            (player_get_slot, reg10, ":attacker_player_id", slot_player_faction_id),
           (else_try),#Else, the horse or animal is Rogue (a weeabo)
             (agent_get_item_id, ":animal_item_id", ":attacker_agent_id"),
             (str_store_item_name, s11, ":animal_item_id"),
@@ -502,6 +553,7 @@ scripts.extend([
       (agent_get_item_slot, reg36, ":agent_id", ek_item_1),
       (agent_get_item_slot, reg37, ":agent_id", ek_item_2),
       (agent_get_item_slot, reg38, ":agent_id", ek_item_3),
+
       (agent_get_horse, ":horse_agent_id", ":agent_id"),
       
       (assign, reg39, 0),
@@ -1359,6 +1411,7 @@ scripts.extend([
           (str_store_string_reg, s12, s0),
           (start_presentation, "prsnt_script_message"),
         (try_end),
+        (call_script, "script_chat_overlay_add_to_local_buffer", "$g_script_message_color"),
       (else_try), # display script messages
         (eq, ":event_type", server_event_script_message_set_color),
         (store_script_param, "$g_script_message_color", 3),
@@ -1439,6 +1492,21 @@ scripts.extend([
         (eq, ":event_type", server_event_bank_management),
         (store_script_param, "$g_bank_instance_id", 3),
         (start_presentation, "prsnt_bank_menu"),
+      (else_try),
+        (eq, ":event_type", server_event_day_night_cycle_sync),
+        (store_script_param, "$g_time_of_day", 3),
+        (store_script_param, "$g_day_duration", 4),
+        (val_max, "$g_day_duration", hours(0.5)),
+        (store_div, "$g_in_game_hour_in_seconds", "$g_day_duration", 24),
+        #(store_mul, "$g_skybox_fade_time", "$g_in_game_hour_in_seconds", 100),
+        (assign, "$g_skybox_fade_time", 180 * 1000), #90 seconds
+        (reset_mission_timer_b),
+        (call_script, "script_skybox_update", "$g_time_of_day"),
+      (else_try),
+        (eq, ":event_type", server_event_weather_sync),
+        (store_script_param, ":rain_mode", 3),
+        (store_script_param, ":strength", 4),
+        (set_rain, ":rain_mode", ":strength"),
       (try_end),
 
     (else_try), # section of events received by server from the clients
@@ -1599,6 +1667,7 @@ scripts.extend([
                 (multiplayer_send_string_to_player, ":player_id", server_event_faction_set_name, s0),
               (try_end),
               (str_store_string, s1, s0),
+              (assign, reg10, ":faction_id"),
               (server_add_message_to_log, "str_s10_now_known_as_s1"),
             (try_end),
           (else_try),
@@ -1745,9 +1814,17 @@ scripts.extend([
               (player_set_slot, ":sender_player_id", slot_player_spawn_state, player_spawn_state_dead),
             (try_end),
           (else_try),
+            (assign, ":display_as_admin", 0),
+            (try_begin),
+              (player_is_admin, ":sender_player_id"),
+              (player_slot_eq, ":sender_player_id", slot_player_admin_no_spectate, 0),
+              (assign, ":display_as_admin", 1),
+            (try_end),
+
             (server_get_ghost_mode, ":spectator_is_enabled"),
             (this_or_next | le, ":spectator_is_enabled", 1),
-            (player_is_admin, ":sender_player_id"),
+            (eq, ":display_as_admin", 1),
+
             (player_set_team_no, ":sender_player_id", team_spectators),
           (try_end),
         (try_end),
@@ -1912,7 +1989,7 @@ scripts.extend([
               (set_spawn_position, pos1),
               (spawn_item, "itm_agent_corpse", imod_rusty, "$g_spawn_item_prune_time"),
               (assign, ":corpse_instance_id", reg0),
-              (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_corpse_owner, ":agent_id"),
+              (call_script, "script_log_drop_loot", ":corpse_instance_id", ":agent_id"),
               (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_is_mercenary, 1),
               (agent_set_slot, ":agent_id", slot_agent_storage_corpse_instance_id, ":corpse_instance_id"),
               (prop_instance_set_position, ":corpse_instance_id", pos1),
@@ -2043,10 +2120,10 @@ scripts.extend([
 
             (multiplayer_send_4_int_to_player, ":other_player_id", server_event_preset_message, "str_s1_reveals_money_pouch_containing_about_reg1", preset_message_player|preset_message_chat_log|preset_message_yellow, ":sender_player_id", ":approximate_gold"),
 
-            (str_store_player_username, s0, ":other_player_id"),
+            (str_store_player_username, s1, ":other_player_id"),
             (try_begin),
               (eq, ":first_player", 1),
-              (str_store_string, s0, "str_s0"),
+              (str_store_string, s0, "str_s1"),
               (assign, ":first_player", 0),
             (else_try),
               (str_store_string, s0, "str_s0__s1"),
@@ -2708,6 +2785,19 @@ scripts.extend([
       (eq, ":command", command_limit_officer),
       (call_script, "script_mute_all_players", ":value"),
     (else_try),
+      (eq, ":command", command_limit_sapper),
+      (assign, "$g_day_night_cycle_enabled", ":value"),
+    (else_try),
+      (eq, ":command", command_limit_rocket),
+      (assign, "$g_day_duration", ":value"),
+      (val_max, "$g_day_duration", hours(0.5)),
+      (store_div, "$g_in_game_hour_in_seconds", "$g_day_duration", 24),
+      (store_mul, "$g_skybox_fade_time", "$g_in_game_hour_in_seconds", 100),
+    (else_try),
+      (eq, ":command", command_limit_artillery),
+      (assign, "$g_skybox_scale", ":value"),
+      (val_max, "$g_skybox_scale", 100),
+    (else_try),
       (eq, ":command", command_get_max_players),
       (server_get_max_num_players, ":value"),
     (else_try),
@@ -2723,7 +2813,13 @@ scripts.extend([
       (server_get_ghost_mode, ":value"),
     (else_try),
       (eq, ":command", command_set_ghost_mode),
-      (val_clamp, ":value", 0, 3),
+      (val_clamp, ":value", 0, 4),
+      (try_begin),
+        (neg|multiplayer_is_server),
+        (assign, "$g_actual_ghost_mode", ":value"),
+        (gt, ":value", 2),
+        (assign, ":value", 2),
+      (try_end),
       (server_set_ghost_mode, ":value"),
     (else_try),
       (eq, ":command", command_get_control_block_direction),
@@ -2827,8 +2923,16 @@ scripts.extend([
    [(store_script_param, ":player_id", 1),
       (server_get_ghost_mode, ":spectator_is_enabled"),
       (try_begin),
+        (assign, ":display_as_admin", 0),
+        (try_begin),
+          (player_is_admin, ":player_id"),
+          (player_slot_eq, ":player_id", slot_player_admin_no_spectate, 0),
+          (assign, ":display_as_admin", 1),
+        (try_end),
+
         (this_or_next | le, ":spectator_is_enabled", 1),
-        (player_is_admin, ":player_id"),
+        (eq, ":display_as_admin", 1),
+
         (multiplayer_send_2_int_to_player, ":player_id", server_event_return_game_rules, command_set_ghost_mode, 0),
       (else_try),
         (multiplayer_send_2_int_to_player, ":player_id", server_event_return_game_rules, command_set_ghost_mode, ":spectator_is_enabled"),
@@ -3371,14 +3475,14 @@ scripts.extend([
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_h11", 0xFF9e3e35),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_h12", 0xFF831119),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_h13", 0xFF458fd6),
-    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_h14", 0xFFffffff),
-    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_h15", 0xFF586617),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_h14", 0xFF76468d),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_h15", 0xFF243143),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_h16", 0xFFbe3630),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_h17", 0xFFbdbaad),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_h18", 0xFF293052),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_h19", 0xFF908b0b),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_h20", 0xFF2d2d2d),
-    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_h21", 0xFF272727),
+    (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_h21", 0xFFbdbeb6),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_i01", 0xFF6e0000),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_i02", 0xFFb0880d),
     (troop_set_slot, "trp_banner_background_color_array", "mesh_banner_i03", 0xFFb5ae94),
@@ -3525,6 +3629,10 @@ scripts.extend([
       (player_is_active, ":player_id"),
       (player_get_slot, ":player_faction_id", ":player_id", slot_player_faction_id),
       (try_begin),
+        #Custom banners set by server side
+        (player_slot_ge, ":player_id", slot_player_custom_banner_mesh_id, 1),
+        (player_get_slot, ":banner_mesh", ":player_id", slot_player_custom_banner_mesh_id),
+      (else_try),
         (ge, ":player_faction_id", castle_factions_begin),
         (faction_get_slot, ":banner_mesh", ":player_faction_id", slot_faction_banner_mesh),
         (gt, ":banner_mesh", 0),
@@ -4104,10 +4212,6 @@ scripts.extend([
     (agent_set_slot, ":agent_id", slot_agent_hunting_last_carcass, -1),
     (agent_set_slot, ":agent_id", slot_agent_animal_herd_manager, -1),
     (agent_set_slot, ":agent_id", slot_agent_animal_carcass_instance_id, -1),
-    (agent_set_slot, ":agent_id", slot_agent_scene_prop_in_use, -1),
-    (agent_set_slot, ":agent_id", slot_agent_animation_position_x, -1),
-    (agent_set_slot, ":agent_id", slot_agent_animation_position_y, -1),
-    (agent_set_slot, ":agent_id", slot_agent_animation_position_z, -1),
     (try_begin),
       (eq, "$g_full_respawn_health", 0),
       (agent_is_human, ":agent_id"),
@@ -4189,7 +4293,7 @@ scripts.extend([
       (spawn_item, "itm_agent_corpse", ":imod", "$g_spawn_item_prune_time"),
       (assign, ":corpse_instance_id", reg0),
       #Set the according slot to keep the record of the corpse's owner's agent id
-      (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_corpse_owner, ":agent_id"),
+      (call_script, "script_log_drop_loot", ":corpse_instance_id", ":agent_id"),
       (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_is_mercenary, 1),#To perevent faction names appearing in logs in inventory transfers
       #End
       (prop_instance_set_position, ":corpse_instance_id", pos1),
@@ -4268,9 +4372,15 @@ scripts.extend([
     (player_set_team_no, ":player_id", team_default),
 
     (try_begin),
+      (assign, ":display_as_admin", 0),
+      (try_begin),
+        (player_is_admin, ":player_id"),
+        (player_slot_eq, ":player_id", slot_player_admin_no_spectate, 0),
+        (assign, ":display_as_admin", 1),
+      (try_end),
       (server_get_ghost_mode, ":spectator_is_enabled"),
       (this_or_next | le, ":spectator_is_enabled", 1),
-      (player_is_admin, ":player_id"),
+      (eq, ":display_as_admin", 1),
       (player_set_slot, ":player_id", slot_player_requested_spawn_point, -1), # setting the initial team to spectator seems to occasionally stop that client loading properly, this is a work around
     (else_try),
       (player_set_slot, ":player_id", slot_player_requested_spawn_point, 0),
@@ -4379,6 +4489,7 @@ scripts.extend([
       (neq, ":faction_id", "fac_commoners"),
       (str_store_player_username, s0, ":player_id"),
       (str_store_faction_name, s1, ":faction_id"),
+      (assign, reg11, ":faction_id"),
       (server_add_message_to_log, "str_s0_joined_the_s1"),
     (try_end),
     (try_for_range, ":other_player_id", 1, ":max_players"),
@@ -4412,6 +4523,10 @@ scripts.extend([
     (store_mission_timer_a, ":mission_timer"),
     (multiplayer_send_2_int_to_player, ":player_id", server_event_return_game_rules, command_set_server_mission_timer, ":mission_timer"),
     (multiplayer_send_2_int_to_player, ":player_id", server_event_script_message_set_color, "$g_script_message_color"),
+    (try_begin),
+      (eq, "$g_day_night_cycle_enabled", 1),
+      (call_script, "script_skybox_send_info_to_player", ":player_id"),
+    (try_end),
     ]),
 
   ("after_client_is_setup", # clients: called after the server has finished sending the initial module data updates
@@ -5846,7 +5961,6 @@ scripts.extend([
    [(store_script_param, ":player_id", 1), # must be valid
     (store_script_param, ":faction_id", 2),
     (store_script_param, ":change_faction_type", 3), # constants starting with change_faction_type_
-    (store_script_param, ":no_log", 3),
 
     (try_begin),
       (neg|player_slot_eq, ":player_id", slot_player_faction_id, ":faction_id"),
@@ -5874,7 +5988,6 @@ scripts.extend([
       (player_set_slot, ":player_id", slot_player_can_faction_announce, 0),
       (str_store_player_username, s0, ":player_id"),
 
-      (neq, ":no_log", 1),
       (try_begin),
         (eq, ":change_faction_type", change_faction_type_outlawed),
         (server_add_message_to_log, "str_s0_has_been_outlawed"),
@@ -6165,7 +6278,7 @@ scripts.extend([
           (set_spawn_position, pos1),
           (spawn_item, "itm_agent_corpse", imod_rusty, "$g_spawn_item_prune_time"),
           (assign, ":corpse_instance_id", reg0),
-          (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_corpse_owner, ":agent_id"),
+          (call_script, "script_log_drop_loot", ":corpse_instance_id", ":agent_id"),
           (scene_prop_set_slot, ":corpse_instance_id", slot_scene_prop_is_mercenary, 1),
           (agent_set_slot, ":agent_id", slot_agent_storage_corpse_instance_id, ":corpse_instance_id"),
           (prop_instance_set_position, ":corpse_instance_id", pos1),
@@ -7032,7 +7145,11 @@ scripts.extend([
           (multiplayer_is_server),
           (agent_set_damage_modifier, ":agent_id", ":damage_modifier"),
           (agent_set_ranged_damage_modifier, ":agent_id", ":damage_modifier"),
+
           (agent_set_speed_modifier, ":agent_id", ":speed_modifier"),
+          (agent_get_player_id, ":player_id", ":agent_id"),
+          (call_script, "script_toggle_walk", ":player_id", 0, 1),
+
           (agent_set_accuracy_modifier, ":agent_id", ":accuracy_modifier"),
           (agent_set_reload_speed_modifier, ":agent_id", ":reload_modifier"),
           (try_begin), # remember the item id to avoid duplicate calculation if the script is called twice, by hard coded triggers or whatever
@@ -7050,12 +7167,6 @@ scripts.extend([
         (assign, reg13, ":accuracy_modifier"),
         (assign, reg14, ":reload_modifier"),
       (try_end),
-    (try_end),
-
-    (try_begin),
-      (multiplayer_is_server),
-      (agent_get_player_id, ":player_id", ":agent_id"),
-      (call_script, "script_toggle_walk", ":player_id", 0, 1),
     (try_end),
     ]),
 
@@ -10187,6 +10298,14 @@ scripts.extend([
     (store_script_param, ":target_horse", 2), # 0 = heal humans, 1 = heal horses
     (store_script_param, ":heal_percent", 3), # percentage healed per use
     (store_script_param, ":min_health_percent", 4), # minimum health percentage to be able to use this bed
+    (store_script_param, ":use_stage", 5), # 0 = start use, 1 = cancel use, 2 = finish use
+    (store_script_param, ":full_use_time", 6),
+    
+    (try_begin),
+      (eq, ":use_stage", 0),
+      (store_mission_timer_a, ":time"),
+      (agent_set_slot, ":agent_id", slot_agent_rest_use_start_time, ":time"),
+    (try_end),
 
     (agent_get_player_id, ":player_id", ":agent_id"),
     (player_is_active, ":player_id"),
@@ -10208,6 +10327,21 @@ scripts.extend([
       (assign, ":error_string_id", "str_too_hungry_to_rest"),
       (gt, ":food_amount", 0),
       (try_begin),
+        (try_begin),
+          (eq, ":use_stage", 1),
+          (agent_get_slot, ":start_time", ":agent_id", slot_agent_rest_use_start_time),
+          (store_mission_timer_a, ":time"),
+          (store_sub, ":time_between", ":time", ":start_time"),
+          (try_begin),
+            (ge, ":time_between", 3),
+            (val_mul, ":time_between", 1000),
+            (val_mul, ":full_use_time", 1000),
+            (val_mul, ":heal_percent", ":time_between"),
+            (val_div, ":heal_percent", ":full_use_time"),
+          (else_try),
+            (assign, ":heal_percent", 0),
+          (try_end),
+        (try_end),
         (neq, ":heal_percent", 0),
         (lt, ":health_percent", 100),
         (val_min, ":heal_percent", ":food_amount"),
@@ -13827,7 +13961,7 @@ scripts.extend([
       (try_end),
     (else_try),
       (eq, ":admin_action", admin_action_join_faction),
-      (call_script, "script_change_faction", ":admin_player_id", ":target_player_id", change_faction_type_no_respawn, 1),
+      (call_script, "script_change_faction", ":admin_player_id", ":target_player_id", change_faction_type_no_respawn),
     (else_try),
       (eq, ":admin_action", admin_action_lock_faction),
       (player_slot_eq, ":admin_player_id", slot_player_admin_no_factions, 0),
@@ -14186,7 +14320,9 @@ scripts.extend([
     (troop_set_slot, "trp_animation_menu_strings", 7, "str_anim_horn_charge"),
     (troop_set_slot, "trp_animation_menu_strings", 7 + animation_menu_end_offset, "str_anim_lute_1"),
     (troop_set_slot, "trp_animation_menu_strings", 8, "str_anim_lute_1"),
-    (troop_set_slot, "trp_animation_menu_strings", 8 + animation_menu_end_offset, "str_log_animation"),
+    (troop_set_slot, "trp_animation_menu_strings", 8 + animation_menu_end_offset, "str_anim_flute_1"),
+    (troop_set_slot, "trp_animation_menu_strings", 9, "str_anim_flute_1"),
+    (troop_set_slot, "trp_animation_menu_strings", 9 + animation_menu_end_offset, "str_log_animation"),
     ]),
 
   ("initialize_animation_durations", []), # copies animation durations in milliseconds from module_animations.py to slots of trp_animation_durations
@@ -14245,21 +14381,20 @@ scripts.extend([
       (assign, ":man_sound", -1), # optional sound to play only for men
       (assign, ":woman_sound", -1), # optional sound to play only for women
       (assign, ":duration_ms", 0), # duration in milliseconds: animations are set automatically, but this should be set when only playing a sound
-      (assign, ":prevent_if_wielding", 0), # 1 = prevent this animation from being triggered if the agent is wielding any items
       (assign, ":prevent_if_moving", 0), # 1 = prevent this animation from being triggered if the agent is moving
       (assign, ":prevent_if_on_horse", 0),
-      (assign, ":position_animation", 0),
+      (assign, ":weapon_requirement", -2),  # required wielded item
+      (assign, ":weapon_type_requirement", 0),  # required wielded item type
+      (assign, ":music", -1),  # ensure that music is handled correctly
       (assign, ":add_to_chat", 0), # display the animation string in the local chat for near the player
-      (assign, ":music", -1), # ensure that music is handled correctly
-      (assign, ":instrument", -1), # required wielded item
       (try_begin), # the first script parameter is the name string id, which must be in the appropriate section of module_strings.py
         animation_menu_entry("str_anim_cheer", animation="anim_cheer", man_sound="snd_man_victory"),
-        animation_menu_entry("str_anim_clap", animation="anim_man_clap", woman_alt_animation="anim_woman_clap", prevent_if_wielding=1),
+        animation_menu_entry("str_anim_clap", animation="anim_man_clap", woman_alt_animation="anim_woman_clap", weapon_requirement=-1),
         animation_menu_entry("str_anim_raise_sword", animation="anim_pose_raise_sword"),
-        animation_menu_entry("str_anim_sit", animation="anim_sitting_pillow_male", woman_alt_animation="anim_sitting_pillow_female", prevent_if_wielding=1, prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0, position_animation=1),
-        animation_menu_entry("str_anim_surrender", animation="anim_surrender", prevent_if_wielding=1),
-        animation_menu_entry("str_anim_hands_on_hips", animation="anim_pose_hands_on_hips", prevent_if_wielding=1, prevent_if_moving=1),
-        animation_menu_entry("str_anim_arms_crossed", animation="anim_pose_arms_crossed", prevent_if_wielding=1, prevent_if_moving=1),
+        animation_menu_entry("str_anim_sit", animation="anim_sitting_pillow_male", woman_alt_animation="anim_sitting_pillow_female", weapon_requirement=-1, prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0),
+        animation_menu_entry("str_anim_surrender", animation="anim_surrender", weapon_requirement=-1),
+        animation_menu_entry("str_anim_hands_on_hips", animation="anim_pose_hands_on_hips", weapon_requirement=-1, prevent_if_moving=1),
+        animation_menu_entry("str_anim_arms_crossed", animation="anim_pose_arms_crossed", weapon_requirement=-1, prevent_if_moving=1),
         animation_menu_entry("str_anim_stand_still", animation="anim_stand_lord", woman_alt_animation="anim_stand_lady", prevent_if_moving=1),
         animation_menu_entry("str_anim_away_vile_beggar", man_sound="snd_away_vile_beggar", duration_ms=2100, add_to_chat=1),
         animation_menu_entry("str_anim_my_lord", man_sound="snd_my_lord", duration_ms=700, add_to_chat=1),
@@ -14284,29 +14419,39 @@ scripts.extend([
         animation_menu_entry("str_anim_easy_way_or_hard_way", man_sound="snd_easy_way_or_hard_way", duration_ms=3400, add_to_chat=1),
         animation_menu_entry("str_anim_everything_has_a_price", man_sound="snd_everything_has_a_price", duration_ms=3100, add_to_chat=1),
         animation_menu_entry("str_anim_slit_your_throat", man_sound="snd_slit_your_throat", duration_ms=2400, add_to_chat=1),
-        animation_menu_entry("str_anim_lute_1", animation="anim_play_lute", man_sound="snd_lute_1", woman_sound="snd_lute_1", music=2, instrument="itm_lute"),
-        animation_menu_entry("str_anim_lute_2", animation="anim_play_lute", man_sound="snd_lute_2", woman_sound="snd_lute_2", music=2, instrument="itm_lute"),
-        animation_menu_entry("str_anim_lute_3", animation="anim_play_lute", man_sound="snd_lute_3", woman_sound="snd_lute_3", music=2, instrument="itm_lute"),
-        animation_menu_entry("str_anim_lute_4", animation="anim_play_lute", man_sound="snd_lute_4", woman_sound="snd_lute_4", music=2, instrument="itm_lute"),
-        animation_menu_entry("str_anim_lyre_1", animation="anim_play_lyre", man_sound="snd_lyre_1", woman_sound="snd_lyre_1", music=3, instrument="itm_lyre"),
-        animation_menu_entry("str_anim_lyre_2", animation="anim_play_lyre", man_sound="snd_lyre_2", woman_sound="snd_lyre_2", music=3, instrument="itm_lyre"),
-        animation_menu_entry("str_anim_lyre_3", animation="anim_play_lyre", man_sound="snd_lyre_3", woman_sound="snd_lyre_3", music=3, instrument="itm_lyre"),
-        animation_menu_entry("str_anim_lyre_4", animation="anim_play_lyre", man_sound="snd_lyre_4", woman_sound="snd_lyre_4", music=3, instrument="itm_lyre"),
-        animation_menu_entry("str_anim_horn_charge", animation="anim_play_horn", man_sound="snd_horncharge", woman_sound="snd_horncharge", instrument="itm_warhorn", horn=1),
-        animation_menu_entry("str_anim_horn_regroup", animation="anim_play_horn", man_sound="snd_hornregroup", woman_sound="snd_hornregroup", instrument="itm_warhorn", horn=1),
-        animation_menu_entry("str_anim_horn_retreat", animation="anim_play_horn", man_sound="snd_hornretreat", woman_sound="snd_hornretreat", instrument="itm_warhorn", horn=1),
-        animation_menu_entry("str_anim_lean_on_sword", animation="anim_lean_on_sword", prevent_if_moving=1, prevent_if_on_horse=1),
+        animation_menu_entry("str_anim_lute_1", animation="anim_play_lute", man_sound="snd_lute_1", woman_sound="snd_lute_1", music=2, weapon_requirement="itm_lute"),
+        animation_menu_entry("str_anim_lute_2", animation="anim_play_lute", man_sound="snd_lute_2", woman_sound="snd_lute_2", music=2, weapon_requirement="itm_lute"),
+        animation_menu_entry("str_anim_lute_3", animation="anim_play_lute", man_sound="snd_lute_3", woman_sound="snd_lute_3", music=2, weapon_requirement="itm_lute"),
+        animation_menu_entry("str_anim_lute_4", animation="anim_play_lute", man_sound="snd_lute_4", woman_sound="snd_lute_4", music=2, weapon_requirement="itm_lute"),
+        animation_menu_entry("str_anim_lyre_1", animation="anim_play_lyre", man_sound="snd_lyre_1", woman_sound="snd_lyre_1", music=3, weapon_requirement="itm_lyre"),
+        animation_menu_entry("str_anim_lyre_2", animation="anim_play_lyre", man_sound="snd_lyre_2", woman_sound="snd_lyre_2", music=3, weapon_requirement="itm_lyre"),
+        animation_menu_entry("str_anim_lyre_3", animation="anim_play_lyre", man_sound="snd_lyre_3", woman_sound="snd_lyre_3", music=3, weapon_requirement="itm_lyre"),
+        animation_menu_entry("str_anim_lyre_4", animation="anim_play_lyre", man_sound="snd_lyre_4", woman_sound="snd_lyre_4", music=3, weapon_requirement="itm_lyre"),
+        animation_menu_entry("str_anim_flute_1", animation="anim_play_flute", man_sound="snd_flute_1", woman_sound="snd_flute_1", music=2, weapon_requirement="itm_flute"),
+        animation_menu_entry("str_anim_flute_2", animation="anim_play_flute", man_sound="snd_flute_2", woman_sound="snd_flute_2", music=2, weapon_requirement="itm_flute"),
+        animation_menu_entry("str_anim_flute_3", animation="anim_play_flute", man_sound="snd_flute_3", woman_sound="snd_flute_3", music=2, weapon_requirement="itm_flute"),
+        animation_menu_entry("str_anim_flute_4", animation="anim_play_flute", man_sound="snd_flute_4", woman_sound="snd_flute_4", music=2, weapon_requirement="itm_flute"),
+        animation_menu_entry("str_anim_vielle_1", animation="anim_play_vielle", man_sound="snd_vielle_1", woman_sound="snd_vielle_1", music=2, weapon_requirement="itm_vielle"),
+        animation_menu_entry("str_anim_vielle_2", animation="anim_play_vielle", man_sound="snd_vielle_2", woman_sound="snd_vielle_2", music=2, weapon_requirement="itm_vielle"),
+        animation_menu_entry("str_anim_vielle_3", animation="anim_play_vielle", man_sound="snd_vielle_3", woman_sound="snd_vielle_3", music=2, weapon_requirement="itm_vielle"),
+        animation_menu_entry("str_anim_vielle_4", animation="anim_play_vielle", man_sound="snd_vielle_4", woman_sound="snd_vielle_4", music=2, weapon_requirement="itm_vielle"),
+        animation_menu_entry("str_anim_horn_charge", animation="anim_play_horn", man_sound="snd_horncharge", woman_sound="snd_horncharge", weapon_requirement="itm_warhorn", horn=1),
+        animation_menu_entry("str_anim_horn_regroup", animation="anim_play_horn", man_sound="snd_hornregroup", woman_sound="snd_hornregroup", weapon_requirement="itm_warhorn", horn=1),
+        animation_menu_entry("str_anim_horn_retreat", animation="anim_play_horn", man_sound="snd_hornretreat", woman_sound="snd_hornretreat", weapon_requirement="itm_warhorn", horn=1),
+        animation_menu_entry("str_anim_lean_on_sword", animation="anim_lean_on_sword", prevent_if_moving=1, prevent_if_on_horse=1, weapon_type_requirement=itp_type_two_handed_wpn),
         animation_menu_entry("str_anim_nod_head", animation="anim_nod_head", prevent_if_moving=1),
-        animation_menu_entry("str_anim_wave_hand", animation="anim_wave_hand", prevent_if_wielding=1),
-        animation_menu_entry("str_anim_this_way", animation="anim_this_way", prevent_if_wielding=1),
-        animation_menu_entry("str_anim_go_away", animation="anim_go_away", prevent_if_wielding=1),
-        animation_menu_entry("str_anim_peeing", animation="anim_peeing", prevent_if_wielding=1, prevent_if_moving=1),
-        animation_menu_entry("str_anim_hand_on_chest", animation="anim_hand_on_chest", prevent_if_wielding=1),
-        animation_menu_entry("str_anim_bow", animation="anim_bow", prevent_if_moving=1, prevent_if_wielding=1, prevent_if_on_horse=1, upper_body_only=0, position_animation=1),
-        animation_menu_entry("str_anim_kneel", animation="anim_kneel", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0, position_animation=1),
-        animation_menu_entry("str_anim_sleeping", animation="anim_sleeping", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0, position_animation=1),
-        animation_menu_entry("str_anim_giving_birth", animation="anim_giving_birth", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0, position_animation=1),
-        animation_menu_entry("str_anim_track", animation="anim_tracking", prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0, position_animation=1),
+        animation_menu_entry("str_anim_wave_hand", animation="anim_wave_hand", weapon_requirement=-1),
+        animation_menu_entry("str_anim_this_way", animation="anim_this_way", weapon_requirement=-1),
+        animation_menu_entry("str_anim_go_away", animation="anim_go_away", weapon_requirement=-1),
+        animation_menu_entry("str_anim_peeing", animation="anim_peeing", weapon_requirement=-1, prevent_if_moving=1),
+        animation_menu_entry("str_anim_hand_on_chest", animation="anim_hand_on_chest", weapon_requirement=-1),
+        animation_menu_entry("str_anim_bow", animation="anim_bow", prevent_if_moving=1, weapon_requirement=-1, prevent_if_on_horse=1, upper_body_only=0),
+        animation_menu_entry("str_anim_kneel", animation="anim_kneel", weapon_requirement=-1, prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0),
+        animation_menu_entry("str_anim_sleeping", animation="anim_sleeping", weapon_requirement=-1, prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0),
+        animation_menu_entry("str_anim_pray", animation="anim_pray", weapon_requirement=-1, prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0),
+        animation_menu_entry("str_anim_beg", animation="anim_beg", weapon_requirement=-1, prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0),
+        animation_menu_entry("str_anim_track", animation="anim_tracking", weapon_requirement=-1, prevent_if_moving=1, prevent_if_on_horse=1, upper_body_only=0),
+        animation_menu_entry("str_anim_pike_stance", animation="anim_pike_stance", prevent_if_moving=1, prevent_if_on_horse=1, weapon_type_requirement=itp_type_polearm),
       (else_try),
         (assign, ":string_id", -1),
       (try_end),
@@ -14319,17 +14464,49 @@ scripts.extend([
       (try_end),
       (player_get_agent_id, ":agent_id", ":player_id"),
       (try_begin),
-        (eq, ":prevent_if_wielding", 1),
+        (gt, ":weapon_requirement", -2),
         (agent_get_wielded_item, ":weapon", ":agent_id", 0),
-        (agent_get_wielded_item, ":shield", ":agent_id", 0),
-        (this_or_next|neq, ":weapon", -1),
-        (neq, ":shield", -1),
+        (agent_get_wielded_item, ":shield", ":agent_id", 1),
+        (assign, ":fail", 0),
+        (try_begin),
+          (eq, ":weapon_requirement", -1),
+          (this_or_next|neq, ":weapon", -1),
+          (neq, ":shield", -1),
+          (assign, ":fail", 1),
+        (else_try),
+          (eq, ":weapon_requirement", "itm_vielle"),
+          (agent_get_item_slot, ":gloves", ":agent_id", ek_gloves),
+          (this_or_next|neq, ":gloves", "itm_vielle_bow"),
+          (neq, ":weapon", "itm_vielle"),
+          (assign, ":fail", 1),
+        (else_try),
+          (neq, ":weapon", ":weapon_requirement"),
+          (neq, ":shield", ":weapon_requirement"),
+          (assign, ":fail", 1),
+        (try_end),
+        (eq, ":fail", 1),
         (assign, ":animation", -1),
+        (assign, ":man_sound", -1),
+        (assign, ":woman_sound", -1),
       (try_end),
       (try_begin),
-        (ge, ":instrument", 0),
-        (agent_get_wielded_item, ":instrumentheld", ":agent_id", 0),
-        (neq, ":instrumentheld", ":instrument"),
+        (gt, ":weapon_type_requirement", 0),
+        (agent_get_wielded_item, ":weapon", ":agent_id", 0),
+        (agent_get_wielded_item, ":shield", ":agent_id", 1),
+        (assign, ":fail", 1),
+        (try_begin),
+          (ge, ":weapon", all_items_begin),
+          (item_get_type, ":weapon_type", ":weapon"),
+          (eq, ":weapon_type", ":weapon_type_requirement"),
+          (assign, ":fail", 0),
+        (try_end),
+        (try_begin),
+          (ge, ":shield", all_items_begin),
+          (item_get_type, ":shield_type", ":weapon"),
+          (eq, ":shield_type", ":weapon_type_requirement"),
+          (assign, ":fail", 0),
+        (try_end),
+        (eq, ":fail", 1),
         (assign, ":animation", -1),
         (assign, ":man_sound", -1),
         (assign, ":woman_sound", -1),
@@ -14410,24 +14587,6 @@ scripts.extend([
         (try_begin),
           (gt, ":animation", -1),
           (agent_set_animation, ":agent_id", ":animation", ":upper_body_only"),
-
-          (try_begin), # position animations
-            (eq, ":position_animation", 1),
-            (agent_get_position, pos0, ":agent_id"),
-            (position_get_x, ":x", pos0),
-            (position_get_y, ":y", pos0),
-            (position_get_z, ":z", pos0),
-            (agent_set_slot, ":agent_id", slot_agent_animation_position_x, ":x"),
-            (agent_set_slot, ":agent_id", slot_agent_animation_position_y, ":y"),
-            (agent_set_slot, ":agent_id", slot_agent_animation_position_z, ":z"),
-            (agent_set_slot, ":agent_id", slot_agent_position_animation, ":animation"),
-          (try_end),
-
-
-          #(try_for_players, ":other_player_id"),
-          #  (player_is_active, ":other_player_id"),
-          #  (multiplayer_send_3_int_to_player, ":other_player_id", server_event_agent_animation, ":agent_id", ":animation", ":upper_body_only"),
-          #(try_end),
         (try_end),
         (try_begin),
           (gt, ":sound", -1),
@@ -14558,6 +14717,20 @@ scripts.extend([
             (agent_set_slot,":agent_id",slot_agent_playing_music, ":sound"),
             (assign,reg5,0),
           (try_end),
+        (else_try),
+          (eq,":anim","anim_play_flute"),
+          (try_begin),
+            (eq,":weapon","itm_flute"),
+            (agent_set_slot,":agent_id",slot_agent_playing_music, ":sound"),
+            (assign,reg5,0),
+          (try_end),
+        (else_try),
+          (eq,":anim","anim_play_vielle"),
+          (try_begin),
+            (eq,":weapon","itm_vielle"),
+            (agent_set_slot,":agent_id",slot_agent_playing_music, ":sound"),
+            (assign,reg5,0),
+          (try_end),
         (try_end),
     ]),
 
@@ -14582,6 +14755,12 @@ scripts.extend([
                 (assign,":fail",0),
             (else_try),
               (eq,":anim","anim_play_horn"),
+                (assign,":fail",0),
+            (else_try),
+              (eq,":anim","anim_play_flute"),
+                (assign,":fail",0),
+            (else_try),
+              (eq,":anim","anim_play_vielle"),
                 (assign,":fail",0),
             (try_end),
             (try_begin),
@@ -14616,6 +14795,26 @@ scripts.extend([
           (agent_get_slot, ":sound", ":agent_id", slot_agent_playing_music),
           (gt, ":sound", 0),
           (multiplayer_send_2_int_to_player, ":player_id", server_event_agent_play_sound, ":agent_id", ":sound"),
+        (try_end),
+      (try_end),
+    ]),
+    
+    ("check_wielding_during_position_animation", [
+      (store_script_param_1, ":agent_id"),
+      (store_script_param_2, ":item_id"),
+      (try_begin),
+        (multiplayer_is_server),
+        (agent_get_animation, ":animation", ":agent_id", 0),
+        (is_between, ":animation", position_animations_begin, position_animations_end),
+        
+        (try_begin),
+          (is_between, ":animation", "anim_sitting", "anim_sitting_finish"),
+          (this_or_next|eq, ":item_id", "itm_lute"),
+          (this_or_next|eq, ":item_id", "itm_lyre"),
+          (this_or_next|eq, ":item_id", "itm_flute"),
+          (eq, ":item_id", "itm_vielle"),
+        (else_try),
+          (agent_set_wielded_item, ":agent_id", -1),
         (try_end),
       (try_end),
     ]),
@@ -14750,7 +14949,507 @@ scripts.extend([
   ("bank_deposit",
    [
     (server_add_message_to_log, "@deposit"),
-   ])
+   ]),
   ## CUSTOM SERVER SCRIPTS END ##
 
+  # script_skybox_set_lighting_for_time
+  #   Sets the scene light for the specified time.
+  # Author: sHocK
+  # Called: client
+  # Input: arg1 = time of day (seconds), arg2 = use postfx
+  # Output: none
+  ("skybox_set_lighting_for_time", [
+    (store_script_param, ":time", 1),
+    (store_script_param, ":postfx_enabled", 2),
+
+    #(display_message, "@set new lighting"),
+    # http://i.imgur.com/HZMQF9k.png
+    # Set lighting and fog
+    (set_fixed_point_multiplier, 100),
+    (try_begin),
+      (is_between, ":time", 0, hours(1)),
+      (set_startup_sun_light, 3, 3, 7),
+      (set_startup_ambient_light, 1, 1, 5),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      #(set_fog_distance, 200, 0x00000008),
+    (else_try),
+      (is_between, ":time", hours(1), hours(2)),
+      (set_startup_sun_light, 5, 5, 10),
+      (set_startup_ambient_light, 2, 2, 5),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      #(set_fog_distance, 300, 0x00000008),
+    (else_try),
+      (is_between, ":time", hours(2), hours(2.5)),
+      (set_startup_sun_light, 5, 5, 10),
+      (set_startup_ambient_light, 3, 3, 5),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      #(set_fog_distance, 400, 0x0000008),
+    (else_try),
+      (is_between, ":time", hours(2.5), hours(3)),
+      (set_startup_sun_light, 6, 5, 10),
+      (set_startup_ambient_light, 4, 3, 5),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      #(set_fog_distance, 500, 0x0000008),
+    (else_try),
+      (is_between, ":time", hours(3), hours(4)),
+      (set_startup_sun_light, 10, 5, 12),
+      (set_startup_ambient_light, 8, 5, 10),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      #(set_fog_distance, 900, 0x0000008),
+    (else_try),
+      (is_between, ":time", hours(4), hours(4.5)),
+      (set_startup_sun_light, 16, 8, 16),
+      (set_startup_ambient_light, 12, 8, 12),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      #(set_fog_distance, 1200),
+    (else_try),
+      (is_between, ":time", hours(4.5), hours(5)),
+      (set_startup_sun_light, 20, 12, 20),
+      (set_startup_ambient_light, 20, 15, 20),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      #(set_fog_distance, 1600),
+    (else_try),
+      (is_between, ":time", hours(5), hours(6)),
+      (set_startup_sun_light, 40, 40, 30),
+      (set_startup_ambient_light, 25, 20, 25),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      #(set_fog_distance, 1900),
+    (else_try),
+      (is_between, ":time", hours(6), hours(7)),
+      (set_startup_sun_light, 50, 50, 45),
+      (set_startup_ambient_light, 30, 25, 30),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      #(set_fog_distance, -1),
+    (else_try),
+      (is_between, ":time", hours(7), hours(8)),
+      (set_startup_sun_light, 60, 60, 55),
+      (set_startup_ambient_light, 30, 30, 30),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      #(set_fog_distance, -1),
+    (else_try),
+      (is_between, ":time", hours(8), hours(9)),
+      (set_startup_sun_light, 70, 70, 70),
+      (set_startup_ambient_light, 40, 40, 40),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      #(set_fog_distance, -1),
+    (else_try),
+      (is_between, ":time", hours(9), hours(10)),
+      (set_startup_sun_light, 80, 80, 80),
+      (set_startup_ambient_light, 50, 50, 50),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      #(set_fog_distance, -1),
+    (else_try),
+      (is_between, ":time", hours(10), hours(11)),
+      (set_startup_sun_light, 100, 90, 90),
+      (set_startup_ambient_light, 60, 60, 60),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      #(set_fog_distance, -1),
+    (else_try),
+      (is_between, ":time", hours(11), hours(12)),
+      (set_startup_sun_light, 100, 100, 100),
+      (set_startup_ambient_light, 70, 70, 70),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      #(set_fog_distance, -1),
+    (else_try),
+      (is_between, ":time", hours(12), hours(13)),
+      (set_startup_sun_light, 120, 120, 120),
+      (set_startup_ambient_light, 85, 85, 85),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      #(set_fog_distance, -1),
+    (else_try),
+      (is_between, ":time", hours(13), hours(14)),
+      (set_startup_sun_light, 100, 100, 100),
+      (set_startup_ambient_light, 70, 70, 70),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      #(set_fog_distance, -1),
+    (else_try),
+      (is_between, ":time", hours(14), hours(15)),
+      (set_startup_sun_light, 100, 90, 90),
+      (set_startup_ambient_light, 60, 60, 60),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      #(set_fog_distance, -1),
+    (else_try),
+      (is_between, ":time", hours(15), hours(16)),
+      (set_startup_sun_light, 80, 80, 80),
+      (set_startup_ambient_light, 50, 50, 55),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      #(set_fog_distance, -1),
+    (else_try),
+      (is_between, ":time", hours(16), hours(17)),
+      (set_startup_sun_light, 70, 70, 70),
+      (set_startup_ambient_light, 40, 40, 60),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      #(set_fog_distance, -1),
+    (else_try),
+      (is_between, ":time", hours(17), hours(18)),
+      (set_startup_sun_light, 60, 60, 55),
+      (set_startup_ambient_light, 30, 30, 65),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      #(set_fog_distance, -1),
+    (else_try),
+      (is_between, ":time", hours(18), hours(19)),
+      (set_startup_sun_light, 50, 50, 45),
+      (set_startup_ambient_light, 30, 30, 70),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      #(set_fog_distance, -1, 0x0000008),
+    (else_try),
+      (is_between, ":time", hours(19), hours(20)),
+      (set_startup_sun_light, 40, 40, 40),
+      (set_startup_ambient_light, 25, 25, 75),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      #(set_fog_distance, -1, 0x0000008),
+    (else_try),
+      (is_between, ":time", hours(20), hours(20.5)),
+      (set_startup_sun_light, 40, 30, 30),
+      (set_startup_ambient_light, 25, 20, 65),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      #(set_fog_distance, 1900, 0x0000008),
+    (else_try),
+      (is_between, ":time", hours(20.5), hours(21)),
+      (set_startup_sun_light, 35, 25, 25),
+      (set_startup_ambient_light, 30, 20, 50),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      #(set_fog_distance, 1750, 0x0000008),
+    (else_try),
+      (is_between, ":time", hours(21), hours(22)),
+      (set_startup_sun_light, 30, 20, 20),
+      (set_startup_ambient_light, 35, 15, 40),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      #(set_fog_distance, 1600, 0x0000008),
+    (else_try),
+      (is_between, ":time", hours(22), hours(22.5)),
+      (set_startup_sun_light, 20, 10, 15),
+      (set_startup_ambient_light, 30, 10, 40),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      #(set_fog_distance, 1200, 0x0000008),
+    (else_try),
+      (is_between, ":time", hours(22.5), hours(23)),
+      (set_startup_sun_light, 8, 6, 8),
+      (set_startup_ambient_light, 15, 10, 30),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      #(set_fog_distance, 900, 0x0000008),
+    (else_try),
+      (is_between, ":time", hours(23), hours(24)),
+      (set_startup_sun_light, 4, 5, 5),
+      (set_startup_ambient_light, 7, 7, 18),
+      (set_startup_ground_ambient_light, 0, 0, 0),
+      #(set_fog_distance, 500, 0x0000008),
+    (try_end),
+
+    # Set postfx if it's enabled
+    (try_begin),
+      (eq, ":postfx_enabled", 1),
+      (try_begin),
+        (is_between, ":time", hours(6), hours(21)),
+        (set_postfx, pfx_sunset),
+      (else_try),
+        (set_postfx, pfx_night),
+      (try_end),
+    (try_end),
+  ]),
+
+  # script_skybox_init
+  #   Called when first setting the skyboxes. Set them all visible and faded out according to night time.
+  # Author: sHocK
+  # Called: client
+  # Input: none
+  # Output: none
+  ("skybox_init", [
+    (store_add, ":spr_end", "spr_srp_skybox_moon", 1),
+    (try_for_range, ":prop_kind", "spr_srp_skybox_day", ":spr_end"),
+      (scene_prop_get_instance, ":prop_instance", ":prop_kind", 0),
+      (scene_prop_set_visibility, ":prop_instance", 1),
+      (scene_prop_fade_in, ":prop_instance", 1),
+    (try_end),
+  ]),
+
+  # script_skybox_update
+  #   Sets the current skybox depending on the supplied time of day.
+  # Author: sHocK
+  # Called: client
+  # Input: arg1 = time of day (in seconds)
+  # Output: none
+  ("skybox_update", [
+    (store_script_param, ":time", 1),
+    
+    (try_begin),
+      (store_mission_timer_a, ":now"),
+      (store_sub, ":time_passed", ":now", "$g_last_lighting_update_time"),
+      (store_div, ":half_an_hour", "$g_in_game_hour_in_seconds", 2),
+      (this_or_next|ge, ":time_passed", ":half_an_hour"),
+      (le, "$g_last_lighting_update_time", 0),
+      (call_script, "script_skybox_set_lighting_for_time", ":time", 0),
+      (assign, "$g_last_lighting_update_time", ":now"),
+    (try_end),
+
+    # Get the skybox prop instances
+    # TODO: Spawn props if not found
+    (try_begin),
+      (scene_prop_get_instance, ":box_day", "spr_srp_skybox_day", 0),
+      (scene_prop_get_instance, ":box_sunrise", "spr_srp_skybox_sunrise", 0),
+      (scene_prop_get_instance, ":box_sunset", "spr_srp_skybox_sunset", 0),
+      (scene_prop_get_instance, ":box_night", "spr_srp_skybox_night", 0),
+      (scene_prop_get_instance, ":sun", "spr_srp_skybox_sun", 0),
+      (scene_prop_get_instance, ":moon", "spr_srp_skybox_moon", 0),
+    (else_try),
+      (display_message, "@[E] Could not get one or more skybox prop instances!"),
+    (try_end),
+
+    # First time setting the skybox, hide everything but moon and sun
+    (try_begin),
+      (eq, "$skybox_current", -1),
+      (call_script, "script_skybox_init"),
+    (try_end),
+
+    # Fade in/out the skybox
+    (try_begin),
+      (is_between, ":time", hours(4), hours(20)),
+      (try_begin),
+        (neq, "$skybox_current", "spr_srp_skybox_day"),
+
+        (scene_prop_set_visibility, ":box_sunset", 0),
+        (scene_prop_set_visibility, ":box_night", 0),
+        (scene_prop_set_visibility, ":sun", 1),
+        (scene_prop_set_visibility, ":moon", 0),
+        
+        (scene_prop_set_visibility, ":box_day", 1),
+        (try_begin),
+          (eq, "$skybox_current", -1),
+          (scene_prop_fade_in, ":box_day", 1),
+          (scene_prop_set_visibility, ":box_sunrise", 0),
+        (else_try),
+          (scene_prop_fade_in, ":box_day", "$g_skybox_fade_time"),
+          (scene_prop_fade_out, ":box_sunrise", "$g_skybox_fade_time"),
+        (try_end),
+        
+        (call_script, "script_skybox_animate_sun_and_moon", ":time"),
+
+        (assign, "$skybox_current", "spr_srp_skybox_day"),
+        (display_message, "@Time: Day"),
+      (try_end),
+    (else_try),
+      (is_between, ":time", hours(2), hours(4)),
+      (try_begin),
+        (neq, "$skybox_current", "spr_srp_skybox_sunrise"),
+
+        # Set day and sunset invisible
+        (scene_prop_set_visibility, ":box_day", 0),
+        (scene_prop_set_visibility, ":box_sunset", 0),
+        (scene_prop_set_visibility, ":sun", 1),
+        (scene_prop_set_visibility, ":moon", 1),
+        
+        # Fade in sunrise
+        (scene_prop_set_visibility, ":box_sunrise", 1),
+        (try_begin),
+          (eq, "$skybox_current", -1),
+          (scene_prop_fade_in, ":box_sunrise", 1),
+          (scene_prop_set_visibility, ":box_night", 0),
+        (else_try),
+          (scene_prop_fade_in, ":box_sunrise", "$g_skybox_fade_time"),
+          (scene_prop_set_visibility, ":box_night", 1),
+          (scene_prop_fade_out, ":box_night", "$g_skybox_fade_time"),
+        (try_end),
+
+        (call_script, "script_skybox_animate_sun_and_moon", ":time"),
+        
+        (assign, "$skybox_current", "spr_srp_skybox_sunrise"),
+        (display_message, "@Time: Sunrise"),
+      (try_end),
+    (else_try),
+      (is_between, ":time", hours(20), hours(22)),
+      (try_begin),
+        (neq, "$skybox_current", "spr_srp_skybox_sunset"),
+        
+        # Set sunset and sunrise invisible, day visible
+        (scene_prop_set_visibility, ":box_night", 0),
+        (scene_prop_set_visibility, ":box_sunrise", 0),
+        (scene_prop_set_visibility, ":sun", 1),
+        (scene_prop_set_visibility, ":moon", 1),
+
+        # Fade in sunset over day
+        (scene_prop_set_visibility, ":box_sunset", 1),
+        (try_begin),
+          (eq, "$skybox_current", -1),
+          (scene_prop_fade_in, ":box_sunset", 1),
+          (scene_prop_set_visibility, ":box_day", 0),
+        (else_try),
+          (scene_prop_fade_in, ":box_sunset", "$g_skybox_fade_time"),
+          (scene_prop_fade_out, ":box_day", "$g_skybox_fade_time"),
+        (try_end),
+        
+        (call_script, "script_skybox_animate_sun_and_moon", ":time"),
+
+        (assign, "$skybox_current", "spr_srp_skybox_sunset"),
+        (display_message, "@Time: Sunset"),
+      (try_end),
+    (else_try),
+      (this_or_next|is_between, ":time", 0, hours(2)),
+      (is_between, ":time", hours(22), hours(24)),
+      (try_begin),
+        (neq, "$skybox_current", "spr_srp_skybox_night"),
+
+        # Set day invisible and sunrise invisible
+        (scene_prop_set_visibility, ":box_day", 0),
+        (scene_prop_set_visibility, ":box_sunrise", 0),
+        
+        (scene_prop_set_visibility, ":box_night", 1),
+        (try_begin),
+          (eq, "$skybox_current", -1),
+          (scene_prop_fade_in, ":box_night", 1),
+          (scene_prop_set_visibility, ":box_sunset", 0),
+        (else_try),
+          (scene_prop_fade_in, ":box_night", "$g_skybox_fade_time"),
+          (scene_prop_fade_out, ":box_sunset", "$g_skybox_fade_time"),
+          (scene_prop_set_visibility, ":box_sunset", 1),
+        (try_end),
+        
+        # Show the moon and hide the sun
+        (scene_prop_set_visibility, ":moon", 1),
+        (scene_prop_set_visibility, ":sun", 0),
+        
+        (call_script, "script_skybox_animate_sun_and_moon", ":time"),
+
+        (assign, "$skybox_current", "spr_srp_skybox_night"),
+        (display_message, "@Time: Night"),
+      (try_end),
+    (try_end),
+  ]),
+  
+  # script_skybox_animate_sun_and_moon
+  #   Puts the sun and moon on the correct position for the time supplied and
+  #   animates them if necessary.
+  # Author: sHocK
+  # Called: client
+  # Input: arg1 = time of day
+  # Output: none
+  ("skybox_animate_sun_and_moon", [
+    # Get time and skyboxes
+    (store_script_param, ":time", 1),
+    (try_begin),
+      (scene_prop_get_instance, ":sun", "spr_srp_skybox_sun", 0),
+      (scene_prop_get_instance, ":moon", "spr_srp_skybox_moon", 0),
+    (else_try),
+      (display_message, "@[E] Could not get one or more skybox prop instances!"),
+    (try_end),
+
+    # Stop animating sun and moon
+    (prop_instance_stop_animating, ":sun"),
+    (prop_instance_stop_animating, ":moon"),
+
+    # Calculate the angles
+    (set_fixed_point_multiplier, 1),
+
+    # Sun angle (only show sun if it's day)
+    (try_begin),
+      (is_between, ":time", hours(1), hours(23)),
+    
+      # Sun angle  ( time * 5 / 18 + 24000 )
+      (store_mul, ":sun_angle", ":time", 5),
+      (val_div, ":sun_angle", 18),
+      (val_add, ":sun_angle", 24000),
+
+      # Put the sun on the computed angle
+      (prop_instance_get_starting_position, pos10, ":sun"),
+      (set_fixed_point_multiplier, 100),
+      (position_rotate_x_floating, pos10, ":sun_angle"),
+      (prop_instance_set_position, ":sun", pos10),
+
+      # It takes 27 in-game hours to rotate the sun by 270 degrees
+      (store_mul, ":rotation_duration", "$g_in_game_hour_in_seconds", 27 * 100),
+      (prop_instance_rotate_to_position, ":sun", pos10, ":rotation_duration", 270 * 100),
+    (else_try),
+      # Not the right time for the sun to start animating.
+
+      # Put it below the ground
+      (prop_instance_get_starting_position, pos10, ":sun"),
+      (position_rotate_x, pos10, 180),
+      (prop_instance_set_position, ":sun", pos10),
+    (try_end),
+
+    # Calculate the angles
+    (set_fixed_point_multiplier, 1),
+
+    # Moon angle (only show moon if it's night)
+    (try_begin),
+      (this_or_next|is_between, ":time", hours(20), hours(24)),
+      (is_between, ":time", hours(0), hours(4)),
+
+      # Get moon angle (time * 5 / 6)
+      (store_mul, ":moon_angle", ":time", 5),
+      (val_div, ":moon_angle", 6),
+
+      # Put the moon on the computed angle
+      (prop_instance_get_starting_position, pos10, ":moon"),
+      (set_fixed_point_multiplier, 100),
+      (position_rotate_x_floating, pos10, ":moon_angle"),
+      (prop_instance_set_position, ":moon", pos10),
+
+      # It takes 9 in-game hours to rotate the moon by 270 degrees
+      (store_mul, ":rotation_duration", "$g_in_game_hour_in_seconds", 9 * 100),
+      (prop_instance_rotate_to_position, ":moon", pos10, ":rotation_duration", 270 * 100),
+    (else_try),
+      # Not the right time for the moon to start animating.
+        
+      # Put it below the ground
+      (prop_instance_get_starting_position, pos10, ":moon"),
+      (position_rotate_x, pos10, 180),
+      (prop_instance_set_position, ":moon", pos10),
+    (try_end),
+  ]),
+  
+  # script_skybox_spawn_all
+  #   Spawns all the skyboxes for later use.
+  # Author: sHocK
+  # Called: server
+  # Input: none
+  # Output: none
+  ("skybox_spawn_all", [
+    # Spawn all skyboxes
+    (init_position, pos2),
+    (set_spawn_position, pos2),
+
+    (store_add, ":spr_end", "spr_srp_skybox_moon", 1),
+    (try_for_range, ":prop_kind", "spr_srp_skybox_day", ":spr_end"),
+      (spawn_scene_prop, ":prop_kind"),
+    (try_end),
+  ]),
+  
+  # script_skybox_send_info_to_player
+  #   Sends light information to the specified player.
+  # Author: sHocK
+  # Called: server
+  # Input: arg1 = player
+  # Output: none
+  ("skybox_send_info_to_player", [
+    (store_script_param, ":player_id", 1),
+    (store_mission_timer_b, ":day_time"),
+    (val_mod, ":day_time", hours(24)),
+    (val_mul, ":day_time", hours(24)),
+    (val_div, ":day_time", "$g_day_duration"),
+    (val_mod, ":day_time", hours(24)),
+    
+    (try_begin),
+      (player_is_active, ":player_id"),
+      (multiplayer_send_int_to_player, ":player_id", server_event_day_night_cycle_sync, ":day_time", "$g_day_duration"),
+    (try_end),
+  ]),
+
+  # script_skybox_send_info_to_players
+  #   Sends light information to all players.
+  # Author: sHocK
+  # Called: server
+  # Input: none
+  # Output: none
+  ("skybox_send_info_to_players", [
+    (store_mission_timer_b, ":day_time"),
+    (val_mod, ":day_time", hours(24)),
+    (val_mul, ":day_time", hours(24)),
+    (val_div, ":day_time", "$g_day_duration"),
+    (val_mod, ":day_time", hours(24)),
+    
+    (try_for_players, ":player_id"),
+      (player_is_active, ":player_id"),
+      (multiplayer_send_2_int_to_player, ":player_id", server_event_day_night_cycle_sync, ":day_time", "$g_day_duration"),
+    (try_end),
+  ]),
 ])

@@ -1,4 +1,4 @@
-19
+24
 qstr_fist fist
 qstr_{s0}^Ironflesh:_{reg {s0}^Ironflesh:_{reg10}
 qstr_{s0}^Power_strike:_{ {s0}^Power_strike:_{reg10}
@@ -18,3 +18,8 @@ qstr_{s0}^Herding:_{reg10 {s0}^Herding:_{reg10}
 qstr_{s0}^Musician:_{reg1 {s0}^Musician:_{reg10}
 qstr_withdraw withdraw
 qstr_deposit deposit
+qstr_[E]_Could_not_get_on [E]_Could_not_get_one_or_more_skybox_prop_instances!
+qstr_Time:_Day Time:_Day
+qstr_Time:_Sunrise Time:_Sunrise
+qstr_Time:_Sunset Time:_Sunset
+qstr_Time:_Night Time:_Night

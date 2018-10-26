@@ -220,6 +220,8 @@ tableaus = [
   ("heraldic_lamellar_armor_d", 0, "lamellar_armor_d", 1024, 1024, 0, 0, 0, 0, tableau_armor_banner("mesh_tableau_mesh_heraldic_lamellar_armor_d", banner_xyz=(62,29,10), banner_scale=70)),
   ("heraldic_mail_long_surcoat", 0, "mail_long_surcoat", 1024, 1024, 0, 0, 0, 0, tableau_armor_banner("mesh_tableau_mesh_heraldic_mail_long_surcoat", banner_xyz=(54,70,10), banner_scale=40)),
   ("heraldic_surcoat_over_mail", 0, "surcoat_over_mail", 1024, 1024, 0, 0, 0, 0, tableau_armor_banner("mesh_tableau_mesh_heraldic_surcoat_over_mail", banner_xyz=(-60,70,10), banner_scale=40)),
+  
+  ("heraldic_early_transitional_white", 0, "early_transitional_white", 1024, 1024, 0, 0, 0, 0, tableau_armor_banner("mesh_tableau_mesh_early_transitional_heraldic", banner_xyz=(20,135,10), banner_scale=65)),
 
   ("colored_arena_tunic", 0, "arena_tunicW", 512, 512, 0, 0, 0, 0, tableau_armor_color("mesh_tableau_mesh_colored_arena_tunic")),
   ("colored_arena_armor", 0, "arena_armorW", 512, 512, 0, 0, 0, 0, tableau_armor_color("mesh_tableau_mesh_colored_arena_armor")),
@@ -236,25 +238,5 @@ tableaus = [
   ("faction_banner_pole", 0, "pw_banner_pole", 512, 1024, 0, 0, 0, 0, tableau_banner_pole()),
   ("stats_chart_banner", 0, "pw_banner_pole", 512, 1024, 0, 0, 0, 0, tableau_stats_chart_banner()),
   ("stats_chart_banner_war", 0, "pw_banner_pole", 512, 1024, 0, 0, 0, 0, tableau_stats_chart_banner(war=True)),
-
-  ("heraldic_charger", 0, "sample_heraldic_charger", 1024, 1024, 0, 0, 0, 0,
-     [(store_script_param, ":banner_mesh", 1),
-      (set_fixed_point_multiplier, 100),
-
-      (troop_get_slot, ":background_color", "trp_banner_background_color_array", ":banner_mesh"),
-      (cur_tableau_set_background_color, ":background_color"),
-
-      (init_position, pos1),
-      (cur_tableau_add_mesh_with_vertex_color, "mesh_heraldic_armor_bg", pos1, 200, 100, ":banner_mesh"),
-      (init_position, pos1),
-      (position_set_z, pos1, 50),
-      (position_set_x, pos1, 35),
-      (position_set_y, pos1, 130),
-      (cur_tableau_add_mesh, ":banner_mesh", pos1, 80, 0),
-      (init_position, pos1),
-      (position_set_z, pos1, 100),
-      (cur_tableau_add_mesh, "mesh_tableau_mesh_heraldic_charger", pos1, 0, 0),
-      (cur_tableau_set_camera_parameters, 0, 200, 200, 0, 100000),
-  ]),
 
 ]

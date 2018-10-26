@@ -160,6 +160,17 @@ before_mission_start_setup = (ti_before_mission_start, 0, 0, [], # set up basic 
     (else_try),
       (call_script, "script_load_profile_options"),
     (try_end),
+    (assign, "$skybox_current", -1),
+    (assign, "$g_last_lighting_update_time", -1),
+    (try_begin),
+      (lt, "$g_day_duration", 1),
+      (assign, "$g_day_duration", hours(0.5)),
+      (store_div, "$g_in_game_hour_in_seconds", "$g_day_duration", 24),
+    (try_end),
+    (try_begin),
+      (lt, "$g_skybox_scale", 1),
+      (assign, "$g_skybox_scale", skybox_scale),
+    (try_end),
     ])
 
 after_mission_start_setup = (ti_after_mission_start, 0, 0, [], # spawn and move certain things after most other set up is done
@@ -185,6 +196,12 @@ after_mission_start_setup = (ti_after_mission_start, 0, 0, [], # spawn and move 
           (call_script, "script_cf_faction_change_relation", ":faction_id", ":target_faction_id", 1),
        (try_end),
     (try_end),
+    #Spawn SRP Skyboxes if wanted
+    (try_begin),
+      (eq, "$g_day_night_cycle_enabled", 1),
+      (multiplayer_is_server),
+      (call_script, "script_skybox_spawn_all"),
+    (try_end),
     ])
 
 player_joined = (ti_server_player_joined, 0, 0, [], # server: handle connecting players
@@ -203,28 +220,24 @@ player_exit = (ti_on_player_exit, 0, 0, [], # server: save player values on exit
     (player_get_unique_id, reg0, ":player_id"),
     (server_add_message_to_log, "str_s1_has_left_the_game_with_id_reg0"),
 
-	#Remove freeze walls if they exist
-    (player_get_slot, ":freeze_instance_id", ":player_id", slot_player_freeze_instance_id),
-    (gt, ":freeze_instance_id", -1),
-    (prop_instance_is_valid, ":freeze_instance_id"),
-    (call_script, "script_remove_scene_prop", ":freeze_instance_id"),
-    (player_set_slot, ":player_id", slot_player_freeze_instance_id, -1),
-
-    #Log equipment on log out
     (call_script, "script_log_equipment", ":player_id"),
-    #End
+
+    (try_begin),
+      (player_get_slot, ":freeze_instance_id", ":player_id", slot_player_freeze_instance_id),
+      (gt, ":freeze_instance_id", -1),
+      (prop_instance_is_valid, ":freeze_instance_id"),
+      (call_script, "script_remove_scene_prop", ":freeze_instance_id"),
+      (player_set_slot, ":player_id", slot_player_freeze_instance_id, -1),
+    (try_end),
   ])
 
 
 agent_spawn = (ti_on_agent_spawn, 0, 0, [], # server and clients: set up new agents after they spawn
    [(store_trigger_param_1, ":agent_id"),
     (call_script, "script_on_agent_spawned", ":agent_id"),
+    (call_script, "script_death_cam_off", ":agent_id"),
 
     (try_begin),
-      #Log the player's equipment on log ins. Due to player actually not having items when they "joined", it needs to log when
-      #they are spawned for the first time
-      #CRUCIAL: Updates on the player's equipment should be done before this code block so the server logs properly
-
       (multiplayer_is_server),
       (neg|agent_is_non_player, ":agent_id"),
       (agent_get_player_id, ":player_id", ":agent_id"),
@@ -270,6 +283,7 @@ agent_killed = (ti_on_agent_killed_or_wounded, 0, 0, [], # server and clients: h
     (try_end),
 
     (call_script, "script_client_check_show_respawn_time_counter", ":dead_agent_id"),
+    (call_script, "script_death_cam", ":dead_agent_id"),
     (call_script, "script_apply_consequences_for_agent_death", ":dead_agent_id", ":killer_agent_id"),
     (multiplayer_is_server),
     (call_script, "script_setup_agent_for_respawn", ":dead_agent_id"),
@@ -344,6 +358,7 @@ item_wielded = (ti_on_item_wielded, 0, 0, [], # handle agents wielding an item
    [(store_trigger_param_1, ":agent_id"),
     (store_trigger_param_2, ":item_id"),
     (call_script, "script_agent_calculate_stat_modifiers_for_item", ":agent_id", ":item_id", 1, 1),
+    (call_script, "script_check_wielding_during_position_animation", ":agent_id", ":item_id"),
     ])
 
 item_unwielded = (ti_on_item_unwielded, 0, 0, [], # handle agents un-wielding an item
@@ -444,108 +459,6 @@ instrument_with_sheild_pickup = (ti_on_item_picked_up, 0, 0, [],  # handle instr
 
     (agent_set_wielded_item, ":agent_id", -1),
     (agent_set_wielded_item, ":agent_id", ":r_item_id"),
-    ])
-
-position_animation_check = (1, 0, 0, [], # server: handle agents sitting
-   [(multiplayer_is_server),
-    (try_for_agents, ":agent_id"),
-      (agent_is_active,":agent_id"),
-      (agent_is_alive,":agent_id"),
-      (agent_is_human,":agent_id"),
-      (agent_get_slot, ":position_animation", ":agent_id", slot_agent_position_animation),
-      (try_begin),
-        (gt, ":position_animation", 0),
-        (agent_get_position, pos0, ":agent_id"),
-
-        (agent_get_slot, ":x", ":agent_id", slot_agent_animation_position_x),
-        (agent_get_slot, ":y", ":agent_id", slot_agent_animation_position_y),
-        (agent_get_slot, ":z", ":agent_id", slot_agent_animation_position_z),
-
-        (assign, ":valid_pos", 1),
-        (try_begin),
-            (this_or_next|eq, ":x", -1),
-            (this_or_next|eq, ":y", -1),
-            (eq, ":z", -1),
-            (assign, ":valid_pos", 0),
-        (try_end),
-        (eq, ":valid_pos", 1),
-
-        (position_set_x, pos1, ":x"),
-        (position_set_y, pos1, ":y"),
-        (position_set_z, pos1, ":z"),
-
-        (get_distance_between_positions, ":dist", pos0, pos1),
-        (try_begin),
-          (gt, ":dist", 20),
-    
-          (try_begin),
-            (this_or_next|eq, ":position_animation", "anim_sitting_pillow_male"),
-            (eq, ":position_animation", "anim_sitting_pillow_female"),
-            (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_sitting_finish",0),
-            (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_sitting_finish",1),
-          (else_try), # cancel other position animations. Using this animation as a placeholder as it seems to be good for all current position animations implemented.
-            (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_sitting_finish",0),
-            (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_sitting_finish",1),
-          (try_end),
-
-          (agent_set_slot, ":agent_id", slot_agent_animation_position_x, -1),
-          (agent_set_slot, ":agent_id", slot_agent_animation_position_y, -1),
-          (agent_set_slot, ":agent_id", slot_agent_animation_position_z, -1),
-          (agent_set_slot, ":agent_id", slot_agent_position_animation, 0),
-
-        (else_try),
-          (agent_get_wielded_item, ":left_hand_item", ":agent_id", 1),
-          (ge, ":left_hand_item", all_items_begin),
-          (agent_set_wielded_item, ":agent_id", -1),
-        (else_try),
-          (agent_get_wielded_item, ":right_hand_item", ":agent_id", 0),
-          (neq, ":right_hand_item", "itm_lute"),
-          (neq, ":right_hand_item", "itm_lyre"),
-          (neq, ":right_hand_item", "itm_warhorn"),
-          (agent_set_wielded_item, ":agent_id", -1),
-        (try_end),
-      (try_end),
-    (try_end),
-    ])
-
-sitting_check_chair = (1, 0, 0, [], # server: handle agents sitting
-   [(multiplayer_is_server),
-    (try_for_agents, ":agent_id"),
-      (agent_is_active,":agent_id"),
-      (agent_is_alive,":agent_id"),
-      (agent_is_human,":agent_id"),
-      (agent_get_slot,":instance",":agent_id",slot_agent_scene_prop_in_use),
-      (ge,":instance",0),
-      (agent_get_animation, ":anim", ":agent_id", 0),
-      (try_begin),
-        (this_or_next|eq,":anim","anim_sitting"),
-        (this_or_next|eq,":anim","anim_sitting_pillow_male"),
-        (eq,":anim","anim_sitting_pillow_female"),
-        (try_begin),
-          (agent_get_position,pos0,":agent_id"),
-          (prop_instance_get_position, pos1, ":instance"),
-          (get_distance_between_positions,":dist",pos0,pos1),
-          (gt, ":dist", 60),##If moved away from the chair stop the animation
-          (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_sitting_finish",0),
-          (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_sitting_finish",1),
-          (agent_set_slot,":agent_id",slot_agent_scene_prop_in_use,-1),
-        (else_try),
-          (agent_get_wielded_item, ":left_hand_item", ":agent_id", 1),
-          (ge, ":left_hand_item", all_items_begin),
-          (agent_set_wielded_item, ":agent_id", -1),
-        (else_try),
-          (agent_get_wielded_item, ":right_hand_item", ":agent_id", 0),
-          (neq, ":right_hand_item", "itm_lute"),
-          (neq, ":right_hand_item", "itm_lyre"),
-          (neq, ":right_hand_item", "itm_warhorn"),
-          (agent_set_wielded_item, ":agent_id", -1),
-        (try_end),
-      (else_try),##Agent isnt sitting anymore
-        (agent_set_slot,":agent_id",slot_agent_scene_prop_in_use,-1),
-        (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_pose_finish",0),
-        (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_pose_finish",1),
-      (try_end),
-    (try_end),
     ])
 
 player_check_loop = (0, 0, 0.5, # server: check all players to see if any need agents spawned, also periodically lowering outlaw ratings
@@ -1178,6 +1091,12 @@ render_weather_effects = (0.1, 0, 0, [], # clients: regularly display weather ef
    [(neg|multiplayer_is_server),
     (call_script, "script_cf_render_weather_effects"),
     ])
+    
+skybox_update_interval = (5, 0, 0, [], [
+  (multiplayer_is_server),
+  (eq, "$g_day_night_cycle_enabled", 1),
+  (call_script, "script_skybox_send_info_to_players"),
+])
 
 def common_triggers(self):
 	return [(ti_before_mission_start, 0, 0, [(assign, "$g_game_type", "mt_" + self)], []),
@@ -1205,8 +1124,6 @@ def common_triggers(self):
     instrument_dropped,
     instrument_with_sheild_wield,
     instrument_with_sheild_pickup,
-    position_animation_check,
-    sitting_check_chair,
 
     player_check_loop,
     agent_check_loop,
@@ -1248,6 +1165,8 @@ def common_triggers(self):
     shadow_recalculation,
     adjust_weather_effects,
     render_weather_effects,
+    
+    skybox_update_interval,
     ]
 
 mission_templates = [
