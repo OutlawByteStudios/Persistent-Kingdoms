@@ -82,8 +82,6 @@ slot_player_admin_no_join_factions    = 60
 slot_player_admin_no_factions         = 61
 slot_player_admin_end                 = 62
 
-slot_player_freeze_instance_id        = 63 #Needed for removing freeze walls on disconnects
-
 slot_player_commit_suicide_time       = 64
 suicide_delay                         = 15 # suicide delay time
 
