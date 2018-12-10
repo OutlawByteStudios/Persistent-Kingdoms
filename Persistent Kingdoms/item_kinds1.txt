@@ -2831,7 +2831,7 @@ itemsfile version 3
  0
 0
 
- itm_silver_ring_ruby Silver_Ring_with_Ruby Silver_Ring_with_Ruby 1  silver_ring_ruby_L 0  6597069766671 0 590 704643236 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ itm_silver_ring_ruby Silver_Ring_with_Ruby Silver_Ring_with_Ruby 2  silver_ring_ruby_L 0  silver_ring_ruby_R 1152921504606846976  6597069766671 0 590 704643236 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
  0
 0
 
@@ -2839,7 +2839,7 @@ itemsfile version 3
  0
 0
 
- itm_gold_ring_ruby Gold_Ring_with_Ruby Gold_Ring_with_Ruby 1  gold_ring_ruby_L 0  6597069766671 0 1290 704643236 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
+ itm_gold_ring_ruby Gold_Ring_with_Ruby Gold_Ring_with_Ruby 2  gold_ring_ruby_L 0  gold_ring_ruby_R 1152921504606846976  6597069766671 0 1290 704643236 0.000000 100 0 0 0 0 0 0 0 0 0 0 0
  0
 0
 
