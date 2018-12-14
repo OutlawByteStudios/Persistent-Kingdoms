@@ -3320,8 +3320,8 @@ scene_props = [
   ("cm_buy_polished_steel_boots",spr_buy_item_flags(10),"narf_greaves","bo_pw_armor_foot", spr_buy_item_triggers("itm_narf_greaves", resources=[("itm_leather_piece",2),("itm_iron_bar",2)], engineer=6)),
   ("cm_buy_steel_boots",spr_buy_item_flags(10),"steel_greaves","bo_pw_armor_foot", spr_buy_item_triggers("itm_steel_greaves", resources=[("itm_leather_piece",2),("itm_iron_bar",2)], engineer=6)),
 
-  ("cm_buy_crown",spr_buy_item_flags(12),"crown","bo_pw_armor_head", spr_buy_item_triggers("itm_crown", resources=["itm_gold_nugget"], engineer=6)),
-  ("cm_buy_bejeweled_crown",spr_buy_item_flags(12),"bejeweled_crown","bo_pw_armor_head", spr_buy_item_triggers("itm_bejeweled_crown", resources=["itm_gold_nugget"], engineer=6)),
+  ("cm_buy_crown",spr_buy_item_flags(12),"crown","bo_crown", spr_buy_item_triggers("itm_crown", resources=["itm_gold_nugget"], engineer=6)),
+  ("cm_buy_bejeweled_crown",spr_buy_item_flags(12),"bejeweled_crown","bo_bejeweled_crown", spr_buy_item_triggers("itm_bejeweled_crown", resources=["itm_gold_nugget"], engineer=6)),
   ("cm_buy_brown_assassin_cape",spr_buy_item_flags(1),"brown_assassin_cape","bo_pw_armor_head", spr_buy_item_triggers("itm_brown_assassin_cape", resources=[("itm_linen_cloth_small",2)], tailoring=1)),
   ("cm_buy_green_assassin_cape",spr_buy_item_flags(1),"green_assassin_cape","bo_pw_armor_head", spr_buy_item_triggers("itm_green_assassin_cape", resources=[("itm_linen_cloth_small",2)], tailoring=1)),
   ("cm_buy_white_assassin_cape",spr_buy_item_flags(1),"white_assassin_cape","bo_pw_armor_head", spr_buy_item_triggers("itm_white_assassin_cape", resources=[("itm_linen_cloth_small",2)], tailoring=1)),
