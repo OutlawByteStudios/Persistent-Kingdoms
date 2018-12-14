@@ -782,9 +782,9 @@ str_log_put_item_in_inventory {s11}_put_{s12}_into_an_inventory_(IID:_{reg31}).
 str_log_put_item_in_finventory {s11}_put_{s12}_into_an_inventory_of_{s10}_(IID:_{reg31}).
 str_log_take_item_from_inventory {s11}_took_{s12}_from_an_inventory_(IID:_{reg31}).
 str_log_take_item_from_finventory {s11}_took_{s12}_from_an_inventory_of_{s10}_(IID:_{reg31}).
-str_log_hit_player {s11}_(FID:_{reg10})_attacked_{s12}_(FID:_{reg11})_with_{s10}_dealing_{reg31}_damage.
-str_log_hit_phorse {s11}_(FID:_{reg10})_attacked_Horse_({s12}_FID:_{reg11}))_with_{s10}_dealing_{reg31}_damage.
-str_log_hit_animal {s11}_(FID:_{reg10})_attacked_Horse_({s12}_FID:_{reg11}))_with_{s10}_dealing_{reg31}_damage_(AID:_{reg32}).
+str_log_hit_player {s11}_attacked_{s12}_with_{s10}_dealing_{reg31}_damage._FIDs:_{reg10},_{reg11}.
+str_log_hit_phorse {s11}_attacked_Horse_({s12})_with_{s10}_dealing_{reg31}_damage._FIDs:_{reg10},_{reg11}.
+str_log_hit_animal {s11}_attacked_Horse_({s12}_(AID:_{reg32}))_with_{s10}_dealing_{reg31}_damage._FID:_{reg10}
 str_log_bump Horse_({s11}_FID:_{reg10}))_attacked_{s12}_FID:_{reg11})_dealing_{reg31}_damage.
 str_log_heal_player {s11}_healed_{s12}_by_{reg31}_HP.
 str_log_heal_phorse {s11}_healed_Horse_({s12})_by_{reg31}_HP.
