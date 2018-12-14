@@ -290,8 +290,8 @@ scripts.extend([
             (neg|agent_is_non_player, ":attacked_agent_id"),
             (agent_get_player_id, ":attacked_player_id", ":attacked_agent_id"),
             (str_store_player_username, s12, ":attacked_player_id"),
-            (server_add_message_to_log, "str_log_hit_player"),
             (player_get_slot, reg11, ":attacked_player_id", slot_player_faction_id),
+            (server_add_message_to_log, "str_log_hit_player"),
           (else_try),#Else, the defender is either horse or animal
             (agent_get_rider, ":rider_id", ":attacked_agent_id"),
             (try_begin),#The horse is mounted by a player
