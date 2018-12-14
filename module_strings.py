@@ -735,10 +735,8 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("must_leave_s1_first", "You must leave {s1} first."),
   ("not_a_member_of_s1", "You are not a member of {s1}."),
   ("inactive_faction_change", "The faction you were in no longer exists, so you have been moved to commoner. Join another faction to avoid losing your class!"),
-  #Alter mount/dismount logs to show the agent_id of the mount
   ("s0_has_dismounted_a_s1", "{s0} has dismounted a {s1} (AID: {reg31})."),
   ("s0_has_mounted_a_s1", "{s0} has mounted a {s1} (AID: {reg31})."),
-  #End
   ("s1_captured_s2", "{s1} have captured {s2}!"),
   ("your_faction_not_hostile_to_s1", "Your faction is not hostile to the {s1}."),
   ("your_faction_not_captured_required_points", "Your faction has not captured the required secondary points."),
@@ -754,7 +752,8 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("you_are_not_lord_of_s1", "You are not the lord of {s1}."),
   ("you_are_now_lord_of_s1", "You are now the lord of {s1}."),
   ("s10_now_lord_of_s1", "{s10} is now the lord of the {s1}."),
-  ("s10_now_known_as_s1", "{s10} (FID: {reg10}) are now known as {s1}."),
+  ("s10_now_known_as_s1", "{s10} are now known as {s1}."),
+  ("log_s10_now_known_as_s1", "{s10} (FID: {reg10}) are now known as {s1}."),
   ("banner_used_by_s1", "That banner is used by {s1}."),
   ("s1_doesnt_need_merc", "{s1} doesn't need mercenaries."),
   ("s1_reign_supreme", "{s1} reign supreme!"),

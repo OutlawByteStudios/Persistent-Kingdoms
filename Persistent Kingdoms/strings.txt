@@ -1,5 +1,5 @@
 stringsfile version 1
-800
+801
 str_no_string NO_STRING!
 str_empty_string _
 str_yes Yes.
@@ -526,7 +526,8 @@ str_scene_error_this_faction_is_not_active Scene_error:_this_faction_is_not_acti
 str_you_are_not_lord_of_s1 You_are_not_the_lord_of_{s1}.
 str_you_are_now_lord_of_s1 You_are_now_the_lord_of_{s1}.
 str_s10_now_lord_of_s1 {s10}_is_now_the_lord_of_the_{s1}.
-str_s10_now_known_as_s1 {s10}_(FID:_{reg10})_are_now_known_as_{s1}.
+str_s10_now_known_as_s1 {s10}_are_now_known_as_{s1}.
+str_log_s10_now_known_as_s1 {s10}_(FID:_{reg10})_are_now_known_as_{s1}.
 str_banner_used_by_s1 That_banner_is_used_by_{s1}.
 str_s1_doesnt_need_merc {s1}_doesn't_need_mercenaries.
 str_s1_reign_supreme {s1}_reign_supreme!
