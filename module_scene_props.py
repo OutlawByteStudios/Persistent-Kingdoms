@@ -891,8 +891,6 @@ def spr_chairs(anim, female_anim=0):
 
           (try_begin),
             (set_fixed_point_multiplier, 100),
-            (prop_instance_get_position, pos40, ":instance_id"),
-            (agent_set_position,":agent_id",pos40),
             
             (agent_set_wielded_item, ":agent_id", -1),
             
@@ -902,10 +900,13 @@ def spr_chairs(anim, female_anim=0):
               (neq, female_anim, 0),
               (player_get_gender, ":gender", ":player_id"),
               (eq, ":gender", tf_female),
-              (call_script, "script_cf_do_custom_anims", ":agent_id", female_anim,0),
+              (call_script, "script_cf_chairs_do_custom_anims", ":agent_id", female_anim,0),
             (else_try),
-              (call_script, "script_cf_do_custom_anims", ":agent_id", anim,0),
+              (call_script, "script_cf_chairs_do_custom_anims", ":agent_id", anim,0),
             (try_end),
+            
+            (prop_instance_get_position, pos40, ":instance_id"),
+            (agent_set_position, ":agent_id", pos40),
           (try_end),
         (try_end),
       (try_end),
