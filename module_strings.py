@@ -225,10 +225,11 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("use_default_banner", "Use Faction's Banner"),
 
   ("game_type_1", "Conquest"),
-  ("game_type_2", "Quick Battle"),
-  ("game_type_3", "No Money"),
-  ("game_type_4", "Feudalism"),
-  ("game_type_5", "Permanent Death"),
+  ("game_type_2", "Deathmatch"),
+  ("game_type_3", "Quick Battle"),
+  ("game_type_4", "No Money"),
+  ("game_type_5", "Feudalism"),
+  ("game_type_6", "Permanent Death"),
   ("game_types_end", "game_types_end"),
 
   ("fac_1_default_name", "Red Faction"),

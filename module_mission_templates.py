@@ -1166,6 +1166,11 @@ mission_templates = [
     common_triggers("conquest") + [
     money_bag_pressed,
     ]),
+    
+  ("multiplayer_dm", mtf_battle_mode, -1, "Deathmatch.", spawn_points_0_99,
+    common_triggers("multiplayer_dm") + [
+    money_bag_pressed,
+    ]),
 
   ("quick_battle", mtf_battle_mode, -1, "Quick battle.", spawn_points_0_99,
     common_triggers("quick_battle") + [
