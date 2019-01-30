@@ -878,36 +878,37 @@ def spr_chairs(anim, female_anim=0):
 
       (try_begin),
         (eq, ":is_currently_used", 0),
-        # not on horseback
-        (try_begin),
-          (agent_get_horse, ":player_horse", ":agent_id"),
-          (le, ":player_horse", 0),
-          
-          (agent_get_speed, pos30, ":agent_id"),
-          (position_get_y, ":forwards_speed", pos30),
-          (position_get_x, ":sideways_speed", pos30),
-          (le, ":forwards_speed", 1),
-          (le, ":sideways_speed", 1),
 
-          (try_begin),
-            (set_fixed_point_multiplier, 100),
-            (prop_instance_get_position, pos40, ":instance_id"),
-            (agent_set_position,":agent_id",pos40),
-            
-            (agent_set_wielded_item, ":agent_id", -1),
-            
-            (scene_prop_set_slot, ":instance_id", slot_scene_prop_sitting_agent, ":agent_id"),
-            
-            (try_begin),
-              (neq, female_anim, 0),
-              (player_get_gender, ":gender", ":player_id"),
-              (eq, ":gender", tf_female),
-              (call_script, "script_cf_do_custom_anims", ":agent_id", female_anim,0),
-            (else_try),
-              (call_script, "script_cf_do_custom_anims", ":agent_id", anim,0),
-            (try_end),
-          (try_end),
+        # player is not on horse
+        (agent_get_horse, ":player_horse", ":agent_id"),
+        (le, ":player_horse", 0),
+
+        # player is not moving
+        (agent_get_speed, pos30, ":agent_id"),
+        (position_get_y, ":forwards_speed", pos30),
+        (position_get_x, ":sideways_speed", pos30),
+        (le, ":forwards_speed", 1),
+        (le, ":sideways_speed", 1),
+
+        # unwield item
+        (agent_set_wielded_item, ":agent_id", -1),
+
+        # update sitting agent slot
+        (scene_prop_set_slot, ":instance_id", slot_scene_prop_sitting_agent, ":agent_id"),
+
+        (try_begin),
+          # if female variant use it
+          (neq, female_anim, 0),
+          (player_get_gender, ":gender", ":player_id"),
+          (eq, ":gender", tf_female),
+          (call_script, "script_cf_chairs_do_custom_anims", ":agent_id", female_anim, 0),
+        (else_try),
+          (call_script, "script_cf_chairs_do_custom_anims", ":agent_id", anim, 0),
         (try_end),
+
+        # move agent into place
+        (prop_instance_get_position, pos40, ":instance_id"),
+        (agent_set_position, ":agent_id", pos40),
       (try_end),
       ]),
     ]

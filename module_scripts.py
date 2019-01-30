@@ -1507,6 +1507,21 @@ scripts.extend([
         (store_script_param, ":rain_mode", 3),
         (store_script_param, ":strength", 4),
         (set_rain, ":rain_mode", ":strength"),
+      (else_try),
+        (eq, ":event_type", server_event_agent_set_position),
+        (store_script_param, ":agent_id", 3),
+        (store_script_param, ":pos_x", 4),
+        (store_script_param, ":pos_y", 5),
+        (store_script_param, ":pos_z", 6),
+        (try_begin),
+          (agent_is_active, ":agent_id"),
+          (agent_is_alive, ":agent_id"),
+          (agent_get_position, pos10, ":agent_id"),
+          (position_set_x, pos10, ":pos_x"),
+          (position_set_y, pos10, ":pos_y"),
+          (position_set_z, pos10, ":pos_z"),
+          (agent_set_position, ":agent_id", pos10),
+        (try_end),
       (try_end),
 
     (else_try), # section of events received by server from the clients
@@ -14650,8 +14665,8 @@ scripts.extend([
         (try_for_range, ":player_id", 1, ":max_players"),
           (player_is_active, ":player_id"),
           (multiplayer_send_int_to_player, ":player_id", server_event_agent_stop_sound, ":agent_id"),
-          (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_pose_finish",1),
         (try_end),
+        (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_pose_finish",1),
     ]),
 
     ("client_stop_playing_musical_instrument", # client: Handle stop playing a musical instrument
@@ -14663,13 +14678,33 @@ scripts.extend([
           (try_end),
         (try_end),
     ]),
-
+    
     ("cf_do_custom_anims", # server: Do custom animations
        [(multiplayer_is_server),
         (store_script_param, ":agent_id", 1), # must be valid
         (store_script_param, ":anim", 2), # must be valid
         (store_script_param, ":body", 3),
-        (agent_set_animation,":agent_id",":anim",":body"),
+        (agent_set_animation, ":agent_id", ":anim", ":body"),
+    ]),
+
+    ("cf_chairs_do_custom_anims", # server: Do custom animations for sitting on chairs
+       [(multiplayer_is_server),
+        (store_script_param, ":agent_id", 1), # must be valid
+        (store_script_param, ":anim", 2), # must be valid
+        (store_script_param, ":body", 3),
+        
+        (agent_get_position, pos10, ":agent_id"),
+        (position_get_x, ":pos_x", pos10),
+        (position_get_y, ":pos_y", pos10),
+        (position_get_z, ":pos_z", pos10),
+        
+        #Manually set agent position on client side first, so that the teleportation doesn't trigger a walking animation which breaks the sitting animation
+        (try_for_players, ":other_player_id"),
+           (player_is_active, ":other_player_id"),
+           (multiplayer_send_4_int_to_player, ":other_player_id", server_event_agent_set_position, ":agent_id", ":pos_x", ":pos_y", ":pos_z"),
+        (try_end),
+        
+        (agent_set_animation, ":agent_id", ":anim", ":body"),
     ]),
 
     ("cf_has_enough_skill_level", # server: Handle checking for required skill level
