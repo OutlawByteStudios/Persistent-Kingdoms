@@ -2,5 +2,6 @@
 /ID_*.py
 /crafting_recipes*
 /admin_item_ids.txt
+/admin_item_ids.json
 /Persistent Kingdoms/*.txt
 /Persistent Kingdoms/Data/*.txt
