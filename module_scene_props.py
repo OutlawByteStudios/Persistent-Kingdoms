@@ -3687,6 +3687,7 @@ scene_props = [
   ("cm_ado_wood_tourney_podium_painted_dark"    ,0,"cm_ado_wood_tourney_podium_painted_dark","bo_cm_ado_wood_tourney_podium_painted_dark",[]),
   ("cm_ado_wood_tourney_post"                   ,0,"cm_ado_wood_tourney_post","bo_cm_ado_wood_tourney_post",[]),
   ("cm_ado_wood_tourney_scaffold_short"         ,0,"cm_ado_wood_tourney_scaffold_short","bo_cm_ado_wood_tourney_scaffold_short",[]),
+  ("cm_ado_wood_tourney_scaffold_short_combined",0,"cm_ado_wood_tourney_scaffold_short_combined","bo_cm_ado_wood_tourney_scaffold_short_combined",[]),
   ("cm_ado_wood_tourney_scaffold_tall"          ,0,"cm_ado_wood_tourney_scaffold_tall","bo_cm_ado_wood_tourney_scaffold_tall",[]),
   ("cm_ado_wood_tourney_scaffold_tall_painted"  ,0,"cm_ado_wood_tourney_scaffold_tall_painted","bo_cm_ado_wood_tourney_scaffold_tall_painted",[]),
   ("cm_ado_wood_tourney_scaffold_tall_painted_dark",0,"cm_ado_wood_tourney_scaffold_tall_painted_dark","bo_cm_ado_wood_tourney_scaffold_tall_painted_dark",[]),
