@@ -3825,6 +3825,8 @@ scene_props = [
   ("pw_door_rotate_village_b",spr_rotate_door_flags(1),"pw_village_door_b","bo_pw_village_door_a", spr_rotate_door_triggers(hit_points=2000)),
   ("cm_door_rotate_akra_left",spr_rotate_door_flags(1),"cm_akra_vorota_b","bo_cm_akra_vorota_b", spr_rotate_door_triggers(hit_points=5000, left=1)),
   ("cm_door_rotate_akra_right",spr_rotate_door_flags(1),"cm_akra_vorota_a","bo_cm_akra_vorota_a", spr_rotate_door_triggers(hit_points=5000)),
+  ("cm_door_rotate_palisade_gate_left",spr_rotate_door_flags(1),"cm_palisade_gate_b","bo_cm_palisade_gate_b", spr_rotate_door_triggers(hit_points=5000, left=1)),
+  ("cm_door_rotate_palisade_gate_right",spr_rotate_door_flags(1),"cm_palisade_gate_a","bo_cm_palisade_gate_a", spr_rotate_door_triggers(hit_points=5000)),
 
   ("pw_wooden_bridge_a",spr_structure_flags(),"bridge_wooden","bo_bridge_wooden_fixed", spr_bridge_triggers("pw_wooden_bridge_a_footing", hit_points=15000)),
   ("pw_wooden_bridge_a_footing",spr_build_flags(),"pw_build_bridge","bo_pw_build", spr_bridge_footing_triggers()),
