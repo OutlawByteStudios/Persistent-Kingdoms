@@ -3707,6 +3707,28 @@ scene_props = [
   ("cm_ado_wood_windmill_post_full_sail_red"    ,0,"cm_ado_wood_windmill_post_full_sail_red","bo_cm_ado_wood_windmill_post_full_sail_red",[]),
   ("cm_ado_wood_windmill_post_sails_off"        ,0,"cm_ado_wood_windmill_post_sails_off","bo_cm_ado_wood_windmill_post_sails_off",[]),
   
+# Simple geometric props
+  ( "cm_basic_1_corner"                          ,0,"bo_basic_corner","0",[]),
+  ( "cm_basic_1_cylinder"                        ,0,"bo_basic_cylinder","0",[]),
+  ( "cm_basic_1_cylinder_flat"                   ,0,"bo_basic_cylinder_flat","0",[]),
+  ( "cm_basic_1_flat_cube"                       ,0,"bo_basic_flat_cube","0",[]),
+  ( "cm_basic_1_long_cube"                       ,0,"bo_basic_long_cube","0",[]),
+  ( "cm_basic_1_small_wall"                      ,0,"bo_basic_small_wall","0",[]),
+  ( "cm_basic_1_stairs"                          ,0,"bo_basic_stairs","0",[]),
+  ( "cm_basic_1_stairs_arch"                     ,0,"bo_basic_stairs_arch","0",[]),
+  ( "cm_basic_1_trapezoid"                       ,0,"bo_basic_trapezoid","0",[]),
+  ( "cm_basic_1_triangle"                        ,0,"bo_basic_triangle","0",[]),
+  ( "cm_basic_2_corner"                          ,0,"bo_basic_corner","0",[]),
+  ( "cm_basic_2_cylinder"                        ,0,"bo_basic_cylinder","0",[]),
+  ( "cm_basic_2_cylinder_flat"                   ,0,"bo_basic_cylinder_flat","0",[]),
+  ( "cm_basic_2_flat_cube"                       ,0,"bo_basic_flat_cube","0",[]),
+  ( "cm_basic_2_long_cube"                       ,0,"bo_basic_long_cube","0",[]),
+  ( "cm_basic_2_small_wall"                      ,0,"bo_basic_small_wall","0",[]),
+  ( "cm_basic_2_stairs"                          ,0,"bo_basic_stairs","0",[]),
+  ( "cm_basic_2_stairs_arch"                     ,0,"bo_basic_stairs_arch","0",[]),
+  ( "cm_basic_2_trapezoid"                       ,0,"bo_basic_trapezoid","0",[]),
+  ( "cm_basic_2_triangle"                        ,0,"bo_basic_triangle","0",[]),
+
   ("pw_destroy_heap",spr_use_time(2),"destroy_heap","bo_destroy_heap", spr_destroy_heap_triggers()),
 
   ("pw_rest_bed_a",spr_use_time(30),"bed_a","bo_bed_a", spr_rest_triggers(40, min_health_pct=35, use_time=30)),
