@@ -1299,7 +1299,7 @@ scene_props = [
   ("castle_f_battlement_d",0,"castle_f_battlement_d","bo_castle_f_battlement_d", []),
   ("castle_f_battlement_e",0,"castle_f_battlement_e","bo_castle_f_battlement_e", []),
   ("castle_f_sally_port_elevation",0,"castle_f_sally_port_elevation","bo_castle_f_sally_port_elevation", []),
-  ("castle_f_battlement_corner_a",0,"castle_f_battlement_corner_a","bo_castle_f_battlement_corner_a", []),
+  ("castle_f_battlement_corner_a",0,"castle_f_battlement_corner_a","bo_castle_f_battlement_corner_a_fixed", []),
   ("castle_f_battlement_corner_b",0,"castle_f_battlement_corner_b","bo_castle_f_battlement_corner_b", []),
   ("castle_f_battlement_corner_c",0,"castle_f_battlement_corner_c","bo_castle_f_battlement_corner_c", []),
 
