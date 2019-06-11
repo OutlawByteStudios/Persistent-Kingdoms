@@ -2060,7 +2060,7 @@ scene_props = [
   ("siege_ladder_move_12m",sokf_type_ladder|sokf_moveable|spr_use_time(3),"siege_ladder_move_12m","bo_siege_ladder_move_12m", []),
   ("siege_ladder_move_14m",sokf_type_ladder|sokf_moveable|spr_use_time(4),"siege_ladder_move_14m","bo_siege_ladder_move_14m", []),
 
-  ("portcullis",sokf_moveable,"portcullis_a","bo_portcullis_a", []),
+  ("portcullis",sokf_moveable,"portcullis_a","bo_portcullis_a_fixed", []),
   ("bed_a",0,"bed_a","bo_bed_a", []),
   ("bed_b",0,"bed_b","bo_bed_b", []),
   ("bed_c",0,"bed_c","bo_bed_c", []),
@@ -3883,9 +3883,9 @@ scene_props = [
 
   ("pw_winch_frame",0,"winch_stabilizer_a","bo_winch_stabilizer_a", []),
   ("pw_portcullis_winch",spr_use_time(1),"winch","bo_winch_fixed", spr_portcullis_winch_triggers("pw_portcullis")),
-  ("pw_portcullis",sokf_static_movement,"portculis_new","bo_portculis_new", []),
+  ("pw_portcullis",sokf_static_movement,"portculis_new","bo_portculis_new_fixed", []),
   ("pw_portcullis_winch_a",spr_use_time(1),"winch","bo_winch_fixed", spr_portcullis_winch_triggers("pw_portcullis_a")),
-  ("pw_portcullis_a",sokf_static_movement,"portcullis_a","bo_portcullis_a", []),
+  ("pw_portcullis_a",sokf_static_movement,"portcullis_a","bo_portcullis_a_fixed", []),
   ("pw_drawbridge_winch_a",spr_use_time(2),"winch_b","bo_winch_fixed", spr_drawbridge_winch_triggers("pw_drawbridge_a")),
   ("pw_drawbridge_a",sokf_moveable,"drawbridge","bo_drawbridge", []),
   ("pw_drawbridge_winch_b",spr_use_time(2),"winch_b","bo_winch_fixed", spr_drawbridge_winch_triggers("pw_drawbridge_b")),
