@@ -45,9 +45,11 @@ server_event_bank_management                    = 37
 server_event_day_night_cycle_sync               = 38
 server_event_weather_sync                       = 39
 server_event_agent_set_position                 = 40
+server_event_set_player_is_using_ballista       = 41
 
 # Add new events here: above if sent from the server, below if from clients.
 
+client_event_rotate_ballista                    = 85
 client_event_bank_management                    = 86
 client_event_toggle_walk                        = 87
 client_event_close_inventory                    = 88

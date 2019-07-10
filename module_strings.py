@@ -714,6 +714,7 @@ We apologize sincerely if you contributed your suggestions and feedback but were
   ("womens_clothes", "Women's clothes"),
   ("item_id", "Item ID:"),
   ("spawn_s1", "Spawn {s1}"),
+  ("use_ballista", "Ballista"),
 
   ("troop_not_available", "Not available to you^{s0}"),
   ("troop_train", "Train to be {s1} for {s2}"),

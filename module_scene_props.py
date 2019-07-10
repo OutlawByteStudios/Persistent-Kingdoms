@@ -961,6 +961,50 @@ skybox_triggers = [
   ]),
 ]
 
+ballista_triggers = [
+    (ti_on_scene_prop_init, [
+        (store_trigger_param_1, ":instance_id"),
+        (scene_prop_set_slot, ":instance_id", slot_scene_prop_use_string, "str_use_ballista"),
+        (scene_prop_set_slot, ":instance_id", slot_scene_prop_ballista_state, ballista_state_unloaded),
+    ]),
+    (ti_on_scene_prop_start_use, [
+        (store_trigger_param_1, ":instance_id"),
+        (store_trigger_param_2, ":agent_id"),
+        (try_begin),
+          (scene_prop_slot_eq, ":instance_id", slot_scene_prop_ballista_state, ballista_state_loaded),
+          (try_begin),
+            (scene_prop_slot_eq, ":instance_id", slot_scene_prop_ballista_user_id, ":agent_id"),
+            (prop_instance_get_position, pos0, ":instance_id"),
+            (add_missile, ":agent_id", pos0, 1, "itm_war_bow1", 0, "itm_arrows", 0),
+            (prop_instance_deform_in_range, ":instance_id", 0, 0, 1),
+            (scene_prop_set_slot, ":instance_id", slot_scene_prop_ballista_state, ballista_state_unloaded),
+          (else_try),
+            (scene_prop_slot_ge, ":instance_id", slot_scene_prop_ballista_user_id, 1),
+            # message
+          (else_try),
+            (scene_prop_set_slot, ":instance_id", slot_scene_prop_ballista_user_id, ":agent_id"),
+            (agent_set_slot, ":agent_id", slot_agent_ballista_on_use, ":instance_id"),
+            (agent_get_player_id, ":player_id", ":agent_id"),
+            (multiplayer_send_int_to_player, ":player_id", server_event_set_player_is_using_ballista, 1),
+          (try_end),
+        (else_try),
+          (prop_instance_deform_in_range, ":instance_id", 0, 1, 5000),
+        (try_end),
+
+    ]),
+    (ti_on_scene_prop_use, [
+        (store_trigger_param_1, ":instance_id"),
+        (scene_prop_slot_eq, ":instance_id", slot_scene_prop_ballista_state, ballista_state_unloaded),
+        (scene_prop_set_slot, ":instance_id", slot_scene_prop_ballista_state, ballista_state_loaded),
+        (prop_instance_deform_in_range, ":instance_id", 2, 2, 1),
+    ]),
+    (ti_on_scene_prop_cancel_use, [
+        (store_trigger_param_1, ":instance_id"),
+        (scene_prop_slot_eq, ":instance_id", slot_scene_prop_ballista_state, ballista_state_unloaded),
+        (prop_instance_deform_in_range, ":instance_id", 0, 0, 1),
+    ]),
+]
+
 scene_props = [
   ("invalid_object",0,"question_mark","0", []),
   ("inventory",sokf_type_container|sokf_place_at_origin,"package","bobaggage", []),
@@ -1199,6 +1243,8 @@ scene_props = [
   ("ship_c",0,"ship_c","bo_ship_c", []),
 
   ("ship_d",0,"ship_d","bo_ship_d", []),
+
+
 
   ("snowy_barrel_a",0,"snowy_barrel_a","bo_snowy_barrel_a", []),
   ("snowy_fence",0,"snowy_fence","bo_snowy_fence", []),
@@ -4031,6 +4077,8 @@ scene_props = [
   ("srp_skybox_sun", 0, "srp_skybox_sun", "0", skybox_triggers),
   ("srp_skybox_moon", 0, "srp_skybox_moon", "0", skybox_triggers),
   # [!] don't change the order
+
+  ("pk_ballista_operational", 0, "", "0", ballista_triggers),
 ]
 
 def fill_scene_props_list(list_var, trigger_id, modify_function):

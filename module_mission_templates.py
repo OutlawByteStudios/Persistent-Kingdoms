@@ -1090,6 +1090,39 @@ skybox_update_interval = (5, 0, 0, [], [
   (call_script, "script_skybox_send_info_to_players"),
 ])
 
+ballista_rotate_interval = (0.5, 0, 0, [(neg|multiplayer_is_server)], [
+  (eq, "$g_is_operating_ballista", 1),
+  (mission_cam_get_position, pos0),
+  (position_get_rotation_around_x, ":x_rotation", pos0),
+  (position_get_rotation_around_y, ":y_rotation", pos0),
+  (position_get_rotation_around_z, ":z_rotation", pos0),
+  (multiplayer_send_3_int_to_server, client_event_rotate_ballista, ":x_rotation", ":y_rotation", ":z_rotation")
+])
+
+ballista_check_interval = (0.5, 0, 0, [(multiplayer_is_server)], [
+  (try_for_prop_instances, ":instance_id", "spr_pk_ballista_operational"),
+    (scene_prop_get_slot, ":agent_id", ":instance_id", slot_scene_prop_ballista_user_id),
+    (try_begin),
+      (agent_is_active, ":agent_id"),
+      (agent_is_alive, ":agent_id"),
+      (agent_get_animation, ":animation", ":agent_id"),
+      (eq, ":animation", ballista_aim_animation),
+      (agent_get_position, pos0, ":agent_id"),
+      (prop_instance_get_position, pos1, ":instance_id"),
+      (get_sq_distance_between_positions, ":sq_distance", pos0, pos1),
+      (le, ":sq_distance", ballista_max_distance),
+    (else_try),
+      (scene_prop_set_slot, ":instance_id", slot_scene_prop_ballista_user_id, -1),
+      (prop_instance_stop_animating, ":instance_id"),
+      (agent_is_active, ":agent_id"),
+      (agent_set_slot, ":agent_id", slot_agent_ballista_on_use, -1),
+      (agent_get_player_id, ":player_id", ":agent_id"),
+      (player_is_active, ":player_id"),
+      (multiplayer_send_int_to_player, ":player_id", server_event_set_player_is_using_ballista, 0),
+    (try_end),
+  (try_end),
+])
+
 def common_triggers(self):
 	return [(ti_before_mission_start, 0, 0, [(assign, "$g_game_type", "mt_" + self)], []),
     before_mission_start_setup,
@@ -1159,6 +1192,9 @@ def common_triggers(self):
     render_weather_effects,
     
     skybox_update_interval,
+
+    ballista_rotate_interval,
+    ballista_check_interval
     ]
 
 mission_templates = [

@@ -159,6 +159,8 @@ slot_agent_playing_music              = 67
 
 slot_agent_rest_use_start_time        = 68
 
+slot_agent_ballista_on_use            = 69
+
 slot_agent_walk_mode                  = 73
 
 
@@ -241,6 +243,9 @@ slot_scene_prop_store_ammo            = 55
 slot_scene_prop_store_only_ammo       = 56
 
 slot_scene_prop_sitting_agent         = 57
+
+slot_scene_prop_ballista_state        = 58
+slot_scene_prop_ballista_user_id      = 59
 
 scene_prop_state_active               = 0
 scene_prop_state_destroyed            = 1
@@ -691,6 +696,13 @@ display_no_name_labels = 0
 display_name_labels_with_faction = 1
 display_name_labels = 2
 display_basic_name_labels = 3
+
+ballista_state_loaded = 0
+ballista_state_unloaded = 1
+
+ballista_aim_animation = "anim_sitting"
+
+ballista_max_distance = 500
 
 #===========================================================================
 #   SRP Skyboxes, time and weather
