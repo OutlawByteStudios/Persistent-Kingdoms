@@ -10094,6 +10094,7 @@ scripts.extend([
           (try_end),
           (neq, ":inventory_end", -1),
           (scene_prop_set_prune_time, ":instance_id", 1),
+          (scene_prop_set_slot, ":instance_id", slot_scene_prop_prune_time, 1),
         (else_try), # otherwise extend the time it will be removed if that is soon
           (store_mission_timer_a, ":time"),
           (val_add, ":time", 60),
