@@ -4,13 +4,13 @@
 ![Logo](http://media.moddb.com/images/articles/1/250/249910/auto/Asset_20.png)
 #### Persistent Worlds Overhaul Mod for Mount and Blade Warband.
 
-![GitHub release](https://img.shields.io/github/release/SmartPhoenix/Persistent-Kingdoms.svg?style=flat-square)
-![GitHub contributors](https://img.shields.io/github/contributors/SmartPhoenix/Persistent-Kingdoms.svg?style=flat-square)
+![GitHub release](https://img.shields.io/github/release/OutlawByteStudios/Persistent-Kingdoms.svg?style=flat-square)
+![GitHub contributors](https://img.shields.io/github/contributors/OutlawByteStudios/Persistent-Kingdoms.svg?style=flat-square)
 [![Discord](https://img.shields.io/discord/450652484634148875.svg?style=flat-square&logo=discord)](https://discord.gg/jwM54DB)
 [![Steam Group](https://img.shields.io/badge/Steam-Group-lightgrey.svg?style=flat-square)](https://steamcommunity.com/groups/persistent-kingdoms)
 
-[![GitHub issues](https://img.shields.io/github/issues/SmartPhoenix/Persistent-Kingdoms.svg?style=flat-square)](https://github.com/SmartPhoenix/Persistent-Kingdoms/issues)
-![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/SmartPhoenix/Persistent-Kingdoms.svg?style=flat-square)
+[![GitHub issues](https://img.shields.io/github/issues/OutlawByteStudios/Persistent-Kingdoms.svg?style=flat-square)](https://github.com/OutlawByteStudios/Persistent-Kingdoms/issues)
+![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/OutlawByteStudios/Persistent-Kingdoms.svg?style=flat-square)
 <br><br>
 </div>
 
@@ -38,7 +38,7 @@ At this stage of development we are still looking for contributions to be made. 
 
 Please message a developer on the [PK Discord](https://discord.gg/jwM54DB) if you wish to donate assests or help with the mod's development.
 
-**For existing PK mod developers, please see our [contribution guide](https://github.com/SmartPhoenix/Persistent-Kingdoms/wiki/How-to-contribute%3F).**
+**For existing PK mod developers, please see our [contribution guide](https://github.com/OutlawByteStudios/Persistent-Kingdoms/wiki/How-to-contribute%3F).**
 
 ## License
 ```
