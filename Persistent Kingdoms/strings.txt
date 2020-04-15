@@ -1,5 +1,5 @@
 stringsfile version 1
-801
+802
 str_no_string NO_STRING!
 str_empty_string _
 str_yes Yes.
@@ -20,10 +20,11 @@ str_credits_12 Thanks_to_all_of_our_partners_worldwide,_in_particular_long-term_
 str_profile_banner_selection_text Choose_a_banner_for_your_profile:
 str_use_default_banner Use_Faction's_Banner
 str_game_type_1 Conquest
-str_game_type_2 Quick_Battle
-str_game_type_3 No_Money
-str_game_type_4 Feudalism
-str_game_type_5 Permanent_Death
+str_game_type_2 Deathmatch
+str_game_type_3 Quick_Battle
+str_game_type_4 No_Money
+str_game_type_5 Feudalism
+str_game_type_6 Permanent_Death
 str_game_types_end game_types_end
 str_fac_1_default_name Red_Faction
 str_fac_2_default_name White_Faction
