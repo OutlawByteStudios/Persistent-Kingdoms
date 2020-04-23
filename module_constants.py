@@ -159,7 +159,9 @@ slot_agent_playing_music              = 67
 
 slot_agent_rest_use_start_time        = 68
 
-slot_agent_walk_mode                  = 73
+slot_agent_walk_mode                  = 69
+
+slot_agent_scene_prop_in_use          = 70
 
 
 ########################################################
@@ -239,8 +241,6 @@ slot_scene_prop_crafting_resource_4   = 54
 
 slot_scene_prop_store_ammo            = 55
 slot_scene_prop_store_only_ammo       = 56
-
-slot_scene_prop_sitting_agent         = 57
 
 scene_prop_state_active               = 0
 scene_prop_state_destroyed            = 1
