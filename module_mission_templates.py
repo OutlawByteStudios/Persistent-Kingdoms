@@ -485,6 +485,7 @@ sitting_check_chair = (1, 0, 0, [], # server: handle agents sitting
           (agent_set_wielded_item, ":agent_id", -1),
         (else_try),
           (agent_get_wielded_item, ":right_hand_item", ":agent_id", 0),
+          (ge, ":right_hand_item", all_items_begin),
           (neq, ":right_hand_item", "itm_lute"),
           (neq, ":right_hand_item", "itm_lyre"),
           (neq, ":right_hand_item", "itm_warhorn"),
