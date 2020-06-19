@@ -904,6 +904,7 @@ def spr_chairs(anim, female_anim=0):
           (call_script, "script_cf_chairs_do_custom_anims", ":agent_id", female_anim, 0),
         (else_try),
           (call_script, "script_cf_chairs_do_custom_anims", ":agent_id", anim, 0),
+          (try_end),
         (try_end),
 
         # move agent into place
