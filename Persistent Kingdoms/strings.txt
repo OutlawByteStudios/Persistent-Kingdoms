@@ -1,5 +1,5 @@
 stringsfile version 1
-800
+802
 str_no_string NO_STRING!
 str_empty_string _
 str_yes Yes.
@@ -20,10 +20,11 @@ str_credits_12 Thanks_to_all_of_our_partners_worldwide,_in_particular_long-term_
 str_profile_banner_selection_text Choose_a_banner_for_your_profile:
 str_use_default_banner Use_Faction's_Banner
 str_game_type_1 Conquest
-str_game_type_2 Quick_Battle
-str_game_type_3 No_Money
-str_game_type_4 Feudalism
-str_game_type_5 Permanent_Death
+str_game_type_2 Deathmatch
+str_game_type_3 Quick_Battle
+str_game_type_4 No_Money
+str_game_type_5 Feudalism
+str_game_type_6 Permanent_Death
 str_game_types_end game_types_end
 str_fac_1_default_name Red_Faction
 str_fac_2_default_name White_Faction
@@ -526,7 +527,8 @@ str_scene_error_this_faction_is_not_active Scene_error:_this_faction_is_not_acti
 str_you_are_not_lord_of_s1 You_are_not_the_lord_of_{s1}.
 str_you_are_now_lord_of_s1 You_are_now_the_lord_of_{s1}.
 str_s10_now_lord_of_s1 {s10}_is_now_the_lord_of_the_{s1}.
-str_s10_now_known_as_s1 {s10}_(FID:_{reg10})_are_now_known_as_{s1}.
+str_s10_now_known_as_s1 {s10}_are_now_known_as_{s1}.
+str_log_s10_now_known_as_s1 {s10}_(FID:_{reg10})_are_now_known_as_{s1}.
 str_banner_used_by_s1 That_banner_is_used_by_{s1}.
 str_s1_doesnt_need_merc {s1}_doesn't_need_mercenaries.
 str_s1_reign_supreme {s1}_reign_supreme!
@@ -782,9 +784,9 @@ str_log_put_item_in_inventory {s11}_put_{s12}_into_an_inventory_(IID:_{reg31}).
 str_log_put_item_in_finventory {s11}_put_{s12}_into_an_inventory_of_{s10}_(IID:_{reg31}).
 str_log_take_item_from_inventory {s11}_took_{s12}_from_an_inventory_(IID:_{reg31}).
 str_log_take_item_from_finventory {s11}_took_{s12}_from_an_inventory_of_{s10}_(IID:_{reg31}).
-str_log_hit_player {s11}_(FID:_{reg10})_attacked_{s12}_(FID:_{reg11})_with_{s10}_dealing_{reg31}_damage.
-str_log_hit_phorse {s11}_(FID:_{reg10})_attacked_Horse_({s12}_FID:_{reg11}))_with_{s10}_dealing_{reg31}_damage.
-str_log_hit_animal {s11}_(FID:_{reg10})_attacked_Horse_({s12}_FID:_{reg11}))_with_{s10}_dealing_{reg31}_damage_(AID:_{reg32}).
+str_log_hit_player {s11}_attacked_{s12}_with_{s10}_dealing_{reg31}_damage._FIDs:_{reg10},_{reg11}.
+str_log_hit_phorse {s11}_attacked_Horse_({s12})_with_{s10}_dealing_{reg31}_damage._FIDs:_{reg10},_{reg11}.
+str_log_hit_animal {s11}_attacked_Horse_({s12}_(AID:_{reg32}))_with_{s10}_dealing_{reg31}_damage._FID:_{reg10}
 str_log_bump Horse_({s11}_FID:_{reg10}))_attacked_{s12}_FID:_{reg11})_dealing_{reg31}_damage.
 str_log_heal_player {s11}_healed_{s12}_by_{reg31}_HP.
 str_log_heal_phorse {s11}_healed_Horse_({s12})_by_{reg31}_HP.

@@ -145,10 +145,15 @@ before_mission_start_setup = (ti_before_mission_start, 0, 0, [], # set up basic 
     (server_set_melee_friendly_fire, 1),
     (server_set_friendly_fire_damage_self_ratio, 0),
     (server_set_friendly_fire_damage_friend_ratio, 100),
-    (team_set_relation, team_default, team_default, -1),
-    (team_set_relation, team_default, team_spawn_invulnerable, 0),
-    (team_set_relation, team_spawn_invulnerable, team_default, 0),
-    (team_set_relation, team_spawn_invulnerable, team_spawn_invulnerable, 0),
+    (try_begin),
+      (eq, "$g_game_type", "mt_multiplayer_dm"),
+      (multiplayer_make_everyone_enemy),#necessary to hide the white name labels on the middle
+    (else_try),
+      (team_set_relation, team_default, team_default, -1),
+      (team_set_relation, team_default, team_spawn_invulnerable, 0),
+      (team_set_relation, team_spawn_invulnerable, team_default, 0),
+      (team_set_relation, team_spawn_invulnerable, team_spawn_invulnerable, 0),
+    (try_end),
 
     (call_script, "script_initialize_scene_globals"),
     (call_script, "script_scene_set_day_time"),
@@ -1164,6 +1169,11 @@ def common_triggers(self):
 mission_templates = [
   ("conquest", mtf_battle_mode, -1, "Conquest.", spawn_points_0_99,
     common_triggers("conquest") + [
+    money_bag_pressed,
+    ]),
+    
+  ("multiplayer_dm", mtf_battle_mode, -1, "Deathmatch.", spawn_points_0_99,
+    common_triggers("multiplayer_dm") + [
     money_bag_pressed,
     ]),
 

@@ -290,8 +290,8 @@ scripts.extend([
             (neg|agent_is_non_player, ":attacked_agent_id"),
             (agent_get_player_id, ":attacked_player_id", ":attacked_agent_id"),
             (str_store_player_username, s12, ":attacked_player_id"),
-            (server_add_message_to_log, "str_log_hit_player"),
             (player_get_slot, reg11, ":attacked_player_id", slot_player_faction_id),
+            (server_add_message_to_log, "str_log_hit_player"),
           (else_try),#Else, the defender is either horse or animal
             (agent_get_rider, ":rider_id", ":attacked_agent_id"),
             (try_begin),#The horse is mounted by a player
@@ -1507,6 +1507,21 @@ scripts.extend([
         (store_script_param, ":rain_mode", 3),
         (store_script_param, ":strength", 4),
         (set_rain, ":rain_mode", ":strength"),
+      (else_try),
+        (eq, ":event_type", server_event_agent_set_position),
+        (store_script_param, ":agent_id", 3),
+        (store_script_param, ":pos_x", 4),
+        (store_script_param, ":pos_y", 5),
+        (store_script_param, ":pos_z", 6),
+        (try_begin),
+          (agent_is_active, ":agent_id"),
+          (agent_is_alive, ":agent_id"),
+          (agent_get_position, pos10, ":agent_id"),
+          (position_set_x, pos10, ":pos_x"),
+          (position_set_y, pos10, ":pos_y"),
+          (position_set_z, pos10, ":pos_z"),
+          (agent_set_position, ":agent_id", pos10),
+        (try_end),
       (try_end),
 
     (else_try), # section of events received by server from the clients
@@ -1668,7 +1683,7 @@ scripts.extend([
               (try_end),
               (str_store_string, s1, s0),
               (assign, reg10, ":faction_id"),
-              (server_add_message_to_log, "str_s10_now_known_as_s1"),
+              (server_add_message_to_log, "str_log_s10_now_known_as_s1"),
             (try_end),
           (else_try),
             (is_between, ":chat_event_type", chat_event_type_faction, chat_event_type_faction_announce + 1),
@@ -2797,6 +2812,9 @@ scripts.extend([
       (eq, ":command", command_limit_artillery),
       (assign, "$g_skybox_scale", ":value"),
       (val_max, "$g_skybox_scale", 100),
+    (else_try),
+      (eq, ":command", command_limit_musician),
+      (assign, "$g_force_disable_name_labels", ":value"),
     (else_try),
       (eq, ":command", command_get_max_players),
       (server_get_max_num_players, ":value"),
@@ -4522,6 +4540,7 @@ scripts.extend([
     (multiplayer_send_2_int_to_player, ":player_id", server_event_return_game_rules, command_set_disallow_ranged_weapons, "$g_full_respawn_health"),
     (store_mission_timer_a, ":mission_timer"),
     (multiplayer_send_2_int_to_player, ":player_id", server_event_return_game_rules, command_set_server_mission_timer, ":mission_timer"),
+    (multiplayer_send_2_int_to_player, ":player_id", server_event_return_game_rules, command_limit_musician, "$g_force_disable_name_labels"),
     (multiplayer_send_2_int_to_player, ":player_id", server_event_script_message_set_color, "$g_script_message_color"),
     (try_begin),
       (eq, "$g_day_night_cycle_enabled", 1),
@@ -13714,10 +13733,11 @@ scripts.extend([
             (gt, ":admin_horse_agent_id", -1),
             (assign, ":admin_agent_id", ":admin_horse_agent_id"),
           (try_end),
+          (agent_is_active, ":admin_agent_id"),
           (agent_set_position, ":admin_agent_id", pos1),
         (else_try),
           (eq, ":admin_action", admin_action_teleport_player),
-          (agent_is_active, ":target_agent_id"),
+          (agent_is_active, ":admin_agent_id"),
           (agent_get_position, pos1, ":admin_agent_id"),
           (position_move_y, pos1, 100),
           (try_begin),
@@ -13725,6 +13745,7 @@ scripts.extend([
             (gt, ":target_horse_agent_id", -1),
             (assign, ":target_agent_id", ":target_horse_agent_id"),
           (try_end),
+          (agent_is_active, ":target_agent_id"),
           (agent_set_position, ":target_agent_id", pos1),
         (try_end),
       (else_try),
@@ -14653,8 +14674,8 @@ scripts.extend([
         (try_for_range, ":player_id", 1, ":max_players"),
           (player_is_active, ":player_id"),
           (multiplayer_send_int_to_player, ":player_id", server_event_agent_stop_sound, ":agent_id"),
-          (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_pose_finish",1),
         (try_end),
+        (call_script, "script_cf_do_custom_anims", ":agent_id", "anim_pose_finish",1),
     ]),
 
     ("client_stop_playing_musical_instrument", # client: Handle stop playing a musical instrument
@@ -14666,13 +14687,33 @@ scripts.extend([
           (try_end),
         (try_end),
     ]),
-
+    
     ("cf_do_custom_anims", # server: Do custom animations
        [(multiplayer_is_server),
         (store_script_param, ":agent_id", 1), # must be valid
         (store_script_param, ":anim", 2), # must be valid
         (store_script_param, ":body", 3),
-        (agent_set_animation,":agent_id",":anim",":body"),
+        (agent_set_animation, ":agent_id", ":anim", ":body"),
+    ]),
+
+    ("cf_chairs_do_custom_anims", # server: Do custom animations for sitting on chairs
+       [(multiplayer_is_server),
+        (store_script_param, ":agent_id", 1), # must be valid
+        (store_script_param, ":anim", 2), # must be valid
+        (store_script_param, ":body", 3),
+        
+        (agent_get_position, pos10, ":agent_id"),
+        (position_get_x, ":pos_x", pos10),
+        (position_get_y, ":pos_y", pos10),
+        (position_get_z, ":pos_z", pos10),
+        
+        #Manually set agent position on client side first, so that the teleportation doesn't trigger a walking animation which breaks the sitting animation
+        (try_for_players, ":other_player_id"),
+           (player_is_active, ":other_player_id"),
+           (multiplayer_send_4_int_to_player, ":other_player_id", server_event_agent_set_position, ":agent_id", ":pos_x", ":pos_y", ":pos_z"),
+        (try_end),
+        
+        (agent_set_animation, ":agent_id", ":anim", ":body"),
     ]),
 
     ("cf_has_enough_skill_level", # server: Handle checking for required skill level
